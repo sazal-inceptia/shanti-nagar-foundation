@@ -15,4 +15,34 @@ class HomeController extends Controller
     {
         return view('frontend.about');
     }
+
+    public function donations()
+    {
+        return view('frontend.donations');
+    }
+
+    public function donationDetails()
+    {
+        return view('frontend.donation-details');
+    }
+
+    public function events()
+    {
+        return view('frontend.events');
+    }
+
+    public function eventDetails()
+    {
+        return view('frontend.event-details');
+    }
+
+    public function blog()
+    {
+        return view('frontend.blog');
+    }
+
+    public function blogDetails()
+    {
+        return view('frontend.blog-details');
+    }
 }
