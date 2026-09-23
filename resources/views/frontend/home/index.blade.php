@@ -11,7 +11,7 @@
 
         <nav class="menu-box">
             <div class="nav-logo"><a href="index.html"><img
-                        src="{{ asset('assets/images/shanti_nagar_logo.jpg') }}" alt="" title=""></a></div>
+                        src="{{ asset('assets/images/logo.png') }}" alt="" title=""></a></div>
             <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
             <div class="contact-info">
                 <h4>Contact Info</h4>
@@ -2276,7 +2276,7 @@
                             style="background-image: url({{ asset('assets/images/shape/shape-1.png') }});">
                         </div>
                         <figure class="logo"><a href="index.html"><img
-                                    src="{{ asset('assets/images/shanti_nagar_logo.jpg') }}" alt=""></a>
+                                    src="{{ asset('assets/images/logo.png') }}" alt=""></a>
                         </figure>
                     </div>
                     <div class="text">

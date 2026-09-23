@@ -4,8 +4,7 @@
         <div class="shape"
             style="background-image: url(https://st.ourhtmldemo.com/new/PureHearts/assets/images/shape/shape-1.png);">
         </div>
-        <figure class="logo"><a href="index.html"><img src="{{ asset('assets/images/shanti_nagar_logo.jpg') }}"
-                    alt=""></a></figure>
+        <figure class="logo"><a href="index.html"><img src="{{ asset('assets/images/logo.png') }}" alt=""></a></figure>
     </div>
     <!-- header-top -->
     <div class="header-top">
