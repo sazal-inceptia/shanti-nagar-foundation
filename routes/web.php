@@ -12,3 +12,8 @@ Route::get('/events', [HomeController::class, 'events']);
 Route::get('/event-details', [HomeController::class, 'eventDetails']);
 Route::get('/blog', [HomeController::class, 'blog']);
 Route::get('/blog-details', [HomeController::class, 'blogDetails']);
+Route::get('/contact', [HomeController::class, 'contact']);
+Route::get('/volunteer', [HomeController::class, 'volunteer']);
+Route::get('/faq', [HomeController::class, 'faq']);
+Route::get('/donate', [HomeController::class, 'donate']);
+Route::get('/gallery', [HomeController::class, 'gallery']);

@@ -45,4 +45,29 @@ class HomeController extends Controller
     {
         return view('frontend.blog-details');
     }
+
+    public function contact()
+    {
+        return view('frontend.contact');
+    }
+
+    public function volunteer()
+    {
+        return view('frontend.volunteer');
+    }
+
+    public function faq()
+    {
+        return view('frontend.faq');
+    }
+
+    public function donate()
+    {
+        return view('frontend.donate');
+    }
+
+    public function gallery()
+    {
+        return view('frontend.gallery');
+    }
 }
