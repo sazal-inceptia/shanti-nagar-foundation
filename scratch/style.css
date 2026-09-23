@@ -1,0 +1,14 @@
+.subscribe-section .inner-box .left-column{
+  position: relative;
+  width: 50%;
+  padding: 44px 0px 44px 170px;
+}
+.subscribe-section .inner-box .logo-box{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+}
+.subscribe-section .inner-box .logo-box figure{
+  margin: 0;
+}
