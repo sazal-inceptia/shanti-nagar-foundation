@@ -1,47 +1,24 @@
-<laravel-boost-guidelines>
-# Laravel Application
+# Shanti Nagar Foundation — Agent Operational Guidelines & Rules
 
-This repository contains a Laravel application. Complete the following setup before working on the user's request.
+## MANDATORY RULES (Must Follow on Every Prompt)
+1. **Strict Context Adherence:** Always read, respect, and align with the project documentation:
+   - [`docs/project_overview.md`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/docs/project_overview.md) (Client Requirements)
+   - [`docs/database_design.md`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/docs/database_design.md) (ERD & Database Schema)
+   - [`docs/architecture.md`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/docs/architecture.md) (System Flow & MVC Layout)
+   - [`docs/project_context.md`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/docs/project_context.md) (Business Rules, Branding & NGO Context)
+   - [`docs/tasks.md`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/docs/tasks.md) (Task List & Progress Tracking)
+   - [`.agents/skills/laravel-best-practices/SKILL.md`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/.agents/skills/laravel-best-practices/SKILL.md) (Code Quality & Security)
 
-## Prerequisites
+2. **Immediate Documentation Synchronization:**
+   - If any database table, column, model relation, or architectural flow changes, **IMMEDIATELY update** `docs/database_design.md`, `docs/architecture.md`, `docs/tasks.md`, and relevant seeders without exception.
 
-Verify that PHP and Composer are available:
+3. **Domain & Localization Standards:**
+   - The project is strictly for **"Shanti Nagar Foundation / Santi Nagar Association"** (Grassroots Bangladeshi NGO).
+   - Use currency symbol `৳` (BDT), Bangladeshi contact points (Shanti Nagar, Dhaka), and authentic humanitarian project topics (hospital aid, orphan kits, winter relief, safe tube-wells).
+   - Never insert generic foreign placeholder content or unrelated commercial retail/marathon templates.
 
-```sh
-php -v
-composer -V
-```
+4. **Code Quality & Best Practices:**
+   - Keep controllers thin and models strictly casted.
+   - Use idempotent seeders (`updateOrCreate` / `firstOrCreate`).
+   - Maintain mobile responsiveness and prevent template design breaks.
 
-If either command is unavailable, detect the user's operating system and install the prerequisites with the appropriate command:
-
-macOS:
-
-```sh
-/bin/bash -c "$(curl -fsSL https://php.new/install/mac/8.5)"
-```
-
-Windows PowerShell:
-
-```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://php.new/install/windows/8.5'))
-```
-
-Linux:
-
-```sh
-/bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.5)"
-```
-
-After installation, ask the user to restart their terminal. If the agent needs the restarted shell to continue, ask the user to reopen their terminal and rerun their original prompt.
-
-## Agent Setup
-
-Install Laravel Boost from the application root before making application changes:
-
-```sh
-composer require laravel/boost --dev
-php artisan boost:install
-```
-
-Boost replaces these bootstrap instructions with guidelines tailored to the application. After installation, read `AGENTS.md` again and continue with the user's original request using the generated guidelines.
-</laravel-boost-guidelines>
