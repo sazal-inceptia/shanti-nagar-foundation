@@ -55,9 +55,9 @@
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
                                 <li class="{{ request()->is('/') ? 'current' : '' }}"><a href="/">Home</a></li>
-                                <li class="{{ request()->is('about*') ? 'current' : '' }}"><a href="/about">About</a></li>
-                                <li class="{{ request()->is('donation*') ? 'current' : '' }}"><a href="/donations">Donations</a></li>
-                                <li class="{{ request()->is('event*') ? 'current' : '' }}"><a href="/events">Events</a></li>
+                                <li class="{{ request()->is('about*') ? 'current' : '' }}"><a href="/about">About Us</a></li>
+                                <li class="{{ request()->is('donation*') ? 'current' : '' }}"><a href="/donations">Projects & Causes</a></li>
+                                <li class="{{ request()->is('event*') ? 'current' : '' }}"><a href="/events">Activities</a></li>
                                 <li class="{{ request()->is('gallery*') ? 'current' : '' }}"><a href="/gallery">Gallery</a></li>
                                 <li class="{{ request()->is('blog*') ? 'current' : '' }}"><a href="/blog">Blog</a></li>
                                 <li class="{{ request()->is('contact*') ? 'current' : '' }}"><a href="/contact">Contact</a></li>

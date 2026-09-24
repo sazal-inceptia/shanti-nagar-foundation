@@ -29,29 +29,17 @@
                             <div class="content-box">
                                 <div class="sec-title">
                                     <span class="top-text">About Shanti Nagar Foundation</span>
-                                    <h2>Help the Society,Donate to the Charity</h2>
+                                    <h2>Dedicated to Social Welfare & Humanitarian Support</h2>
                                 </div>
-                                <ul class="award-list clearfix">
-                                    <li><img src="{{ asset('assets/images/icons/award-1.png') }}" alt=""></li>
-                                    <li><img src="{{ asset('assets/images/icons/award-2.png') }}" alt=""></li>
-                                    <li><img src="{{ asset('assets/images/icons/award-3.png') }}" alt=""></li>
-                                    <li><img src="{{ asset('assets/images/icons/award-4.png') }}" alt=""></li>
-                                </ul>
                                 <div class="text">
-                                    <p>On the other hand, we denounce with righteous indignation & dislike men who are so beguiled and demoralized by the charms of pleasure of the moment so blinded by desire that they cannot foresee the pain trouble that are bound to ensure.</p>
+                                    <p>Shanti Nagar Foundation is a non-profit humanitarian organization committed to uplifting underprivileged communities across Bangladesh through direct medical aid, orphan care, winter clothes distribution, hospital equipment supply, and educational assistance.</p>
                                 </div>
                                 <div class="inner-box clearfix">
                                     <div class="author-box">
                                         <div class="icon-box"><i class="icon-hand"></i></div>
-                                        <span>Founder</span>
-                                        <h3>Benjie Alphonso</h3>
+                                        <span>Governing Body</span>
+                                        <h3>Shanti Nagar Association</h3>
                                     </div>
-                                    <ul class="social-links clearfix">
-                                        <li><a href="/about"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="/about"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="/about"><i class="fab fa-google-plus-g"></i></a></li>
-                                        <li><a href="/about"><i class="fab fa-instagram"></i></a></li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -637,56 +625,56 @@
         <!-- reports-section end -->
 
 
-        <!-- funfact-section -->
+        <!-- funfact-section (Transparency & Fund Summary) -->
         <section class="funfact-section alternat-2 centred" style="background-image: url({{ asset('assets/images/background/10.jpg') }});">
             <div class="auto-container">
                 <div class="sec-title light centred">
-                    <span class="top-text">Interesting Numbers</span>
-                    <h2>Shanti Nagar Foundation Facts & Figures</h2>
-                    <p>The master-builder of human happiness no one rejects, dislikes <br />or avoids  pleasure itself pleasure.</p>
+                    <span class="top-text">Financial Transparency & Impact</span>
+                    <h2>Fund Summary & Community Numbers</h2>
+                    <p>We maintain 100% financial accountability for every taka contributed and utilized for social causes.</p>
                 </div>
                 <div class="row clearfix">
                     <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
                         <div class="funfact-block-one wow slideInUp animated animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                             <div class="inner-box">
-                                <div class="icon-box"><i class="icon-charity"></i></div>
+                                <div class="icon-box"><i class="icon-donation-1"></i></div>
                                 <div class="count-outer count-box">
-                                    <span class="count-text" data-speed="1500" data-stop="278">0</span>
+                                    <span>৳</span><span class="count-text" data-speed="1500" data-stop="4500000">0</span>
                                 </div>
-                                <h4>Volunteers</h4>
+                                <h4>Total Donations Raised</h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
                         <div class="funfact-block-one wow slideInUp animated animated" data-wow-delay="100ms" data-wow-duration="1500ms">
                             <div class="inner-box">
-                                <div class="icon-box"><i class="icon-donation-1"></i></div>
+                                <div class="icon-box"><i class="icon-charity"></i></div>
                                 <div class="count-outer count-box">
-                                    <span class="count-text" data-speed="1500" data-stop="6.5">0</span><span>k</span>
+                                    <span>৳</span><span class="count-text" data-speed="1500" data-stop="4150000">0</span>
                                 </div>
-                                <h4>Beneficiaries</h4>
+                                <h4>Total Funds Utilized</h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
                         <div class="funfact-block-one wow slideInUp animated animated" data-wow-delay="200ms" data-wow-duration="1500ms">
                             <div class="inner-box">
-                                <div class="icon-box"><i class="icon-donation"></i></div>
+                                <div class="icon-box"><i class="icon-home"></i></div>
                                 <div class="count-outer count-box">
-                                    <span>$</span><span class="count-text" data-speed="1500" data-stop="10">0</span><span>m</span>
+                                    <span class="count-text" data-speed="1500" data-stop="38">0</span><span>+</span>
                                 </div>
-                                <h4>Worth Donations</h4>
+                                <h4>Social Projects Completed</h4>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
                         <div class="funfact-block-one wow slideInUp animated animated" data-wow-delay="300ms" data-wow-duration="1500ms">
                             <div class="inner-box">
-                                <div class="icon-box"><i class="icon-home"></i></div>
+                                <div class="icon-box"><i class="icon-donation"></i></div>
                                 <div class="count-outer count-box">
-                                    <span class="count-text" data-speed="1500" data-stop="350">0</span><span>+</span>
+                                    <span class="count-text" data-speed="1500" data-stop="12500">0</span><span>+</span>
                                 </div>
-                                <h4>NGOs Impacted</h4>
+                                <h4>Direct Beneficiaries</h4>
                             </div>
                         </div>
                     </div>

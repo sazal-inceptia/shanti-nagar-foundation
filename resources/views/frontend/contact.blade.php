@@ -23,12 +23,12 @@
         <section class="contact-section sec-pad">
             <div class="auto-container">
                 <div class="row clearfix">
-                    <div class="col-lg-4 col-md-12 col-sm-12 inner-column">
+                    <div class="col-lg-5 col-md-12 col-sm-12 inner-column">
                         <div class="contact-info-inner">
                             <div class="sec-title">
                                 <span class="top-text">Connecting Always</span>
                                 <h2>Hear by our Heart</h2>
-                                <p>Our team is available to help with your enquiries on email & phone, or visit our place.</p>
+                                <p>Our team is available to help with your enquiries on email & phone, or visit our central office.</p>
                             </div>
                             <div class="info-box">
                                 <div class="single-item">
@@ -55,40 +55,39 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12 image-column">
-                        <figure class="image-box"><img src="{{ asset('assets/images/resource/contact-1.png') }}" alt=""></figure>
-                    </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12 inner-column">
+                    <div class="col-lg-7 col-md-12 col-sm-12 inner-column">
                         <div class="contact-form-inner">
                             <div class="sec-title">
                                 <span class="top-text">Drop a Line</span>
-                                <h2>Leave us Message</h2>
+                                <h2>Leave us a Message</h2>
                                 <p>Please feel free to get in touch using the form below. We'd love to hear from you.</p>
                             </div>
                             <div class="form-inner">
                                 <form method="post" action="#" id="contact-form" class="default-form"> 
-                                    <div class="form-group">
-                                        <i class="far fa-user"></i>
-                                        <input type="text" name="username" placeholder="Your Name" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <i class="far fa-envelope"></i>
-                                        <input type="email" name="email" placeholder="Email Address" required="">
-                                    </div>
-                                    <div class="form-group">
-                                        <i class="far fa-phone"></i>
-                                        <input type="text" name="phone" required="" placeholder="Phone">
-                                    </div>
-                                    <div class="form-group">
-                                        <i class="far fa-sticky-note"></i>
-                                        <input type="text" name="subject" required="" placeholder="Subject">
-                                    </div>
-                                    <div class="form-group">
-                                        <i class="far fa-text-height"></i>
-                                        <textarea name="message" placeholder="Message"></textarea>
-                                    </div>
-                                    <div class="form-group message-btn">
-                                        <button class="theme-btn btn-one" type="submit" name="submit-form">Send Message</button>
+                                    <div class="row clearfix">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                            <i class="far fa-user"></i>
+                                            <input type="text" name="username" placeholder="Your Name" required="">
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                            <i class="far fa-envelope"></i>
+                                            <input type="email" name="email" placeholder="Email Address" required="">
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                            <i class="far fa-phone"></i>
+                                            <input type="text" name="phone" required="" placeholder="Phone">
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 form-group">
+                                            <i class="far fa-sticky-note"></i>
+                                            <input type="text" name="subject" required="" placeholder="Subject">
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                            <i class="far fa-text-height"></i>
+                                            <textarea name="message" placeholder="Message"></textarea>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
+                                            <button class="theme-btn btn-one" type="submit" name="submit-form">Send Message</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -152,73 +151,18 @@
 
         <!-- google-map-section -->
         <section class="google-map-section">
-            <div class="map-inner">
-                <div 
-                    class="google-map" 
-                    id="contact-google-map" 
-                    data-map-lat="23.7381" 
-                    data-map-lng="90.4125" 
-                    data-icon-path="{{ asset('assets/images/icons/map-marker.png') }}"  
-                    data-map-title="Shanti Nagar, Dhaka, Bangladesh" 
-                    data-map-zoom="15" 
-                    data-markers='{
-                        "marker-1": [23.7381, 90.4125, "<h4>Shanti Nagar Foundation</h4><p>Shanti Nagar, Dhaka - 1217, Bangladesh</p>","{{ asset('assets/images/icons/map-marker.png') }}"]
-                    }'>
-
-                </div>
+            <div class="map-inner" style="width: 100%; height: 500px;">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.285806660613!2d90.4103113154316!3d23.737194695200388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b85e054238e5%3A0x6a0f69a9b736b772!2sShantinagar%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1695546000000!5m2!1sen!2sbd" 
+                    width="100%" 
+                    height="500" 
+                    style="border:0; display:block;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </section>
         <!-- google-map-section -->
-
-
-        <!-- charity-shops -->
-        <section class="charity-shops centred">
-            <div class="auto-container">
-                <div class="sec-title centred">
-                    <span class="top-text">Regional Distribution & Centers</span>
-                    <h2>Our Relief Centers in Bangladesh</h2>
-                </div>
-                <div class="row clearfix">
-                    <div class="col-lg-3 col-md-6 col-sm-12 single-column">
-                        <div class="single-item wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                            <figure class="flag"><img src="{{ asset('assets/images/resource/flag-1.jpg') }}" alt=""></figure>
-                            <h4>Dhaka (Central)</h4>
-                            <p>House 14, Road 3, Shanti Nagar, Dhaka - 1217.</p>
-                            <div class="phone"><a href="tel:+8801700000001">+880 1700-000001</a></div>
-                            <div class="mail"><a href="mailto:dhaka@shantinagarfoundation.org">dhaka@shantinagarfoundation.org</a></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 single-column">
-                        <div class="single-item wow fadeInUp animated" data-wow-delay="100ms" data-wow-duration="1500ms">
-                            <figure class="flag"><img src="{{ asset('assets/images/resource/flag-2.jpg') }}" alt=""></figure>
-                            <h4>Chattogram</h4>
-                            <p>Agrabad Commercial Area, Chattogram - 4100.</p>
-                            <div class="phone"><a href="tel:+8801700000002">+880 1700-000002</a></div>
-                            <div class="mail"><a href="mailto:ctg@shantinagarfoundation.org">ctg@shantinagarfoundation.org</a></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 single-column">
-                        <div class="single-item wow fadeInUp animated" data-wow-delay="200ms" data-wow-duration="1500ms">
-                            <figure class="flag"><img src="{{ asset('assets/images/resource/flag-3.jpg') }}" alt=""></figure>
-                            <h4>Sylhet</h4>
-                            <p>Zindabazar Point, Sylhet Sadar, Sylhet - 3100.</p>
-                            <div class="phone"><a href="tel:+8801700000003">+880 1700-000003</a></div>
-                            <div class="mail"><a href="mailto:sylhet@shantinagarfoundation.org">sylhet@shantinagarfoundation.org</a></div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 single-column">
-                        <div class="single-item wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
-                            <figure class="flag"><img src="{{ asset('assets/images/resource/flag-4.jpg') }}" alt=""></figure>
-                            <h4>Rajshahi</h4>
-                            <p>Saheb Bazar, Boalia, Rajshahi - 6000.</p>
-                            <div class="phone"><a href="tel:+8801700000004">+880 1700-000004</a></div>
-                            <div class="mail"><a href="mailto:rajshahi@shantinagarfoundation.org">rajshahi@shantinagarfoundation.org</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="more-text"><span>Dedicated humanitarian and relief distribution networks operating across divisions in Bangladesh.</span></div>
-            </div>
-        </section>
-        <!-- charity-shops end -->
 
 @endsection
