@@ -1526,3 +1526,91 @@ header {
         color: #f95716 !important;
     }
 }
+
+/* ==========================================================================
+   Global Print Styles — Hide All Admin Chrome
+   ========================================================================== */
+@media print {
+    header,
+    footer,
+    nav,
+    .sidebar,
+    .logo_content,
+    .profile_content,
+    #top-navbar,
+    .no-print,
+    .header-navigation,
+    .title-with-breadcrumb,
+    .breadcrumb,
+    .add-new,
+    .btn,
+    button {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        width: 0 !important;
+        overflow: hidden !important;
+    }
+
+    html, body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #ffffff !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    #main-wrapper {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        position: static !important;
+    }
+
+    .content,
+    .sidebar.active ~ .content,
+    .sidebar:not(.active) ~ .content {
+        position: static !important;
+        left: 0 !important;
+        top: 0 !important;
+        margin: 0 !important;
+        margin-left: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        background-color: transparent !important;
+        min-height: auto !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .content-body {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .container-fluid,
+    .container {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .row {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+    }
+
+    .col-12, .col-lg-9, [class*="col-"] {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+}

@@ -81,9 +81,12 @@
   - [x] Project CRUD (Create, Edit, Status update, Target budget tracker)
   - [x] Multi-image uploader for Project Documentation & Gallery
   - [x] Layered Architecture: `app/Http/Controllers/Admin/ProjectController.php`, `app/Services/ProjectService.php`, `app/Http/Requests/Admin/StoreProjectRequest.php`, `app/Http/Requests/Admin/UpdateProjectRequest.php`
-- [ ] **Donor & Donation Management (Req #1)**
-  - [ ] Donor list, profile view & donation history
-  - [ ] Add new offline/online donation entry & automatic receipt generator
+- [x] **Donor & Donation Management (Req #1)**
+  - [x] Donor list, profile view & lifetime donation history with Yajra DataTables
+  - [x] Add offline/online donation entry with quick-add donor support
+  - [x] Automatic sequential receipt generator (`REC-YYYY-001`)
+  - [x] Official printable Money Receipt view (`admin/donations/show.blade.php`)
+  - [x] Layered Architecture: `DonorController.php`, `DonationController.php`, `DonorService.php`, `DonationService.php`, Form Requests
 - [ ] **Expense Management & Vouchers (Req #3)**
   - [ ] Expense voucher entry (Category, Vendor, Project allocation, Attachment)
   - [ ] Real-time project cost calculation vs estimated budget

@@ -1,9 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DonationController;
+use App\Http\Controllers\Admin\DonorController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,29 +56,41 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('projects', ProjectController::class);
 
     // Donors Directory
-    Route::get('/donors', function() { return view('admin.home.index'); })->name('donors.index');
-    Route::get('/donors/create', function() { return redirect()->route('admin.donors.index'); })->name('donors.create');
+    Route::resource('donors', DonorController::class);
 
     // Donations & Receipts
-    Route::get('/donations', function() { return view('admin.home.index'); })->name('donations.index');
-    Route::get('/donations/create', function() { return redirect()->route('admin.donations.index'); })->name('donations.create');
+    Route::resource('donations', DonationController::class);
 
     // Expenses & Vouchers
-    Route::get('/expenses', function() { return view('admin.home.index'); })->name('expenses.index');
-    Route::get('/expenses/create', function() { return redirect()->route('admin.expenses.index'); })->name('expenses.create');
+    Route::get('/expenses', function () {
+        return view('admin.home.index');
+    })->name('expenses.index');
+    Route::get('/expenses/create', function () {
+        return redirect()->route('admin.expenses.index');
+    })->name('expenses.create');
 
     // Employees & Staff
-    Route::get('/employees', function() { return view('admin.home.index'); })->name('employees.index');
+    Route::get('/employees', function () {
+        return view('admin.home.index');
+    })->name('employees.index');
 
     // Salaries & Payroll
-    Route::get('/salaries', function() { return view('admin.home.index'); })->name('salaries.index');
+    Route::get('/salaries', function () {
+        return view('admin.home.index');
+    })->name('salaries.index');
 
     // Financial Reports
-    Route::get('/reports', function() { return view('admin.home.index'); })->name('reports.index');
+    Route::get('/reports', function () {
+        return view('admin.home.index');
+    })->name('reports.index');
 
     // Admin Users
-    Route::get('/users', function() { return view('admin.users.index'); })->name('users.index');
+    Route::get('/users', function () {
+        return view('admin.users.index');
+    })->name('users.index');
 
     // Settings
-    Route::get('/settings', function() { return view('admin.settings.index'); })->name('settings.index');
+    Route::get('/settings', function () {
+        return view('admin.settings.index');
+    })->name('settings.index');
 });

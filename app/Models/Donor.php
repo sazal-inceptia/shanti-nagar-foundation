@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\DonorType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,6 +25,7 @@ class Donor extends Model
     ];
 
     protected $casts = [
+        'donor_type' => DonorType::class,
         'is_anonymous' => 'boolean',
     ];
 
