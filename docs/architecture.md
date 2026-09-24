@@ -117,6 +117,7 @@ shanti-nagar-foundation/
     ├── project_overview.md                      # Client specification document
     ├── database_design.md                       # Complete ERD, schema & model relations
     ├── architecture.md                          # This 3-tier architecture document
+    ├── module_standard_blueprint.md             # Standard CRUD & UI specifications guide
     ├── project_context.md                       # Business rules, branding & roadmap
     └── tasks.md                                 # Task list & progress tracker
 ```

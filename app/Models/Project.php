@@ -30,11 +30,11 @@ class Project extends Model
 
     protected $casts = [
         'estimated_cost' => 'decimal:2',
-        'total_expense'  => 'decimal:2',
-        'start_date'     => 'date',
-        'completion_date'=> 'date',
-        'is_featured'    => 'boolean',
-        'is_published'   => 'boolean',
+        'total_expense' => 'decimal:2',
+        'start_date' => 'date',
+        'completion_date' => 'date',
+        'is_featured' => 'boolean',
+        'is_published' => 'boolean',
     ];
 
     /**
@@ -62,18 +62,58 @@ class Project extends Model
     }
 
     /**
-     * Total donations raised for this project.
+     * Total donations raised for this project (completed donations).
      */
     public function getTotalDonationsRaisedAttribute(): float
     {
+        if ($this->relationLoaded('donations')) {
+            return (float) $this->donations->where('status', 'completed')->sum('amount');
+        }
+
         return (float) $this->donations()->where('status', 'completed')->sum('amount');
     }
 
     /**
      * Total actual expenses spent on this project.
+     * Uses relational expenses sum if available, falls back to total_expense column.
      */
     public function getActualExpenseTotalAttribute(): float
     {
-        return (float) $this->expenses()->sum('amount');
+        if ($this->relationLoaded('expenses')) {
+            $sum = (float) $this->expenses->sum('amount');
+
+            return $sum > 0 ? $sum : (float) $this->total_expense;
+        }
+        $sum = (float) $this->expenses()->sum('amount');
+
+        return $sum > 0 ? $sum : (float) $this->total_expense;
+    }
+
+    /**
+     * Net balance remaining from funds raised after expenses.
+     */
+    public function getNetBalanceAttribute(): float
+    {
+        return (float) ($this->total_donations_raised - $this->actual_expense_total);
+    }
+
+    /**
+     * Remaining target budget to be spent.
+     */
+    public function getRemainingBudgetAttribute(): float
+    {
+        return (float) max(0, $this->estimated_cost - $this->actual_expense_total);
+    }
+
+    /**
+     * Calculate percentage of target budget raised.
+     */
+    public function getFundingProgressPercentageAttribute(): float
+    {
+        if ((float) $this->estimated_cost <= 0) {
+            return 0;
+        }
+
+        return round(($this->total_donations_raised / (float) $this->estimated_cost) * 100, 1);
     }
 }

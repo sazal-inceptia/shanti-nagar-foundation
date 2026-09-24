@@ -9,9 +9,9 @@
             {{-- Main Details --}}
             <div class="col-lg-8 col-12">
                 <div class="card table-card mb-4">
-                    <div class="card-header table-header d-flex justify-content-between align-items-center">
+                    <div class="card-header table-header">
                         <div class="title-with-breadcrumb">
-                            <div class="table-title">{{ $project->name }}</div>
+                            <div class="table-title">Project Details: {{ $project->name }}</div>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb mb-0">
                                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
@@ -20,12 +20,12 @@
                                 </ol>
                             </nav>
                         </div>
-                        <div class="d-flex gap-2">
-                            <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-sm btn-primary" style="background-color: #f65024; border-color: #f65024; height: 34px; font-weight: 600; display: inline-flex; align-items: center;">
-                                <i class="ri-edit-line me-1"></i> Edit Project
+                        <div class="d-flex align-items-center gap-2">
+                            <a href="{{ route('admin.projects.index') }}" class="add-new" style="background-color: #f1f5f9; color: #334155;">
+                                <i class="ri-arrow-left-line me-1"></i> Project List
                             </a>
-                            <a href="{{ route('admin.projects.index') }}" class="btn btn-sm btn-outline-secondary" style="height: 34px; font-weight: 600; display: inline-flex; align-items: center;">
-                                Back to List
+                            <a href="{{ route('admin.projects.edit', $project->id) }}" class="add-new">
+                                <i class="ri-edit-line me-1"></i> Edit Project
                             </a>
                         </div>
                     </div>
@@ -50,20 +50,32 @@
                                         'completed' => 'background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0;',
                                         'in_progress' => 'background-color: #fff3ee; color: #f65024; border: 1px solid rgba(246, 80, 36, 0.3);',
                                         'planned' => 'background-color: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe;',
+                                        'cancelled' => 'background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca;',
                                         default => 'background-color: #f1f5f9; color: #475569; border: 1px solid #cbd5e1;',
                                     };
                                 @endphp
                                 <span class="badge" style="{{ $badgeStyle }} font-size: 12px; padding: 4px 8px; border-radius: 4px;">
-                                    {{ ucwords(str_replace('_', ' ', $project->status)) }}
+                                    {{ ucwords(str_replace('_', ' ', (string) $project->status)) }}
                                 </span>
                             </div>
                             <div class="col-md-3 col-6">
                                 <span class="text-muted d-block" style="font-size: 11.5px; font-weight: 600; text-transform: uppercase;">Target Budget</span>
-                                <span class="fw-bold text-dark" style="font-size: 14px;">৳ {{ number_format($project->estimated_cost, 2) }}</span>
+                                <span class="fw-bold text-dark" style="font-size: 14px;">৳ {{ number_format((float) $project->estimated_cost, 2) }}</span>
                             </div>
                             <div class="col-md-3 col-6">
                                 <span class="text-muted d-block" style="font-size: 11.5px; font-weight: 600; text-transform: uppercase;">Location</span>
                                 <span class="fw-semibold text-dark" style="font-size: 13px;">{{ $project->location ?: 'Dhaka, Bangladesh' }}</span>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6 col-12">
+                                <span class="text-muted d-block" style="font-size: 11.5px; font-weight: 600; text-transform: uppercase;">Start / Launch Date</span>
+                                <span class="text-dark" style="font-size: 13px;">{{ $project->start_date?->format('M d, Y') ?: 'Not set' }}</span>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <span class="text-muted d-block" style="font-size: 11.5px; font-weight: 600; text-transform: uppercase;">Target Completion Date</span>
+                                <span class="text-dark" style="font-size: 13px;">{{ $project->completion_date?->format('M d, Y') ?: 'Ongoing' }}</span>
                             </div>
                         </div>
 
@@ -83,7 +95,7 @@
 
                         {{-- Gallery Photos --}}
                         @if($project->images->isNotEmpty())
-                            <div>
+                            <div class="mb-4">
                                 <h6 class="fw-bold text-dark border-bottom pb-2" style="font-size: 14px;">Project Documentation Gallery ({{ $project->images->count() }})</h6>
                                 <div class="row g-2">
                                     @foreach($project->images as $img)
@@ -96,6 +108,104 @@
                                 </div>
                             </div>
                         @endif
+
+                        {{-- Financial Audit Tables: Donations & Expenses --}}
+                        <div class="mt-4 pt-2 border-top">
+                            <ul class="nav nav-tabs border-bottom" id="projectAuditTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active fw-bold" id="donations-tab" data-bs-toggle="tab" data-bs-target="#donations-tab-pane" type="button" role="tab" aria-controls="donations-tab-pane" aria-selected="true" style="font-size: 13.5px;">
+                                        <i class="ri-hand-heart-line me-1 text-success"></i> Donations ({{ $project->donations->count() }})
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link fw-bold" id="expenses-tab" data-bs-toggle="tab" data-bs-target="#expenses-tab-pane" type="button" role="tab" aria-controls="expenses-tab-pane" aria-selected="false" style="font-size: 13.5px;">
+                                        <i class="ri-file-list-3-line me-1 text-danger"></i> Expenses &amp; Vouchers ({{ $project->expenses->count() }})
+                                    </button>
+                                </li>
+                            </ul>
+                            <div class="tab-content pt-3" id="projectAuditTabContent">
+                                {{-- Donations Pane --}}
+                                <div class="tab-pane fade show active" id="donations-tab-pane" role="tabpanel" aria-labelledby="donations-tab" tabindex="0">
+                                    @if($project->donations->isNotEmpty())
+                                        <div class="table-responsive">
+                                            <table class="table table-sm align-middle mb-0" style="font-size: 12.5px;">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Receipt #</th>
+                                                        <th>Donor</th>
+                                                        <th>Amount (৳)</th>
+                                                        <th>Method</th>
+                                                        <th>Date</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($project->donations as $donation)
+                                                        <tr>
+                                                            <td class="font-monospace fw-semibold">{{ $donation->receipt_number }}</td>
+                                                            <td>{{ $donation->donor?->name ?? 'Anonymous' }}</td>
+                                                            <td class="fw-bold text-success">৳ {{ number_format((float) $donation->amount, 2) }}</td>
+                                                            <td><span class="badge bg-light text-dark border">{{ strtoupper($donation->payment_method) }}</span></td>
+                                                            <td>{{ $donation->donation_date?->format('M d, Y') }}</td>
+                                                            <td>
+                                                                <span class="badge {{ $donation->status === 'completed' ? 'bg-success-subtle text-success border border-success-subtle' : 'bg-warning-subtle text-warning border border-warning-subtle' }}">
+                                                                    {{ ucfirst($donation->status) }}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    @else
+                                        <div class="text-center py-4 text-muted" style="font-size: 13px;">
+                                            <i class="ri-hand-heart-line d-block fs-3 mb-1 text-secondary"></i>
+                                            No donation transactions recorded for this project yet.
+                                        </div>
+                                    @endif
+                                </div>
+
+                                {{-- Expenses Pane --}}
+                                <div class="tab-pane fade" id="expenses-tab-pane" role="tabpanel" aria-labelledby="expenses-tab" tabindex="0">
+                                    @if($project->expenses->isNotEmpty())
+                                        <div class="table-responsive">
+                                            <table class="table table-sm align-middle mb-0" style="font-size: 12.5px;">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Voucher #</th>
+                                                        <th>Title / Vendor</th>
+                                                        <th>Category</th>
+                                                        <th>Amount (৳)</th>
+                                                        <th>Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($project->expenses as $expense)
+                                                        <tr>
+                                                            <td class="font-monospace fw-semibold">{{ $expense->voucher_number }}</td>
+                                                            <td>
+                                                                <span class="d-block fw-semibold text-dark">{{ $expense->title }}</span>
+                                                                @if($expense->recipient_or_vendor)
+                                                                    <span class="text-muted" style="font-size: 11px;">To: {{ $expense->recipient_or_vendor }}</span>
+                                                                @endif
+                                                            </td>
+                                                            <td><span class="badge bg-light text-dark border">{{ $expense->expense_category }}</span></td>
+                                                            <td class="fw-bold text-danger">৳ {{ number_format((float) $expense->amount, 2) }}</td>
+                                                            <td>{{ $expense->expense_date?->format('M d, Y') }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    @else
+                                        <div class="text-center py-4 text-muted" style="font-size: 13px;">
+                                            <i class="ri-file-list-3-line d-block fs-3 mb-1 text-secondary"></i>
+                                            No expense vouchers recorded for this project yet.
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -110,27 +220,34 @@
                         <div class="p-3 rounded mb-3" style="background: #f8fafc; border: 1px solid #e2e8f0;">
                             <div class="d-flex justify-content-between mb-2">
                                 <span class="text-muted" style="font-size: 12.5px;">Target Budget:</span>
-                                <strong class="text-dark">৳ {{ number_format($project->estimated_cost, 2) }}</strong>
+                                <strong class="text-dark">৳ {{ number_format((float) $project->estimated_cost, 2) }}</strong>
                             </div>
                             <div class="d-flex justify-content-between mb-2">
                                 <span class="text-muted" style="font-size: 12.5px;">Donations Raised:</span>
-                                <strong class="text-success">৳ {{ number_format($project->total_donations_raised, 2) }}</strong>
+                                <strong class="text-success">৳ {{ number_format((float) $project->total_donations_raised, 2) }}</strong>
                             </div>
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-between mb-2">
                                 <span class="text-muted" style="font-size: 12.5px;">Actual Expenditure:</span>
-                                <strong class="text-danger">৳ {{ number_format($project->total_expense, 2) }}</strong>
+                                <strong class="text-danger">৳ {{ number_format((float) $project->actual_expense_total, 2) }}</strong>
+                            </div>
+                            <div class="d-flex justify-content-between pt-2 border-top">
+                                <span class="text-muted fw-semibold" style="font-size: 12.5px;">Net Cash Balance:</span>
+                                <strong class="{{ $project->net_balance >= 0 ? 'text-primary' : 'text-danger' }}">
+                                    ৳ {{ number_format((float) $project->net_balance, 2) }}
+                                </strong>
                             </div>
                         </div>
 
                         @php
-                            $raisedPercent = $project->estimated_cost > 0 ? min(100, round(($project->total_donations_raised / $project->estimated_cost) * 100)) : 0;
+                            $raisedPercent = $project->funding_progress_percentage;
+                            $barPercent = min(100, $raisedPercent);
                         @endphp
                         <div class="mb-2 d-flex justify-content-between" style="font-size: 12px;">
                             <span class="text-muted">Funding Progress</span>
                             <span class="fw-bold text-dark">{{ $raisedPercent }}%</span>
                         </div>
                         <div class="progress" style="height: 8px; border-radius: 4px;">
-                            <div class="progress-bar" role="progressbar" style="width: {{ $raisedPercent }}%; background-color: #059669;" aria-valuenow="{{ $raisedPercent }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar" role="progressbar" style="width: {{ $barPercent }}%; background-color: #059669;" aria-valuenow="{{ $barPercent }}" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProjectController extends Controller
 {
@@ -46,31 +47,33 @@ class ProjectController extends Controller
             }
 
             if ($request->has('draw')) {
-                return \Yajra\DataTables\Facades\DataTables::of($query)
+                return DataTables::of($query)
                     ->addIndexColumn()
                     ->addColumn('thumbnail', function ($row) {
                         $imageUrl = $row->featured_image ? asset($row->featured_image) : asset('assets/images/logo.png');
                         $defaultLogo = asset('assets/images/logo.png');
+
                         return '<div class="project-thumb-box" style="width: 52px; height: 38px; border-radius: 6px; overflow: hidden; background: #e2e8f0; border: 1px solid #cbd5e1; display: inline-flex; align-items: center; justify-content: center;">
-                            <img src="' . e($imageUrl) . '" alt="' . e($row->name) . '" onerror="this.onerror=null;this.src=\'' . e($defaultLogo) . '\';" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="'.e($imageUrl).'" alt="'.e($row->name).'" onerror="this.onerror=null;this.src=\''.e($defaultLogo).'\';" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>';
                     })
                     ->addColumn('title_details', function ($row) {
                         $showUrl = route('admin.projects.show', $row->id);
-                        $locationHtml = $row->location ? '<span class="text-muted ms-2" style="font-size: 11px;"><i class="ri-map-pin-line text-danger me-1"></i>' . e($row->location) . '</span>' : '';
-                        $categoryHtml = '<span class="badge" style="background-color: #f1f5f9; color: #334155; font-size: 10.5px; padding: 2px 6px; border-radius: 4px;">' . e($row->category ?? 'General') . '</span>';
+                        $locationHtml = $row->location ? '<span class="text-muted ms-2" style="font-size: 11px;"><i class="ri-map-pin-line text-danger me-1"></i>'.e($row->location).'</span>' : '';
+                        $categoryHtml = '<span class="badge" style="background-color: #f1f5f9; color: #334155; font-size: 10.5px; padding: 2px 6px; border-radius: 4px;">'.e($row->category ?? 'General').'</span>';
+
                         return '<div class="d-flex flex-column">
-                            <a href="' . e($showUrl) . '" class="fw-bold text-dark text-decoration-none table-title-link" style="font-size: 13.5px;">' . e($row->name) . '</a>
+                            <a href="'.e($showUrl).'" class="fw-bold text-dark text-decoration-none table-title-link" style="font-size: 13.5px;">'.e($row->name).'</a>
                             <div class="d-flex align-items-center mt-1">
-                                ' . $categoryHtml . '
-                                ' . $locationHtml . '
+                                '.$categoryHtml.'
+                                '.$locationHtml.'
                             </div>
                         </div>';
                     })
                     ->addColumn('target_budget', function ($row) {
                         return '<div class="d-flex flex-column">
-                            <span class="fw-bold text-dark" style="font-size: 13px;">৳ ' . number_format((float) $row->estimated_cost, 2) . '</span>
-                            <span class="text-muted" style="font-size: 11px;">Spent: ৳ ' . number_format((float) $row->total_expense, 2) . '</span>
+                            <span class="fw-bold text-dark" style="font-size: 13px;">৳ '.number_format((float) $row->estimated_cost, 2).'</span>
+                            <span class="text-muted" style="font-size: 11px;">Spent: ৳ '.number_format((float) $row->actual_expense_total, 2).'</span>
                         </div>';
                     })
                     ->addColumn('status_badge', function ($row) {
@@ -81,18 +84,21 @@ class ProjectController extends Controller
                             'cancelled' => 'background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca;',
                             default => 'background-color: #f1f5f9; color: #475569; border: 1px solid #cbd5e1;',
                         };
-                        return '<span class="badge" style="' . $badgeStyle . ' font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;">' . e(ucwords(str_replace('_', ' ', (string) $row->status))) . '</span>';
+
+                        return '<span class="badge" style="'.$badgeStyle.' font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;">'.e(ucwords(str_replace('_', ' ', (string) $row->status))).'</span>';
                     })
                     ->addColumn('featured_toggle', function ($row) {
                         $checked = $row->is_featured ? 'checked' : '';
+
                         return '<div class="form-check form-switch m-0 d-flex justify-content-center">
-                            <input class="form-check-input featured-toggle toggle-project-feature" type="checkbox" role="switch" data-id="' . $row->id . '" ' . $checked . ' style="cursor: pointer;">
+                            <input class="form-check-input featured-toggle toggle-project-feature" type="checkbox" role="switch" data-id="'.$row->id.'" '.$checked.' style="cursor: pointer;">
                         </div>';
                     })
                     ->addColumn('published_toggle', function ($row) {
                         $checked = $row->is_published ? 'checked' : '';
+
                         return '<div class="form-check form-switch m-0 d-flex justify-content-center">
-                            <input class="form-check-input status-toggle toggle-project-publish" type="checkbox" role="switch" data-id="' . $row->id . '" ' . $checked . ' style="cursor: pointer;">
+                            <input class="form-check-input status-toggle toggle-project-publish" type="checkbox" role="switch" data-id="'.$row->id.'" '.$checked.' style="cursor: pointer;">
                         </div>';
                     })
                     ->addColumn('action-btn', function ($row) {
@@ -128,6 +134,7 @@ class ProjectController extends Controller
     public function create(): View
     {
         $categories = $this->projectService->getCategories();
+
         return view('admin.projects.create', compact('categories'));
     }
 
@@ -154,7 +161,12 @@ class ProjectController extends Controller
      */
     public function show(Project $project): View
     {
-        $project->load(['images', 'donations', 'expenses']);
+        $project->load([
+            'images',
+            'donations' => fn ($q) => $q->with('donor')->latest('donation_date'),
+            'expenses' => fn ($q) => $q->with('creator')->latest('expense_date'),
+        ]);
+
         return view('admin.projects.show', compact('project'));
     }
 
@@ -165,6 +177,7 @@ class ProjectController extends Controller
     {
         $categories = $this->projectService->getCategories();
         $project->load('images');
+
         return view('admin.projects.edit', compact('project', 'categories'));
     }
 
@@ -206,7 +219,7 @@ class ProjectController extends Controller
         $field = $request->input('field');
         $value = $request->input('value');
 
-        if (!in_array($field, ['is_featured', 'is_published', 'status', 'featured'])) {
+        if (! in_array($field, ['is_featured', 'is_published', 'status', 'featured'])) {
             return response()->json([
                 'success' => false,
                 'message' => 'Invalid toggle field requested',
@@ -227,8 +240,8 @@ class ProjectController extends Controller
 
         return response()->json([
             'success' => $success,
-            'message' => ucfirst(str_replace('_', ' ', $field)) . ' status updated successfully.',
-            'value'   => $project->$field,
+            'message' => ucfirst(str_replace('_', ' ', $field)).' status updated successfully.',
+            'value' => $project->$field,
         ]);
     }
 }
