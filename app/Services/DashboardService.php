@@ -8,8 +8,6 @@ use App\Models\Employee;
 use App\Models\Expense;
 use App\Models\Project;
 use App\Models\Salary;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class DashboardService
 {
@@ -18,16 +16,16 @@ class DashboardService
      */
     public function getKpiMetrics(): array
     {
-        $totalDonations = (float) Donation::where('payment_status', 'completed')->sum('amount');
+        $totalDonations = (float) Donation::where('status', 'completed')->sum('amount');
         $totalExpenses = (float) Expense::sum('amount');
-        $totalSalaries = (float) Salary::where('payment_status', 'paid')->sum('net_payable');
+        $totalSalaries = (float) Salary::where('status', 'paid')->sum('net_paid_amount');
         $totalExpenditure = $totalExpenses + $totalSalaries;
         $netFundBalance = $totalDonations - $totalExpenditure;
 
         $totalDonors = Donor::count();
-        $activeProjects = Project::where('status', 'active')->count();
+        $activeProjects = Project::where('status', 'in_progress')->count();
         $totalProjects = Project::count();
-        $totalEmployees = Employee::where('status', 'active')->count();
+        $totalEmployees = Employee::where('employment_status', 'active')->count();
 
         return [
             'total_donations' => $totalDonations,
@@ -37,7 +35,7 @@ class DashboardService
             'active_projects' => $activeProjects,
             'total_projects' => $totalProjects,
             'total_employees' => $totalEmployees,
-            'donations_count' => Donation::where('payment_status', 'completed')->count(),
+            'donations_count' => Donation::where('status', 'completed')->count(),
         ];
     }
 
@@ -47,8 +45,8 @@ class DashboardService
     public function getRecentDonations(int $limit = 5)
     {
         return Donation::with(['donor', 'project'])
-            ->where('payment_status', 'completed')
-            ->latest('donated_at')
+            ->where('status', 'completed')
+            ->latest('donation_date')
             ->take($limit)
             ->get();
     }

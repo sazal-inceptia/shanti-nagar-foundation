@@ -103,9 +103,14 @@
   - [x] Server-side Yajra DataTables with custom filters for staff and payroll records
   - [x] Official printable Salary Slip / Payslip view (`admin/salaries/show.blade.php`) with borderless `@media print` layout and 3-column signature block
   - [x] Feature tests in `tests/Feature/EmployeeTest.php` and `tests/Feature/SalaryTest.php` passing
-- [ ] **Financial Reporting & Statements (Req #6)**
-  - [ ] Income vs Expense monthly/yearly audit report
-  - [ ] PDF & Excel export for audit statements
+- [x] **Financial Reporting & Statements (Req #6)**
+  - [x] Build Layered Architecture: `ReportController.php`, `ReportService.php`
+  - [x] Income vs Expense monthly/yearly audit ledger with date range & project filters
+  - [x] 4 KPI Financial Summary Cards (Total Inflow, Direct Relief Expenses, Staff Salaries, Net Organization Reserve/Deficit)
+  - [x] Project-wise financial performance balance sheet (Target Budget, Raised, Expensed, Balance, Progress %)
+  - [x] Official printable Financial Audit Statement (`admin/reports/statement.blade.php`) with borderless print layout & 3-column signature block
+  - [x] CSV / Excel export functionality for auditing
+  - [x] Feature tests in `tests/Feature/ReportTest.php` passing
 
 ---
 
@@ -113,4 +118,4 @@
 - **Phase 1 (Database & Models):** 100% Complete ✅
 - **Phase 2 (Frontend Localization & Dynamic Binding):** 100% Complete ✅
 - **Phase 3 (Frontend Forms & Interactions):** 0% Planned ⏳
-- **Phase 4 (Admin Dashboard & Backend Operations):** 40% In Progress 🚀
+- **Phase 4 (Admin Dashboard & Backend Operations):** 90% Complete 🚀

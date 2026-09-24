@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DonorController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\ExpenseController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SalaryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -73,10 +74,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Salaries & Payroll Disbursement
     Route::resource('salaries', SalaryController::class);
 
-    // Financial Reports
-    Route::get('/reports', function () {
-        return view('admin.home.index');
-    })->name('reports.index');
+    // Financial Reports & Audit Statements
+    Route::get('/reports/statement', [ReportController::class, 'statement'])->name('reports.statement');
+    Route::get('/reports/export', [ReportController::class, 'export'])->name('reports.export');
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 
     // Admin Users
     Route::get('/users', function () {
