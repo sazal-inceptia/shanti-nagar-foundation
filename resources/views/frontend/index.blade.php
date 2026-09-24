@@ -21,7 +21,7 @@
                                 <p>Charity is a continuous process toward success and <br />happiness Let’s help them now.
                                 </p>
                                 <div class="btn-box">
-                                    <a href="index.html" class="banner-btn">Read More</a>
+                                    <a href="/" class="banner-btn">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                                 <p>Alone, we don’t make much of a difference, but together, we are <br />strong to face any
                                     problem.</p>
                                 <div class="btn-box">
-                                    <a href="index.html" class="banner-btn">Read More</a>
+                                    <a href="/" class="banner-btn">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                                 <p>Only when the society comes together and contributes ,we will be <br />able to make an
                                     impact.</p>
                                 <div class="btn-box">
-                                    <a href="index.html" class="banner-btn">Read More</a>
+                                    <a href="/" class="banner-btn">Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +92,7 @@
                             <div class="text">
                                 <span class="top-text">Donate to</span>
                                 <h3>Education & <br />Food for Childrens</h3>
-                                <a href="index.html">More Details</a>
+                                <a href="/">More Details</a>
                             </div>
                             <figure class="image-box"><img
                                     src="{{ asset('assets/images/banner/banner-img-1.png') }}"
@@ -108,7 +108,7 @@
                             <div class="text">
                                 <span class="top-text">Donate to</span>
                                 <h3>Surgery <br />& Treatments</h3>
-                                <a href="index.html">More Details</a>
+                                <a href="/">More Details</a>
                             </div>
                             <figure class="image-box"><img
                                     src="{{ asset('assets/images/banner/banner-img-2.png') }}"
@@ -124,7 +124,7 @@
                             <div class="text">
                                 <span class="top-text">Donate to</span>
                                 <h3>Environmetal <br />Protection</h3>
-                                <a href="index.html">More Details</a>
+                                <a href="/">More Details</a>
                             </div>
                             <figure class="image-box"><img
                                     src="{{ asset('assets/images/banner/banner-img-3.png') }}"
@@ -188,7 +188,7 @@
                                         belvable.</p>
                                 </div>
                                 <div class="btn-box">
-                                    <a href="about.html" class="theme-btn btn-one">Read More</a>
+                                    <a href="/about" class="theme-btn btn-one">Read More</a>
                                 </div>
                             </div>
                             <div class="funfact-inner">
@@ -238,7 +238,7 @@
                             <li>Eliminate the capital gains tax</li>
                             <li>Consider carrying donations forward</li>
                         </ul>
-                        <a href="index.html">More Details</a>
+                        <a href="/">More Details</a>
                     </div>
                 </div>
                 <div class="single-block"
@@ -251,7 +251,7 @@
                             <li>We deliver your card on the day</li>
                             <li>Make them happy for all occasion</li>
                         </ul>
-                        <a href="index.html">More Details</a>
+                        <a href="/">More Details</a>
                     </div>
                 </div>
             </div>
@@ -309,7 +309,7 @@
                                     </li>
                                     <li class="share">
                                         <i class="fas fa-share-alt"></i>
-                                        <h5><a href="index.html">Share</a></h5>
+                                        <h5><a href="/">Share</a></h5>
                                     </li>
                                 </ul>
                             </div>
@@ -391,9 +391,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html"># Health &
+                                                        <div class="category"><a href="/donation-details"># Health &
                                                                 Food</a></div>
-                                                        <h3><a href="donation-details.html">Potable Water for Villages In
+                                                        <h3><a href="/donation-details">Potable Water for Villages In
                                                                 Mozambique</a></h3>
                                                         <p>Indignation and dislike men who are like most beguiled
                                                             demoralized.</p>
@@ -438,9 +438,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html"># Hunger &
+                                                        <div class="category"><a href="/donation-details"># Hunger &
                                                                 Nutrition</a></div>
-                                                        <h3><a href="donation-details.html">Feed Nutritious Meals to a Poor
+                                                        <h3><a href="/donation-details">Feed Nutritious Meals to a Poor
                                                                 Rural Child</a></h3>
                                                         <p>Blinded by desire that they cannot foresee the pain and trouble
                                                             bound too.</p>
@@ -485,9 +485,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html">#
+                                                        <div class="category"><a href="/donation-details">#
                                                                 Treatment</a></div>
-                                                        <h3><a href="donation-details.html">Help Differently Abled Person to
+                                                        <h3><a href="/donation-details">Help Differently Abled Person to
                                                                 Feel Confident</a></h3>
                                                         <p>Equal blame belongs to those who fail in their duty through
                                                             weakness.</p>
@@ -536,9 +536,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html">#
+                                                        <div class="category"><a href="/donation-details">#
                                                                 Education</a></div>
-                                                        <h3><a href="donation-details.html">Potable Water for Villages In
+                                                        <h3><a href="/donation-details">Potable Water for Villages In
                                                                 Mozambique</a></h3>
                                                         <p>Indignation and dislike men who are like most beguiled
                                                             demoralized.</p>
@@ -583,9 +583,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html">#
+                                                        <div class="category"><a href="/donation-details">#
                                                                 Education</a></div>
-                                                        <h3><a href="donation-details.html">Feed Nutritious Meals to a Poor
+                                                        <h3><a href="/donation-details">Feed Nutritious Meals to a Poor
                                                                 Rural Child</a></h3>
                                                         <p>Blinded by desire that they cannot foresee the pain and trouble
                                                             bound too.</p>
@@ -630,9 +630,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html">#
+                                                        <div class="category"><a href="/donation-details">#
                                                                 Education</a></div>
-                                                        <h3><a href="donation-details.html">Help Differently Abled Person to
+                                                        <h3><a href="/donation-details">Help Differently Abled Person to
                                                                 Feel Confident</a></h3>
                                                         <p>Equal blame belongs to those who fail in their duty through
                                                             weakness.</p>
@@ -681,9 +681,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html"># Health &
+                                                        <div class="category"><a href="/donation-details"># Health &
                                                                 Food</a></div>
-                                                        <h3><a href="donation-details.html">Potable Water for Villages In
+                                                        <h3><a href="/donation-details">Potable Water for Villages In
                                                                 Mozambique</a></h3>
                                                         <p>Indignation and dislike men who are like most beguiled
                                                             demoralized.</p>
@@ -728,9 +728,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html"># Health &
+                                                        <div class="category"><a href="/donation-details"># Health &
                                                                 Food</a></div>
-                                                        <h3><a href="donation-details.html">Feed Nutritious Meals to a Poor
+                                                        <h3><a href="/donation-details">Feed Nutritious Meals to a Poor
                                                                 Rural Child</a></h3>
                                                         <p>Blinded by desire that they cannot foresee the pain and trouble
                                                             bound too.</p>
@@ -775,9 +775,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html"># Health &
+                                                        <div class="category"><a href="/donation-details"># Health &
                                                                 Food</a></div>
-                                                        <h3><a href="donation-details.html">Help Differently Abled Person to
+                                                        <h3><a href="/donation-details">Help Differently Abled Person to
                                                                 Feel Confident</a></h3>
                                                         <p>Equal blame belongs to those who fail in their duty through
                                                             weakness.</p>
@@ -826,9 +826,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html"># Hunger &
+                                                        <div class="category"><a href="/donation-details"># Hunger &
                                                                 Nutrition</a></div>
-                                                        <h3><a href="donation-details.html">Potable Water for Villages In
+                                                        <h3><a href="/donation-details">Potable Water for Villages In
                                                                 Mozambique</a></h3>
                                                         <p>Indignation and dislike men who are like most beguiled
                                                             demoralized.</p>
@@ -873,9 +873,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html"># Hunger &
+                                                        <div class="category"><a href="/donation-details"># Hunger &
                                                                 Nutrition</a></div>
-                                                        <h3><a href="donation-details.html">Feed Nutritious Meals to a Poor
+                                                        <h3><a href="/donation-details">Feed Nutritious Meals to a Poor
                                                                 Rural Child</a></h3>
                                                         <p>Blinded by desire that they cannot foresee the pain and trouble
                                                             bound too.</p>
@@ -920,9 +920,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html"># Hunger &
+                                                        <div class="category"><a href="/donation-details"># Hunger &
                                                                 Nutrition</a></div>
-                                                        <h3><a href="donation-details.html">Help Differently Abled Person to
+                                                        <h3><a href="/donation-details">Help Differently Abled Person to
                                                                 Feel Confident</a></h3>
                                                         <p>Equal blame belongs to those who fail in their duty through
                                                             weakness.</p>
@@ -971,9 +971,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html">#
+                                                        <div class="category"><a href="/donation-details">#
                                                                 Treatment</a></div>
-                                                        <h3><a href="donation-details.html">Potable Water for Villages In
+                                                        <h3><a href="/donation-details">Potable Water for Villages In
                                                                 Mozambique</a></h3>
                                                         <p>Indignation and dislike men who are like most beguiled
                                                             demoralized.</p>
@@ -1018,9 +1018,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html">#
+                                                        <div class="category"><a href="/donation-details">#
                                                                 Treatment</a></div>
-                                                        <h3><a href="donation-details.html">Feed Nutritious Meals to a Poor
+                                                        <h3><a href="/donation-details">Feed Nutritious Meals to a Poor
                                                                 Rural Child</a></h3>
                                                         <p>Blinded by desire that they cannot foresee the pain and trouble
                                                             bound too.</p>
@@ -1065,9 +1065,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html">#
+                                                        <div class="category"><a href="/donation-details">#
                                                                 Treatment</a></div>
-                                                        <h3><a href="donation-details.html">Help Differently Abled Person to
+                                                        <h3><a href="/donation-details">Help Differently Abled Person to
                                                                 Feel Confident</a></h3>
                                                         <p>Equal blame belongs to those who fail in their duty through
                                                             weakness.</p>
@@ -1116,9 +1116,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html"># Water &
+                                                        <div class="category"><a href="/donation-details"># Water &
                                                                 Environment</a></div>
-                                                        <h3><a href="donation-details.html">Potable Water for Villages In
+                                                        <h3><a href="/donation-details">Potable Water for Villages In
                                                                 Mozambique</a></h3>
                                                         <p>Indignation and dislike men who are like most beguiled
                                                             demoralized.</p>
@@ -1163,9 +1163,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html"># Water &
+                                                        <div class="category"><a href="/donation-details"># Water &
                                                                 Environment</a></div>
-                                                        <h3><a href="donation-details.html">Feed Nutritious Meals to a Poor
+                                                        <h3><a href="/donation-details">Feed Nutritious Meals to a Poor
                                                                 Rural Child</a></h3>
                                                         <p>Blinded by desire that they cannot foresee the pain and trouble
                                                             bound too.</p>
@@ -1210,9 +1210,9 @@
                                                 </div>
                                                 <div class="inner">
                                                     <div class="text">
-                                                        <div class="category"><a href="donation-details.html"># Water &
+                                                        <div class="category"><a href="/donation-details"># Water &
                                                                 Environment</a></div>
-                                                        <h3><a href="donation-details.html">Help Differently Abled Person to
+                                                        <h3><a href="/donation-details">Help Differently Abled Person to
                                                                 Feel Confident</a></h3>
                                                         <p>Equal blame belongs to those who fail in their duty through
                                                             weakness.</p>
@@ -1474,7 +1474,7 @@
                         </div>
                         <div class="text">
                             <p>The majority have suffered alteration all injected humours randomises.</p>
-                            <a href="index.html" class="theme-btn btn-one">Read More</a>
+                            <a href="/" class="theme-btn btn-one">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -1665,22 +1665,22 @@
                                 </div>
                                 <div class="text">
                                     <p>The majority have suffered alteration all injected <br />gets humours randomises.</p>
-                                    <a href="events.html" class="theme-btn btn-one">All events</a>
+                                    <a href="/events" class="theme-btn btn-one">All events</a>
                                 </div>
                                 <div class="sponsors-inner">
                                     <h3>Event Sponsors:</h3>
                                     <div class="sponsors-carousel owl-carousel owl-theme owl-dots-none">
-                                        <figure class="sponsors-logo"><a href="index.html"><img
+                                        <figure class="sponsors-logo"><a href="/"><img
                                                     src="{{ asset('assets/images/clients/sponsors-1.png') }}"
                                                     alt=""></a></figure>
-                                        <figure class="sponsors-logo"><a href="index.html"><img
+                                        <figure class="sponsors-logo"><a href="/"><img
                                                     src="{{ asset('assets/images/clients/sponsors-2.png') }}"
                                                     alt=""></a></figure>
-                                        <figure class="sponsors-logo"><a href="index.html"><img
+                                        <figure class="sponsors-logo"><a href="/"><img
                                                     src="{{ asset('assets/images/clients/sponsors-3.png') }}"
                                                     alt=""></a></figure>
                                     </div>
-                                    <h6><a href="index.html">Become a Sponsor</a></h6>
+                                    <h6><a href="/">Become a Sponsor</a></h6>
                                 </div>
                             </div>
                         </div>
@@ -1703,8 +1703,8 @@
                                             <li><i class="far fa-clock"></i>11.30 am</li>
                                             <li><i class="far fa-map"></i>Newyork</li>
                                         </ul>
-                                        <h3><a href="event-details.html">Royal Parks Half Marathon</a></h3>
-                                        <div class="links"><a href="event-details.html">More Details</a></div>
+                                        <h3><a href="/event-details">Royal Parks Half Marathon</a></h3>
+                                        <div class="links"><a href="/event-details">More Details</a></div>
                                         <div class="price">
                                             <h6>$180.00</h6>
                                         </div>
@@ -1727,8 +1727,8 @@
                                             <li><i class="far fa-clock"></i>10.00 am</li>
                                             <li><i class="far fa-map"></i>California</li>
                                         </ul>
-                                        <h3><a href="event-details.html">Shanti Nagar Foundation Virtual Brain Game</a></h3>
-                                        <div class="links"><a href="event-details.html">More Details</a></div>
+                                        <h3><a href="/event-details">Shanti Nagar Foundation Virtual Brain Game</a></h3>
+                                        <div class="links"><a href="/event-details">More Details</a></div>
                                         <div class="price">
                                             <h6>For Free</h6>
                                         </div>
@@ -1751,8 +1751,8 @@
                                             <li><i class="far fa-clock"></i>05.30 am</li>
                                             <li><i class="far fa-map"></i>Newyork</li>
                                         </ul>
-                                        <h3><a href="event-details.html">USA Walks, Treks and Hikes</a></h3>
-                                        <div class="links"><a href="event-details.html">More Details</a></div>
+                                        <h3><a href="/event-details">USA Walks, Treks and Hikes</a></h3>
+                                        <div class="links"><a href="/event-details">More Details</a></div>
                                         <div class="price">
                                             <h6>$160.00</h6>
                                         </div>
@@ -1799,9 +1799,9 @@
                             </div>
                         </div>
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -1823,9 +1823,9 @@
                             </div>
                         </div>
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -1847,9 +1847,9 @@
                             </div>
                         </div>
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -1871,9 +1871,9 @@
                             </div>
                         </div>
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -1895,9 +1895,9 @@
                             </div>
                         </div>
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -1919,9 +1919,9 @@
                             </div>
                         </div>
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -1943,9 +1943,9 @@
                             </div>
                         </div>
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -1967,9 +1967,9 @@
                             </div>
                         </div>
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -1991,9 +1991,9 @@
                             </div>
                         </div>
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -2015,9 +2015,9 @@
                             </div>
                         </div>
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -2039,9 +2039,9 @@
                             </div>
                         </div>
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -2063,9 +2063,9 @@
                             </div>
                         </div>
                         <ul class="social-links clearfix">
-                            <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -2091,7 +2091,7 @@
                             </div>
                             <div class="text">
                                 <p>The majority have suffered alteration all injected humours randomises.</p>
-                                <a href="index.html" class="theme-btn btn-one">All Reviews</a>
+                                <a href="/" class="theme-btn btn-one">All Reviews</a>
                             </div>
                         </div>
                     </div>
@@ -2164,19 +2164,19 @@
                     <div class="news-block-one wow fadeInUp animated animated" data-wow-delay="00ms"
                         data-wow-duration="1500ms">
                         <div class="inner-box">
-                            <figure class="image-box"><a href="blog-details.html"><img
+                            <figure class="image-box"><a href="/blog-details"><img
                                         src="{{ asset('assets/images/news/news-1.jpg') }}"
                                         alt=""></a></figure>
                             <div class="content-box">
                                 <div class="text">
                                     <span class="post-date">03.03.2021</span>
-                                    <div class="category"><a href="blog-details.html"># National Day</a></div>
-                                    <h3><a href="blog-details.html">This is World Cancer Day, We Provide Care</a></h3>
+                                    <div class="category"><a href="/blog-details"># National Day</a></div>
+                                    <h3><a href="/blog-details">This is World Cancer Day, We Provide Care</a></h3>
                                     <p>Our being able do what we like best pleasure is to welcomed. . .</p>
                                 </div>
                                 <div class="info clearfix">
-                                    <div class="link-box pull-left"><a href="blog-details.html">More Details</a></div>
-                                    <div class="comment-box pull-right"><a href="blog-details.html"><i
+                                    <div class="link-box pull-left"><a href="/blog-details">More Details</a></div>
+                                    <div class="comment-box pull-right"><a href="/blog-details"><i
                                                 class="far fa-comment"></i>08 Cmts</a></div>
                                 </div>
                             </div>
@@ -2187,19 +2187,19 @@
                     <div class="news-block-one wow fadeInUp animated animated" data-wow-delay="300ms"
                         data-wow-duration="1500ms">
                         <div class="inner-box">
-                            <figure class="image-box"><a href="blog-details.html"><img
+                            <figure class="image-box"><a href="/blog-details"><img
                                         src="{{ asset('assets/images/news/news-2.jpg') }}"
                                         alt=""></a></figure>
                             <div class="content-box">
                                 <div class="text">
                                     <span class="post-date">24.02.2021</span>
-                                    <div class="category"><a href="blog-details.html"># Treatment</a></div>
-                                    <h3><a href="blog-details.html">I Want to Get Every People Volunteering</a></h3>
+                                    <div class="category"><a href="/blog-details"># Treatment</a></div>
+                                    <h3><a href="/blog-details">I Want to Get Every People Volunteering</a></h3>
                                     <p>Our being able do what we like best pleasure is to welcomed. . .</p>
                                 </div>
                                 <div class="info clearfix">
-                                    <div class="link-box pull-left"><a href="blog-details.html">More Details</a></div>
-                                    <div class="comment-box pull-right"><a href="blog-details.html"><i
+                                    <div class="link-box pull-left"><a href="/blog-details">More Details</a></div>
+                                    <div class="comment-box pull-right"><a href="/blog-details"><i
                                                 class="far fa-comment"></i>03 Cmts</a></div>
                                 </div>
                             </div>
@@ -2210,19 +2210,19 @@
                     <div class="news-block-one wow fadeInUp animated animated" data-wow-delay="600ms"
                         data-wow-duration="1500ms">
                         <div class="inner-box">
-                            <figure class="image-box"><a href="blog-details.html"><img
+                            <figure class="image-box"><a href="/blog-details"><img
                                         src="{{ asset('assets/images/news/news-3.jpg') }}"
                                         alt=""></a></figure>
                             <div class="content-box">
                                 <div class="text">
                                     <span class="post-date">08.01.2021</span>
-                                    <div class="category"><a href="blog-details.html"># Health & Food</a></div>
-                                    <h3><a href="blog-details.html">The Last Day of World Hunger Month</a></h3>
+                                    <div class="category"><a href="/blog-details"># Health & Food</a></div>
+                                    <h3><a href="/blog-details">The Last Day of World Hunger Month</a></h3>
                                     <p>Our being able do what we like best pleasure is to welcomed. . .</p>
                                 </div>
                                 <div class="info clearfix">
-                                    <div class="link-box pull-left"><a href="blog-details.html">More Details</a></div>
-                                    <div class="comment-box pull-right"><a href="blog-details.html"><i
+                                    <div class="link-box pull-left"><a href="/blog-details">More Details</a></div>
+                                    <div class="comment-box pull-right"><a href="/blog-details"><i
                                                 class="far fa-comment"></i>08 Cmts</a></div>
                                 </div>
                             </div>

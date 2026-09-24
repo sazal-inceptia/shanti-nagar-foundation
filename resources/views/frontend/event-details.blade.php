@@ -140,7 +140,7 @@
                                     <div class="row clearfix">
                                         <div class="col-lg-8 col-md-12 col-sm-12 form-column">
                                             <div class="form-inner">
-                                                <form action="contact.html" method="post" class="default-form">
+                                                <form action="/contact" method="post" class="default-form">
                                                     <div class="row clearfix">
                                                         <div class="col-lg-6 col-md-6 col-sm-12 column">
                                                             <div class="form-group">

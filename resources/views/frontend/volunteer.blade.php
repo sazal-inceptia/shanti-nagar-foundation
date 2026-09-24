@@ -19,7 +19,7 @@
                                     <span class="top-text">Become a Volunteer</span>
                                     <h2>To Make a Difference</h2>
                                 </div>
-                                <form action="volunteer.html" method="post" class="volunteer-form">
+                                <form action="/volunteer" method="post" class="volunteer-form">
                                     <div class="row clearfix">
                                         <div class="col-lg-12 col-md-12 col-sm-12 column">
                                             <div class="form-group">

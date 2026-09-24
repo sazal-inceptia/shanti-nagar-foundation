@@ -3,7 +3,7 @@
     <div class="logo-box">
         <div class="shape" style="background-image: url({{ asset('assets/images/shape/shape-1.png') }});">
         </div>
-        <figure class="logo"><a href="index.html"><img src="{{ asset('assets/images/logo.png') }}" alt=""></a></figure>
+        <figure class="logo"><a href="/"><img src="{{ asset('assets/images/logo.png') }}" alt=""></a></figure>
     </div>
     <!-- header-top -->
     <div class="header-top">
@@ -59,6 +59,7 @@
                                 <li><a href="/about">About</a></li>
                                 <li><a href="/donations">Donations</a></li>
                                 <li><a href="/events">Events</a></li>
+                                <li><a href="/gallery">Gallery</a></li>
                                 <li><a href="/blog">Blog</a></li>
                                 <li><a href="/contact">Contact</a></li>
                             </ul>
@@ -67,10 +68,10 @@
                 </div>
                 <div class="nav-right-content clearfix">
                     <ul class="social-style-one clearfix">
-                        <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="index.html"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="/"><i class="fab fa-youtube"></i></a></li>
                     </ul>
 
                 </div>
@@ -89,10 +90,10 @@
                 </div>
                 <div class="nav-right-content clearfix">
                     <ul class="social-style-one clearfix">
-                        <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="index.html"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="/"><i class="fab fa-youtube"></i></a></li>
                     </ul>
 
                 </div>
@@ -110,7 +111,7 @@
     <div class="close-btn"><i class="fas fa-times"></i></div>
 
     <nav class="menu-box">
-        <div class="nav-logo"><a href="index.html"><img src="{{ asset('assets/images/logo.png') }}" alt="" title=""></a>
+        <div class="nav-logo"><a href="/"><img src="{{ asset('assets/images/logo.png') }}" alt="" title=""></a>
         </div>
         <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
         <div class="contact-info">
@@ -123,11 +124,11 @@
         </div>
         <div class="social-links">
             <ul class="clearfix">
-                <li><a href="index.html"><span class="fab fa-twitter"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-facebook-square"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-pinterest-p"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
-                <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
+                <li><a href="/"><span class="fab fa-twitter"></span></a></li>
+                <li><a href="/"><span class="fab fa-facebook-square"></span></a></li>
+                <li><a href="/"><span class="fab fa-pinterest-p"></span></a></li>
+                <li><a href="/"><span class="fab fa-instagram"></span></a></li>
+                <li><a href="/"><span class="fab fa-youtube"></span></a></li>
             </ul>
         </div>
     </nav>

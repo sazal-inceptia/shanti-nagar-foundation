@@ -10,7 +10,7 @@
                         <span class="top-text">Make Your Donation</span>
                         <h2>Creating a Brighter Tomorrow</h2>
                     </div>
-                    <form action="index.html" method="post" class="default-form">
+                    <form action="/" method="post" class="default-form">
                         <div class="row clearfix">
                             <div class="col-lg-6 col-md-12 col-sm-12 donate-column">
                                 <div class="donate-box">

@@ -112,7 +112,7 @@
                                         <h3>Make Your Donation</h3>
                                         <p>You have the power to save lives. Help us create the change today!</p>
                                     </div>
-                                    <form action="index.html" method="post" class="default-form">
+                                    <form action="/" method="post" class="default-form">
                                         <div class="donate-box">
                                             <div class="donate-option">
                                                 <h3>How Much?</h3>
@@ -228,11 +228,11 @@
                                                     <div class="content-box">
                                                         <div class="icon-box"><i class="icon-charity"></i></div>
                                                         <h3>Volunteer</h3>
-                                                        <h6><a href="volunteer.html">Join as Volunteer</a></h6>
+                                                        <h6><a href="/volunteer">Join as Volunteer</a></h6>
                                                     </div>
                                                     <div class="overlay-content">
                                                         <p>He rejects pleasures secure other great pleasure or else endures.</p>
-                                                        <h6><a href="volunteer.html">Join as Volunteer</a></h6>
+                                                        <h6><a href="/volunteer">Join as Volunteer</a></h6>
                                                         <div class="icon-box"><i class="icon-charity"></i></div>
                                                     </div>
                                                 </div>
@@ -243,11 +243,11 @@
                                                     <div class="content-box">
                                                         <div class="icon-box"><i class="icon-mall"></i></div>
                                                         <h3>By Shopping</h3>
-                                                        <h6><a href="products.html">Our products</a></h6>
+                                                        <h6><a href="#">Our products</a></h6>
                                                     </div>
                                                     <div class="overlay-content">
                                                         <p>He rejects pleasures secure other great pleasure or else endures.</p>
-                                                        <h6><a href="products.html">Our products</a></h6>
+                                                        <h6><a href="#">Our products</a></h6>
                                                         <div class="icon-box"><i class="icon-mall"></i></div>
                                                     </div>
                                                 </div>
@@ -258,11 +258,11 @@
                                                     <div class="content-box">
                                                         <div class="icon-box"><i class="icon-donation-3"></i></div>
                                                         <h3>Raise Funds</h3>
-                                                        <h6><a href="contact.html">Get in touch</a></h6>
+                                                        <h6><a href="/contact">Get in touch</a></h6>
                                                     </div>
                                                     <div class="overlay-content">
                                                         <p>He rejects pleasures secure other great pleasure or else endures.</p>
-                                                        <h6><a href="contact.html">Get in touch</a></h6>
+                                                        <h6><a href="/contact">Get in touch</a></h6>
                                                         <div class="icon-box"><i class="icon-donation-3"></i></div>
                                                     </div>
                                                 </div>
@@ -335,7 +335,7 @@
                         <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
                             <div class="case-sidebar default-sidebar">
                                 <div class="sidebar-widget search-widget">
-                                    <form action="donation-details.html" method="post" class="search-form">
+                                    <form action="/donation-details" method="post" class="search-form">
                                         <div class="form-group">
                                             <input type="search" name="search-field" placeholder="Your Keyword . . ." required="">
                                             <button type="submit"><i class="icon-search"></i></button>
@@ -409,7 +409,7 @@
                                             <p>Subscribe us and get latest news and upcoming events.</p>
                                         </div>
                                         <div class="lower-content">
-                                            <form action="contact.html" method="post" class="subscribe-form">
+                                            <form action="/contact" method="post" class="subscribe-form">
                                                 <div class="form-group">
                                                     <input type="email" name="email" placeholder="Enter email address" required="">
                                                     <button type="submit" class="theme-btn btn-one">Subscribe</button>

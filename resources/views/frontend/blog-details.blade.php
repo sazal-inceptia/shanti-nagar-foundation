@@ -153,7 +153,7 @@
                                     <p>Your email address will not be published. Required fields are marked *</p>
                                 </div>
                                 <div class="form-inner">
-                                    <form method="post" action="blog-details.html" class="comment-form"> 
+                                    <form method="post" action="/blog-details" class="comment-form"> 
                                         <div class="row clearfix">
                                             <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                                 <textarea name="message" placeholder="Your Comment *"></textarea>
@@ -185,7 +185,7 @@
                     <div class="col-lg-4 col-md-12 col-sm-12 sidebar-side">
                         <div class="blog-sidebar default-sidebar">
                             <div class="sidebar-widget search-widget">
-                                <form action="blog-details.html" method="post" class="search-form">
+                                <form action="/blog-details" method="post" class="search-form">
                                     <div class="form-group">
                                         <input type="search" name="search-field" placeholder="Your Keyword . . ." required="">
                                         <button type="submit"><i class="icon-search"></i></button>
@@ -299,7 +299,7 @@
                                         <p>Subscribe us and get latest news and upcoming events.</p>
                                     </div>
                                     <div class="lower-content">
-                                        <form action="contact.html" method="post" class="subscribe-form">
+                                        <form action="/contact" method="post" class="subscribe-form">
                                             <div class="form-group">
                                                 <input type="email" name="email" placeholder="Enter email address" required="">
                                                 <button type="submit" class="theme-btn btn-one">Subscribe</button>

@@ -7,7 +7,7 @@
                 <div class="logo-box">
                     <div class="shape" style="background-image: url({{ asset('assets/images/shape/shape-1.png') }});">
                     </div>
-                    <figure class="logo"><a href="index.html"><img src="{{ asset('assets/images/logo.png') }}"
+                    <figure class="logo"><a href="/"><img src="{{ asset('assets/images/logo.png') }}"
                                 alt=""></a>
                     </figure>
                 </div>
@@ -17,7 +17,7 @@
             </div>
             <div class="right-column pull-right clearfix">
                 <div class="form-inner">
-                    <form action="contact.html" method="post" class="subscribe-form">
+                    <form action="/contact" method="post" class="subscribe-form">
                         <div class="form-group">
                             <input type="email" name="email" placeholder="Your Email Address..." required="">
                             <button type="submit">Subscribe Us</button>
@@ -25,9 +25,9 @@
                     </form>
                 </div>
                 <ul class="social-style-one clearfix">
-                    <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                    <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                 </ul>
             </div>
         </div>
@@ -49,7 +49,7 @@
                         </div>
                         <div class="text">
                             <p>Prevents our being able to do we like best, every pleasures is every pain avoided.</p>
-                            <a href="index.html" class="theme-btn btn-one">Join With Us</a>
+                            <a href="/" class="theme-btn btn-one">Join With Us</a>
                         </div>
                     </div>
                 </div>
@@ -60,12 +60,12 @@
                         </div>
                         <div class="widget-content">
                             <ul class="links-list clearfix">
-                                <li><a href="about.html">About Charity</a></li>
-                                <li><a href="volunteer.html">Meet Our Volunteers</a></li>
-                                <li><a href="events.html">Upcoming Events</a></li>
-                                <li><a href="blog.html">Blog & Articles</a></li>
-                                <li><a href="donations.html">Our Causes</a></li>
-                                <li><a href="contact.html">Get Touch With Us</a></li>
+                                <li><a href="/about">About Charity</a></li>
+                                <li><a href="/volunteer">Meet Our Volunteers</a></li>
+                                <li><a href="/events">Upcoming Events</a></li>
+                                <li><a href="/blog">Blog & Articles</a></li>
+                                <li><a href="/donations">Our Causes</a></li>
+                                <li><a href="/contact">Get Touch With Us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -77,12 +77,12 @@
                         </div>
                         <div class="widget-content">
                             <ul class="links-list clearfix">
-                                <li><a href="index.html">Donate</a></li>
-                                <li><a href="index.html">Donate Securities</a></li>
-                                <li><a href="index.html">Fundraise</a></li>
-                                <li><a href="index.html">Crisis Relief Centre</a></li>
-                                <li><a href="index.html">Round Up to Give</a></li>
-                                <li><a href="index.html">Refer a Friend</a></li>
+                                <li><a href="/">Donate</a></li>
+                                <li><a href="/">Donate Securities</a></li>
+                                <li><a href="/">Fundraise</a></li>
+                                <li><a href="/">Crisis Relief Centre</a></li>
+                                <li><a href="/">Round Up to Give</a></li>
+                                <li><a href="/">Refer a Friend</a></li>
                             </ul>
                         </div>
                     </div>
@@ -113,19 +113,19 @@
         <div class="auto-container">
             <div class="inner-box clearfix">
                 <div class="copyright pull-left">
-                    <p>&copy; 2021 <a href="index.html">Shanti Nagar Foundation,</a> All Rights Reserved.</p>
+                    <p>&copy; 2021 <a href="/">Shanti Nagar Foundation,</a> All Rights Reserved.</p>
                 </div>
                 <ul class="footer-card pull-right clearfix">
                     <li><span>Ways to Donate:</span></li>
-                    <li><a href="index.html"><img src="{{ asset('assets/images/resource/card-1.png') }}" alt=""></a>
+                    <li><a href="/"><img src="{{ asset('assets/images/resource/card-1.png') }}" alt=""></a>
                     </li>
-                    <li><a href="index.html"><img src="{{ asset('assets/images/resource/card-2.png') }}" alt=""></a>
+                    <li><a href="/"><img src="{{ asset('assets/images/resource/card-2.png') }}" alt=""></a>
                     </li>
-                    <li><a href="index.html"><img src="{{ asset('assets/images/resource/card-3.png') }}" alt=""></a>
+                    <li><a href="/"><img src="{{ asset('assets/images/resource/card-3.png') }}" alt=""></a>
                     </li>
-                    <li><a href="index.html"><img src="{{ asset('assets/images/resource/card-4.png') }}" alt=""></a>
+                    <li><a href="/"><img src="{{ asset('assets/images/resource/card-4.png') }}" alt=""></a>
                     </li>
-                    <li><a href="index.html"><img src="{{ asset('assets/images/resource/card-5.png') }}" alt=""></a>
+                    <li><a href="/"><img src="{{ asset('assets/images/resource/card-5.png') }}" alt=""></a>
                     </li>
                 </ul>
             </div>

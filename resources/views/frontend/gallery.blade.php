@@ -190,7 +190,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="more-btn"><a href="portfolio.html" class="theme-btn btn-one">Load More</a></div>
+                <div class="more-btn"><a href="/gallery" class="theme-btn btn-one">Load More</a></div>
             </div>
         </section>
         <!-- portfolio-section end -->

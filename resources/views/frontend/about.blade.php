@@ -2,35 +2,6 @@
 
 @section('content')
 
-<!-- Mobile Menu  -->
-        <div class="mobile-menu">
-            <div class="menu-backdrop"></div>
-            <div class="close-btn"><i class="fas fa-times"></i></div>
-            
-            <nav class="menu-box">
-                <div class="nav-logo"><a href="index.html"><img src="{{ asset('assets/images/logo-2.png') }}" alt="" title=""></a></div>
-                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
-                <div class="contact-info">
-                    <h4>Contact Info</h4>
-                    <ul>
-                        <li>Chicago 12, Melborne City, USA</li>
-                        <li><a href="tel:+8801682648101">+88 01682648101</a></li>
-                        <li><a href="mailto:info@example.com">info@example.com</a></li>
-                    </ul>
-                </div>
-                <div class="social-links">
-                    <ul class="clearfix">
-                        <li><a href="index.html"><span class="fab fa-twitter"></span></a></li>
-                        <li><a href="index.html"><span class="fab fa-facebook-square"></span></a></li>
-                        <li><a href="index.html"><span class="fab fa-pinterest-p"></span></a></li>
-                        <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
-                        <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div><!-- End Mobile Menu -->
-
-
         <!-- Page Title -->
         <section class="page-title" style="background-image: url({{ asset('assets/images/background/12.jpg') }});">
             <div class="auto-container">
@@ -39,7 +10,7 @@
                         <h1>About Us</h1>
                     </div>
                     <ul class="bread-crumb clearfix">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="/">Home</a></li>
                         <li>Pages</li>
                         <li>About Us</li>
                     </ul>
@@ -76,10 +47,10 @@
                                         <h3>Benjie Alphonso</h3>
                                     </div>
                                     <ul class="social-links clearfix">
-                                        <li><a href="about.html"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="about.html"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="about.html"><i class="fab fa-google-plus-g"></i></a></li>
-                                        <li><a href="about.html"><i class="fab fa-instagram"></i></a></li>
+                                        <li><a href="/about"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="/about"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="/about"><i class="fab fa-google-plus-g"></i></a></li>
+                                        <li><a href="/about"><i class="fab fa-instagram"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -137,28 +108,28 @@
                                         <div class="text">
                                             <h3>Protect and Advocate for those <br />who are in need</h3>
                                             <p>Denounce with righteous indignation & dislike men who are so beguiled and demoralized by the charms of pleasure of the moment so blinded by desire that they cannot foresee the pain.</p>
-                                            <a href="about.html"><i class="far fa-angle-right"></i>Read More</a>
+                                            <a href="/about"><i class="far fa-angle-right"></i>Read More</a>
                                         </div>
                                     </div>
                                     <div class="tab" id="tab-2">
                                         <div class="text">
                                             <h3>Protect and Advocate for those <br />who are in need</h3>
                                             <p>Denounce with righteous indignation & dislike men who are so beguiled and demoralized by the charms of pleasure of the moment so blinded by desire that they cannot foresee the pain.</p>
-                                            <a href="about.html"><i class="far fa-angle-right"></i>Read More</a>
+                                            <a href="/about"><i class="far fa-angle-right"></i>Read More</a>
                                         </div>
                                     </div>
                                     <div class="tab" id="tab-3">
                                         <div class="text">
                                             <h3>Protect and Advocate for those <br />who are in need</h3>
                                             <p>Denounce with righteous indignation & dislike men who are so beguiled and demoralized by the charms of pleasure of the moment so blinded by desire that they cannot foresee the pain.</p>
-                                            <a href="about.html"><i class="far fa-angle-right"></i>Read More</a>
+                                            <a href="/about"><i class="far fa-angle-right"></i>Read More</a>
                                         </div>
                                     </div>
                                     <div class="tab" id="tab-4">
                                         <div class="text">
                                             <h3>Protect and Advocate for those <br />who are in need</h3>
                                             <p>Denounce with righteous indignation & dislike men who are so beguiled and demoralized by the charms of pleasure of the moment so blinded by desire that they cannot foresee the pain.</p>
-                                            <a href="about.html"><i class="far fa-angle-right"></i>Read More</a>
+                                            <a href="/about"><i class="far fa-angle-right"></i>Read More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -182,7 +153,7 @@
                                 <div class="icon-box"><i class="icon-mission"></i></div>
                                 <h3>Our Mission</h3>
                                 <p>Beguiled and demoralized by the charms of pleasure of the moment blinded that they cannot foresee.</p>
-                                <div class="btn-box"><a href="about.html" class="theme-btn btn-one">Read More</a></div>
+                                <div class="btn-box"><a href="/about" class="theme-btn btn-one">Read More</a></div>
                             </div>
                         </div>
                     </div>
@@ -193,7 +164,7 @@
                                 <div class="icon-box"><i class="icon-medical-report"></i></div>
                                 <h3>Our Vision</h3>
                                 <p>Our power of choice untrammelled and when nothing prevents our being able to do what we like best.</p>
-                                <div class="btn-box"><a href="about.html" class="theme-btn btn-one">Read More</a></div>
+                                <div class="btn-box"><a href="/about" class="theme-btn btn-one">Read More</a></div>
                             </div>
                         </div>
                     </div>
@@ -204,7 +175,7 @@
                                 <div class="icon-box"><i class="icon-goal"></i></div>
                                 <h3>Our Goal</h3>
                                 <p>Duty or the obligations of business it will frequently occurs that pleasures have repudiated annoyances.</p>
-                                <div class="btn-box"><a href="about.html" class="theme-btn btn-one">Read More</a></div>
+                                <div class="btn-box"><a href="/about" class="theme-btn btn-one">Read More</a></div>
                             </div>
                         </div>
                     </div>
@@ -215,7 +186,7 @@
                                 <div class="icon-box"><i class="icon-fair-trade"></i></div>
                                 <h3>Our Partners</h3>
                                 <p>Riighteous indignation and dislike men who are so beguiled and demoralized by the pleasure of the moment.</p>
-                                <div class="btn-box"><a href="about.html" class="theme-btn btn-one">Read More</a></div>
+                                <div class="btn-box"><a href="/about" class="theme-btn btn-one">Read More</a></div>
                             </div>
                         </div>
                     </div>
@@ -248,9 +219,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -268,9 +239,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -288,9 +259,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -308,9 +279,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -328,9 +299,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -348,9 +319,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -368,9 +339,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -388,9 +359,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -408,9 +379,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -428,9 +399,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -448,9 +419,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -468,9 +439,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -488,9 +459,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -508,9 +479,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -528,9 +499,9 @@
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
-                                <li><a href="index.html"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="index.html"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -557,7 +528,7 @@
                                     <i class="icon-statue-of-liberty"></i>
                                 </div>
                                 <h3>United States</h3>
-                                <a href="about.html"><i class="far fa-angle-right"></i>Explore</a>
+                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
@@ -567,7 +538,7 @@
                                     <i class="icon-london-eye"></i>
                                 </div>
                                 <h3>United Kingdom</h3>
-                                <a href="about.html"><i class="far fa-angle-right"></i>Explore</a>
+                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
@@ -577,7 +548,7 @@
                                     <i class="icon-kangaroo"></i>
                                 </div>
                                 <h3>Australia</h3>
-                                <a href="about.html"><i class="far fa-angle-right"></i>Explore</a>
+                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
@@ -587,7 +558,7 @@
                                     <i class="icon-taj-mahal"></i>
                                 </div>
                                 <h3>India</h3>
-                                <a href="about.html"><i class="far fa-angle-right"></i>Explore</a>
+                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
@@ -597,7 +568,7 @@
                                     <i class="icon-statue-of-liberty"></i>
                                 </div>
                                 <h3>United States</h3>
-                                <a href="about.html"><i class="far fa-angle-right"></i>Explore</a>
+                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
@@ -607,7 +578,7 @@
                                     <i class="icon-london-eye"></i>
                                 </div>
                                 <h3>United Kingdom</h3>
-                                <a href="about.html"><i class="far fa-angle-right"></i>Explore</a>
+                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
@@ -617,7 +588,7 @@
                                     <i class="icon-kangaroo"></i>
                                 </div>
                                 <h3>Australia</h3>
-                                <a href="about.html"><i class="far fa-angle-right"></i>Explore</a>
+                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
@@ -627,7 +598,7 @@
                                     <i class="icon-taj-mahal"></i>
                                 </div>
                                 <h3>India</h3>
-                                <a href="about.html"><i class="far fa-angle-right"></i>Explore</a>
+                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
@@ -637,7 +608,7 @@
                                     <i class="icon-statue-of-liberty"></i>
                                 </div>
                                 <h3>United States</h3>
-                                <a href="about.html"><i class="far fa-angle-right"></i>Explore</a>
+                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
@@ -647,7 +618,7 @@
                                     <i class="icon-london-eye"></i>
                                 </div>
                                 <h3>United Kingdom</h3>
-                                <a href="about.html"><i class="far fa-angle-right"></i>Explore</a>
+                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
@@ -657,7 +628,7 @@
                                     <i class="icon-kangaroo"></i>
                                 </div>
                                 <h3>Australia</h3>
-                                <a href="about.html"><i class="far fa-angle-right"></i>Explore</a>
+                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
@@ -667,7 +638,7 @@
                                     <i class="icon-taj-mahal"></i>
                                 </div>
                                 <h3>India</h3>
-                                <a href="about.html"><i class="far fa-angle-right"></i>Explore</a>
+                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                     </div>
@@ -691,7 +662,7 @@
                                 </div>
                                 <div class="text">
                                     <p>The majority have suffered alteration injected gets humours randomises.</p>
-                                    <a href="about.html" class="theme-btn btn-one">Download</a>
+                                    <a href="/about" class="theme-btn btn-one">Download</a>
                                 </div>
                             </div>
                         </div>
@@ -710,7 +681,7 @@
                                             <h2>84%</h2>
                                             <h3>Income Statement</h3>
                                             <p>It is a long established fact that a reader will be distracted</p>
-                                            <a href="about.html"><i class="far fa-angle-right"></i>View Details</a>
+                                            <a href="/about"><i class="far fa-angle-right"></i>View Details</a>
                                         </div>
                                     </div>
                                     <div class="single-progress-box">
@@ -723,7 +694,7 @@
                                             <h2>55%</h2>
                                             <h3>Expense Statement</h3>
                                             <p>Equal blame belongs to those who fail their duty hrough weakness</p>
-                                            <a href="about.html"><i class="far fa-angle-right"></i>View Details</a>
+                                            <a href="/about"><i class="far fa-angle-right"></i>View Details</a>
                                         </div>
                                     </div>
                                 </div>
