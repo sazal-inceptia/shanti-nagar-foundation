@@ -319,12 +319,12 @@
     <div class="login-card">
         <!-- Logo -->
         <a href="{{ url('/') }}" class="login-logo-wrap" title="{{ config('app.name', 'Shanti Nagar Foundation') }}">
-            <div class="login-badge" style="background-color: #f65024;">
-                <i class="fa-solid fa-hand-holding-heart"></i>
+            <div class="login-badge" style="background-color: #ffffff; border: 1px solid #e2e8f0; padding: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); width: 44px; height: 44px;">
+                <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
             <div class="login-brand-text">
                 <span class="login-brand-title">SHANTI NAGAR</span>
-                <span class="login-brand-sub" style="color: #f65024;">NGO Foundation</span>
+                <span class="login-brand-sub" style="color: #f65024;">Foundation</span>
             </div>
         </a>
 
