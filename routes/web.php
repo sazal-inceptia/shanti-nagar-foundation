@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DonationController;
 use App\Http\Controllers\Admin\DonorController;
+use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\ExpenseController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\SalaryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -65,15 +67,11 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Expenses & Vouchers (Resource CRUD)
     Route::resource('expenses', ExpenseController::class);
 
-    // Employees & Staff
-    Route::get('/employees', function () {
-        return view('admin.home.index');
-    })->name('employees.index');
+    // Employees & Staff Management
+    Route::resource('employees', EmployeeController::class);
 
-    // Salaries & Payroll
-    Route::get('/salaries', function () {
-        return view('admin.home.index');
-    })->name('salaries.index');
+    // Salaries & Payroll Disbursement
+    Route::resource('salaries', SalaryController::class);
 
     // Financial Reports
     Route::get('/reports', function () {

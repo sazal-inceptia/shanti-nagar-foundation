@@ -24,9 +24,6 @@
                             <a href="{{ route('admin.projects.index') }}" class="add-new" style="background-color: #f1f5f9; color: #334155;">
                                 <i class="ri-arrow-left-line me-1"></i> Project List
                             </a>
-                            <a href="{{ route('admin.projects.edit', $project->id) }}" class="add-new">
-                                <i class="ri-edit-line me-1"></i> Edit Project
-                            </a>
                         </div>
                     </div>
                     <div class="card-body p-4">

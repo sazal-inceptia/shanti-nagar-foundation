@@ -94,9 +94,15 @@
   - [x] Server-side Yajra DataTable with filters (category, project, payment method)
   - [x] Official printable Debit Voucher view (`admin/expenses/show.blade.php`)
   - [x] Feature tests in `tests/Feature/ExpenseTest.php` passing
-- [ ] **Employee & Salary Management (Req #4)**
-  - [ ] Employee profiles & salary configuration
-  - [ ] Monthly salary disbursement voucher generation & payslips
+- [x] **Employee & Salary Management (Req #4)**
+  - [x] Create PHP Enum `App\Enums\EmploymentStatus` with badge styles and labels
+  - [x] Build Layered Architecture: `EmployeeController`, `SalaryController`, `EmployeeService`, `SalaryService`, Form Requests (`StoreEmployeeRequest`, `UpdateEmployeeRequest`, `StoreSalaryRequest`, `UpdateSalaryRequest`)
+  - [x] Employee profile management (Auto sequential ID `EMP-101`, NID, base salary, photo upload via unified image uploader)
+  - [x] Staff profile show view with lifetime salary history ledger
+  - [x] Monthly salary disbursement voucher generation with dynamic live net calculation (`basic + allow + bonus - deductions`)
+  - [x] Server-side Yajra DataTables with custom filters for staff and payroll records
+  - [x] Official printable Salary Slip / Payslip view (`admin/salaries/show.blade.php`) with borderless `@media print` layout and 3-column signature block
+  - [x] Feature tests in `tests/Feature/EmployeeTest.php` and `tests/Feature/SalaryTest.php` passing
 - [ ] **Financial Reporting & Statements (Req #6)**
   - [ ] Income vs Expense monthly/yearly audit report
   - [ ] PDF & Excel export for audit statements

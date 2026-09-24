@@ -5,23 +5,39 @@
 
 @section('content')
     <div class="container-fluid my-3">
-        <div class="row justify-content-center">
-            <div class="col-lg-9 col-12">
-                {{-- Action Bar (Hidden on Print) --}}
-                <div class="d-flex justify-content-between align-items-center mb-3 no-print">
-                    <div class="d-flex align-items-center gap-2">
-                        <a href="{{ route('admin.donations.index') }}" class="add-new" style="background-color: #f1f5f9; color: #334155;">
-                            <i class="ri-arrow-left-line me-1"></i> Donation List
-                        </a>
-                        <a href="{{ route('admin.donations.edit', $donation->id) }}" class="add-new" style="background-color: #f1f5f9; color: #334155;">
-                            <i class="ri-edit-line me-1"></i> Edit
-                        </a>
+        {{-- Top Header Action Card (Hidden on Print) --}}
+        <div class="row no-print">
+            <div class="col-12">
+                <div class="card table-card mb-4">
+                    <div class="card-header table-header">
+                        <div class="title-with-breadcrumb">
+                            <div class="table-title">Money Receipt: {{ $donation->receipt_number }}</div>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.donations.index') }}">Donations</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{ $donation->receipt_number }}</li>
+                                </ol>
+                            </nav>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                            <a href="{{ route('admin.donations.index') }}" class="add-new" style="background-color: #f1f5f9; color: #334155; border: 1px solid #e2e8f0;">
+                                <i class="ri-arrow-left-line me-1"></i> Donation List
+                            </a>
+                            <a href="{{ route('admin.donations.edit', $donation->id) }}" class="add-new" style="background-color: #f1f5f9; color: #334155; border: 1px solid #e2e8f0;">
+                                <i class="ri-edit-line me-1"></i> Edit Receipt
+                            </a>
+                            <button type="button" onclick="window.print();" class="add-new" style="background-color: #f65024; color: #fff; border: none; cursor: pointer;">
+                                <i class="ri-printer-line me-1"></i> Print Receipt
+                            </button>
+                        </div>
                     </div>
-                    <button type="button" onclick="window.print();" class="add-new" style="background-color: #f65024; color: #fff; border: none; cursor: pointer;">
-                        <i class="ri-printer-line me-1"></i> Print Money Receipt
-                    </button>
                 </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-12">
                 {{-- Official Printable Money Receipt Card --}}
                 <div class="card border print-area shadow-sm" style="border-radius: 12px; background: #ffffff;">
                     <div class="card-body p-4 p-md-5">

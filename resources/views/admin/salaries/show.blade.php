@@ -1,6 +1,6 @@
 @extends('admin.app')
 @section('title')
-    Debit Voucher &mdash; {{ $expense->voucher_number }}
+    Salary Payslip &mdash; {{ $salary->salary_slip_number }}
 @endsection
 
 @section('content')
@@ -11,29 +11,29 @@
                 <div class="card table-card mb-4">
                     <div class="card-header table-header">
                         <div class="title-with-breadcrumb">
-                            <div class="table-title">Debit Voucher: {{ $expense->voucher_number }}</div>
+                            <div class="table-title">Salary Slip: {{ $salary->salary_slip_number }}</div>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb mb-0">
                                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="{{ route('admin.expenses.index') }}">Expenses</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">{{ $expense->voucher_number }}</li>
+                                    <li class="breadcrumb-item"><a href="{{ route('admin.salaries.index') }}">Salaries &amp; Payroll</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{ $salary->salary_slip_number }}</li>
                                 </ol>
                             </nav>
                         </div>
                         <div class="d-flex align-items-center gap-2 flex-wrap">
-                            <a href="{{ route('admin.expenses.index') }}" class="add-new" style="background-color: #f1f5f9; color: #334155; border: 1px solid #e2e8f0;">
-                                <i class="ri-arrow-left-line me-1"></i> Expense List
+                            <a href="{{ route('admin.salaries.index') }}" class="add-new" style="background-color: #f1f5f9; color: #334155; border: 1px solid #e2e8f0;">
+                                <i class="ri-arrow-left-line me-1"></i> Salary List
                             </a>
-                            <a href="{{ route('admin.expenses.edit', $expense->id) }}" class="add-new" style="background-color: #f1f5f9; color: #334155; border: 1px solid #e2e8f0;">
-                                <i class="ri-edit-line me-1"></i> Edit Voucher
+                            <a href="{{ route('admin.salaries.edit', $salary->id) }}" class="add-new" style="background-color: #f1f5f9; color: #334155; border: 1px solid #e2e8f0;">
+                                <i class="ri-edit-line me-1"></i> Edit Record
                             </a>
-                            @if($expense->receipt_voucher_file)
-                                <a href="{{ asset($expense->receipt_voucher_file) }}" target="_blank" class="add-new" style="background-color: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe;">
-                                    <i class="ri-attachment-line me-1"></i> Scanned Bill
+                            @if($salary->employee)
+                                <a href="{{ route('admin.employees.show', $salary->employee->id) }}" class="add-new" style="background-color: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe;">
+                                    <i class="ri-user-line me-1"></i> Staff Profile
                                 </a>
                             @endif
                             <button type="button" onclick="window.print();" class="add-new" style="background-color: #f65024; color: #fff; border: none; cursor: pointer;">
-                                <i class="ri-printer-line me-1"></i> Print Voucher
+                                <i class="ri-printer-line me-1"></i> Print Payslip
                             </button>
                         </div>
                     </div>
@@ -43,10 +43,10 @@
 
         <div class="row">
             <div class="col-12">
-                {{-- Official Printable Debit Voucher Card --}}
+                {{-- Official Printable Salary Slip Card --}}
                 <div class="card border print-area shadow-sm" style="border-radius: 12px; background: #ffffff;">
                     <div class="card-body p-4 p-md-5">
-                        {{-- Voucher Header --}}
+                        {{-- Slip Header --}}
                         <div class="d-flex justify-content-between align-items-start border-bottom pb-4 mb-4">
                             <div class="d-flex align-items-center">
                                 <div class="d-flex align-items-center justify-content-center me-3 flex-shrink-0"
@@ -60,31 +60,38 @@
                                 </div>
                             </div>
                             <div class="text-end flex-shrink-0">
-                                <span class="badge" style="background-color: #fef2f2; color: #dc2626; border: 1px solid rgba(220, 38, 38, 0.35); font-size: 13px; padding: 6px 14px; border-radius: 6px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
-                                    OFFICIAL DEBIT VOUCHER
+                                <span class="badge" style="background-color: #ecfdf5; color: #065f46; border: 1px solid rgba(16, 185, 129, 0.35); font-size: 13px; padding: 6px 14px; border-radius: 6px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
+                                    OFFICIAL SALARY SLIP
                                 </span>
                                 <div class="mt-2 text-muted" style="font-size: 12.5px;">
-                                    Voucher No: <strong class="text-dark font-monospace" style="font-size: 13px;">{{ $expense->voucher_number }}</strong>
+                                    Slip No: <strong class="text-dark font-monospace" style="font-size: 13px;">{{ $salary->salary_slip_number }}</strong>
                                 </div>
                                 <div class="text-muted" style="font-size: 12.5px;">
-                                    Date: <strong class="text-dark">{{ $expense->expense_date?->format('M d, Y') }}</strong>
+                                    Salary Period: <strong class="text-dark">{{ $salary->month_year }}</strong>
+                                </div>
+                                <div class="text-muted" style="font-size: 12.5px;">
+                                    Disbursed Date: <strong class="text-dark">{{ $salary->payment_date?->format('M d, Y') }}</strong>
                                 </div>
                             </div>
                         </div>
 
-                        {{-- Vendor & Allocation Info Cards --}}
+                        {{-- Employee & Payment Info Cards --}}
                         <div class="row g-3 mb-4 receipt-info-row">
                             <div class="col-md-6 col-12 receipt-info-col">
                                 <div class="p-3 rounded h-100" style="background-color: #f8fafc; border: 1px solid #e2e8f0;">
                                     <span class="text-muted d-block mb-1" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b !important;">
-                                        Paid To (Vendor / Recipient)
+                                        Staff Member Details
                                     </span>
                                     <h5 class="fw-bold text-dark mb-1" style="font-size: 15.5px;">
-                                        {{ $expense->recipient_or_vendor ?: 'General Vendor / Payee' }}
+                                        {{ $salary->employee?->name ?? 'Staff Employee' }}
                                     </h5>
                                     <div class="text-muted" style="font-size: 12.5px; line-height: 1.5;">
-                                        <div>Category: <strong>{{ $expense->expense_category }}</strong></div>
-                                        <div>Recorded By: <strong>{{ $expense->creator?->name ?? 'System Administrator' }}</strong></div>
+                                        <div>Employee ID: <strong class="text-dark font-monospace">{{ $salary->employee?->employee_id ?? 'N/A' }}</strong></div>
+                                        <div>Designation: <strong>{{ $salary->employee?->designation ?? 'Staff Member' }}</strong></div>
+                                        <div>Department: <strong>{{ $salary->employee?->department ?? 'General' }}</strong></div>
+                                        @if($salary->employee?->phone)
+                                            <div>Phone: <strong>{{ $salary->employee->phone }}</strong></div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -92,67 +99,104 @@
                             <div class="col-md-6 col-12 receipt-info-col">
                                 <div class="p-3 rounded h-100" style="background-color: #f8fafc; border: 1px solid #e2e8f0;">
                                     <span class="text-muted d-block mb-1" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b !important;">
-                                        Project / Purpose Allocation
+                                        Disbursement &amp; Payment Method
                                     </span>
                                     <h6 class="fw-bold text-dark mb-1" style="font-size: 15px;">
-                                        @if($expense->project)
-                                            <span class="text-primary">{{ $expense->project->name }}</span>
-                                        @else
-                                            <span class="text-secondary">General Office &amp; Administrative Fund</span>
-                                        @endif
+                                        {{ strtoupper(str_replace('_', ' ', $salary->payment_method)) }}
                                     </h6>
                                     <div class="text-muted" style="font-size: 12.5px; line-height: 1.5;">
-                                        <div>Payment Method: <strong class="text-dark">{{ strtoupper($expense->payment_method) }}</strong></div>
-                                        <div>Attachment: <strong>{{ $expense->receipt_voucher_file ? 'Verified on File' : 'N/A' }}</strong></div>
+                                        <div>Txn / Cheque Ref: <strong class="text-dark font-monospace">{{ $salary->transaction_reference ?: 'N/A' }}</strong></div>
+                                        <div>Payment Date: <strong>{{ $salary->payment_date?->format('M d, Y') }}</strong></div>
+                                        <div>Status: <span class="badge {{ $salary->status === 'paid' ? 'bg-success' : 'bg-warning text-dark' }}" style="font-size: 10.5px;">{{ ucfirst($salary->status) }}</span></div>
+                                        @if($salary->notes)
+                                            <div>Notes: <em>{{ $salary->notes }}</em></div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {{-- Itemized Expenditure Table --}}
+                        {{-- Itemized Salary Breakdown Table --}}
                         <div class="table-responsive mb-4 receipt-table-container">
                             <table class="table table-bordered mb-0 w-100" style="font-size: 13.5px; border-collapse: collapse; border-color: #cbd5e1; width: 100%;">
                                 <thead>
                                     <tr style="background-color: #f1f5f9;">
                                         <th style="width: 50px; text-align: center; color: #334155; font-weight: 700; padding: 10px 8px;">SL</th>
-                                        <th style="color: #334155; font-weight: 700; padding: 10px 12px;">Expense Item / Description</th>
-                                        <th style="width: 140px; color: #334155; font-weight: 700; padding: 10px 12px; text-align: center;">Payment Mode</th>
+                                        <th style="color: #334155; font-weight: 700; padding: 10px 12px;">Component / Breakdown Item</th>
+                                        <th style="width: 140px; color: #334155; font-weight: 700; padding: 10px 12px; text-align: center;">Category</th>
                                         <th style="width: 170px; color: #334155; font-weight: 700; padding: 10px 14px; text-align: right;">Amount (BDT)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="text-center align-middle" style="color: #475569; padding: 12px 8px;">1</td>
-                                        <td class="align-middle" style="padding: 12px 14px;">
-                                            <strong class="text-dark" style="font-size: 14px;">{{ $expense->title }}</strong>
-                                            @if($expense->project)
-                                                <div class="text-muted mt-1" style="font-size: 12px;">
-                                                    <strong>Allocated Project:</strong> {{ $expense->project->name }} ({{ $expense->project->category ?? 'Relief' }})
-                                                </div>
-                                            @endif
-                                            @if($expense->description)
-                                                <div class="text-muted mt-1" style="font-size: 12px; line-height: 1.4;">
-                                                    <em>{{ $expense->description }}</em>
-                                                </div>
-                                            @endif
+                                        <td class="text-center align-middle" style="color: #475569; padding: 10px 8px;">1</td>
+                                        <td class="align-middle" style="padding: 10px 12px;">
+                                            <strong class="text-dark">Monthly Basic Salary</strong>
+                                            <div class="text-muted" style="font-size: 11.5px;">Approved monthly contracted salary base</div>
                                         </td>
-                                        <td class="text-center align-middle" style="padding: 12px 12px;">
-                                            <span class="badge" style="background-color: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; font-size: 12px; padding: 4px 8px;">
-                                                {{ strtoupper($expense->payment_method) }}
-                                            </span>
+                                        <td class="text-center align-middle" style="padding: 10px 12px;">
+                                            <span class="badge bg-light text-dark border" style="font-size: 11px;">Earnings</span>
                                         </td>
-                                        <td class="align-middle fw-bold text-dark text-end" style="font-size: 15px; padding: 12px 14px; text-align: right;">
-                                            ৳ {{ number_format((float) $expense->amount, 2) }}
+                                        <td class="align-middle text-dark text-end fw-semibold" style="font-size: 14px; padding: 10px 14px;">
+                                            ৳ {{ number_format((float) $salary->basic_amount, 2) }}
                                         </td>
                                     </tr>
+                                    @if((float) $salary->allowance > 0)
+                                        <tr>
+                                            <td class="text-center align-middle" style="color: #475569; padding: 10px 8px;">2</td>
+                                            <td class="align-middle" style="padding: 10px 12px;">
+                                                <strong class="text-dark">Allowance</strong>
+                                                <div class="text-muted" style="font-size: 11.5px;">Medical, travel &amp; accommodation allowances</div>
+                                            </td>
+                                            <td class="text-center align-middle" style="padding: 10px 12px;">
+                                                <span class="badge bg-light text-dark border" style="font-size: 11px;">Earnings</span>
+                                            </td>
+                                            <td class="align-middle text-dark text-end fw-semibold" style="font-size: 14px; padding: 10px 14px;">
+                                                ৳ {{ number_format((float) $salary->allowance, 2) }}
+                                            </td>
+                                        </tr>
+                                    @endif
+                                    @if((float) $salary->bonus > 0)
+                                        <tr>
+                                            <td class="text-center align-middle" style="color: #475569; padding: 10px 8px;">3</td>
+                                            <td class="align-middle" style="padding: 10px 12px;">
+                                                <strong class="text-dark">Festival / Special Bonus</strong>
+                                                <div class="text-muted" style="font-size: 11.5px;">Eid festival or performance disbursement</div>
+                                            </td>
+                                            <td class="text-center align-middle" style="padding: 10px 12px;">
+                                                <span class="badge bg-light text-dark border" style="font-size: 11px;">Earnings</span>
+                                            </td>
+                                            <td class="align-middle text-dark text-end fw-semibold" style="font-size: 14px; padding: 10px 14px;">
+                                                ৳ {{ number_format((float) $salary->bonus, 2) }}
+                                            </td>
+                                        </tr>
+                                    @endif
+                                    @if((float) $salary->deductions > 0)
+                                        <tr style="background-color: #fffaf0;">
+                                            <td class="text-center align-middle" style="color: #475569; padding: 10px 8px;">4</td>
+                                            <td class="align-middle" style="padding: 10px 12px;">
+                                                <strong class="text-danger">Deductions</strong>
+                                                <div class="text-muted" style="font-size: 11.5px;">Tax withholding, advance salary adjustment, or leave deductions</div>
+                                            </td>
+                                            <td class="text-center align-middle" style="padding: 10px 12px;">
+                                                <span class="badge bg-danger-subtle text-danger border border-danger-subtle" style="font-size: 11px;">Deduction</span>
+                                            </td>
+                                            <td class="align-middle text-danger text-end fw-semibold" style="font-size: 14px; padding: 10px 14px;">
+                                                - ৳ {{ number_format((float) $salary->deductions, 2) }}
+                                            </td>
+                                        </tr>
+                                    @endif
                                 </tbody>
                                 <tfoot>
+                                    @php
+                                        $gross = $salary->basic_amount + $salary->allowance + $salary->bonus;
+                                    @endphp
                                     <tr style="background-color: #f8fafc;">
-                                        <td colspan="3" class="fw-bold text-end" style="padding: 12px 14px; font-size: 14px; color: #1e293b; text-align: right;">
-                                            Total Disbursed Amount:
+                                        <td colspan="3" class="fw-semibold text-end" style="padding: 10px 14px; font-size: 13px; color: #475569; text-align: right;">
+                                            Gross Earnings: ৳ {{ number_format($gross, 2) }} &nbsp;|&nbsp; Total Deductions: ৳ {{ number_format((float)$salary->deductions, 2) }} &nbsp;|&nbsp; <strong>Net Paid Amount:</strong>
                                         </td>
-                                        <td class="fw-bold text-danger text-end" style="font-size: 16px; padding: 12px 14px; background-color: #fef2f2; text-align: right;">
-                                            ৳ {{ number_format((float) $expense->amount, 2) }}
+                                        <td class="fw-bold text-success text-end" style="font-size: 16px; padding: 12px 14px; background-color: #ecfdf5; text-align: right;">
+                                            ৳ {{ number_format((float) $salary->net_paid_amount, 2) }}
                                         </td>
                                     </tr>
                                 </tfoot>
@@ -164,11 +208,11 @@
                             <div>
                                 <span class="text-muted me-2" style="font-size: 12px; font-weight: 600; text-transform: uppercase;">Status:</span>
                                 <span class="badge bg-success-subtle text-success border border-success-subtle" style="font-size: 12px; padding: 5px 12px; border-radius: 6px;">
-                                    <i class="ri-checkbox-circle-line me-1"></i> Disbursed &amp; Audited
+                                    <i class="ri-checkbox-circle-line me-1"></i> Paid &amp; Audited
                                 </span>
                             </div>
                             <div class="text-muted" style="font-size: 11.5px; font-style: italic;">
-                                Official Computer Generated Debit Voucher
+                                Official Computer Generated Salary Disbursement Slip
                             </div>
                         </div>
 
@@ -177,13 +221,13 @@
                             <div class="col-4">
                                 <div class="signature-box text-center">
                                     <div class="signature-line"></div>
-                                    <span class="signature-title">Prepared By (Accounts)</span>
+                                    <span class="signature-title">Prepared By (Accounts/HR)</span>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="signature-box text-center">
                                     <div class="signature-line"></div>
-                                    <span class="signature-title">Receiver's Signature</span>
+                                    <span class="signature-title">Staff Receiver's Signature</span>
                                 </div>
                             </div>
                             <div class="col-4">
@@ -197,7 +241,7 @@
                         {{-- Official Voucher Bottom Note --}}
                         <div class="mt-5 pt-3 border-top text-center receipt-footer-note" style="font-size: 11.5px; color: #64748b;">
                             <p class="mb-0">
-                                <strong>Shanti Nagar Foundation (Santi Nagar Association)</strong> &bull; All expenditure vouchers are audited and maintained under the NGO Affairs Bureau guidelines.
+                                <strong>Shanti Nagar Foundation (Santi Nagar Association)</strong> &bull; All payroll disbursements are maintained under the NGO Affairs Bureau regulations.
                             </p>
                         </div>
                     </div>
@@ -267,7 +311,7 @@
                 padding: 0 !important;
             }
 
-            /* 2. Reset wrappers and layout grid so they stretch 100% with no offsets */
+            /* 2. Reset wrappers and layout grid */
             #main-wrapper,
             .content,
             .sidebar.active ~ .content,
@@ -295,7 +339,7 @@
                 flex: 0 0 100% !important;
             }
 
-            /* 3. Printable voucher card: NO OUTER BORDER on paper, clean full width */
+            /* 3. Printable payslip card: NO OUTER BORDER on paper, clean full width */
             .print-area {
                 position: relative !important;
                 left: 0 !important;
