@@ -25,38 +25,37 @@
             <div class="auto-container">
                 <div class="event-details-content">
                     <div class="upper-box centred">
-                        <h2>Royal Parks Half Marathon</h2>
+                        <h2>{{ $activity->name ?? 'Social Welfare Activity' }}</h2>
                         <ul class="events-info clearfix">
-                            <li><i class="far fa-calendar"></i>31.03.2021</li>
-                            <li><i class="far fa-clock"></i>11.30 am</li>
-                            <li><i class="far fa-map"></i>Newyork</li>
+                            <li><i class="far fa-calendar"></i>{{ $activity->start_date ? \Carbon\Carbon::parse($activity->start_date)->format('d.m.Y') : now()->format('d.m.Y') }}</li>
+                            <li><i class="far fa-clock"></i>10.00 am - 04.00 pm</li>
+                            <li><i class="far fa-map"></i>{{ $activity->location ?? 'Shanti Nagar, Dhaka' }}</li>
                         </ul>
-                        <figure class="image-box"><img src="{{ asset('assets/images/events/events-15.jpg') }}" alt=""></figure>
+                        <figure class="image-box"><img src="{{ asset($activity->featured_image ?: 'assets/images/events/events-4.jpg') }}" alt="{{ $activity->name ?? 'Activity' }}"></figure>
                     </div>
                     <div class="tabs-box">
                         <div class="tab-btn-box">
                             <ul class="tab-btns tab-buttons clearfix">
-                                <li class="tab-btn active-btn" data-tab="#tab-1"><i class="icon-right-arrow"></i>Event Overview</li>
-                                <li class="tab-btn" data-tab="#tab-2"><i class="icon-right-arrow"></i>Special Participants</li>
-                                <li class="tab-btn" data-tab="#tab-3"><i class="icon-right-arrow"></i>Contact Details</li>
+                                <li class="tab-btn active-btn" data-tab="#tab-1"><i class="icon-right-arrow"></i>Activity Overview</li>
+                                <li class="tab-btn" data-tab="#tab-2"><i class="icon-right-arrow"></i>Beneficiary & Field Goals</li>
+                                <li class="tab-btn" data-tab="#tab-3"><i class="icon-right-arrow"></i>Contact & Volunteer Info</li>
                             </ul>
                         </div>
                         <div class="tabs-content">
                             <div class="tab active-tab" id="tab-1">
                                 <div class="overview-inner">
                                     <div class="content-one">
-                                        <h3>Event Description</h3>
-                                        <p>Nor again is there anyone who loves or pursues or desires to pain of itself, because it is pain, but because occasionally circumstances occur in which toil and paincan procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious except to obtain some advantage from it? But who has any right to find fault with a man who chooses.</p>
-                                        <p>Must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a completed great the great explorer of the truth, the master-builder of human happiness except to obtain some advantage.</p>
+                                        <h3>Activity Description</h3>
+                                        <p>{{ $activity->description ?? $activity->short_description ?? 'Shanti Nagar Foundation conducts regular field visits, health support, and community relief initiatives across Bangladesh.' }}</p>
+                                        <p>Under this initiative, our local committee coordinates direct procurement and distribution to ensure 100% transparency and accurate beneficiary reach without intermediaries.</p>
                                     </div>
                                     <div class="content-two">
-                                        <h3>What will You Learn?</h3>
+                                        <h3>Key Objectives</h3>
                                         <ul class="list clearfix">
-                                            <li>How to use social media to reach local, national and international audiences</li>
-                                            <li>How to set up and market events, using online tools, so you no longer depend on venues or festivals to organise on your behalf</li>
-                                            <li>How to create and run online shows, adapt your performance techniques and manage your audience throughout a show</li>
-                                            <li>Takeaway training material</li>
-                                            <li>Mentoring and troubleshooting and post-training support from Jason</li>
+                                            <li>Direct doorstep support for underprivileged families and communities</li>
+                                            <li>Complete project cost audit and transparent fund allocation</li>
+                                            <li>Documentation through field photographs and beneficiary verification</li>
+                                            <li>Collaborative partnership with local community leaders and volunteers</li>
                                         </ul>
                                     </div>
                                     <div class="lower-box clearfix">

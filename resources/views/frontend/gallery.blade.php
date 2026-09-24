@@ -34,159 +34,44 @@
                         </ul>
                     </div>
                     <div class="items-container row clearfix">
-                        <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column all healthcare">
+                        @forelse($galleryImages as $item)
+                        @php
+                            $cat = strtolower($item->project->category ?? '');
+                            $filterClass = 'all';
+                            if (str_contains($cat, 'health') || str_contains($cat, 'hospital')) {
+                                $filterClass .= ' healthcare';
+                            } elseif (str_contains($cat, 'orphan')) {
+                                $filterClass .= ' orphan';
+                            } elseif (str_contains($cat, 'relief') || str_contains($cat, 'winter') || str_contains($cat, 'flood')) {
+                                $filterClass .= ' relief';
+                            } elseif (str_contains($cat, 'water')) {
+                                $filterClass .= ' water';
+                            } else {
+                                $filterClass .= ' healthcare';
+                            }
+                        @endphp
+                        <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column {{ $filterClass }}">
                             <div class="portfolio-block-one">
                                 <div class="inner-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/gallery/portfolio-7.jpg') }}" alt=""></figure>
+                                    <figure class="image"><img src="{{ asset($item->image_path) }}" alt="{{ $item->caption }}"></figure>
                                     <div class="content-box">
                                         <ul class="links-list clearfix">
-                                            <li><a href="/gallery"><i class="fas fa-expand-alt"></i></a></li>
-                                            <li><a href="/donations"><i class="far fa-file-alt"></i></a></li>
+                                            <li><a href="{{ asset($item->image_path) }}" class="lightbox-image" data-fancybox="gallery"><i class="fas fa-expand-alt"></i></a></li>
+                                            <li><a href="/donation-details/{{ $item->project->slug ?? '' }}"><i class="far fa-file-alt"></i></a></li>
                                         </ul>
                                         <div class="text">
-                                            <span>Healthcare Project</span>
-                                            <h3><a href="/gallery">Hospital Ceiling Fan Supply</a></h3>
+                                            <span>{{ $item->project->category ?? 'Social Project' }}</span>
+                                            <h3><a href="/donation-details/{{ $item->project->slug ?? '' }}">{{ $item->project->name ?? 'Project Documentation' }}</a></h3>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column all orphan">
-                            <div class="portfolio-block-one">
-                                <div class="inner-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/gallery/portfolio-8.jpg') }}" alt=""></figure>
-                                    <div class="content-box">
-                                        <ul class="links-list clearfix">
-                                            <li><a href="/gallery"><i class="fas fa-expand-alt"></i></a></li>
-                                            <li><a href="/donations"><i class="far fa-file-alt"></i></a></li>
-                                        </ul>
-                                        <div class="text">
-                                            <span>Orphan Care</span>
-                                            <h3><a href="/gallery">Education Kit & Books for Orphans</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        @empty
+                        <div class="col-12 text-center">
+                            <p>No project documentation photos available at this moment.</p>
                         </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column all relief">
-                            <div class="portfolio-block-one">
-                                <div class="inner-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/gallery/portfolio-9.jpg') }}" alt=""></figure>
-                                    <div class="content-box">
-                                        <ul class="links-list clearfix">
-                                            <li><a href="/gallery"><i class="fas fa-expand-alt"></i></a></li>
-                                            <li><a href="/donations"><i class="far fa-file-alt"></i></a></li>
-                                        </ul>
-                                        <div class="text">
-                                            <span>Winter Relief</span>
-                                            <h3><a href="/gallery">Warm Blanket Distribution in Kurigram</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column all water">
-                            <div class="portfolio-block-one">
-                                <div class="inner-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/gallery/portfolio-10.jpg') }}" alt=""></figure>
-                                    <div class="content-box">
-                                        <ul class="links-list clearfix">
-                                            <li><a href="/gallery"><i class="fas fa-expand-alt"></i></a></li>
-                                            <li><a href="/donations"><i class="far fa-file-alt"></i></a></li>
-                                        </ul>
-                                        <div class="text">
-                                            <span>Clean Water</span>
-                                            <h3><a href="/gallery">Deep Tube-well Installation</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column all healthcare">
-                            <div class="portfolio-block-one">
-                                <div class="inner-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/gallery/portfolio-11.jpg') }}" alt=""></figure>
-                                    <div class="content-box">
-                                        <ul class="links-list clearfix">
-                                            <li><a href="/gallery"><i class="fas fa-expand-alt"></i></a></li>
-                                            <li><a href="/donations"><i class="far fa-file-alt"></i></a></li>
-                                        </ul>
-                                        <div class="text">
-                                            <span>Medical Support</span>
-                                            <h3><a href="/gallery">Essential Medicines for Poor Patients</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column all relief">
-                            <div class="portfolio-block-one">
-                                <div class="inner-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/gallery/portfolio-12.jpg') }}" alt=""></figure>
-                                    <div class="content-box">
-                                        <ul class="links-list clearfix">
-                                            <li><a href="/gallery"><i class="fas fa-expand-alt"></i></a></li>
-                                            <li><a href="/donations"><i class="far fa-file-alt"></i></a></li>
-                                        </ul>
-                                        <div class="text">
-                                            <span>Flood Relief</span>
-                                            <h3><a href="/gallery">Emergency Food Rations Distribution</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column all orphan">
-                            <div class="portfolio-block-one">
-                                <div class="inner-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/gallery/portfolio-13.jpg') }}" alt=""></figure>
-                                    <div class="content-box">
-                                        <ul class="links-list clearfix">
-                                            <li><a href="/gallery"><i class="fas fa-expand-alt"></i></a></li>
-                                            <li><a href="/donations"><i class="far fa-file-alt"></i></a></li>
-                                        </ul>
-                                        <div class="text">
-                                            <span>Orphan Care</span>
-                                            <h3><a href="/gallery">Orphanage Nutritious Meal Support</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column all healthcare">
-                            <div class="portfolio-block-one">
-                                <div class="inner-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/gallery/portfolio-14.jpg') }}" alt=""></figure>
-                                    <div class="content-box">
-                                        <ul class="links-list clearfix">
-                                            <li><a href="/gallery"><i class="fas fa-expand-alt"></i></a></li>
-                                            <li><a href="/donations"><i class="far fa-file-alt"></i></a></li>
-                                        </ul>
-                                        <div class="text">
-                                            <span>Hospital Support</span>
-                                            <h3><a href="/gallery">Wheelchairs & Medical Equipment Handover</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column all relief">
-                            <div class="portfolio-block-one">
-                                <div class="inner-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/gallery/portfolio-15.jpg') }}" alt=""></figure>
-                                    <div class="content-box">
-                                        <ul class="links-list clearfix">
-                                            <li><a href="/gallery"><i class="fas fa-expand-alt"></i></a></li>
-                                            <li><a href="/donations"><i class="far fa-file-alt"></i></a></li>
-                                        </ul>
-                                        <div class="text">
-                                            <span>Community Welfare</span>
-                                            <h3><a href="/gallery">Financial Aid to Destitute Families</a></h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforelse
                     </div>
                 </div>
             </div>

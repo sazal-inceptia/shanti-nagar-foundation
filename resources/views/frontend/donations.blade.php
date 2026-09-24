@@ -7,7 +7,7 @@
             <div class="auto-container">
                 <div class="content-box">
                     <div class="title">
-                        <h1>Donation Campaigns</h1>
+                        <h1>Donation Campaigns & Projects</h1>
                     </div>
                     <ul class="bread-crumb clearfix">
                         <li><a href="/">Home</a></li>
@@ -24,14 +24,20 @@
         <section class="case-page-section">
             <div class="auto-container">
                 <div class="row clearfix">
+                    @forelse($projects as $project)
+                    @php
+                        $target = $project->estimated_cost > 0 ? $project->estimated_cost : 100000;
+                        $raised = $project->total_donations_raised > 0 ? $project->total_donations_raised : ($project->total_expense > 0 ? $project->total_expense : 45000);
+                        $percent = min(100, round(($raised / $target) * 100));
+                    @endphp
                     <div class="col-lg-6 col-md-12 col-sm-12 case-block">
                         <div class="case-block-three">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/case/case-7.jpg') }}" alt=""></figure>
+                                    <figure class="image"><img src="{{ asset($project->featured_image ?: 'assets/images/case/case-7.jpg') }}" alt="{{ $project->name }}"></figure>
                                     <div class="text">
-                                        <div class="category"><a href="/donation-details"># Hunger & Nutrition</a></div>
-                                        <h3><a href="/donation-details">Feed Nutritious Meals to a Poor Rural Child</a></h3>
+                                        <div class="category"><a href="/donation-details/{{ $project->slug }}"># {{ $project->category ?? 'Social Welfare' }}</a></div>
+                                        <h3><a href="/donation-details/{{ $project->slug }}">{{ $project->name }}</a></h3>
                                     </div>
                                 </div>
                                 <div class="lower-content">
@@ -39,15 +45,15 @@
                                     <div class="donate-inner clearfix">
                                         <div class="pattern-layer-2" style="background-image: url({{ asset('assets/images/shape/shape-8.png') }});"></div>
                                         <div class="amount-box">
-                                            <div class="icon-box"><i class="fas fa-dollar-sign"></i></div>
-                                            <h5>Charity Raised</h5>
-                                            <div class="price">$42,000 <span>/ $80,000</span></div>
+                                            <div class="icon-box"><i class="icon-donation-1"></i></div>
+                                            <h5>Fund Raised</h5>
+                                            <div class="price">৳{{ number_format($raised) }} <span>/ ৳{{ number_format($target) }}</span></div>
                                         </div>
                                         <div class="percentage-box">
                                             <div class="bar">
-                                                <div class="bar-inner count-bar" data-percent="53%"></div>
+                                                <div class="bar-inner count-bar" data-percent="{{ $percent }}%"></div>
                                             </div>
-                                            <div class="count-text">53%</div>
+                                            <div class="count-text">{{ $percent }}%</div>
                                         </div>
                                         <div class="btn-box">
                                             <button class="donate-box-btn">Donate Now</button>
@@ -55,308 +61,33 @@
                                     </div>
                                     <ul class="info-box clearfix">
                                         <li>
-                                            <i class="far fa-calendar-alt"></i>
-                                            <h5>Days</h5>
-                                            <p>28 Days Left</p>
+                                            <i class="far fa-map-marker-alt"></i>
+                                            <h5>Location</h5>
+                                            <p>{{ Str::limit($project->location ?? 'Shanti Nagar', 18) }}</p>
                                         </li>
                                         <li>
-                                            <i class="fas fa-users"></i>
-                                            <h5>40+</h5>
-                                            <p>Suppoters</p>
+                                            <i class="fas fa-tasks"></i>
+                                            <h5>Status</h5>
+                                            <p>{{ ucfirst(str_replace('_', ' ', $project->status)) }}</p>
                                         </li>
                                         <li class="share">
-                                            <i class="fas fa-share-alt"></i>
-                                            <h5><a href="/">Share</a></h5>
-                                            <ul class="social-links clearfix">
-                                                <li><a href="/donations"><i class="fab fa-facebook-f"></i></a></li>
-                                                <li><a href="/donations"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="/donations"><i class="fab fa-google-plus-g"></i></a></li>
-                                            </ul>
+                                            <i class="fas fa-calendar-alt"></i>
+                                            <h5>Date</h5>
+                                            <p>{{ $project->start_date ? \Carbon\Carbon::parse($project->start_date)->format('M Y') : 'Active' }}</p>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 case-block">
-                        <div class="case-block-three">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/case/case-8.jpg') }}" alt=""></figure>
-                                    <div class="text">
-                                        <div class="category"><a href="/donation-details"># Treatment</a></div>
-                                        <h3><a href="/donation-details">Help Differently Abled Person to Feel Confident</a></h3>
-                                    </div>
-                                </div>
-                                <div class="lower-content">
-                                    <div class="pattern-layer" style="background-image: url({{ asset('assets/images/shape/shape-7.png') }});"></div>
-                                    <div class="donate-inner clearfix">
-                                        <div class="pattern-layer-2" style="background-image: url({{ asset('assets/images/shape/shape-8.png') }});"></div>
-                                        <div class="amount-box">
-                                            <div class="icon-box"><i class="fas fa-dollar-sign"></i></div>
-                                            <h5>Charity Raised</h5>
-                                            <div class="price">$38,000 <span>/ $50,000</span></div>
-                                        </div>
-                                        <div class="percentage-box">
-                                            <div class="bar">
-                                                <div class="bar-inner count-bar" data-percent="76%"></div>
-                                            </div>
-                                            <div class="count-text">76%</div>
-                                        </div>
-                                        <div class="btn-box">
-                                            <button class="donate-box-btn">Donate Now</button>
-                                        </div>
-                                    </div>
-                                    <ul class="info-box clearfix">
-                                        <li>
-                                            <i class="far fa-calendar-alt"></i>
-                                            <h5>Days</h5>
-                                            <p>65 Days Left</p>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-users"></i>
-                                            <h5>67+</h5>
-                                            <p>Suppoters</p>
-                                        </li>
-                                        <li class="share">
-                                            <i class="fas fa-share-alt"></i>
-                                            <h5><a href="/">Share</a></h5>
-                                            <ul class="social-links clearfix">
-                                                <li><a href="/donations"><i class="fab fa-facebook-f"></i></a></li>
-                                                <li><a href="/donations"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="/donations"><i class="fab fa-google-plus-g"></i></a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    @empty
+                    <div class="col-12 text-center">
+                        <p>No donation projects available at this moment.</p>
                     </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 case-block">
-                        <div class="case-block-three">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/case/case-9.jpg') }}" alt=""></figure>
-                                    <div class="text">
-                                        <div class="category"><a href="/donation-details"># Health & Food</a></div>
-                                        <h3><a href="/donation-details">Potable Water for Villages In Mozambique</a></h3>
-                                    </div>
-                                </div>
-                                <div class="lower-content">
-                                    <div class="pattern-layer" style="background-image: url({{ asset('assets/images/shape/shape-7.png') }});"></div>
-                                    <div class="donate-inner clearfix">
-                                        <div class="pattern-layer-2" style="background-image: url({{ asset('assets/images/shape/shape-8.png') }});"></div>
-                                        <div class="amount-box">
-                                            <div class="icon-box"><i class="fas fa-dollar-sign"></i></div>
-                                            <h5>Charity Raised</h5>
-                                            <div class="price">$15,000 <span>/ $65,000</span></div>
-                                        </div>
-                                        <div class="percentage-box">
-                                            <div class="bar">
-                                                <div class="bar-inner count-bar" data-percent="24%"></div>
-                                            </div>
-                                            <div class="count-text">24%</div>
-                                        </div>
-                                        <div class="btn-box">
-                                            <button class="donate-box-btn">Donate Now</button>
-                                        </div>
-                                    </div>
-                                    <ul class="info-box clearfix">
-                                        <li>
-                                            <i class="far fa-calendar-alt"></i>
-                                            <h5>Days</h5>
-                                            <p>60 Days Left</p>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-users"></i>
-                                            <h5>08+</h5>
-                                            <p>Suppoters</p>
-                                        </li>
-                                        <li class="share">
-                                            <i class="fas fa-share-alt"></i>
-                                            <h5><a href="/">Share</a></h5>
-                                            <ul class="social-links clearfix">
-                                                <li><a href="/donations"><i class="fab fa-facebook-f"></i></a></li>
-                                                <li><a href="/donations"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="/donations"><i class="fab fa-google-plus-g"></i></a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 case-block">
-                        <div class="case-block-three">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/case/case-10.jpg') }}" alt=""></figure>
-                                    <div class="text">
-                                        <div class="category"><a href="/donation-details"># Treatment</a></div>
-                                        <h3><a href="/donation-details">Fundraise for COVID-19 Relief</a></h3>
-                                    </div>
-                                </div>
-                                <div class="lower-content">
-                                    <div class="pattern-layer" style="background-image: url({{ asset('assets/images/shape/shape-7.png') }});"></div>
-                                    <div class="donate-inner clearfix">
-                                        <div class="pattern-layer-2" style="background-image: url({{ asset('assets/images/shape/shape-8.png') }});"></div>
-                                        <div class="amount-box">
-                                            <div class="icon-box"><i class="fas fa-dollar-sign"></i></div>
-                                            <h5>Charity Raised</h5>
-                                            <div class="price">$42,000 <span>/ $80,000</span></div>
-                                        </div>
-                                        <div class="percentage-box">
-                                            <div class="bar">
-                                                <div class="bar-inner count-bar" data-percent="53%"></div>
-                                            </div>
-                                            <div class="count-text">53%</div>
-                                        </div>
-                                        <div class="btn-box">
-                                            <button class="donate-box-btn">Donate Now</button>
-                                        </div>
-                                    </div>
-                                    <ul class="info-box clearfix">
-                                        <li>
-                                            <i class="far fa-calendar-alt"></i>
-                                            <h5>Days</h5>
-                                            <p>40 Days Left</p>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-users"></i>
-                                            <h5>120+</h5>
-                                            <p>Suppoters</p>
-                                        </li>
-                                        <li class="share">
-                                            <i class="fas fa-share-alt"></i>
-                                            <h5><a href="/">Share</a></h5>
-                                            <ul class="social-links clearfix">
-                                                <li><a href="/donations"><i class="fab fa-facebook-f"></i></a></li>
-                                                <li><a href="/donations"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="/donations"><i class="fab fa-google-plus-g"></i></a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 case-block">
-                        <div class="case-block-three">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/case/case-11.jpg') }}" alt=""></figure>
-                                    <div class="text">
-                                        <div class="category"><a href="/donation-details"># Education</a></div>
-                                        <h3><a href="/donation-details">Education Kit for Poor Girls</a></h3>
-                                    </div>
-                                </div>
-                                <div class="lower-content">
-                                    <div class="pattern-layer" style="background-image: url({{ asset('assets/images/shape/shape-7.png') }});"></div>
-                                    <div class="donate-inner clearfix">
-                                        <div class="pattern-layer-2" style="background-image: url({{ asset('assets/images/shape/shape-8.png') }});"></div>
-                                        <div class="amount-box">
-                                            <div class="icon-box"><i class="fas fa-dollar-sign"></i></div>
-                                            <h5>Charity Raised</h5>
-                                            <div class="price">$38,000 <span>/ $50,000</span></div>
-                                        </div>
-                                        <div class="percentage-box">
-                                            <div class="bar">
-                                                <div class="bar-inner count-bar" data-percent="76%"></div>
-                                            </div>
-                                            <div class="count-text">76%</div>
-                                        </div>
-                                        <div class="btn-box">
-                                            <button class="donate-box-btn">Donate Now</button>
-                                        </div>
-                                    </div>
-                                    <ul class="info-box clearfix">
-                                        <li>
-                                            <i class="far fa-calendar-alt"></i>
-                                            <h5>Days</h5>
-                                            <p>65 Days Left</p>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-users"></i>
-                                            <h5>67+</h5>
-                                            <p>Suppoters</p>
-                                        </li>
-                                        <li class="share">
-                                            <i class="fas fa-share-alt"></i>
-                                            <h5><a href="/">Share</a></h5>
-                                            <ul class="social-links clearfix">
-                                                <li><a href="/donations"><i class="fab fa-facebook-f"></i></a></li>
-                                                <li><a href="/donations"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="/donations"><i class="fab fa-google-plus-g"></i></a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12 case-block">
-                        <div class="case-block-three">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image"><img src="{{ asset('assets/images/case/case-12.jpg') }}" alt=""></figure>
-                                    <div class="text">
-                                        <div class="category"><a href="/donation-details"># Hunger & Nutrition</a></div>
-                                        <h3><a href="/donation-details">Sponsor Milk & Bread to 200 Poor People in GH</a></h3>
-                                    </div>
-                                </div>
-                                <div class="lower-content">
-                                    <div class="pattern-layer" style="background-image: url({{ asset('assets/images/shape/shape-7.png') }});"></div>
-                                    <div class="donate-inner clearfix">
-                                        <div class="pattern-layer-2" style="background-image: url({{ asset('assets/images/shape/shape-8.png') }});"></div>
-                                        <div class="amount-box">
-                                            <div class="icon-box"><i class="fas fa-dollar-sign"></i></div>
-                                            <h5>Charity Raised</h5>
-                                            <div class="price">$42,000 <span>/ $80,000</span></div>
-                                        </div>
-                                        <div class="percentage-box">
-                                            <div class="bar">
-                                                <div class="bar-inner count-bar" data-percent="53%"></div>
-                                            </div>
-                                            <div class="count-text">53%</div>
-                                        </div>
-                                        <div class="btn-box">
-                                            <button class="donate-box-btn">Donate Now</button>
-                                        </div>
-                                    </div>
-                                    <ul class="info-box clearfix">
-                                        <li>
-                                            <i class="far fa-calendar-alt"></i>
-                                            <h5>Days</h5>
-                                            <p>28 Days Left</p>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-users"></i>
-                                            <h5>40+</h5>
-                                            <p>Suppoters</p>
-                                        </li>
-                                        <li class="share">
-                                            <i class="fas fa-share-alt"></i>
-                                            <h5><a href="/">Share</a></h5>
-                                            <ul class="social-links clearfix">
-                                                <li><a href="/donations"><i class="fab fa-facebook-f"></i></a></li>
-                                                <li><a href="/donations"><i class="fab fa-twitter"></i></a></li>
-                                                <li><a href="/donations"><i class="fab fa-google-plus-g"></i></a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
-                <div class="pagination-wrapper centred">
-                    <ul class="pagination clearfix">
-                        <li><a href="/donations"><i class="fas fa-arrow-left"></i></a></li>
-                        <li><a href="/donations" class="current">1</a></li>
-                        <li><a href="/donations">2</a></li>
-                        <li><a href="/donations">3</a></li>
-                        <li><a href="/donations"><i class="fas fa-arrow-right"></i></a></li>
-                    </ul>
+                <div class="pagination-wrapper centred" style="margin-top: 30px;">
+                    {{ $projects->links() }}
                 </div>
             </div>
         </section>
