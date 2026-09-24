@@ -1,6 +1,6 @@
 @extends('admin.app')
 @section('title')
-    Projects
+    Projects & Relief Campaigns
 @endsection
 
 @section('content')
@@ -10,17 +10,17 @@
                 <div class="card table-card">
                     <div class="card-header table-header">
                         <div class="title-with-breadcrumb">
-                            <div class="table-title">Project Portfolio</div>
+                            <div class="table-title">Projects & Relief Causes</div>
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb mb-0">
                                     <li class="breadcrumb-item">
-                                        <a href="{{ route('dashboard') }}">Dashboard</a>
+                                        <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">Projects</li>
                                 </ol>
                             </nav>
                         </div>
-                        <a href="{{ route('projects.create') }}" class="add-new">
+                        <a href="{{ route('admin.projects.create') }}" class="add-new">
                             Create Project <i class="ms-1 ri-add-line"></i>
                         </a>
                     </div>
@@ -34,9 +34,9 @@
                                 <select id="filter_status" class="form-select form-select-sm custom-input"
                                     style="height: 32px; font-size: 13px;">
                                     <option value="">All Statuses</option>
-                                    @foreach($statuses as $status)
-                                        <option value="{{ $status->value }}" {{ request('status') === $status->value ? 'selected' : '' }}>
-                                            {{ $status->label() }}
+                                    @foreach($statuses as $val => $label)
+                                        <option value="{{ $val }}" {{ request('status') == $val ? 'selected' : '' }}>
+                                            {{ $label }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -48,7 +48,7 @@
                                     style="height: 32px; font-size: 13px;">
                                     <option value="">All Categories</option>
                                     @foreach($categories as $cat)
-                                        <option value="{{ $cat }}" {{ request('category') === $cat ? 'selected' : '' }}>
+                                        <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>
                                             {{ $cat }}
                                         </option>
                                     @endforeach
@@ -60,31 +60,33 @@
                                 <select id="filter_featured" class="form-select form-select-sm custom-input"
                                     style="height: 32px; font-size: 13px;">
                                     <option value="">All Projects</option>
-                                    <option value="1" {{ request('featured') === '1' ? 'selected' : '' }}>Featured Only</option>
-                                    <option value="0" {{ request('featured') === '0' ? 'selected' : '' }}>Standard Only</option>
+                                    <option value="1" {{ request('is_featured') === '1' ? 'selected' : '' }}>Featured Only</option>
+                                    <option value="0" {{ request('is_featured') === '0' ? 'selected' : '' }}>Standard Only</option>
                                 </select>
                             </div>
-                            <div class="col-md-2 col-sm-4 d-flex align-items-end">
-                                <button type="button" id="reset_filters" class="btn btn-sm btn-outline-secondary w-100"
-                                    style="height: 32px; font-size: 13px; font-weight: 600; border-radius: 6px;">
-                                    <i class="ri-refresh-line me-1"></i> Reset Filters
+                            <div class="col-auto d-flex align-items-end">
+                                <button type="button" id="reset_filters" class="btn btn-sm btn-outline-secondary"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Reset Filters"
+                                    style="width: 32px; height: 32px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 15px;">
+                                    <i class="ri-refresh-line"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    {{-- Simplified Table Area --}}
+                    {{-- DataTables Table Area --}}
                     <div class="card-body" style="padding: 20px;">
-                        <table class="table dataTable w-100" id="projects-table" style="min-width: 800px;">
+                        <table class="table dataTable w-100" id="projects-table" style="min-width: 850px;">
                             <thead>
                                 <tr>
                                     <th scope="col" style="width: 45px;">SL</th>
-                                    <th scope="col" style="width: 70px;">Media</th>
-                                    <th scope="col">Project Title</th>
+                                    <th scope="col" style="width: 65px;">Photo</th>
+                                    <th scope="col">Project Title & Cause</th>
+                                    <th scope="col" style="width: 140px;">Target Budget</th>
                                     <th scope="col" style="width: 110px;">Status</th>
                                     <th scope="col" style="width: 90px;" class="text-center">Featured</th>
                                     <th scope="col" style="width: 90px;" class="text-center">Published</th>
-                                    <th scope="col" style="width: 100px;" class="text-center">Action</th>
+                                    <th scope="col" style="width: 110px;" class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -99,10 +101,8 @@
     {{-- Delete Confirmation Modal --}}
     <div class="modal fade" id="deleteProjectModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content"
-                style="border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(11, 15, 23, 0.1);">
-                <div class="modal-header"
-                    style="background-color: #fee2e2; border-bottom: 1px solid #fca5a5; padding: 16px 20px;">
+            <div class="modal-content" style="border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(11, 15, 23, 0.1);">
+                <div class="modal-header" style="background-color: #fee2e2; border-bottom: 1px solid #fca5a5; padding: 16px 20px;">
                     <div class="d-flex align-items-center gap-2">
                         <i class="ri-error-warning-line text-danger" style="font-size: 22px;"></i>
                         <h5 class="modal-title fw-bold text-danger mb-0" id="deleteModalTitle" style="font-size: 16px;">
@@ -112,23 +112,18 @@
                 </div>
                 <div class="modal-body" style="padding: 20px;">
                     <p class="mb-2" style="font-size: 14px; color: #334155;">
-                        Are you sure you want to permanently delete project <strong id="deleteProjectTitle"
-                            class="text-dark"></strong>?
+                        Are you sure you want to delete project <strong id="deleteProjectTitle" class="text-dark"></strong>?
                     </p>
                     <p class="text-muted mb-0" style="font-size: 12.5px;">
-                        This action will remove all gallery media, specs, and documents associated with this project.
-                        Historical client inquiries and activity logs will remain preserved.
+                        This action will soft-delete the project record. Related donation and expense audit histories will remain preserved.
                     </p>
                 </div>
-                <div class="modal-footer"
-                    style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; padding: 12px 20px;">
-                    <button type="button" class="btn btn-sm btn-outline-secondary px-3" data-bs-dismiss="modal"
-                        style="font-size: 13px; height: 36px; border-radius: 6px;">Cancel</button>
+                <div class="modal-footer" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; padding: 12px 20px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary px-3" data-bs-dismiss="modal" style="font-size: 13px; height: 36px; border-radius: 6px;">Cancel</button>
                     <form id="deleteProjectForm" method="POST" action="">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger px-4"
-                            style="font-size: 13px; height: 36px; border-radius: 6px; font-weight: 600;">
+                        <button type="submit" class="btn btn-sm btn-danger px-4" style="font-size: 13px; height: 36px; border-radius: 6px; font-weight: 600;">
                             Delete Permanently
                         </button>
                     </form>
@@ -141,27 +136,28 @@
 @push('custom-script')
     <script type="text/javascript">
         $(document).ready(function () {
-            var listUrl = "{{ route('projects.index') }}";
+            var listUrl = "{{ route('admin.projects.index') }}";
 
             var table = $('#projects-table').DataTable({
                 processing: true,
                 serverSide: true,
-                pageLength: 20,
-                lengthMenu: [10, 20, 50, 100],
+                pageLength: 15,
+                lengthMenu: [10, 15, 25, 50, 100],
                 ajax: {
                     url: listUrl,
                     data: function (d) {
                         d.status = $('#filter_status').val();
                         d.category = $('#filter_category').val();
-                        d.featured = $('#filter_featured').val();
+                        d.is_featured = $('#filter_featured').val();
                     }
                 },
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                     { data: 'thumbnail', name: 'thumbnail', orderable: false, searchable: false },
-                    { data: 'title_details', name: 'title', orderable: true },
+                    { data: 'title_details', name: 'name', orderable: true },
+                    { data: 'target_budget', name: 'estimated_cost', orderable: true },
                     { data: 'status_badge', name: 'status', orderable: true },
-                    { data: 'featured_toggle', name: 'featured', orderable: false, searchable: false, className: 'text-center' },
+                    { data: 'featured_toggle', name: 'is_featured', orderable: false, searchable: false, className: 'text-center' },
                     { data: 'published_toggle', name: 'is_published', orderable: false, searchable: false, className: 'text-center' },
                     {
                         data: 'action-btn',
@@ -169,21 +165,15 @@
                         searchable: false,
                         render: function (data) {
                             var id = data.id;
-                            var title = (data.title || '').replace(/"/g, '&quot;');
-                            var showUrl = "{{ url('/dashboard/projects') }}/" + id;
-                            var editUrl = "{{ url('/dashboard/projects') }}/" + id + "/edit";
-                            var deleteUrl = "{{ url('/dashboard/projects') }}/" + id;
+                            var name = (data.name || '').replace(/"/g, '&quot;');
+                            var showUrl = "{{ url('/admin/projects') }}/" + id;
+                            var editUrl = "{{ url('/admin/projects') }}/" + id + "/edit";
+                            var deleteUrl = "{{ url('/admin/projects') }}/" + id;
 
                             var html = '<div class="action-btn justify-content-center">';
-                            if (data.can_view !== false) {
-                                html += '<a href="' + showUrl + '" class="btn btn-edit" title="View Project Details" style="background-color: #f1f5f9; color: #334155;"><i class="ri-eye-line"></i></a>';
-                            }
-                            if (data.can_edit) {
-                                html += '<a href="' + editUrl + '" class="btn btn-edit" title="Edit Project"><i class="ri-edit-line"></i></a>';
-                            }
-                            if (data.can_delete) {
-                                html += '<button type="button" class="btn btn-delete btn-delete-modal" data-id="' + id + '" data-title="' + title + '" data-url="' + deleteUrl + '" title="Delete Project"><i class="ri-delete-bin-2-line"></i></button>';
-                            }
+                            html += '<a href="' + showUrl + '" class="btn btn-view" title="View Project Details"><i class="ri-eye-line"></i></a>';
+                            html += '<a href="' + editUrl + '" class="btn btn-edit" title="Edit Project"><i class="ri-edit-line"></i></a>';
+                            html += '<button type="button" class="btn btn-delete btn-delete-modal" data-id="' + id + '" data-title="' + name + '" data-url="' + deleteUrl + '" title="Delete Project"><i class="ri-delete-bin-line"></i></button>';
                             html += '</div>';
                             return html;
                         }
@@ -192,12 +182,18 @@
                 order: [[2, 'asc']],
                 language: {
                     search: "_INPUT_",
-                    searchPlaceholder: "Search...",
+                    searchPlaceholder: "Search projects...",
                     processing: '<div class="spinner-border spinner-border-sm text-primary" role="status"></div> Loading projects...'
                 }
             });
 
-            // Filter trigger handlers
+            // Initialize Bootstrap Tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+
+            // Filter triggers
             $('#filter_status, #filter_category, #filter_featured').on('change', function () {
                 table.draw();
             });
@@ -208,7 +204,7 @@
                 $('#filter_featured').val('');
                 if (window.history.pushState) {
                     var cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-                    window.history.pushState({path:cleanUrl}, '', cleanUrl);
+                    window.history.pushState({ path: cleanUrl }, '', cleanUrl);
                 }
                 table.draw();
             });
@@ -220,10 +216,10 @@
                 var $switch = $(this);
 
                 $.ajax({
-                    url: "{{ url('/dashboard/projects') }}/" + projectId + "/toggle-status",
+                    url: "{{ url('/admin/projects') }}/" + projectId + "/toggle-status",
                     type: 'POST',
                     data: {
-                        field: 'featured',
+                        field: 'is_featured',
                         value: isChecked,
                         _token: $('meta[name="csrf-token"]').attr('content')
                     },
@@ -249,7 +245,7 @@
                 var $switch = $(this);
 
                 $.ajax({
-                    url: "{{ url('/dashboard/projects') }}/" + projectId + "/toggle-status",
+                    url: "{{ url('/admin/projects') }}/" + projectId + "/toggle-status",
                     type: 'POST',
                     data: {
                         field: 'is_published',

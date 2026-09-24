@@ -77,12 +77,13 @@
   - [x] Admin panel layout & architecture (Bootstrap 5, RemixIcon, SCSS, DataTables, Select2)
   - [x] Dashboard KPI Overview (Total Donations, Total Expenses, Projects Completed, Net Balance)
   - [x] Layered Architecture: `app/Http/Controllers/Admin/DashboardController.php`, `app/Services/DashboardService.php`
+- [x] **Project & Activity Management (Req #2 & #5)**
+  - [x] Project CRUD (Create, Edit, Status update, Target budget tracker)
+  - [x] Multi-image uploader for Project Documentation & Gallery
+  - [x] Layered Architecture: `app/Http/Controllers/Admin/ProjectController.php`, `app/Services/ProjectService.php`, `app/Http/Requests/Admin/StoreProjectRequest.php`, `app/Http/Requests/Admin/UpdateProjectRequest.php`
 - [ ] **Donor & Donation Management (Req #1)**
   - [ ] Donor list, profile view & donation history
   - [ ] Add new offline/online donation entry & automatic receipt generator
-- [ ] **Project & Activity Management (Req #2 & #5)**
-  - [ ] Project CRUD (Create, Edit, Status update, Budget tracker)
-  - [ ] Multi-image uploader for Project Documentation & Gallery
 - [ ] **Expense Management & Vouchers (Req #3)**
   - [ ] Expense voucher entry (Category, Vendor, Project allocation, Attachment)
   - [ ] Real-time project cost calculation vs estimated budget

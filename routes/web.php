@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,9 +49,9 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // Projects / Relief
-    Route::get('/projects', function() { return view('admin.projects.index'); })->name('projects.index');
-    Route::get('/projects/create', function() { return view('admin.projects.create'); })->name('projects.create');
+    // Projects & Relief Causes Management (Resource CRUD)
+    Route::post('/projects/{project}/toggle-status', [ProjectController::class, 'toggleStatus'])->name('projects.toggle-status');
+    Route::resource('projects', ProjectController::class);
 
     // Donors Directory
     Route::get('/donors', function() { return view('admin.home.index'); })->name('donors.index');
