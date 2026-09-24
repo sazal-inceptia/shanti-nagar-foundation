@@ -14,27 +14,26 @@
                         <li>
                             <i class="icon-chat"></i>
                             <span>Helpline:</span>
-                            <a href="tel:23345678901">+233 456 789 01</a>
+                            <a href="tel:+8801700000000">+880 1700-000000</a>
                         </li>
                         <li>
-                            <a href="mailto:example@info.com">example@info.com</a>
+                            <a href="mailto:info@shantinagarfoundation.org">info@shantinagarfoundation.org</a>
                         </li>
                         <li>
-                            54 Berrick St Boston MA 02115.
+                            Shanti Nagar, Dhaka - 1217, Bangladesh.
                         </li>
                     </ul>
                 </div>
                 <div class="right-column pull-right">
                     <div class="update-news">
-                        <p><i class="icon-megaphone"></i><span>Updates:</span> Delivers Personal Protective Equipments
-                            to North Macedonia . . .</p>
+                        <p><i class="icon-megaphone"></i><span>Updates:</span> Providing education, healthcare & relief across Bangladesh . . .</p>
                     </div>
                 </div>
             </div>
         </div>
         <!-- donate-btn -->
         <div class="donate-btn">
-            <button class="donate-box-btn theme-btn btn-one">Donate Now</button>
+            <a href="/donate" class="theme-btn btn-one">Donate Now</a>
         </div>
     </div>
     <!-- header-lower -->
@@ -43,7 +42,7 @@
             <div class="outer-box">
                 <div class="text">
                     <figure class="icon-box"><img src="{{ asset('assets/images/icons/heart-1.png') }}" alt=""></figure>
-                    <span>Become a Volunteer</span>
+                    <a href="/volunteer" style="color: inherit;"><span>Become a Volunteer</span></a>
                 </div>
                 <div class="menu-area clearfix">
                     <!--Mobile Navigation Toggler-->
@@ -55,13 +54,13 @@
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li class="current"><a href="/">Home</a></li>
-                                <li><a href="/about">About</a></li>
-                                <li><a href="/donations">Donations</a></li>
-                                <li><a href="/events">Events</a></li>
-                                <li><a href="/gallery">Gallery</a></li>
-                                <li><a href="/blog">Blog</a></li>
-                                <li><a href="/contact">Contact</a></li>
+                                <li class="{{ request()->is('/') ? 'current' : '' }}"><a href="/">Home</a></li>
+                                <li class="{{ request()->is('about*') ? 'current' : '' }}"><a href="/about">About</a></li>
+                                <li class="{{ request()->is('donation*') ? 'current' : '' }}"><a href="/donations">Donations</a></li>
+                                <li class="{{ request()->is('event*') ? 'current' : '' }}"><a href="/events">Events</a></li>
+                                <li class="{{ request()->is('gallery*') ? 'current' : '' }}"><a href="/gallery">Gallery</a></li>
+                                <li class="{{ request()->is('blog*') ? 'current' : '' }}"><a href="/blog">Blog</a></li>
+                                <li class="{{ request()->is('contact*') ? 'current' : '' }}"><a href="/contact">Contact</a></li>
                             </ul>
                         </div>
                     </nav>
@@ -117,9 +116,9 @@
         <div class="contact-info">
             <h4>Contact Info</h4>
             <ul>
-                <li>Chicago 12, Melborne City, USA</li>
-                <li><a href="tel:+8801682648101">+88 01682648101</a></li>
-                <li><a href="mailto:info@example.com">info@example.com</a></li>
+                <li>Shanti Nagar, Dhaka - 1217, Bangladesh</li>
+                <li><a href="tel:+8801700000000">+880 1700-000000</a></li>
+                <li><a href="mailto:info@shantinagarfoundation.org">info@shantinagarfoundation.org</a></li>
             </ul>
         </div>
         <div class="social-links">

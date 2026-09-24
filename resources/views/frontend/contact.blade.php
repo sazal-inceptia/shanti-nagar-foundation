@@ -35,21 +35,21 @@
                                     <h4>Quick Contact</h4>
                                     <div class="text">
                                         <div class="icon-box"><i class="icon-phone-call"></i></div>
-                                        <p>Main Office<br /><a href="tel:23345678901">(+233) 456-789-01</a></p>
+                                        <p>Main Office<br /><a href="tel:+8801700000000">+880 1700-000000</a></p>
                                     </div>
                                 </div>
                                 <div class="single-item">
                                     <h4>Email Address</h4>
                                     <div class="text">
                                         <div class="icon-box"><i class="icon-letter"></i></div>
-                                        <p>Mail to<br /><a href="mailto:info@example.com">info@example.com</a></p>
+                                        <p>Mail to<br /><a href="mailto:info@shantinagarfoundation.org">info@shantinagarfoundation.org</a></p>
                                     </div>
                                 </div>
                                 <div class="single-item">
                                     <h4>Mailing Address</h4>
                                     <div class="text">
                                         <div class="icon-box"><i class="icon-location"></i></div>
-                                        <p>54 Berrick Street, Boston <br />MA 02115.</p>
+                                        <p>House 14, Road 3, Shanti Nagar, <br />Dhaka - 1217, Bangladesh.</p>
                                     </div>
                                 </div>
                             </div>
@@ -63,10 +63,10 @@
                             <div class="sec-title">
                                 <span class="top-text">Drop a Line</span>
                                 <h2>Leave us Message</h2>
-                                <p>Please feel free to get in touch using the form below. We'd love to hear for you.</p>
+                                <p>Please feel free to get in touch using the form below. We'd love to hear from you.</p>
                             </div>
                             <div class="form-inner">
-                                <form method="post" action="sendemail.php" id="contact-form" class="default-form"> 
+                                <form method="post" action="#" id="contact-form" class="default-form"> 
                                     <div class="form-group">
                                         <i class="far fa-user"></i>
                                         <input type="text" name="username" placeholder="Your Name" required="">
@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="form-group">
                                         <i class="far fa-text-height"></i>
-                                        <textarea name="message" placeholder="Massage"></textarea>
+                                        <textarea name="message" placeholder="Message"></textarea>
                                     </div>
                                     <div class="form-group message-btn">
                                         <button class="theme-btn btn-one" type="submit" name="submit-form">Send Message</button>
@@ -113,9 +113,9 @@
                                     <div class="shape-2" style="background-image: url({{ asset('assets/images/shape/shape-14.png') }});"></div>
                                     <i class="icon-chatting"></i>
                                 </div>
-                                <h3>Chat with a Live</h3>
-                                <p>Let’s chat with our live experts to get answer your questions.</p>
-                                <a href="/contact" class="theme-btn btn-one">Live Chat</a>
+                                <h3>Direct Support</h3>
+                                <p>Get in touch with our team for quick help and information.</p>
+                                <a href="/contact" class="theme-btn btn-one">Contact Helpline</a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 single-column">
@@ -126,9 +126,9 @@
                                     <div class="shape-2" style="background-image: url({{ asset('assets/images/shape/shape-14.png') }});"></div>
                                     <i class="icon-loyalty"></i>
                                 </div>
-                                <h3>Become a Partner</h3>
-                                <p>Become a business partner with us and get an opportunity to grow.</p>
-                                <a href="/contact" class="theme-btn btn-one">Join With Us</a>
+                                <h3>Become a Volunteer</h3>
+                                <p>Join our volunteer network and create a lasting impact in society.</p>
+                                <a href="/volunteer" class="theme-btn btn-one">Join With Us</a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 single-column">
@@ -139,8 +139,8 @@
                                     <i class="icon-search-1"></i>
                                 </div>
                                 <h3>Charity FAQ’s</h3>
-                                <p>You can find the answers in our list of frequently asked questions.</p>
-                                <a href="/contact" class="theme-btn btn-one">Get Answer</a>
+                                <p>Find clear answers to commonly asked questions about our causes.</p>
+                                <a href="/faq" class="theme-btn btn-one">View FAQs</a>
                             </div>
                         </div>
                     </div>
@@ -156,13 +156,13 @@
                 <div 
                     class="google-map" 
                     id="contact-google-map" 
-                    data-map-lat="40.712776" 
-                    data-map-lng="-74.005974" 
-                    data-icon-path="assets/images/icons/map-marker.png"  
-                    data-map-title="Brooklyn, New York, United Kingdom" 
-                    data-map-zoom="12" 
+                    data-map-lat="23.7381" 
+                    data-map-lng="90.4125" 
+                    data-icon-path="{{ asset('assets/images/icons/map-marker.png') }}"  
+                    data-map-title="Shanti Nagar, Dhaka, Bangladesh" 
+                    data-map-zoom="15" 
                     data-markers='{
-                        "marker-1": [40.712776, -74.005974, "<h4>Branch Office</h4><p>77/99 New York</p>","assets/images/icons/map-marker.png"]
+                        "marker-1": [23.7381, 90.4125, "<h4>Shanti Nagar Foundation</h4><p>Shanti Nagar, Dhaka - 1217, Bangladesh</p>","{{ asset('assets/images/icons/map-marker.png') }}"]
                     }'>
 
                 </div>
@@ -175,48 +175,48 @@
         <section class="charity-shops centred">
             <div class="auto-container">
                 <div class="sec-title centred">
-                    <span class="top-text">Charity Shops</span>
-                    <h2>Another Way to Donate</h2>
+                    <span class="top-text">Regional Distribution & Centers</span>
+                    <h2>Our Relief Centers in Bangladesh</h2>
                 </div>
                 <div class="row clearfix">
                     <div class="col-lg-3 col-md-6 col-sm-12 single-column">
                         <div class="single-item wow fadeInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                             <figure class="flag"><img src="{{ asset('assets/images/resource/flag-1.jpg') }}" alt=""></figure>
-                            <h4>United States</h4>
-                            <p>24/7, Global Factory Street, 2nd Cross, SF 94112.</p>
-                            <div class="phone"><a href="tel:625075206644">(625) 07520-6644</a></div>
-                            <div class="mail"><a href="mailto:mailus@example.com">mailus@example.com</a></div>
+                            <h4>Dhaka (Central)</h4>
+                            <p>House 14, Road 3, Shanti Nagar, Dhaka - 1217.</p>
+                            <div class="phone"><a href="tel:+8801700000001">+880 1700-000001</a></div>
+                            <div class="mail"><a href="mailto:dhaka@shantinagarfoundation.org">dhaka@shantinagarfoundation.org</a></div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 single-column">
                         <div class="single-item wow fadeInUp animated" data-wow-delay="100ms" data-wow-duration="1500ms">
                             <figure class="flag"><img src="{{ asset('assets/images/resource/flag-2.jpg') }}" alt=""></figure>
-                            <h4>Australia</h4>
-                            <p>PO Box 515381, Los Angeles CA 90051, US</p>
-                            <div class="phone"><a href="tel:8885206644">+888-520-6644</a></div>
-                            <div class="mail"><a href="mailto:mailus@example.com">mailus@example.com</a></div>
+                            <h4>Chattogram</h4>
+                            <p>Agrabad Commercial Area, Chattogram - 4100.</p>
+                            <div class="phone"><a href="tel:+8801700000002">+880 1700-000002</a></div>
+                            <div class="mail"><a href="mailto:ctg@shantinagarfoundation.org">ctg@shantinagarfoundation.org</a></div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 single-column">
                         <div class="single-item wow fadeInUp animated" data-wow-delay="200ms" data-wow-duration="1500ms">
                             <figure class="flag"><img src="{{ asset('assets/images/resource/flag-3.jpg') }}" alt=""></figure>
-                            <h4>United Kingdom</h4>
-                            <p>7220 Dean Martin Drive Suite, LV 89044</p>
-                            <div class="phone"><a href="tel:0752066445">07520-664-45</a></div>
-                            <div class="mail"><a href="mailto:mailus@example.com">mailus@example.com</a></div>
+                            <h4>Sylhet</h4>
+                            <p>Zindabazar Point, Sylhet Sadar, Sylhet - 3100.</p>
+                            <div class="phone"><a href="tel:+8801700000003">+880 1700-000003</a></div>
+                            <div class="mail"><a href="mailto:sylhet@shantinagarfoundation.org">sylhet@shantinagarfoundation.org</a></div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 single-column">
                         <div class="single-item wow fadeInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
                             <figure class="flag"><img src="{{ asset('assets/images/resource/flag-4.jpg') }}" alt=""></figure>
-                            <h4>India</h4>
-                            <p>148, Global Factory Street Cleveland 44113.</p>
-                            <div class="phone"><a href="tel:3214567890">+321.45.67890</a></div>
-                            <div class="mail"><a href="mailto:mailus@example.com">mailus@example.com</a></div>
+                            <h4>Rajshahi</h4>
+                            <p>Saheb Bazar, Boalia, Rajshahi - 6000.</p>
+                            <div class="phone"><a href="tel:+8801700000004">+880 1700-000004</a></div>
+                            <div class="mail"><a href="mailto:rajshahi@shantinagarfoundation.org">rajshahi@shantinagarfoundation.org</a></div>
                         </div>
                     </div>
                 </div>
-                <div class="more-text"><span>Our 14 charity shops around the world with clothing, toys & other items.</span></div>
+                <div class="more-text"><span>Dedicated humanitarian and relief distribution networks operating across divisions in Bangladesh.</span></div>
             </div>
         </section>
         <!-- charity-shops end -->

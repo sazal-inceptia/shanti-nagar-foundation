@@ -7,12 +7,12 @@
             <div class="auto-container">
                 <div class="content-box">
                     <div class="title">
-                        <h1>FAQ’s</h1>
+                        <h1>Frequently Asked Questions</h1>
                     </div>
                     <ul class="bread-crumb clearfix">
                         <li><a href="/">Home</a></li>
-                        <li>Pages</li>
-                        <li>FAQ’s</li>
+                        <li>Support</li>
+                        <li>Frequently Asked Questions</li>
                     </ul>
                 </div>
             </div>

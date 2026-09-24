@@ -518,126 +518,56 @@
                     <div class="pattern-layer" style="background-image: url({{ asset('assets/images/shape/shape-38.png') }});"></div>
                     <div class="sec-title light centred">
                         <span class="top-text">Our Contribution</span>
-                        <h2>Our Contribution towards Countries</h2>
+                        <h2>Our Impact Across Bangladesh</h2>
                     </div>
                     <div class="four-item-carousel owl-carousel owl-theme owl-nav-none">
                         <div class="single-item">
                             <div class="inner-box">
                                 <div class="icon-box">
-                                    <h5>140k</h5>
-                                    <i class="icon-statue-of-liberty"></i>
+                                    <h5>150k+</h5>
+                                    <i class="icon-home"></i>
                                 </div>
-                                <h3>United States</h3>
+                                <h3>Dhaka Division</h3>
                                 <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
                             <div class="inner-box">
                                 <div class="icon-box">
-                                    <h5>124k</h5>
-                                    <i class="icon-london-eye"></i>
+                                    <h5>95k+</h5>
+                                    <i class="icon-charity"></i>
                                 </div>
-                                <h3>United Kingdom</h3>
+                                <h3>Chattogram</h3>
                                 <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
                             <div class="inner-box">
                                 <div class="icon-box">
-                                    <h5>85k</h5>
-                                    <i class="icon-kangaroo"></i>
+                                    <h5>80k+</h5>
+                                    <i class="icon-donation"></i>
                                 </div>
-                                <h3>Australia</h3>
+                                <h3>Sylhet Division</h3>
                                 <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
                             <div class="inner-box">
                                 <div class="icon-box">
-                                    <h5>78k</h5>
-                                    <i class="icon-taj-mahal"></i>
+                                    <h5>65k+</h5>
+                                    <i class="icon-donation-1"></i>
                                 </div>
-                                <h3>India</h3>
+                                <h3>Rajshahi Division</h3>
                                 <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>
                         <div class="single-item">
                             <div class="inner-box">
                                 <div class="icon-box">
-                                    <h5>140k</h5>
-                                    <i class="icon-statue-of-liberty"></i>
+                                    <h5>50k+</h5>
+                                    <i class="icon-charity"></i>
                                 </div>
-                                <h3>United States</h3>
-                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
-                            </div>
-                        </div>
-                        <div class="single-item">
-                            <div class="inner-box">
-                                <div class="icon-box">
-                                    <h5>124k</h5>
-                                    <i class="icon-london-eye"></i>
-                                </div>
-                                <h3>United Kingdom</h3>
-                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
-                            </div>
-                        </div>
-                        <div class="single-item">
-                            <div class="inner-box">
-                                <div class="icon-box">
-                                    <h5>85k</h5>
-                                    <i class="icon-kangaroo"></i>
-                                </div>
-                                <h3>Australia</h3>
-                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
-                            </div>
-                        </div>
-                        <div class="single-item">
-                            <div class="inner-box">
-                                <div class="icon-box">
-                                    <h5>78k</h5>
-                                    <i class="icon-taj-mahal"></i>
-                                </div>
-                                <h3>India</h3>
-                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
-                            </div>
-                        </div>
-                        <div class="single-item">
-                            <div class="inner-box">
-                                <div class="icon-box">
-                                    <h5>140k</h5>
-                                    <i class="icon-statue-of-liberty"></i>
-                                </div>
-                                <h3>United States</h3>
-                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
-                            </div>
-                        </div>
-                        <div class="single-item">
-                            <div class="inner-box">
-                                <div class="icon-box">
-                                    <h5>124k</h5>
-                                    <i class="icon-london-eye"></i>
-                                </div>
-                                <h3>United Kingdom</h3>
-                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
-                            </div>
-                        </div>
-                        <div class="single-item">
-                            <div class="inner-box">
-                                <div class="icon-box">
-                                    <h5>85k</h5>
-                                    <i class="icon-kangaroo"></i>
-                                </div>
-                                <h3>Australia</h3>
-                                <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
-                            </div>
-                        </div>
-                        <div class="single-item">
-                            <div class="inner-box">
-                                <div class="icon-box">
-                                    <h5>78k</h5>
-                                    <i class="icon-taj-mahal"></i>
-                                </div>
-                                <h3>India</h3>
+                                <h3>Rangpur & North</h3>
                                 <a href="/about"><i class="far fa-angle-right"></i>Explore</a>
                             </div>
                         </div>

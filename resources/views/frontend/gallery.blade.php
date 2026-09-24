@@ -7,12 +7,12 @@
             <div class="auto-container">
                 <div class="content-box">
                     <div class="title">
-                        <h1>3 Columns Grid</h1>
+                        <h1>Our Work & Photo Gallery</h1>
                     </div>
                     <ul class="bread-crumb clearfix">
                         <li><a href="/">Home</a></li>
-                        <li>Pages</li>
-                        <li>Portfolio</li>
+                        <li>Gallery</li>
+                        <li>Activities & Field Work in Bangladesh</li>
                     </ul>
                 </div>
             </div>

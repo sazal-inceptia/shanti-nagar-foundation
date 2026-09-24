@@ -7,12 +7,12 @@
             <div class="auto-container">
                 <div class="content-box">
                     <div class="title">
-                        <h1>2 Columns Grid</h1>
+                        <h1>Donation Campaigns</h1>
                     </div>
                     <ul class="bread-crumb clearfix">
                         <li><a href="/">Home</a></li>
                         <li>Donations</li>
-                        <li>2 Columns Grid</li>
+                        <li>Active Relief & Welfare Causes</li>
                     </ul>
                 </div>
             </div>

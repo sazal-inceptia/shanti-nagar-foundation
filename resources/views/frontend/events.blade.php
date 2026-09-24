@@ -7,12 +7,12 @@
             <div class="auto-container">
                 <div class="content-box">
                     <div class="title">
-                        <h1>Events Grid</h1>
+                        <h1>Upcoming Events & Activities</h1>
                     </div>
                     <ul class="bread-crumb clearfix">
                         <li><a href="/">Home</a></li>
                         <li>Events</li>
-                        <li>Events Grid</li>
+                        <li>Community Outreach & Relief Drives</li>
                     </ul>
                 </div>
             </div>

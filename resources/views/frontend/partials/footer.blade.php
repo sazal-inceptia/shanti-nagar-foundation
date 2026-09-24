@@ -96,12 +96,12 @@
                         </div>
                         <div class="widget-content">
                             <div class="single-item">
-                                <h3><a href="tel:23345678901">(+233) 456-789-01</a></h3>
-                                <p><a href="mailto:example@info.com">example@info.com</a></p>
+                                <h3><a href="tel:+8801700000000">+880 1700-000000</a></h3>
+                                <p><a href="mailto:info@shantinagarfoundation.org">info@shantinagarfoundation.org</a></p>
                             </div>
                             <div class="single-item">
-                                <h5>Charity Shop</h5>
-                                <p>5404 Berrick Street, 2nd cross, Boston, MA 02115.</p>
+                                <h5>Head Office</h5>
+                                <p>House 14, Road 3, Shanti Nagar, Dhaka - 1217, Bangladesh.</p>
                             </div>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
         <div class="auto-container">
             <div class="inner-box clearfix">
                 <div class="copyright pull-left">
-                    <p>&copy; 2021 <a href="/">Shanti Nagar Foundation,</a> All Rights Reserved.</p>
+                    <p>&copy; {{ date('Y') }} <a href="/">Shanti Nagar Foundation,</a> All Rights Reserved.</p>
                 </div>
                 <ul class="footer-card pull-right clearfix">
                     <li><span>Ways to Donate:</span></li>

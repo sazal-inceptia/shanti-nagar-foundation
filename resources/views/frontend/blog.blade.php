@@ -7,12 +7,12 @@
             <div class="auto-container">
                 <div class="content-box">
                     <div class="title">
-                        <h1>Blog Grid View</h1>
+                        <h1>Stories & Latest Updates</h1>
                     </div>
                     <ul class="bread-crumb clearfix">
                         <li><a href="/">Home</a></li>
                         <li>Blog</li>
-                        <li>Grid View</li>
+                        <li>News, Articles & Impact Stories</li>
                     </ul>
                 </div>
             </div>
