@@ -1,6 +1,6 @@
 @extends('admin.app')
 @section('title')
-    Money Receipt &mdash; {{ $donation->receipt_number }}
+    Debit Voucher &mdash; {{ $expense->voucher_number }}
 @endsection
 
 @section('content')
@@ -10,22 +10,27 @@
                 {{-- Action Bar (Hidden on Print) --}}
                 <div class="d-flex justify-content-between align-items-center mb-3 no-print">
                     <div class="d-flex align-items-center gap-2">
-                        <a href="{{ route('admin.donations.index') }}" class="add-new" style="background-color: #f1f5f9; color: #334155;">
-                            <i class="ri-arrow-left-line me-1"></i> Donation List
+                        <a href="{{ route('admin.expenses.index') }}" class="add-new" style="background-color: #f1f5f9; color: #334155;">
+                            <i class="ri-arrow-left-line me-1"></i> Expense List
                         </a>
-                        <a href="{{ route('admin.donations.edit', $donation->id) }}" class="add-new" style="background-color: #f1f5f9; color: #334155;">
+                        <a href="{{ route('admin.expenses.edit', $expense->id) }}" class="add-new" style="background-color: #f1f5f9; color: #334155;">
                             <i class="ri-edit-line me-1"></i> Edit
                         </a>
+                        @if($expense->receipt_voucher_file)
+                            <a href="{{ asset($expense->receipt_voucher_file) }}" target="_blank" class="add-new" style="background-color: #eff6ff; color: #1e40af;">
+                                <i class="ri-attachment-line me-1"></i> View Attachment
+                            </a>
+                        @endif
                     </div>
                     <button type="button" onclick="window.print();" class="add-new" style="background-color: #f65024; color: #fff; border: none; cursor: pointer;">
-                        <i class="ri-printer-line me-1"></i> Print Money Receipt
+                        <i class="ri-printer-line me-1"></i> Print Debit Voucher
                     </button>
                 </div>
 
-                {{-- Official Printable Money Receipt Card --}}
+                {{-- Official Printable Debit Voucher Card --}}
                 <div class="card border print-area shadow-sm" style="border-radius: 12px; background: #ffffff;">
                     <div class="card-body p-4 p-md-5">
-                        {{-- Receipt Header --}}
+                        {{-- Voucher Header --}}
                         <div class="d-flex justify-content-between align-items-start border-bottom pb-4 mb-4">
                             <div class="d-flex align-items-center">
                                 <div class="d-flex align-items-center justify-content-center me-3 flex-shrink-0"
@@ -39,76 +44,62 @@
                                 </div>
                             </div>
                             <div class="text-end flex-shrink-0">
-                                <span class="badge" style="background-color: #fff3ee; color: #f65024; border: 1px solid rgba(246, 80, 36, 0.35); font-size: 13px; padding: 6px 14px; border-radius: 6px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
-                                    OFFICIAL MONEY RECEIPT
+                                <span class="badge" style="background-color: #fef2f2; color: #dc2626; border: 1px solid rgba(220, 38, 38, 0.35); font-size: 13px; padding: 6px 14px; border-radius: 6px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
+                                    OFFICIAL DEBIT VOUCHER
                                 </span>
                                 <div class="mt-2 text-muted" style="font-size: 12.5px;">
-                                    Receipt No: <strong class="text-dark font-monospace" style="font-size: 13px;">{{ $donation->receipt_number }}</strong>
+                                    Voucher No: <strong class="text-dark font-monospace" style="font-size: 13px;">{{ $expense->voucher_number }}</strong>
                                 </div>
                                 <div class="text-muted" style="font-size: 12.5px;">
-                                    Date: <strong class="text-dark">{{ $donation->donation_date?->format('M d, Y') }}</strong>
+                                    Date: <strong class="text-dark">{{ $expense->expense_date?->format('M d, Y') }}</strong>
                                 </div>
                             </div>
                         </div>
 
-                        {{-- Donor & Allocation Info Cards --}}
+                        {{-- Vendor & Allocation Info Cards --}}
                         <div class="row g-3 mb-4 receipt-info-row">
                             <div class="col-md-6 col-12 receipt-info-col">
-                                <div class="p-3 rounded h-100">
+                                <div class="p-3 rounded h-100" style="background-color: #f8fafc; border: 1px solid #e2e8f0;">
                                     <span class="text-muted d-block mb-1" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b !important;">
-                                        Received With Thanks From (Donor)
+                                        Paid To (Vendor / Recipient)
                                     </span>
                                     <h5 class="fw-bold text-dark mb-1" style="font-size: 15.5px;">
-                                        {{ $donation->donor ? $donation->donor->name : 'Well-wisher (Anonymous Donor)' }}
+                                        {{ $expense->recipient_or_vendor ?: 'General Vendor / Payee' }}
                                     </h5>
-                                    @if($donation->donor)
-                                        <div class="text-muted" style="font-size: 12.5px; line-height: 1.5;">
-                                            @if($donation->donor->phone) <span><i class="ri-phone-line me-1 text-primary"></i>{{ $donation->donor->phone }}</span><br> @endif
-                                            @if($donation->donor->email) <span><i class="ri-mail-line me-1 text-primary"></i>{{ $donation->donor->email }}</span><br> @endif
-                                            @if($donation->donor->address)
-                                                <span><i class="ri-map-pin-line me-1 text-primary"></i>{{ $donation->donor->address }}</span>
-                                            @else
-                                                <span><i class="ri-map-pin-line me-1 text-muted"></i>Dhaka, Bangladesh</span>
-                                            @endif
-                                        </div>
-                                    @else
-                                        <div class="text-muted" style="font-size: 12.5px;">
-                                            <span><i class="ri-map-pin-line me-1 text-muted"></i>Dhaka, Bangladesh</span>
-                                        </div>
-                                    @endif
+                                    <div class="text-muted" style="font-size: 12.5px; line-height: 1.5;">
+                                        <div>Category: <strong>{{ $expense->expense_category }}</strong></div>
+                                        <div>Recorded By: <strong>{{ $expense->creator?->name ?? 'System Administrator' }}</strong></div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-md-6 col-12 receipt-info-col">
-                                <div class="p-3 rounded h-100 text-end">
+                                <div class="p-3 rounded h-100" style="background-color: #f8fafc; border: 1px solid #e2e8f0;">
                                     <span class="text-muted d-block mb-1" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b !important;">
-                                        Cause &amp; Payment Details
+                                        Project / Purpose Allocation
                                     </span>
                                     <h6 class="fw-bold text-dark mb-1" style="font-size: 15px;">
-                                        @if($donation->project)
-                                            <span class="text-primary">{{ $donation->project->name }}</span>
+                                        @if($expense->project)
+                                            <span class="text-primary">{{ $expense->project->name }}</span>
                                         @else
-                                            <span class="text-success">General Relief &amp; Welfare Fund</span>
+                                            <span class="text-secondary">General Office &amp; Administrative Fund</span>
                                         @endif
                                     </h6>
                                     <div class="text-muted" style="font-size: 12.5px; line-height: 1.5;">
-                                        <div>Purpose: <strong class="text-dark">{{ $donation->purpose ?: 'Humanitarian Aid / Sadaqah' }}</strong></div>
-                                        <div>Payment Method: <strong class="text-dark">{{ strtoupper($donation->payment_method) }}</strong></div>
-                                        @if($donation->transaction_id)
-                                            <div>Trx ID: <strong class="text-dark font-monospace">{{ $donation->transaction_id }}</strong></div>
-                                        @endif
+                                        <div>Payment Method: <strong class="text-dark">{{ strtoupper($expense->payment_method) }}</strong></div>
+                                        <div>Attachment: <strong>{{ $expense->receipt_voucher_file ? 'Verified on File' : 'N/A' }}</strong></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {{-- Amount Breakdown Table --}}
+                        {{-- Itemized Expenditure Table --}}
                         <div class="table-responsive mb-4 receipt-table-container">
                             <table class="table table-bordered mb-0 w-100" style="font-size: 13.5px; border-collapse: collapse; border-color: #cbd5e1; width: 100%;">
                                 <thead>
                                     <tr style="background-color: #f1f5f9;">
                                         <th style="width: 50px; text-align: center; color: #334155; font-weight: 700; padding: 10px 8px;">SL</th>
-                                        <th style="color: #334155; font-weight: 700; padding: 10px 12px;">Description / Purpose</th>
+                                        <th style="color: #334155; font-weight: 700; padding: 10px 12px;">Expense Item / Description</th>
                                         <th style="width: 140px; color: #334155; font-weight: 700; padding: 10px 12px; text-align: center;">Payment Mode</th>
                                         <th style="width: 170px; color: #334155; font-weight: 700; padding: 10px 14px; text-align: right;">Amount (BDT)</th>
                                     </tr>
@@ -117,51 +108,51 @@
                                     <tr>
                                         <td class="text-center align-middle" style="color: #475569; padding: 12px 8px;">1</td>
                                         <td class="align-middle" style="padding: 12px 14px;">
-                                            <strong class="text-dark" style="font-size: 14px;">{{ $donation->purpose ?: 'Humanitarian Contribution' }}</strong>
-                                            @if($donation->project)
+                                            <strong class="text-dark" style="font-size: 14px;">{{ $expense->title }}</strong>
+                                            @if($expense->project)
                                                 <div class="text-muted mt-1" style="font-size: 12px;">
-                                                    <strong>Project:</strong> {{ $donation->project->name }} ({{ $donation->project->category ?? 'Relief & Welfare' }})
+                                                    <strong>Allocated Project:</strong> {{ $expense->project->name }} ({{ $expense->project->category ?? 'Relief' }})
                                                 </div>
                                             @endif
-                                            @if($donation->notes)
-                                                <div class="text-muted mt-1" style="font-size: 11.5px; font-style: italic;">
-                                                    Remarks: {{ $donation->notes }}
+                                            @if($expense->description)
+                                                <div class="text-muted mt-1" style="font-size: 12px; line-height: 1.4;">
+                                                    <em>{{ $expense->description }}</em>
                                                 </div>
                                             @endif
                                         </td>
                                         <td class="text-center align-middle" style="padding: 12px 12px;">
                                             <span class="badge" style="background-color: #f1f5f9; color: #334155; border: 1px solid #cbd5e1; font-size: 12px; padding: 4px 8px;">
-                                                {{ strtoupper($donation->payment_method) }}
+                                                {{ strtoupper($expense->payment_method) }}
                                             </span>
                                         </td>
                                         <td class="align-middle fw-bold text-dark text-end" style="font-size: 15px; padding: 12px 14px; text-align: right;">
-                                            ৳ {{ number_format((float) $donation->amount, 2) }}
+                                            ৳ {{ number_format((float) $expense->amount, 2) }}
                                         </td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr style="background-color: #f8fafc;">
                                         <td colspan="3" class="fw-bold text-end" style="padding: 12px 14px; font-size: 14px; color: #1e293b; text-align: right;">
-                                            Grand Total Received:
+                                            Total Disbursed Amount:
                                         </td>
-                                        <td class="fw-bold text-success text-end" style="font-size: 16px; padding: 12px 14px; background-color: #f0fdf4; text-align: right;">
-                                            ৳ {{ number_format((float) $donation->amount, 2) }}
+                                        <td class="fw-bold text-danger text-end" style="font-size: 16px; padding: 12px 14px; background-color: #fef2f2; text-align: right;">
+                                            ৳ {{ number_format((float) $expense->amount, 2) }}
                                         </td>
                                     </tr>
                                 </tfoot>
                             </table>
                         </div>
 
-                        {{-- Status & Verification --}}
+                        {{-- Verification Status --}}
                         <div class="d-flex justify-content-between align-items-center mb-5 pb-3 border-bottom">
                             <div>
                                 <span class="text-muted me-2" style="font-size: 12px; font-weight: 600; text-transform: uppercase;">Status:</span>
-                                <span class="badge {{ $donation->status === 'completed' ? 'bg-success-subtle text-success border border-success-subtle' : 'bg-warning-subtle text-warning border border-warning-subtle' }}" style="font-size: 12px; padding: 5px 12px; border-radius: 6px;">
-                                    <i class="ri-checkbox-circle-line me-1"></i> {{ ucfirst($donation->status) }} &mdash; Verified Contribution
+                                <span class="badge bg-success-subtle text-success border border-success-subtle" style="font-size: 12px; padding: 5px 12px; border-radius: 6px;">
+                                    <i class="ri-checkbox-circle-line me-1"></i> Disbursed &amp; Audited
                                 </span>
                             </div>
                             <div class="text-muted" style="font-size: 11.5px; font-style: italic;">
-                                Official Computer Generated Money Receipt
+                                Official Computer Generated Debit Voucher
                             </div>
                         </div>
 
@@ -170,27 +161,27 @@
                             <div class="col-4">
                                 <div class="signature-box text-center">
                                     <div class="signature-line"></div>
-                                    <span class="signature-title">Donor Signature</span>
+                                    <span class="signature-title">Prepared By (Accounts)</span>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="signature-box text-center">
                                     <div class="signature-line"></div>
-                                    <span class="signature-title">Accountant / Cashier</span>
+                                    <span class="signature-title">Receiver's Signature</span>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="signature-box text-center">
                                     <div class="signature-line"></div>
-                                    <span class="signature-title">Authorized Secretary</span>
+                                    <span class="signature-title">Authorized President / Secretary</span>
                                 </div>
                             </div>
                         </div>
 
-                        {{-- Official Receipt Bottom Note --}}
+                        {{-- Official Voucher Bottom Note --}}
                         <div class="mt-5 pt-3 border-top text-center receipt-footer-note" style="font-size: 11.5px; color: #64748b;">
                             <p class="mb-0">
-                                <strong>Shanti Nagar Foundation (Santi Nagar Association)</strong> &bull; All donations are utilized strictly for registered humanitarian relief and social welfare programs.
+                                <strong>Shanti Nagar Foundation (Santi Nagar Association)</strong> &bull; All expenditure vouchers are audited and maintained under the NGO Affairs Bureau guidelines.
                             </p>
                         </div>
                     </div>
@@ -288,7 +279,7 @@
                 flex: 0 0 100% !important;
             }
 
-            /* 3. Printable receipt card: NO OUTER BORDER on paper, clean full width */
+            /* 3. Printable voucher card: NO OUTER BORDER on paper, clean full width */
             .print-area {
                 position: relative !important;
                 left: 0 !important;

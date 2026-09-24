@@ -87,9 +87,13 @@
   - [x] Automatic sequential receipt generator (`REC-YYYY-001`)
   - [x] Official printable Money Receipt view (`admin/donations/show.blade.php`)
   - [x] Layered Architecture: `DonorController.php`, `DonationController.php`, `DonorService.php`, `DonationService.php`, Form Requests
-- [ ] **Expense Management & Vouchers (Req #3)**
-  - [ ] Expense voucher entry (Category, Vendor, Project allocation, Attachment)
-  - [ ] Real-time project cost calculation vs estimated budget
+- [x] **Expense Management & Vouchers (Req #3)**
+  - [x] Create PHP Enum `App\Enums\ExpenseCategory` with badge styles and labels
+  - [x] Build Layered Architecture: `ExpenseController`, `ExpenseService`, `StoreExpenseRequest`, `UpdateExpenseRequest`
+  - [x] Expense voucher entry (Category, Vendor, Project allocation, File Attachment upload)
+  - [x] Server-side Yajra DataTable with filters (category, project, payment method)
+  - [x] Official printable Debit Voucher view (`admin/expenses/show.blade.php`)
+  - [x] Feature tests in `tests/Feature/ExpenseTest.php` passing
 - [ ] **Employee & Salary Management (Req #4)**
   - [ ] Employee profiles & salary configuration
   - [ ] Monthly salary disbursement voucher generation & payslips

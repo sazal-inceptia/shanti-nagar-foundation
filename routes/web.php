@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DonationController;
 use App\Http\Controllers\Admin\DonorController;
+use App\Http\Controllers\Admin\ExpenseController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -61,13 +62,8 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Donations & Receipts
     Route::resource('donations', DonationController::class);
 
-    // Expenses & Vouchers
-    Route::get('/expenses', function () {
-        return view('admin.home.index');
-    })->name('expenses.index');
-    Route::get('/expenses/create', function () {
-        return redirect()->route('admin.expenses.index');
-    })->name('expenses.create');
+    // Expenses & Vouchers (Resource CRUD)
+    Route::resource('expenses', ExpenseController::class);
 
     // Employees & Staff
     Route::get('/employees', function () {
