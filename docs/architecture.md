@@ -2,55 +2,63 @@
 
 ## 1. System Architecture Overview
 
-The application is structured as a robust **Laravel 12 / PHP 8.2+ MVC Web Application** supporting localized humanitarian welfare operations, transparent fund management, project documentation, and employee compensation tracking.
+The application is structured as a robust **Laravel 12 / PHP 8.2+ Clean MVC & Service-Layer Application** supporting localized humanitarian welfare operations, transparent fund management, project documentation, and employee compensation tracking.
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    Frontend Client (Blade)                  │
-│    - Responsive Modern Theme (Vanilla CSS / Custom JS)      │
-│    - Dynamic Routes: Home, About, Projects, Activities,     │
-│      Gallery, Blog, Contact, Donate Modal                   │
-└──────────────────────────────┬──────────────────────────────┘
-                               │ HTTP Requests (Web.php)
-┌──────────────────────────────▼──────────────────────────────┐
-│                    Routing & Controllers                    │
-│    - HomeController (Public pages & Dynamic Queries)         │
-│    - Admin / Resource Controllers (CRUD & Reports)          │
-└──────────────────────────────┬──────────────────────────────┘
-                               │ Eloquent ORM
-┌──────────────────────────────▼──────────────────────────────┐
-│                 Models & Domain Logic                       │
-│    - User, Donor, Project, ProjectImage, Donation,          │
-│      Expense, Employee, Salary                              │
-└──────────────────────────────┬──────────────────────────────┘
-                               │ Database Queries
-┌──────────────────────────────▼──────────────────────────────┐
-│                 MySQL Database (Relational)                 │
-│    - Financial Audit Trail (Income, Expense, Salary)        │
-│    - Project Field Documentation & Galleries                │
-└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    Frontend (Blade) & Admin Panel UI                    │
+│    - Public Website: Home, About, Projects, Activities, Gallery, etc.   │
+│    - Admin Dashboard: Financial KPI Overview, Management Modules        │
+└────────────────────────────────────┬────────────────────────────────────┘
+                                     │ HTTP Requests
+┌────────────────────────────────────▼────────────────────────────────────┐
+│                    Routing & Form Request Layer                         │
+│    - Form Request Validation (e.g. StoreDonationRequest, ExpenseRequest)│
+│    - Routing (routes/web.php with auth/admin middleware grouping)       │
+└────────────────────────────────────┬────────────────────────────────────┘
+                                     │ Validated Data ($request->validated())
+┌────────────────────────────────────▼────────────────────────────────────┐
+│                    Admin Controllers Layer                              │
+│    - app/Http/Controllers/Admin/*                                       │
+│    - Thin Controllers: Handles HTTP response, redirects & JSON status   │
+└────────────────────────────────────┬────────────────────────────────────┘
+                                     │ Delegates Business Logic
+┌────────────────────────────────────▼────────────────────────────────────┐
+│                    Dedicated Service Layer                              │
+│    - app/Services/* (DonationService, ProjectService, ExpenseService,   │
+│      SalaryService, ReportService)                                      │
+│    - Handles DB Transactions, Business Rules, File Uploads & Auditing   │
+└────────────────────────────────────┬────────────────────────────────────┘
+                                     │ Eloquent ORM
+┌────────────────────────────────────▼────────────────────────────────────┐
+│                 Models & Domain Logic (app/Models/*)                    │
+│    - User, Donor, Project, ProjectImage, Donation, Expense,             │
+│      Employee, Salary                                                   │
+└────────────────────────────────────┬────────────────────────────────────┘
+                                     │ Database Queries
+┌────────────────────────────────────▼────────────────────────────────────┐
+│                 MySQL Database (Relational)                             │
+│    - Financial Audit Trail (Income, Expense, Salary)                    │
+│    - Project Field Documentation & Media Galleries                      │
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 2. Core Business Workflows
+## 2. Core Business Workflows & Architecture Principles
 
-### A. Donation & Fund Allocation Flow
-1. **Donor Contribution:** Donor submits a contribution (online via bKash/Nagad/Card or offline via Bank/Cash).
-2. **Receipt Generation:** A unique `receipt_number` is assigned.
-3. **Allocation:** The donation is allocated either to the *General Fund* or to a specific *Project* (`project_id`).
-4. **Impact Metric:** Total donations dynamically reflect on the project card and the public Transparency Dashboard.
+### A. Strict Layer Separation
+1. **Controllers (`app/Http/Controllers/Admin/`):**
+   - Controllers must remain **thin** and never contain raw SQL, multi-step business calculations, or file manipulation logic.
+   - Controllers only inject Form Requests and call respective Services.
 
-### B. Project & Field Activity Lifecycle
-1. **Planning:** An initiative (e.g. *Hospital Equipment Distribution*, *Winter Blanket Drive*) is registered with an `estimated_cost` and `status = 'planned'`.
-2. **Execution & Expenses:** Expenditures (goods purchase, transport, labor) are recorded under `expenses` table with `voucher_number`.
-3. **Documentation:** On-ground photos and proof of handover are stored in `project_images`.
-4. **Completion:** When executed, status transitions to `completed`, and photos automatically populate the filterable `/gallery` page.
+2. **Form Requests (`app/Http/Requests/Admin/`):**
+   - Every store and update action must have a dedicated FormRequest class.
+   - Handles authorization rules, input sanitization, custom messages, and validation rules.
 
-### C. Human Resource & Salary Disbursement
-1. **Employee Registry:** Staff details, NID, department, and `base_salary` are tracked in `employees`.
-2. **Monthly Payroll:** Automated or manual salary vouchers are logged in `salaries` with unique slip codes (`salary_slip_number`).
-3. **Balance Reconciliation:** Staff salaries are linked with overall organization operational expense reports.
+3. **Service Layer (`app/Services/`):**
+   - All complex business workflows, multi-table updates, database transactions (`DB::transaction`), and receipt/voucher generation logic reside here.
+   - Services are modular, testable, and reusable.
 
 ---
 
@@ -60,46 +68,55 @@ The application is structured as a robust **Laravel 12 / PHP 8.2+ MVC Web Applic
 shanti-nagar-foundation/
 ├── app/
 │   ├── Http/
-│   │   └── Controllers/
-│   │       └── HomeController.php       # Frontend views & data binding
-│   └── Models/
-│       ├── User.php                     # Auth user model
-│       ├── Donor.php                    # Donors & organizations
-│       ├── Project.php                  # Social initiatives & campaigns
-│       ├── ProjectImage.php             # Documentation photos
-│       ├── Donation.php                 # Contributions & receipt audit
-│       ├── Expense.php                  # Voucher expenses & procurement
-│       ├── Employee.php                 # Staff & personnel
-│       └── Salary.php                   # Monthly disbursements
+│   │   ├── Controllers/
+│   │   │   ├── HomeController.php               # Public frontend controller
+│   │   │   └── Admin/                           # ALL ADMIN CONTROLLERS MUST RESIDE HERE
+│   │   │       ├── DashboardController.php      # Overview KPIs & financial summary
+│   │   │       ├── DonorController.php          # Donor CRM & history
+│   │   │       ├── DonationController.php       # Donation entries & receipt generator
+│   │   │       ├── ProjectController.php        # Project & Activity lifecycle
+│   │   │       ├── ExpenseController.php        # Voucher expenses & procurement
+│   │   │       ├── EmployeeController.php       # Staff & personnel registry
+│   │   │       ├── SalaryController.php         # Salary disbursement & payslips
+│   │   │       └── ReportController.php         # Financial audit & exports
+│   │   └── Requests/
+│   │       └── Admin/                           # FORM REQUEST VALIDATION LAYER
+│   │           ├── Donor/ (StoreDonorRequest, UpdateDonorRequest)
+│   │           ├── Donation/ (StoreDonationRequest, UpdateDonationRequest)
+│   │           ├── Project/ (StoreProjectRequest, UpdateProjectRequest)
+│   │           ├── Expense/ (StoreExpenseRequest, UpdateExpenseRequest)
+│   │           ├── Employee/ (StoreEmployeeRequest, UpdateEmployeeRequest)
+│   │           └── Salary/ (DisburseSalaryRequest, UpdateSalaryRequest)
+│   ├── Services/                                # DEDICATED BUSINESS SERVICE LAYER
+│   │   ├── DonorService.php                     # Donor creation, stats & history
+│   │   ├── DonationService.php                  # Donation processing & receipt logic
+│   │   ├── ProjectService.php                   # Project CRUD, budget tracking & photo upload
+│   │   ├── ExpenseService.php                   # Expense voucher recording & balance checks
+│   │   ├── EmployeeService.php                  # Staff management & salary profiles
+│   │   ├── SalaryService.php                    # Monthly payroll processing & slip generator
+│   │   └── ReportService.php                    # Financial summary statements & export data
+│   └── Models/                                  # ELOQUENT MODELS
+│       ├── User.php
+│       ├── Donor.php
+│       ├── Project.php
+│       ├── ProjectImage.php
+│       ├── Donation.php
+│       ├── Expense.php
+│       ├── Employee.php
+│       └── Salary.php
 ├── database/
-│   ├── migrations/                      # 7 relational schema migrations
-│   └── seeders/
-│       ├── DatabaseSeeder.php           # Orchestrator seeder
-│       ├── UserSeeder.php               # Admin & staff users
-│       ├── DonorSeeder.php              # Donor profiles
-│       ├── ProjectSeeder.php            # 12 social projects & gallery photos
-│       ├── DonationSeeder.php           # Realistic donation records
-│       ├── ExpenseSeeder.php            # Project & operational vouchers
-│       ├── EmployeeSeeder.php           # Employee profiles
-│       └── SalarySeeder.php             # Salary disbursement logs
+│   ├── migrations/                              # 7 relational schema migrations
+│   └── seeders/                                 # 8 relational idempotent seeders
 ├── resources/
 │   └── views/
-│       └── frontend/
-│           ├── layouts/app.blade.php    # Base layout & donation popup modal
-│           ├── partials/                # header.blade.php & footer.blade.php
-│           ├── index.blade.php          # Homepage
-│           ├── about.blade.php          # About us & Transparency metrics
-│           ├── donations.blade.php      # Projects & causes listing
-│           ├── donation-details.blade.php # Single project details
-│           ├── events.blade.php         # Upcoming activities
-│           ├── event-details.blade.php  # Activity description
-│           ├── gallery.blade.php        # Project documentation photos
-│           ├── contact.blade.php        # Contact info & Google Map
-│           └── ...                      # Blog, volunteer, faq, donate
+│       ├── frontend/                            # Public website views & partials
+│       └── admin/                               # Admin panel views & partials
 ├── routes/
-│   └── web.php                          # Web route definitions
+│   └── web.php                                  # Public & admin route groups
 └── docs/
-    ├── project_overview.md              # Client specification document
-    ├── database_design.md               # Complete ERD & schema specs
-    └── architecture.md                  # This architecture document
+    ├── project_overview.md                      # Client specification document
+    ├── database_design.md                       # Complete ERD, schema & model relations
+    ├── architecture.md                          # This 3-tier architecture document
+    ├── project_context.md                       # Business rules, branding & roadmap
+    └── tasks.md                                 # Task list & progress tracker
 ```
