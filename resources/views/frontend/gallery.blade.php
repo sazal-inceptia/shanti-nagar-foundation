@@ -30,7 +30,7 @@
                         @endphp
                         <ul class="filter-tabs filter-btns clearfix">
                             <li class="{{ empty($currentCat) || $currentCat === 'all' ? 'active ' : '' }}filter">
-                                <a href="{{ route('gallery') }}" style="color: inherit; text-decoration: none; display: block;">All Causes ({{ \App\Models\ProjectImage::whereHas('project', fn($q) => $q->where('is_published', true))->count() }})</a>
+                                <a href="{{ route('gallery') }}">All Causes ({{ \App\Models\ProjectImage::whereHas('project', fn($q) => $q->where('is_published', true))->count() }})</a>
                             </li>
                             @foreach($categories as $category)
                                 @php
@@ -39,7 +39,7 @@
                                     $isActive = ($currentCat === $catSlug || $currentCat === $category);
                                 @endphp
                                 <li class="{{ $isActive ? 'active ' : '' }}filter">
-                                    <a href="{{ route('gallery', ['category' => $catSlug]) }}" style="color: inherit; text-decoration: none; display: block;">{{ $category }} ({{ $catCount }})</a>
+                                    <a href="{{ route('gallery', ['category' => $catSlug]) }}">{{ $category }} ({{ $catCount }})</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -74,7 +74,7 @@
                     </div>
 
                     @if($galleryImages->hasPages())
-                    <div class="pagination-wrapper centred" style="margin-top: 50px;">
+                    <div class="pagination-wrapper centred mt-50">
                         {{ $galleryImages->links('vendor.pagination.custom') }}
                     </div>
                     @endif

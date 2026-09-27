@@ -16,14 +16,14 @@
                 <div class="row clearfix">
                     {{-- Left Column: Amount & Method --}}
                     <div class="col-lg-6 col-md-12 col-sm-12 donate-column">
-                        <div class="donate-box" style="background: #fdfdfd; border: 1px solid #e2e8f0; border-radius: 12px; padding: 30px;">
+                        <div class="donate-box donate-box-card">
                             {{-- Project Selector --}}
                             <div class="form-group mb-4">
-                                <label style="font-size: 14px; font-weight: 700; color: #111A3A; margin-bottom: 8px; display: block;">
+                                <label class="project-select-label">
                                     Target Relief Project / Cause
                                 </label>
                                 <div class="select-box">
-                                    <select class="wide" name="project_id" style="height: 50px;">
+                                    <select class="wide project-select" name="project_id">
                                         <option value="">General Humanitarian Fund (Where Most Needed)</option>
                                         @foreach($projects as $prj)
                                             <option value="{{ $prj->id }}" {{ old('project_id', request('project')) == $prj->id ? 'selected' : '' }}>
@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="amount-box">
                                         <input type="number" id="custom-donate-amount" name="amount" value="{{ old('amount', 1000) }}" min="10" step="10" required
-                                            style="height: 48px; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 0 15px; font-weight: 700; font-size: 16px; width: 100%;">
+                                            class="custom-donate-input">
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
 
                     {{-- Right Column: Donor Information --}}
                     <div class="col-lg-6 col-md-12 col-sm-12 donate-form">
-                        <div class="form-inner" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 30px;">
+                        <div class="form-inner donate-form-card">
                             <h3>Donor Information &amp; Receipt Details</h3>
                             <div class="row clearfix">
                                 <div class="col-lg-12 col-md-12 col-sm-12 column">
@@ -142,12 +142,12 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 column">
                                     <div class="form-group">
                                         <label>Special Note / Dedication (Optional)</label>
-                                        <textarea name="notes" placeholder="In memory of / Zakat / General blessing..." style="height: 80px;">{{ old('notes') }}</textarea>
+                                        <textarea name="notes" placeholder="In memory of / Zakat / General blessing..." class="donate-notes-input">{{ old('notes') }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 column">
                                     <div class="form-group message-btn mt-2">
-                                        <button type="submit" class="theme-btn btn-one w-100" style="padding: 14px 20px; font-size: 16px;">
+                                        <button type="submit" class="theme-btn btn-one w-100 submit-donate-btn">
                                             <i class="fas fa-heart me-1"></i> Confirm &amp; Submit Donation
                                         </button>
                                     </div>

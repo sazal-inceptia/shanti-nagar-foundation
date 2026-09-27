@@ -61,8 +61,7 @@
   - [x] **Dynamic Project Details & Live Counters**
   - [x] Connect `/donation-details/{slug}` with full dynamic project data, target funding progress, photos, and direct pledge form
   - [x] Connect `/event-details/{slug}` with dynamic activity overview, field team details, and volunteer registration
-  - [x] Implement live real-time impact counters across Home (`/`) and About (`/about`) pages (Donations raised, funds utilized, completed projects, direct beneficiaries, active volunteers)
-  - [x] Feature tests in `tests/Feature/FrontendProjectDetailsTest.php` passing (26 total tests passing)
+  - [x] Refactor all frontend blade templates to strictly eliminate inline styles and migrate all layout, component, and typography styling to `public/assets/css/style.css`
 - [ ] **SEO & Metadata Polish**
   - [ ] Add dynamic meta titles & descriptions for individual project pages
 

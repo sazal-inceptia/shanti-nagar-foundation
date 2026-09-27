@@ -99,7 +99,7 @@
                                             </div>
                                             <div class="amount-box">
                                                 <div class="form-group mb-0">
-                                                    <input type="number" id="popup-custom-amount" name="amount" value="1000" min="10" step="10" required style="width: 100%; height: 45px; border: 1px solid #e2e8f0; border-radius: 6px; padding: 0 15px; font-weight: 700;">
+                                                    <input type="number" id="popup-custom-amount" name="amount" value="1000" min="10" step="10" required class="popup-custom-amount-input">
                                                 </div>
                                             </div>
                                         </div>

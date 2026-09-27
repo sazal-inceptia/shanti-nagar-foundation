@@ -42,7 +42,7 @@
             <div class="outer-box">
                 <div class="text">
                     <figure class="icon-box"><img src="{{ asset('assets/images/icons/heart-1.png') }}" alt=""></figure>
-                    <a href="/volunteer" style="color: inherit;"><span>Become a Volunteer</span></a>
+                    <a href="/volunteer" class="volunteer-link"><span>Become a Volunteer</span></a>
                 </div>
                 <div class="menu-area clearfix">
                     <!--Mobile Navigation Toggler-->

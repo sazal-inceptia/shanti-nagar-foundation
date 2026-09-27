@@ -17,17 +17,15 @@
     @endphp
 
     <!-- Page Title -->
-    <section class="page-title"
-        style="background-image: url({{ asset('assets/images/background/12.jpg') }}); padding: 120px 0 60px 0;">
+    <section class="page-title donation-title"
+        style="background-image: url({{ asset('assets/images/background/12.jpg') }});">
         <div class="auto-container">
             <div class="content-box">
-                <div class="title" style="margin-bottom: 20px;">
-                    <h6
-                        style="color: #ffffff; font-weight: 700; border-bottom: 2px solid #ffffff; display: inline-block; padding-bottom: 4px; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">
+                <div class="title">
+                    <h6 class="donation-category-badge">
                         # {{ $project->category ?? 'Relief & Social Cause' }}
                     </h6>
-                    <h1 style="font-size: 38px; line-height: 48px; color: #ffffff; font-weight: 700;">{{ $project->name }}
-                    </h1>
+                    <h1>{{ $project->name }}</h1>
                 </div>
                 <ul class="bread-crumb clearfix">
                     <li><a href="{{ route('home') }}">Home</a></li>
@@ -44,7 +42,7 @@
         <div class="auto-container">
 
             <!-- Upper KPI Box -->
-            <div class="upper-box" style="margin-top: -35px; position: relative; z-index: 2;">
+            <div class="upper-box kpi-row">
                 <div class="row clearfix align-items-center">
                     <div class="col-lg-6 col-md-12 col-sm-12 left-column">
                         <div class="donate-inner clearfix">
@@ -55,7 +53,7 @@
                                 <div class="price">৳{{ number_format($raised) }} <span>/ ৳{{ number_format($target) }}</span></div>
                             </div>
                             <div class="percentage-box">
-                                <div class="bar"><span style="position: absolute; left: 0; bottom: 0; width: 100%; height: {{ $percent }}%; background-color: #03c0a8;"></span></div>
+                                <div class="bar"><span class="fill-bar" style="height: {{ $percent }}%;"></span></div>
                                 <h5>{{ $percent }}%</h5>
                             </div>
                             <div class="btn-box">
@@ -86,7 +84,7 @@
             </div>
 
             <!-- Lower Details Box -->
-            <div class="lower-box" style="padding: 70px 0 100px 0;">
+            <div class="lower-box details-lower">
                 <div class="row clearfix">
 
                     <!-- Main Content Side -->
@@ -94,21 +92,16 @@
                         <div class="case-details-content">
 
                             <div class="content-one">
-                                <figure class="image-box"
-                                    style="margin-bottom: 30px; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.06);">
+                                <figure class="image-box main-image-box">
                                     <img src="{{ asset($project->featured_image ?: 'assets/images/case/case-21.jpg') }}"
-                                        alt="{{ $project->name }}"
-                                        style="width: 100%; max-height: 460px; object-fit: cover;">
+                                        alt="{{ $project->name }}">
                                 </figure>
                                 <div class="text">
-                                    <h3 style="font-size: 28px; font-weight: 700; margin-bottom: 15px; color: #1e1e1e;">
-                                        {{ $project->name }}</h3>
+                                    <h3 class="project-heading">{{ $project->name }}</h3>
                                     @if($project->short_description)
-                                        <p class="lead"
-                                            style="font-size: 16px; font-weight: 600; color: #444; line-height: 1.8; margin-bottom: 15px;">
-                                            {{ $project->short_description }}</p>
+                                        <p class="lead project-lead">{{ $project->short_description }}</p>
                                     @endif
-                                    <div style="font-size: 15px; line-height: 1.9; color: #555;">
+                                    <div class="project-desc">
                                         {!! nl2br(e($project->description ?: 'Shanti Nagar Foundation is dedicated to delivering transparent humanitarian relief, healthcare support, and social empowerment across Bangladesh. Every contribution directly funds verified on-the-ground initiatives without intermediaries.')) !!}
                                     </div>
                                 </div>
@@ -117,16 +110,13 @@
                             {{-- Project Gallery Photos --}}
                             @if($project->images && $project->images->count() > 0)
                                 <div class="content-two mt-4 pt-3">
-                                    <h3 style="font-size: 22px; font-weight: 700; margin-bottom: 20px;">Field Documentation &
-                                        Photos</h3>
+                                    <h3 class="section-title-sub-2">Field Documentation & Photos</h3>
                                     <div class="row clearfix g-3">
                                         @foreach($project->images as $img)
                                             <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
-                                                <div class="image-box"
-                                                    style="border-radius: 10px; overflow: hidden; height: 210px; box-shadow: 0 4px 15px rgba(0,0,0,0.06);">
+                                                <div class="image-box gallery-card-box">
                                                     <img src="{{ asset($img->image_path) }}"
-                                                        alt="{{ $img->caption ?: $project->name }}"
-                                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                                        alt="{{ $img->caption ?: $project->name }}">
                                                 </div>
                                                 @if($img->caption)
                                                     <p class="small text-muted mt-1"><i class="fas fa-camera me-1 text-primary"></i>
@@ -141,8 +131,7 @@
                             {{-- Make Donation Form Section --}}
                             <div class="donate-content mt-5 pt-3" id="make-donation-section">
                                 <div class="title mb-4">
-                                    <h3 style="font-size: 24px; font-weight: 700; color: #1e1e1e;">Make Your Contribution
-                                    </h3>
+                                    <h3 class="section-title-sub">Make Your Contribution</h3>
                                     <p class="text-muted">Support <strong>{{ $project->name }}</strong> directly. We ensure
                                         100% financial transparency and official receipt vouchers.</p>
                                 </div>
@@ -192,10 +181,9 @@
                                                     <h4>Or Enter Custom Amount (৳)</h4>
                                                     <p>Enter any specific amount in BDT</p>
                                                 </div>
-                                                <div class="amount-box" style="max-width: 200px;">
+                                                <div class="amount-box custom-amount-input-box">
                                                     <input type="number" id="custom_amt_input" name="amount" value="1000"
-                                                        min="10" step="1" required class="form-control"
-                                                        style="height: 48px; font-weight: 700; font-size: 17px; border: 1px solid #d1d5db; border-radius: 8px; padding-left: 15px;">
+                                                        min="10" step="1" required class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -266,14 +254,12 @@
                                                     <label>Notes / Prayer Request (Optional)</label>
                                                     <textarea name="notes"
                                                         placeholder="Write any message or dedication for this cause..."
-                                                        rows="2" class="form-control"
-                                                        style="border: 1px solid #e0e0e0; border-radius: 6px; padding: 12px;"></textarea>
+                                                        rows="2" class="form-control donor-notes-textarea"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 column mt-3">
                                                 <div class="form-group message-btn">
-                                                    <button type="submit" class="theme-btn btn-one"
-                                                        style="padding: 14px 35px; font-weight: 700; border-radius: 8px;">Complete
+                                                    <button type="submit" class="theme-btn btn-one submit-pledge-btn">Complete
                                                         Donation Pledge</button>
                                                 </div>
                                             </div>
@@ -286,24 +272,21 @@
                             @if(isset($recentDonors) && $recentDonors->count() > 0)
                                 <div class="content-four mt-5 pt-3">
                                     <div class="text mb-4">
-                                        <h3 style="font-size: 22px; font-weight: 700;">Recent Verified Contributors</h3>
+                                        <h3 class="section-title-sub-2">Recent Verified Contributors</h3>
                                         <p class="text-muted">Honoring compassionate donors who supported this mission.</p>
                                     </div>
                                     <div class="row clearfix g-3">
                                         @foreach($recentDonors as $dn)
                                             <div class="col-md-4 col-sm-6 mb-3">
-                                                <div class="p-3 border rounded bg-white shadow-sm d-flex align-items-center gap-3"
-                                                    style="border-radius: 10px;">
-                                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold"
-                                                        style="width: 44px; height: 44px; background: #f65024; font-size: 16px; flex-shrink: 0;">
+                                                <div class="p-3 border rounded bg-white shadow-sm d-flex align-items-center gap-3 donor-card-item">
+                                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold donor-avatar-circle">
                                                         {{ strtoupper(substr($dn->donor?->name ?? 'A', 0, 1)) }}
                                                     </div>
                                                     <div>
-                                                        <h6 class="mb-0 fw-bold text-dark" style="font-size: 14px;">
+                                                        <h6 class="mb-0 fw-bold text-dark donor-name-text">
                                                             {{ $dn->donor?->name ?? 'Anonymous Donor' }}</h6>
-                                                        <span class="text-success fw-bold"
-                                                            style="font-size: 13px;">৳{{ number_format((float) $dn->amount) }}</span>
-                                                        <div class="text-muted small" style="font-size: 11px;">
+                                                        <span class="text-success fw-bold donor-amount-text">৳{{ number_format((float) $dn->amount) }}</span>
+                                                        <div class="text-muted small donor-date-text">
                                                             {{ \Carbon\Carbon::parse($dn->donation_date)->format('d M, Y') }}</div>
                                                     </div>
                                                 </div>
@@ -365,19 +348,17 @@
                             <!-- Quick Help / Office Card -->
                             <div class="sidebar-widget subscribe-widget centred">
                                 <div class="widget-content">
-                                    <div class="upper-content"
-                                        style="background-image: url({{ asset('assets/images/case/case-30.jpg') }}); padding: 35px 20px;">
+                                    <div class="upper-content sidebar-help-upper"
+                                        style="background-image: url({{ asset('assets/images/case/case-30.jpg') }});">
                                         <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
                                         <h3>Need Assistance?</h3>
                                         <p>For direct bank transfer confirmation or offline receipts, call our Dhaka desk.
                                         </p>
                                     </div>
                                     <div class="lower-content p-4 bg-white">
-                                        <h4 class="fw-bold text-dark mb-1" style="color: #f65024 !important;">+880
-                                            1700-000000</h4>
+                                        <h4 class="fw-bold text-dark mb-1 sidebar-help-phone">+880 1700-000000</h4>
                                         <p class="small text-muted mb-3">House 14, Road 3, Shanti Nagar, Dhaka - 1217</p>
-                                        <a href="{{ route('contact') }}" class="theme-btn btn-one w-100"
-                                            style="padding: 10px 20px; font-size: 13px;">Contact Foundation</a>
+                                        <a href="{{ route('contact') }}" class="theme-btn btn-one w-100 sidebar-contact-btn">Contact Foundation</a>
                                     </div>
                                 </div>
                             </div>

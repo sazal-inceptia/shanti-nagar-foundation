@@ -86,7 +86,7 @@
                     </div>
                     @endforelse
                 </div>
-                <div class="pagination-wrapper centred" style="margin-top: 30px;">
+                <div class="pagination-wrapper centred mt-30">
                     {{ $projects->links('vendor.pagination.custom') }}
                 </div>
             </div>

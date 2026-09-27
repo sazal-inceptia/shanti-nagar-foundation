@@ -34,7 +34,7 @@
                     <li><i class="far fa-clock"></i>10:00 AM - 04:00 PM</li>
                     <li><i class="far fa-map"></i>{{ $activity->location ?? 'Shanti Nagar, Dhaka' }}</li>
                 </ul>
-                <figure class="image-box"><img src="{{ asset($activity->featured_image ?: 'assets/images/events/events-4.jpg') }}" alt="{{ $activity->name ?? 'Activity' }}" style="max-height: 480px; width: 100%; object-fit: cover; border-radius: 8px;"></figure>
+                <figure class="image-box hero-image-box"><img src="{{ asset($activity->featured_image ?: 'assets/images/events/events-4.jpg') }}" alt="{{ $activity->name ?? 'Activity' }}"></figure>
             </div>
             
             <div class="tabs-box">
@@ -50,7 +50,7 @@
                         <div class="overview-inner">
                             <div class="content-one">
                                 <h3>Activity Description</h3>
-                                <div style="font-size: 15px; line-height: 1.8; color: #555;">
+                                <div class="event-desc-text">
                                     {!! nl2br(e($activity->description ?: ($activity->short_description ?: 'Shanti Nagar Foundation conducts regular field visits, health camps, winter relief distributions, and community welfare initiatives across Bangladesh.'))) !!}
                                 </div>
                                 <p class="mt-3">Under this initiative, our local committee coordinates direct procurement and distribution to ensure 100% transparency and accurate beneficiary reach without intermediaries.</p>
@@ -69,7 +69,7 @@
                                     <a href="{{ route('volunteer') }}" class="theme-btn btn-one">Join as Volunteer</a>
                                 </div>
                                 <div>
-                                    <a href="{{ route('donate') }}" class="theme-btn btn-one" style="background: #03c0a8;">Support This Cause</a>
+                                    <a href="{{ route('donate') }}" class="theme-btn btn-one btn-support-cause">Support This Cause</a>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                             <div class="row clearfix g-3">
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="p-3 border rounded text-center bg-white shadow-sm">
-                                        <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-2" style="width: 55px; height: 55px; background: #f65024; font-size: 20px;">
+                                        <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-2 team-avatar-orange">
                                             S
                                         </div>
                                         <h5 class="fw-bold mb-1">Shanti Nagar Field Unit</h5>
@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="p-3 border rounded text-center bg-white shadow-sm">
-                                        <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-2" style="width: 55px; height: 55px; background: #03c0a8; font-size: 20px;">
+                                        <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-2 team-avatar-teal">
                                             M
                                         </div>
                                         <h5 class="fw-bold mb-1">Medical Aid Cell</h5>
@@ -102,7 +102,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-12">
                                     <div class="p-3 border rounded text-center bg-white shadow-sm">
-                                        <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-2" style="width: 55px; height: 55px; background: #0f172a; font-size: 20px;">
+                                        <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-2 team-avatar-dark">
                                             V
                                         </div>
                                         <h5 class="fw-bold mb-1">Youth Volunteers</h5>
@@ -166,7 +166,7 @@
                                     <div class="sidebar-inner">
                                         <div class="event-organizer p-4 border rounded bg-white shadow-sm">
                                             <h4 class="fw-bold mb-3">Event Office</h4>
-                                            <ul class="list-unstyled mb-0" style="font-size: 14px; line-height: 2;">
+                                            <ul class="list-unstyled mb-0 event-office-list">
                                                 <li><strong>NGO:</strong> Shanti Nagar Foundation</li>
                                                 <li><strong>Phone:</strong> <a href="tel:+8801700000000" class="text-decoration-none text-muted">+880 1700-000000</a></li>
                                                 <li><strong>Email:</strong> <a href="mailto:info@shantinagarfoundation.org" class="text-decoration-none text-muted">info@shantinagarfoundation.org</a></li>

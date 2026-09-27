@@ -152,12 +152,9 @@
 
         <!-- google-map-section -->
         <section class="google-map-section">
-            <div class="map-inner" style="width: 100%; height: 500px;">
+            <div class="map-inner">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.285806660613!2d90.4103113154316!3d23.737194695200388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b85e054238e5%3A0x6a0f69a9b736b772!2sShantinagar%2C%20Dhaka!5e0!3m2!1sen!2sbd!4v1695546000000!5m2!1sen!2sbd" 
-                    width="100%" 
-                    height="500" 
-                    style="border:0; display:block;" 
                     allowfullscreen="" 
                     loading="lazy" 
                     referrerpolicy="no-referrer-when-downgrade">
