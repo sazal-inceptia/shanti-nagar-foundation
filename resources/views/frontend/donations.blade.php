@@ -10,7 +10,7 @@
                         <h1>Donation Campaigns & Projects</h1>
                     </div>
                     <ul class="bread-crumb clearfix">
-                        <li><a href="/">Home</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
                         <li>Donations</li>
                         <li>Active Relief & Welfare Causes</li>
                     </ul>

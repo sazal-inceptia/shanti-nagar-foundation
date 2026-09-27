@@ -115,7 +115,7 @@
                                 </div>
                                 <h3>Direct Support</h3>
                                 <p>Get in touch with our team for quick help and information.</p>
-                                <a href="/contact" class="theme-btn btn-one">Contact Helpline</a>
+                                <a href="tel:+8801700000000" class="theme-btn btn-one">Call Helpline</a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 single-column">
@@ -128,7 +128,7 @@
                                 </div>
                                 <h3>Become a Volunteer</h3>
                                 <p>Join our volunteer network and create a lasting impact in society.</p>
-                                <a href="/volunteer" class="theme-btn btn-one">Join With Us</a>
+                                <a href="{{ route('volunteer') }}" class="theme-btn btn-one">Join With Us</a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 single-column">
@@ -140,7 +140,7 @@
                                 </div>
                                 <h3>Charity FAQ’s</h3>
                                 <p>Find clear answers to commonly asked questions about our causes.</p>
-                                <a href="/faq" class="theme-btn btn-one">View FAQs</a>
+                                <a href="{{ route('faq') }}" class="theme-btn btn-one">View FAQs</a>
                             </div>
                         </div>
                     </div>

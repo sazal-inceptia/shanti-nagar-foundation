@@ -131,29 +131,25 @@
                         <div class="team-block-one">
                             <div class="inner-box">
                                 <figure class="image-box">
-                                    @if($member->photo_url)
-                                        <img src="{{ $member->photo_url }}" alt="{{ $member->name }}">
-                                    @endif
+                                    <img src="{{ $member->photo_url }}" alt="{{ $member->name }}">
                                 </figure>
                                 <div class="content-box">
                                     <div class="info">
-                                        <span class="designation">{{ $member->designation }}</span>
+                                        <span class="designation">{{ $member->designation ?: 'Field Coordinator' }}</span>
                                         <h3>{{ $member->name }}</h3>
                                     </div>
-                                    @if($member->photo_url)
-                                        <figure class="thumb-box"><img src="{{ $member->photo_url }}" alt="{{ $member->name }}"></figure>
-                                    @endif
+                                    <figure class="thumb-box"><img src="{{ $member->photo_url }}" alt="{{ $member->name }}"></figure>
                                     <div class="text">
-                                        <p>{{ $member->department }} &bull; {{ $member->present_address ?: 'Shanti Nagar, Dhaka' }}</p>
+                                        <p>{{ $member->department ?: 'Relief Operations' }} &bull; {{ $member->present_address ?: 'Shanti Nagar, Dhaka' }}</p>
                                     </div>
                                 </div>
                                 <ul class="social-links clearfix">
-                                    @if($member->phone)
-                                        <li><a href="tel:{{ $member->phone }}" title="Call {{ $member->name }}"><i class="fas fa-phone-alt"></i></a></li>
-                                    @endif
-                                    @if($member->email)
-                                        <li><a href="mailto:{{ $member->email }}" title="Email {{ $member->name }}"><i class="fas fa-envelope"></i></a></li>
-                                    @endif
+                                    <li>
+                                        <a href="tel:{{ $member->phone ?: '+8801700000000' }}" title="{{ $member->phone ? 'Call '.$member->name : 'Call Foundation Desk' }}"><i class="fas fa-phone"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="mailto:{{ $member->email ?: 'info@shantinagarfoundation.org' }}" title="{{ $member->email ? 'Email '.$member->name : 'Email Foundation Desk' }}"><i class="fas fa-envelope"></i></a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

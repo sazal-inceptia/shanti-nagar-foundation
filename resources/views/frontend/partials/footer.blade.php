@@ -12,31 +12,21 @@
                     </figure>
                 </div>
                 <div class="text">
-                    <h3><i class="icon-email-open-sketched-envelope"></i>Stay <br /> Connected </h3>
+                    <h3><i class="icon-donation"></i>Together For <br />Humanity</h3>
                 </div>
             </div>
             <div class="right-column pull-right clearfix">
-                <div class="form-inner">
-                    <form action="{{ route('contact.submit') }}" method="post" class="subscribe-form">
-                        @csrf
-                        <div class="form-group">
-                            <input type="email" name="email" placeholder="Enter your email address..." required="">
-                            <input type="hidden" name="name" value="Newsletter Subscriber">
-                            <input type="hidden" name="subject" value="Newsletter Subscription">
-                            <input type="hidden" name="message"
-                                value="Subscribed to Shanti Nagar Foundation relief and humanitarian updates.">
-                            <button type="submit">Subscribe</button>
-                        </div>
-                    </form>
+                <div class="callout-text">
+                    <p>Empowering distressed families, hospital wards, and orphan children across Bangladesh with 100% direct relief and zero intermediaries.</p>
                 </div>
                 <ul class="social-style-one clearfix">
-                    <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i
+                    <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" title="Facebook"><i
                                 class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><i
+                    <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter"><i
                                 class="fab fa-twitter"></i></a></li>
-                    <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><i
+                    <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i
                                 class="fab fa-linkedin-in"></i></a></li>
-                    <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><i
+                    <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube"><i
                                 class="fab fa-youtube"></i></a></li>
                 </ul>
             </div>
@@ -131,21 +121,11 @@
                 </div>
                 <ul class="footer-card pull-right clearfix">
                     <li><span>Direct Donation Methods:</span></li>
-                    <li><a href="{{ route('donate') }}" title="bKash / Nagad / Bank"><img
-                                src="{{ asset('assets/images/resource/card-1.png') }}" alt="Donation Gateway 1"></a>
-                    </li>
-                    <li><a href="{{ route('donate') }}" title="Visa / Mastercard"><img
-                                src="{{ asset('assets/images/resource/card-2.png') }}" alt="Donation Gateway 2"></a>
-                    </li>
-                    <li><a href="{{ route('donate') }}" title="Bank Transfer"><img
-                                src="{{ asset('assets/images/resource/card-3.png') }}" alt="Donation Gateway 3"></a>
-                    </li>
-                    <li><a href="{{ route('donate') }}" title="Money Receipt Voucher"><img
-                                src="{{ asset('assets/images/resource/card-4.png') }}" alt="Donation Gateway 4"></a>
-                    </li>
-                    <li><a href="{{ route('donate') }}" title="Secure Gateway"><img
-                                src="{{ asset('assets/images/resource/card-5.png') }}" alt="Donation Gateway 5"></a>
-                    </li>
+                    <li><a href="{{ route('donate') }}" class="donation-badge" title="bKash Merchant & Personal Donation">bKash</a></li>
+                    <li><a href="{{ route('donate') }}" class="donation-badge" title="Nagad Donation">Nagad</a></li>
+                    <li><a href="{{ route('donate') }}" class="donation-badge" title="Rocket Donation">Rocket</a></li>
+                    <li><a href="{{ route('donate') }}" class="donation-badge" title="Direct Bank Wire / Online Deposit">Bank Deposit</a></li>
+                    <li><a href="{{ route('donate') }}" class="donation-badge" title="Official Money Receipt Voucher">Cash Voucher</a></li>
                 </ul>
             </div>
         </div>

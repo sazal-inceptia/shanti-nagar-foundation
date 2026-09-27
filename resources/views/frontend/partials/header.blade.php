@@ -3,7 +3,7 @@
     <div class="logo-box">
         <div class="shape" style="background-image: url({{ asset('assets/images/shape/shape-1.png') }});">
         </div>
-        <figure class="logo"><a href="/"><img src="{{ asset('assets/images/logo.png') }}" alt=""></a></figure>
+        <figure class="logo"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="Shanti Nagar Foundation"></a></figure>
     </div>
     <!-- header-top -->
     <div class="header-top">
@@ -26,14 +26,14 @@
                 </div>
                 <div class="right-column pull-right">
                     <div class="update-news">
-                        <p><i class="icon-megaphone"></i><span>Updates:</span> Providing education, healthcare & relief across Bangladesh . . .</p>
+                        <p><i class="icon-megaphone"></i><span>Updates:</span> Providing healthcare, clean water & direct relief across Bangladesh . . .</p>
                     </div>
                 </div>
             </div>
         </div>
         <!-- donate-btn -->
         <div class="donate-btn">
-            <a href="/donate" class="theme-btn btn-one">Donate Now</a>
+            <a href="{{ route('donate') }}" class="theme-btn btn-one">Donate Now</a>
         </div>
     </div>
     <!-- header-lower -->
@@ -42,7 +42,7 @@
             <div class="outer-box">
                 <div class="text">
                     <figure class="icon-box"><img src="{{ asset('assets/images/icons/heart-1.png') }}" alt=""></figure>
-                    <a href="/volunteer" class="volunteer-link"><span>Become a Volunteer</span></a>
+                    <a href="{{ route('volunteer') }}" class="volunteer-link"><span>Become a Volunteer</span></a>
                 </div>
                 <div class="menu-area clearfix">
                     <!--Mobile Navigation Toggler-->
@@ -54,22 +54,22 @@
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li class="{{ request()->is('/') ? 'current' : '' }}"><a href="/">Home</a></li>
-                                <li class="{{ request()->is('about*') ? 'current' : '' }}"><a href="/about">About Us</a></li>
-                                <li class="{{ request()->is('donation*') ? 'current' : '' }}"><a href="/donations">Projects & Causes</a></li>
-                                <li class="{{ request()->is('event*') ? 'current' : '' }}"><a href="/events">Activities</a></li>
-                                <li class="{{ request()->is('gallery*') ? 'current' : '' }}"><a href="/gallery">Gallery</a></li>
-                                <li class="{{ request()->is('contact*') ? 'current' : '' }}"><a href="/contact">Contact</a></li>
+                                <li class="{{ request()->is('/') ? 'current' : '' }}"><a href="{{ route('home') }}">Home</a></li>
+                                <li class="{{ request()->is('about*') ? 'current' : '' }}"><a href="{{ route('about') }}">About Us</a></li>
+                                <li class="{{ request()->is('donation*') ? 'current' : '' }}"><a href="{{ route('donations') }}">Projects & Causes</a></li>
+                                <li class="{{ request()->is('event*') ? 'current' : '' }}"><a href="{{ route('events') }}">Activities</a></li>
+                                <li class="{{ request()->is('gallery*') ? 'current' : '' }}"><a href="{{ route('gallery') }}">Gallery</a></li>
+                                <li class="{{ request()->is('contact*') ? 'current' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
                             </ul>
                         </div>
                     </nav>
                 </div>
                 <div class="nav-right-content clearfix">
                     <ul class="social-style-one clearfix">
-                        <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="/"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube"><i class="fab fa-youtube"></i></a></li>
                     </ul>
 
                 </div>
@@ -88,10 +88,10 @@
                 </div>
                 <div class="nav-right-content clearfix">
                     <ul class="social-style-one clearfix">
-                        <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="/"><i class="fab fa-youtube"></i></a></li>
+                        <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube"><i class="fab fa-youtube"></i></a></li>
                     </ul>
 
                 </div>
@@ -109,7 +109,7 @@
     <div class="close-btn"><i class="fas fa-times"></i></div>
 
     <nav class="menu-box">
-        <div class="nav-logo"><a href="/"><img src="{{ asset('assets/images/logo.png') }}" alt="" title=""></a>
+        <div class="nav-logo"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="Shanti Nagar Foundation" title="Shanti Nagar Foundation"></a>
         </div>
         <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
         <div class="contact-info">
@@ -122,11 +122,10 @@
         </div>
         <div class="social-links">
             <ul class="clearfix">
-                <li><a href="/"><span class="fab fa-twitter"></span></a></li>
-                <li><a href="/"><span class="fab fa-facebook-square"></span></a></li>
-                <li><a href="/"><span class="fab fa-pinterest-p"></span></a></li>
-                <li><a href="/"><span class="fab fa-instagram"></span></a></li>
-                <li><a href="/"><span class="fab fa-youtube"></span></a></li>
+                <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><span class="fab fa-facebook-square"></span></a></li>
+                <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><span class="fab fa-twitter"></span></a></li>
+                <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><span class="fab fa-linkedin-in"></span></a></li>
+                <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><span class="fab fa-youtube"></span></a></li>
             </ul>
         </div>
     </nav>

@@ -43,7 +43,7 @@ class Employee extends Model
     /**
      * Get dynamic photo URL for employee.
      */
-    public function getPhotoUrlAttribute(): ?string
+    public function getPhotoUrlAttribute(): string
     {
         if (! empty($this->photo)) {
             if (str_starts_with($this->photo, 'http://') || str_starts_with($this->photo, 'https://')) {
@@ -62,6 +62,19 @@ class Employee extends Model
             return asset($this->photo);
         }
 
-        return null;
+        $empName = trim($this->name ?: 'Employee');
+        $words = preg_split('/\s+/', $empName);
+        $initials = '';
+        foreach (array_slice($words, 0, 2) as $w) {
+            $initials .= mb_strtoupper(mb_substr($w, 0, 1));
+        }
+        $initials = $initials ?: 'E';
+
+        $bgColors = ['f65024', '03c0a8', '2b59ff', '7c3aed', 'ea580c', '0d9488'];
+        $color = $bgColors[abs(crc32($empName)) % count($bgColors)];
+
+        $svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23{$color}'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-size='38' font-weight='bold'>{$initials}</text></svg>";
+
+        return 'data:image/svg+xml;utf8,'.$svg;
     }
 }

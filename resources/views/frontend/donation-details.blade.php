@@ -7,13 +7,10 @@
 @section('content')
 
     @php
-        $target = $project->estimated_cost > 0 ? (float) $project->estimated_cost : 100000;
-        $raised = $project->total_donations_raised > 0 ? (float) $project->total_donations_raised : ($project->total_expense > 0 ? (float) $project->total_expense : 45000);
-        $percent = min(100, round(($raised / $target) * 100));
+        $target = (float) $project->estimated_cost;
+        $raised = (float) $project->total_donations_raised;
+        $percent = $target > 0 ? min(100, round(($raised / $target) * 100)) : 0;
         $supportersCount = $project->donations->where('status', 'completed')->count();
-        if ($supportersCount <= 0) {
-            $supportersCount = max(5, (int) round($raised / 2500));
-        }
     @endphp
 
     <!-- Page Title -->
@@ -352,7 +349,7 @@
                                 <div class="widget-content">
                                     <div class="upper-content sidebar-help-upper"
                                         style="background-image: url({{ asset('assets/images/case/case-30.jpg') }});">
-                                        <div class="icon-box"><i class="fas fa-phone-alt"></i></div>
+                                        <div class="icon-box"><i class="fas fa-phone"></i></div>
                                         <h3>Need Assistance?</h3>
                                         <p>For direct bank transfer confirmation or offline receipts, call our Dhaka desk.
                                         </p>
