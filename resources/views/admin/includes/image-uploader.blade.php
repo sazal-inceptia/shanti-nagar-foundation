@@ -1,6 +1,8 @@
 @php
+    $name = $name ?? ($inputName ?? 'image');
     $inputId = $id ?? $name;
     $modalId = 'imageUploadModal_' . $inputId;
+    $currentImage = $currentImage ?? ($existingImage ?? null);
     $hasImage = !empty($currentImage);
     $shape = $shape ?? 'rectangle'; // 'rectangle' or 'circle'
     $height = $height ?? ($shape === 'circle' ? '130px' : '170px');

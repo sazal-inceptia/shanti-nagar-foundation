@@ -10,11 +10,25 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
+        // Primary Administrator Account
         User::updateOrCreate(
             ['email' => 'admin@gmail.com'],
             [
                 'name' => 'Admin - Shanti Nagar Foundation',
                 'email' => 'admin@gmail.com',
+                'role' => 'admin',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ]
+        );
+
+        // Backup / Secondary Administrator Account
+        User::updateOrCreate(
+            ['email' => 'admin2@gmail.com'],
+            [
+                'name' => 'Secondary Admin - Shanti Nagar Foundation',
+                'email' => 'admin2@gmail.com',
+                'role' => 'admin',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
             ]

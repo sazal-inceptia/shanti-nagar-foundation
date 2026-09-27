@@ -121,6 +121,29 @@
                             </div>
                         </div>
 
+                        {{-- Profile & System Links --}}
+                        <div class="p-2 border-bottom">
+                            <a href="{{ route('admin.profile.edit') }}" class="dropdown-item d-flex align-items-center justify-content-between py-2 px-2 rounded mb-1" style="font-size: 13px; font-weight: 500; color: #334155; transition: all 0.15s ease;">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center justify-content-center rounded me-2" style="width: 28px; height: 28px; background-color: #fff3ee; color: #f95716;">
+                                        <i class="ri-user-settings-line" style="font-size: 15px;"></i>
+                                    </div>
+                                    <span>My Profile</span>
+                                </div>
+                                <i class="ri-arrow-right-s-line text-muted" style="font-size: 14px;"></i>
+                            </a>
+
+                            <a href="{{ route('admin.settings.index') }}" class="dropdown-item d-flex align-items-center justify-content-between py-2 px-2 rounded" style="font-size: 13px; font-weight: 500; color: #334155; transition: all 0.15s ease;">
+                                <div class="d-flex align-items-center">
+                                    <div class="d-flex align-items-center justify-content-center rounded me-2" style="width: 28px; height: 28px; background-color: #e0f2fe; color: #0284c7;">
+                                        <i class="ri-settings-3-line" style="font-size: 15px;"></i>
+                                    </div>
+                                    <span>System Settings</span>
+                                </div>
+                                <i class="ri-arrow-right-s-line text-muted" style="font-size: 14px;"></i>
+                            </a>
+                        </div>
+
                         {{-- Logout --}}
                         <div class="p-2">
                             <form method="POST" action="{{ route('logout') }}" class="m-0">

@@ -14,13 +14,13 @@
                         <li>
                             <i class="icon-chat"></i>
                             <span>Helpline:</span>
-                            <a href="tel:+8801700000000">+880 1700-000000</a>
+                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings['hotline'] ?? '+8801711000000') }}">{{ $siteSettings['hotline'] ?? '+880 1711-000000' }}</a>
                         </li>
                         <li>
-                            <a href="mailto:info@shantinagarfoundation.org">info@shantinagarfoundation.org</a>
+                            <a href="mailto:{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}">{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}</a>
                         </li>
                         <li>
-                            Shanti Nagar, Dhaka - 1217, Bangladesh.
+                            {{ $siteSettings['address'] ?? 'Shanti Nagar, Dhaka - 1217, Bangladesh.' }}
                         </li>
                     </ul>
                 </div>
@@ -115,9 +115,9 @@
         <div class="contact-info">
             <h4>Contact Info</h4>
             <ul>
-                <li>Shanti Nagar, Dhaka - 1217, Bangladesh</li>
-                <li><a href="tel:+8801700000000">+880 1700-000000</a></li>
-                <li><a href="mailto:info@shantinagarfoundation.org">info@shantinagarfoundation.org</a></li>
+                <li>{{ $siteSettings['address'] ?? 'Shanti Nagar, Dhaka - 1217, Bangladesh' }}</li>
+                <li><a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings['hotline'] ?? '+8801711000000') }}">{{ $siteSettings['hotline'] ?? '+880 1711-000000' }}</a></li>
+                <li><a href="mailto:{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}">{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}</a></li>
             </ul>
         </div>
         <div class="social-links">

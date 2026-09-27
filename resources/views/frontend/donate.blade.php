@@ -100,6 +100,22 @@
                                         <label for="page-pm-5">Cash / Direct</label>
                                     </li>
                                 </ul>
+
+                                {{-- Official Foundation Payment Credentials Card --}}
+                                <div class="mt-4 p-3 rounded" style="background-color: #f8fafc; border: 1px solid #e2e8f0; font-size: 13px;">
+                                    <div class="fw-bold text-dark mb-2" style="font-size: 13.5px;">
+                                        <i class="fas fa-info-circle text-primary me-1"></i> Official Giving Credentials
+                                    </div>
+                                    <div class="mb-1 text-muted">
+                                        <strong class="text-dark">bKash (Merchant):</strong> {{ $siteSettings['bkash_number'] ?? '+880 1711-223344' }}
+                                    </div>
+                                    <div class="mb-1 text-muted">
+                                        <strong class="text-dark">Nagad (Merchant):</strong> {{ $siteSettings['nagad_number'] ?? '+880 1811-556677' }}
+                                    </div>
+                                    <div class="text-muted">
+                                        <strong class="text-dark">Bank Wire:</strong> {{ $siteSettings['bank_name'] ?? 'Islami Bank Bangladesh Ltd' }} &bull; A/C: {{ $siteSettings['bank_account_number'] ?? '2050 3820 1000 8941' }} ({{ $siteSettings['bank_account_name'] ?? 'Shanti Nagar Foundation Bangladesh' }})
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -6,9 +6,11 @@ use App\Http\Controllers\Admin\DonationController;
 use App\Http\Controllers\Admin\DonorController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\ExpenseController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SalaryController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\VolunteerController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -93,4 +95,13 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Volunteer Applications Management
     Route::post('/volunteers/{volunteer}/toggle-status', [VolunteerController::class, 'toggleStatus'])->name('volunteers.toggle-status');
     Route::resource('volunteers', VolunteerController::class)->only(['index', 'show', 'destroy']);
+
+    // Admin Profile & Account Settings
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
+
+    // Organization & System Settings
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
 });

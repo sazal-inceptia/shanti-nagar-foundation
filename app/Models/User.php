@@ -16,6 +16,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'role',
+        'image',
         'password',
     ];
 
@@ -30,6 +33,25 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Get user avatar or auto-generated SVG initials.
+     */
+    public function getAvatarUrlAttribute(): string
+    {
+        if (! empty($this->image) && file_exists(public_path($this->image))) {
+            return asset($this->image);
+        }
+
+        $initials = strtoupper(substr(trim($this->name ?: 'Admin'), 0, 1));
+
+        $svg = sprintf(
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%%" height="100%%"><rect width="100" height="100" fill="#f95716"/><text x="50%%" y="55%%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="700">%s</text></svg>',
+            htmlspecialchars($initials)
+        );
+
+        return 'data:image/svg+xml;utf8,'.rawurlencode($svg);
     }
 
     /**

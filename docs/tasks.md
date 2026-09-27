@@ -112,7 +112,11 @@
   - [x] Project-wise financial performance balance sheet (Target Budget, Raised, Expensed, Balance, Progress %)
   - [x] Official printable Financial Audit Statement (`admin/reports/statement.blade.php`) with borderless print layout & 3-column signature block
   - [x] CSV / Excel export functionality for auditing
-  - [x] Feature tests in `tests/Feature/ReportTest.php` passing
+- [x] **Admin Profile & System Settings Management**
+  - [x] Profile Management with photo upload, NID/phone info, and password change security
+  - [x] Organization & System Settings view for hotline, emails, merchant accounts, bank info
+  - [x] Header dropdown navigation links with icons and active states
+  - [x] Feature tests in `tests/Feature/ProfileAndSettingTest.php` passing
 
 ---
 

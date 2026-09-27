@@ -35,21 +35,21 @@
                                     <h4>Quick Contact</h4>
                                     <div class="text">
                                         <div class="icon-box"><i class="icon-phone-call"></i></div>
-                                        <p>Main Office<br /><a href="tel:+8801700000000">+880 1700-000000</a></p>
+                                        <p>Main Office<br /><a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings['hotline'] ?? '+8801711000000') }}">{{ $siteSettings['hotline'] ?? '+880 1711-000000' }}</a></p>
                                     </div>
                                 </div>
                                 <div class="single-item">
                                     <h4>Email Address</h4>
                                     <div class="text">
                                         <div class="icon-box"><i class="icon-letter"></i></div>
-                                        <p>Mail to<br /><a href="mailto:info@shantinagarfoundation.org">info@shantinagarfoundation.org</a></p>
+                                        <p>Mail to<br /><a href="mailto:{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}">{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}</a></p>
                                     </div>
                                 </div>
                                 <div class="single-item">
                                     <h4>Mailing Address</h4>
                                     <div class="text">
                                         <div class="icon-box"><i class="icon-location"></i></div>
-                                        <p>House 14, Road 3, Shanti Nagar, <br />Dhaka - 1217, Bangladesh.</p>
+                                        <p>{{ $siteSettings['address'] ?? 'House 12, Road 5, Shanti Nagar, Dhaka-1217, Bangladesh.' }}</p>
                                     </div>
                                 </div>
                             </div>

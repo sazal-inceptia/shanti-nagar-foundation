@@ -264,31 +264,13 @@
         background: linear-gradient(90deg, #3b82f6, #2563eb) !important;
     }
 
-    /* Universal Focus Reset: remove button & input focus outline and box-shadow */
+    /* Universal Focus Reset for buttons */
     button:focus,
     button:focus-visible,
     button:active,
-    input:focus,
-    input:focus-visible,
-    input:active,
-    textarea:focus,
-    textarea:focus-visible,
-    textarea:active,
-    select:focus,
-    select:focus-visible,
-    select:active,
     .btn:focus,
     .btn:focus-visible,
     .btn:active,
-    .form-control:focus,
-    .form-control:focus-visible,
-    .form-control:active,
-    .form-select:focus,
-    .form-select:focus-visible,
-    .form-select:active,
-    .custom-input:focus,
-    .custom-input:focus-visible,
-    .custom-input:active,
     .submit-button:focus,
     .submit-button:focus-visible,
     .leave-button:focus,
@@ -301,6 +283,31 @@
     .paginate_button:focus-visible {
         outline: none !important;
         box-shadow: none !important;
+    }
+
+    /* Form Inputs & Controls Brand Focus Styling (#f95716) */
+    .form-control:focus,
+    .form-control:focus-visible,
+    .form-control:active,
+    .form-select:focus,
+    .form-select:focus-visible,
+    .form-select:active,
+    .custom-input:focus,
+    .custom-input:focus-visible,
+    .custom-input:active,
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="number"]:focus,
+    input[type="tel"]:focus,
+    input[type="url"]:focus,
+    input[type="date"]:focus,
+    textarea:focus,
+    textarea.form-control:focus,
+    select.form-control:focus {
+        border-color: #f95716 !important;
+        box-shadow: none !important;
+        outline: 0 !important;
     }
 </style>
 

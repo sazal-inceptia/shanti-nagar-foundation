@@ -35,7 +35,7 @@ class VolunteerController extends Controller
                         '<div><strong class="text-dark">%s</strong><div class="text-muted" style="font-size: 11px;">%s &bull; %s</div></div>',
                         e($vol->name),
                         e($vol->gender ?? 'N/A'),
-                        e($vol->age_group ? 'Age: ' . $vol->age_group : 'Age: N/A')
+                        e($vol->age_group ? 'Age: '.$vol->age_group : 'Age: N/A')
                     );
                 })
                 ->editColumn('contact', function (Volunteer $vol) {
@@ -98,7 +98,7 @@ class VolunteerController extends Controller
                 'email' => $volunteer->email,
                 'phone' => $volunteer->phone,
                 'gender' => $volunteer->gender ?? 'Not specified',
-                'age_group' => $volunteer->age_group ? 'Age: ' . $volunteer->age_group : 'Not specified',
+                'age_group' => $volunteer->age_group ? 'Age: '.$volunteer->age_group : 'Not specified',
                 'address' => $volunteer->address ?: 'Not provided',
                 'notes' => $volunteer->notes ?: 'No special notes or event specified.',
                 'status' => $volunteer->status,
@@ -113,7 +113,7 @@ class VolunteerController extends Controller
     public function toggleStatus(Request $request, Volunteer $volunteer): JsonResponse|RedirectResponse
     {
         $newStatus = $request->get('status');
-        if (!in_array($newStatus, ['approved', 'pending'])) {
+        if (! in_array($newStatus, ['approved', 'pending'])) {
             $newStatus = $volunteer->status === 'approved' ? 'pending' : 'approved';
         }
 
@@ -123,11 +123,11 @@ class VolunteerController extends Controller
             return response()->json([
                 'success' => true,
                 'status' => $newStatus,
-                'message' => 'Volunteer status updated to ' . ucfirst($newStatus) . '.',
+                'message' => 'Volunteer status updated to '.ucfirst($newStatus).'.',
             ]);
         }
 
-        return redirect()->back()->with('success', 'Volunteer status updated to ' . ucfirst($newStatus) . '.');
+        return redirect()->back()->with('success', 'Volunteer status updated to '.ucfirst($newStatus).'.');
     }
 
     /**
