@@ -1,8 +1,8 @@
 @extends('frontend.layouts.app')
 
-@section('title')
-    {{ $activity->name ?? 'Social Welfare Activity' }} — Shanti Nagar Foundation
-@endsection
+@section('title', ($activity->name ?? 'Social Welfare Activity') . ' — Shanti Nagar Foundation')
+@section('meta_description', Str::limit($activity->short_description ?: $activity->description, 160))
+@section('meta_image', asset($activity->featured_image ?: 'assets/images/events/events-4.jpg'))
 
 @section('content')
 

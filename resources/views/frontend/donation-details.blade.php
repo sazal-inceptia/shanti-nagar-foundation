@@ -1,8 +1,8 @@
 @extends('frontend.layouts.app')
 
-@section('title')
-    {{ $project->name }} — Shanti Nagar Foundation
-@endsection
+@section('title', $project->name . ' — Shanti Nagar Foundation')
+@section('meta_description', Str::limit($project->short_description ?: $project->description, 160))
+@section('meta_image', asset($project->featured_image ?: 'assets/images/logo.png'))
 
 @section('content')
 
