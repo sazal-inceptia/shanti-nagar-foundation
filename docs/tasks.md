@@ -41,6 +41,8 @@
   - [x] `ExpenseSeeder`: Project procurement & utility expenditures
   - [x] `EmployeeSeeder`: Staff profiles, NID, designations & base salaries
   - [x] `SalarySeeder`: Monthly salary disbursement logs
+  - [x] `ContactMessageSeeder`: Inquiries for relief, hospital aid, tube-wells & bank confirmations
+  - [x] `VolunteerSeeder`: Community volunteers across Dhaka & regional divisions
   - [x] `DatabaseSeeder`: Master orchestrator
 
 ---

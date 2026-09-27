@@ -40,7 +40,7 @@ class VolunteerController extends Controller
                 })
                 ->editColumn('contact', function (Volunteer $vol) {
                     return sprintf(
-                        '<div><a href="mailto:%s" class="text-decoration-none text-dark">%s</a><div class="text-muted" style="font-size: 11px;">%s</div></div>',
+                        '<div><span class="text-decoration-none text-dark">%s</span><div class="text-muted" style="font-size: 11px;">%s</div></div>',
                         e($vol->email),
                         e($vol->email),
                         e($vol->phone)

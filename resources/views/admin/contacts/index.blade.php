@@ -30,7 +30,6 @@
                                     <option value="">All Inquiries</option>
                                     <option value="unread">Unread</option>
                                     <option value="read">Read</option>
-                                    <option value="replied">Replied</option>
                                 </select>
                             </div>
                             <div class="col-auto d-flex align-items-end">
@@ -62,6 +61,105 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- View Contact Message Modal --}}
+    <div class="modal fade" id="viewContactModal" tabindex="-1" aria-labelledby="viewContactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(11, 15, 23, 0.1);">
+                <div class="modal-header" style="background-color: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 16px 22px;">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="d-flex align-items-center justify-content-center" style="width: 34px; height: 34px; border-radius: 8px; background-color: #fff3ee; color: #f65024; font-size: 18px;">
+                            <i class="ri-mail-open-line"></i>
+                        </div>
+                        <div>
+                            <h5 class="modal-title fw-bold text-dark mb-0" id="viewContactModalLabel" style="font-size: 16px;">
+                                Contact Inquiry Details
+                            </h5>
+                            <span class="text-muted" style="font-size: 12px;">Auto-marked as Read</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding: 24px;">
+                    {{-- Sender Info Header Row --}}
+                    <div class="row g-3 p-3 rounded mb-3" style="background-color: #f8fafc; border: 1px solid #e2e8f0;">
+                        <div class="col-md-6 col-12">
+                            <span class="text-muted d-block" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Sender Name</span>
+                            <strong class="text-dark" id="modal_sender_name" style="font-size: 14.5px;">-</strong>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <span class="text-muted d-block" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Received At</span>
+                            <span class="text-dark fw-semibold" id="modal_received_at" style="font-size: 13.5px;">-</span>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <span class="text-muted d-block" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Email Address</span>
+                            <a href="#" id="modal_sender_email_link" class="text-primary text-decoration-none fw-semibold" style="font-size: 13.5px;">-</a>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <span class="text-muted d-block" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Phone Number</span>
+                            <a href="#" id="modal_sender_phone_link" class="text-dark text-decoration-none fw-semibold" style="font-size: 13.5px;">-</a>
+                        </div>
+                    </div>
+
+                    {{-- Subject --}}
+                    <div class="mb-3">
+                        <span class="text-muted d-block mb-1" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Subject</span>
+                        <div class="p-2 px-3 rounded text-dark fw-bold" id="modal_subject" style="background-color: #ffffff; border: 1px solid #cbd5e1; font-size: 14px;">
+                            -
+                        </div>
+                    </div>
+
+                    {{-- Full Message Body --}}
+                    <div>
+                        <span class="text-muted d-block mb-1" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Message Body</span>
+                        <div class="p-3 rounded text-dark" id="modal_message_body" style="background-color: #ffffff; border: 1px solid #cbd5e1; font-size: 13.5px; line-height: 1.6; min-height: 120px; white-space: pre-wrap;">
+                            -
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; padding: 12px 22px;">
+                    <a href="#" id="modal_reply_mail_btn" class="btn btn-sm btn-primary px-3" style="font-size: 13px; height: 36px; display: inline-flex; align-items: center; border-radius: 6px;">
+                        <i class="ri-reply-line me-1"></i> Reply via Email
+                    </a>
+                    <button type="button" class="btn btn-sm btn-outline-secondary px-3" data-bs-dismiss="modal" style="font-size: 13px; height: 36px; border-radius: 6px;">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Delete Confirmation Modal --}}
+    <div class="modal fade" id="deleteContactModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(11, 15, 23, 0.1);">
+                <div class="modal-header" style="background-color: #fee2e2; border-bottom: 1px solid #fca5a5; padding: 16px 20px;">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="ri-error-warning-line text-danger" style="font-size: 22px;"></i>
+                        <h5 class="modal-title fw-bold text-danger mb-0" id="deleteModalTitle" style="font-size: 16px;">
+                            Confirm Message Deletion</h5>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding: 20px;">
+                    <p class="mb-2" style="font-size: 14px; color: #334155;">
+                        Are you sure you want to delete inquiry message from <strong id="deleteContactTitle" class="text-dark"></strong>?
+                    </p>
+                    <p class="text-muted mb-0" style="font-size: 12.5px;">
+                        This inquiry message will be permanently removed from your records.
+                    </p>
+                </div>
+                <div class="modal-footer" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; padding: 12px 20px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary px-3" data-bs-dismiss="modal" style="font-size: 13px; height: 36px; border-radius: 6px;">Cancel</button>
+                    <form id="deleteContactForm" method="POST" action="">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger px-4" style="font-size: 13px; height: 36px; border-radius: 6px; font-weight: 600;">
+                            Delete Permanently
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -109,6 +207,53 @@
             $('#reset_filters').on('click', function () {
                 $('#filter_status').val('');
                 table.draw();
+            });
+
+            // Handle View Message Modal with Auto-Read
+            $(document).on('click', '.btn-view-contact', function () {
+                var url = $(this).data('url');
+
+                $('#modal_sender_name').text('Loading...');
+                $('#modal_received_at').text('Loading...');
+                $('#modal_sender_email_link').text('Loading...').attr('href', '#');
+                $('#modal_sender_phone_link').text('Loading...').attr('href', '#');
+                $('#modal_subject').text('Loading...');
+                $('#modal_message_body').text('Loading inquiry content...');
+
+                $('#viewContactModal').modal('show');
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.success && res.data) {
+                            var data = res.data;
+                            $('#modal_sender_name').text(data.name);
+                            $('#modal_received_at').text(data.received_at);
+                            $('#modal_sender_email_link').text(data.email).attr('href', 'mailto:' + data.email);
+                            $('#modal_sender_phone_link').text(data.phone).attr('href', data.phone !== 'Not provided' ? 'tel:' + data.phone : '#');
+                            $('#modal_subject').text(data.subject);
+                            $('#modal_message_body').text(data.message);
+                            $('#modal_reply_mail_btn').attr('href', 'mailto:' + data.email + '?subject=' + encodeURIComponent('Re: ' + data.subject));
+
+                            // Refresh table row without resetting pagination so status immediately updates to Read
+                            table.ajax.reload(null, false);
+                        }
+                    },
+                    error: function () {
+                        $('#modal_message_body').text('Failed to load inquiry details. Please try again.');
+                    }
+                });
+            });
+
+            // Handle Delete Modal
+            $(document).on('click', '.btn-delete-contact', function () {
+                var url = $(this).data('url');
+                var title = $(this).data('title');
+                $('#deleteContactTitle').text(title);
+                $('#deleteContactForm').attr('action', url);
+                $('#deleteContactModal').modal('show');
             });
         });
     </script>

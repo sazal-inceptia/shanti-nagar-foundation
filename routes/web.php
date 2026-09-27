@@ -88,8 +88,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 
     // Public Inquiries & Contact Messages
-    Route::post('/contacts/{contact}/toggle-status', [ContactMessageController::class, 'toggleStatus'])->name('contacts.toggle-status');
-    Route::resource('contacts', ContactMessageController::class)->only(['index', 'destroy']);
+    Route::resource('contacts', ContactMessageController::class)->only(['index', 'show', 'destroy']);
 
     // Volunteer Applications Management
     Route::post('/volunteers/{volunteer}/toggle-status', [VolunteerController::class, 'toggleStatus'])->name('volunteers.toggle-status');

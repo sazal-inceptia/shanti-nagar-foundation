@@ -130,7 +130,7 @@ test('authenticated admin can view contact messages index', function () {
     $response->assertSee('Contact Inquiries &amp; Messages', false);
 });
 
-test('authenticated admin can toggle contact message status', function () {
+test('authenticated admin viewing contact message automatically marks it as read', function () {
     $admin = User::first() ?? User::factory()->create();
     $msg = ContactMessage::create([
         'name' => 'Status Test User',
@@ -139,11 +139,11 @@ test('authenticated admin can toggle contact message status', function () {
         'status' => 'unread',
     ]);
 
-    $response = $this->actingAs($admin)->post(route('admin.contacts.toggle-status', $msg->id), [
-        'status' => 'read',
-    ]);
+    $response = $this->actingAs($admin)->get(route('admin.contacts.show', $msg->id));
 
-    $response->assertRedirect();
+    $response->assertStatus(200);
+    $response->assertJsonPath('success', true);
+    $response->assertJsonPath('data.name', 'Status Test User');
     expect($msg->fresh()->status)->toBe('read');
 });
 

@@ -37,40 +37,37 @@ class ContactMessageController extends Controller
                     return sprintf(
                         '<div><strong class="text-dark d-block mb-1" style="font-size: 12.5px;">%s</strong><span class="text-muted" style="font-size: 12px;">%s</span></div>',
                         e($msg->subject ?: 'No Subject'),
-                        e(mb_strimwidth($msg->message, 0, 100, '...'))
+                        e(mb_strimwidth($msg->message, 0, 90, '...'))
                     );
                 })
                 ->editColumn('status', function (ContactMessage $msg) {
-                    $badges = [
-                        'unread' => 'bg-danger text-white',
-                        'read' => 'bg-info text-dark',
-                        'replied' => 'bg-success text-white',
-                    ];
-                    $badgeClass = $badges[$msg->status] ?? 'bg-secondary text-white';
+                    if ($msg->status === 'read') {
+                        return '<span class="badge" style="background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; font-size: 11px; padding: 4px 8px; font-weight: 600;"><i class="ri-check-double-line me-1"></i>Read</span>';
+                    }
 
-                    return sprintf('<span class="badge %s" style="font-size: 11px; padding: 4px 8px;">%s</span>', $badgeClass, ucfirst($msg->status));
+                    return '<span class="badge" style="background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca; font-size: 11px; padding: 4px 8px; font-weight: 600;"><i class="ri-mail-unread-line me-1"></i>Unread</span>';
                 })
                 ->editColumn('created_at', function (ContactMessage $msg) {
                     return $msg->created_at ? $msg->created_at->format('M d, Y h:i A') : '-';
                 })
                 ->addColumn('action', function (ContactMessage $msg) {
-                    $toggleUrl = route('admin.contacts.toggle-status', $msg->id);
+                    $showUrl = route('admin.contacts.show', $msg->id);
                     $deleteUrl = route('admin.contacts.destroy', $msg->id);
-                    $csrf = csrf_field();
-                    $deleteMethod = method_field('DELETE');
 
-                    $toggleBtn = $msg->status === 'unread'
-                        ? sprintf('<form action="%s" method="POST" class="d-inline">%s<input type="hidden" name="status" value="read"><button type="submit" class="btn btn-sm btn-outline-primary" data-bs-toggle="tooltip" title="Mark as Read" style="padding: 2px 8px; font-size: 12px;"><i class="ri-check-line"></i> Read</button></form>', $toggleUrl, $csrf)
-                        : sprintf('<form action="%s" method="POST" class="d-inline">%s<input type="hidden" name="status" value="replied"><button type="submit" class="btn btn-sm btn-outline-success" data-bs-toggle="tooltip" title="Mark as Replied" style="padding: 2px 8px; font-size: 12px;"><i class="ri-reply-line"></i> Replied</button></form>', $toggleUrl, $csrf);
-
-                    $deleteBtn = sprintf(
-                        '<form action="%s" method="POST" class="d-inline" onsubmit="return confirm(\'Are you sure you want to delete this message?\');">%s%s<button type="submit" class="btn btn-sm btn-outline-danger" data-bs-toggle="tooltip" title="Delete" style="padding: 2px 8px; font-size: 12px;"><i class="ri-delete-bin-line"></i></button></form>',
-                        $deleteUrl,
-                        $csrf,
-                        $deleteMethod
+                    $viewBtn = sprintf(
+                        '<button type="button" class="btn btn-view btn-view-contact" data-id="%d" data-url="%s" data-bs-toggle="tooltip" title="View Full Message"><i class="ri-eye-line"></i></button>',
+                        $msg->id,
+                        $showUrl
                     );
 
-                    return sprintf('<div class="d-flex align-items-center gap-1">%s %s</div>', $toggleBtn, $deleteBtn);
+                    $deleteBtn = sprintf(
+                        '<button type="button" class="btn btn-delete btn-delete-contact" data-id="%d" data-title="%s" data-url="%s" data-bs-toggle="tooltip" title="Delete"><i class="ri-delete-bin-line"></i></button>',
+                        $msg->id,
+                        e($msg->name),
+                        $deleteUrl
+                    );
+
+                    return sprintf('<div class="action-btn justify-content-center">%s %s</div>', $viewBtn, $deleteBtn);
                 })
                 ->rawColumns(['name', 'message', 'status', 'action'])
                 ->make(true);
@@ -80,17 +77,30 @@ class ContactMessageController extends Controller
     }
 
     /**
-     * Toggle status of the message.
+     * Display the specified message and automatically mark it as read.
      */
-    public function toggleStatus(Request $request, ContactMessage $contact): RedirectResponse
+    public function show(ContactMessage $contact): JsonResponse
     {
-        $status = $request->get('status', 'read');
-        $contact->update([
-            'status' => $status,
-            'replied_at' => $status === 'replied' ? now() : $contact->replied_at,
-        ]);
+        if ($contact->status !== 'read') {
+            $contact->update([
+                'status' => 'read',
+                'replied_at' => now(),
+            ]);
+        }
 
-        return redirect()->back()->with('success', 'Message status updated to '.ucfirst($status).'.');
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'id' => $contact->id,
+                'name' => $contact->name,
+                'email' => $contact->email,
+                'phone' => $contact->phone ?: 'Not provided',
+                'subject' => $contact->subject ?: 'General Inquiry',
+                'message' => $contact->message,
+                'status' => $contact->status,
+                'received_at' => $contact->created_at ? $contact->created_at->format('M d, Y h:i A') : '-',
+            ],
+        ]);
     }
 
     /**

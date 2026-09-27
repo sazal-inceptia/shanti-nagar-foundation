@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             ExpenseSeeder::class,
             EmployeeSeeder::class,
             SalarySeeder::class,
+            ContactMessageSeeder::class,
+            VolunteerSeeder::class,
         ]);
     }
 }
