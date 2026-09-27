@@ -28,7 +28,10 @@ class StoreVolunteerRequest extends FormRequest
             'phone' => ['required', 'string', 'max:50'],
             'gender' => ['nullable', 'string', 'in:Male,Female,Other'],
             'age_group' => ['nullable', 'string', 'in:20+,30+,40+,60+,80+'],
-            'address' => ['required', 'string', 'max:500'],
+            'address' => ['nullable', 'string', 'max:500'],
+            'event_name' => ['nullable', 'string', 'max:255'],
+            'experience' => ['nullable', 'string', 'max:1000'],
+            'notes' => ['nullable', 'string', 'max:1000'],
         ];
     }
 }

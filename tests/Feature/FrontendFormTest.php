@@ -55,6 +55,31 @@ test('guest can submit volunteer registration', function () {
     ]);
 });
 
+test('guest can submit volunteer registration from event details page', function () {
+    $response = $this->post(route('volunteer.submit'), [
+        'name' => 'Mahmudul Hasan',
+        'email' => 'mahmud@gmail.com',
+        'phone' => '+880 1712-334455',
+        'address' => 'Shanti Nagar, Dhaka',
+        'event_name' => 'Winter Blanket Distribution',
+        'experience' => 'Experienced with relief kit packaging and dispatch logistics.',
+    ]);
+
+    $response->assertRedirect();
+    $response->assertSessionHas('success');
+
+    $this->assertDatabaseHas('volunteers', [
+        'name' => 'Mahmudul Hasan',
+        'email' => 'mahmud@gmail.com',
+        'phone' => '+880 1712-334455',
+        'status' => 'pending',
+    ]);
+
+    $saved = Volunteer::where('email', 'mahmud@gmail.com')->first();
+    expect($saved->notes)->toContain('Event/Initiative: Winter Blanket Distribution');
+    expect($saved->notes)->toContain('Experience: Experienced with relief kit packaging');
+});
+
 test('guest can submit public donation pledge', function () {
     $project = Project::first() ?? Project::create([
         'name' => 'Winter Relief Campaign',

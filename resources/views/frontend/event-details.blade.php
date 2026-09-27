@@ -6,6 +6,12 @@
 
 @section('content')
 
+@php
+    $eventDate = $activity->start_date ? \Carbon\Carbon::parse($activity->start_date) : now();
+    $endDate = $activity->end_date ? \Carbon\Carbon::parse($activity->end_date) : null;
+    $categoryName = $activity->category ?? 'Relief & Social Welfare';
+@endphp
+
 <!-- Page Title -->
 <section class="page-title" style="background-image: url({{ asset('assets/images/background/12.jpg') }});">
     <div class="auto-container">
@@ -30,18 +36,27 @@
             <div class="upper-box centred">
                 <h2>{{ $activity->name ?? 'Social Welfare Activity' }}</h2>
                 <ul class="events-info clearfix">
-                    <li><i class="far fa-calendar"></i>{{ $activity->start_date ? \Carbon\Carbon::parse($activity->start_date)->format('d M, Y') : now()->format('d M, Y') }}</li>
+                    <li>
+                        <i class="far fa-calendar"></i>
+                        {{ $eventDate->format('d M, Y') }}
+                        @if($endDate && $endDate->ne($eventDate))
+                            — {{ $endDate->format('d M, Y') }}
+                        @endif
+                    </li>
                     <li><i class="far fa-clock"></i>10:00 AM - 04:00 PM</li>
                     <li><i class="far fa-map"></i>{{ $activity->location ?? 'Shanti Nagar, Dhaka' }}</li>
+                    <li><i class="fas fa-tag"></i>{{ $categoryName }}</li>
                 </ul>
-                <figure class="image-box hero-image-box"><img src="{{ asset($activity->featured_image ?: 'assets/images/events/events-4.jpg') }}" alt="{{ $activity->name ?? 'Activity' }}"></figure>
+                <figure class="image-box hero-image-box">
+                    <img src="{{ asset($activity->featured_image ?: 'assets/images/events/events-4.jpg') }}" alt="{{ $activity->name ?? 'Activity' }}">
+                </figure>
             </div>
             
             <div class="tabs-box">
                 <div class="tab-btn-box">
                     <ul class="tab-btns tab-buttons clearfix">
                         <li class="tab-btn active-btn" data-tab="#tab-1"><i class="icon-right-arrow"></i>Activity Overview</li>
-                        <li class="tab-btn" data-tab="#tab-2"><i class="icon-right-arrow"></i>Beneficiary & Objectives</li>
+                        <li class="tab-btn" data-tab="#tab-2"><i class="icon-right-arrow"></i>Field Coordination Team</li>
                         <li class="tab-btn" data-tab="#tab-3"><i class="icon-right-arrow"></i>Join as Volunteer</li>
                     </ul>
                 </div>
@@ -50,26 +65,40 @@
                         <div class="overview-inner">
                             <div class="content-one">
                                 <h3>Activity Description</h3>
+                                @if($activity->short_description)
+                                    <p class="lead fw-semibold text-dark mb-3">{{ $activity->short_description }}</p>
+                                @endif
                                 <div class="event-desc-text">
-                                    {!! nl2br(e($activity->description ?: ($activity->short_description ?: 'Shanti Nagar Foundation conducts regular field visits, health camps, winter relief distributions, and community welfare initiatives across Bangladesh.'))) !!}
+                                    {!! nl2br(e($activity->description ?: 'Shanti Nagar Foundation conducts regular field visits, health camps, winter relief distributions, and community welfare initiatives across Bangladesh.')) !!}
                                 </div>
                                 <p class="mt-3">Under this initiative, our local committee coordinates direct procurement and distribution to ensure 100% transparency and accurate beneficiary reach without intermediaries.</p>
                             </div>
-                            <div class="content-two mt-4">
-                                <h3>Key Objectives</h3>
-                                <ul class="list clearfix">
-                                    <li>Direct doorstep support for underprivileged families and communities</li>
-                                    <li>Complete project cost audit and transparent fund allocation</li>
-                                    <li>Documentation through field photographs and beneficiary verification</li>
-                                    <li>Collaborative partnership with local community leaders and volunteers</li>
-                                </ul>
-                            </div>
+
+                            {{-- Project Gallery Images if present --}}
+                            @if($activity->images && $activity->images->count() > 0)
+                                <div class="content-two mt-4 pt-2">
+                                    <h3>Event Documentation & Photos</h3>
+                                    <div class="row clearfix g-3 mt-2">
+                                        @foreach($activity->images as $img)
+                                            <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
+                                                <div class="image-box gallery-card-box">
+                                                    <img src="{{ asset($img->image_path) }}" alt="{{ $img->caption ?: $activity->name }}">
+                                                </div>
+                                                @if($img->caption)
+                                                    <p class="small text-muted mt-1"><i class="fas fa-camera me-1 text-primary"></i> {{ $img->caption }}</p>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
+
                             <div class="lower-box clearfix mt-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
                                 <div class="btn-box">
-                                    <a href="{{ route('volunteer') }}" class="theme-btn btn-one">Join as Volunteer</a>
+                                    <a href="#tab-3" class="theme-btn btn-one" onclick="if(window.jQuery){ $('.tab-btns li[data-tab=\'#tab-3\']').trigger('click'); }">Join as Volunteer</a>
                                 </div>
                                 <div>
-                                    <a href="{{ route('donate') }}" class="theme-btn btn-one btn-support-cause">Support This Cause</a>
+                                    <a href="{{ route('donation.details', $activity->slug) }}" class="theme-btn btn-one btn-support-cause">Support This Cause</a>
                                 </div>
                             </div>
                         </div>
@@ -77,80 +106,117 @@
                     
                     <div class="tab" id="tab-2">
                         <div class="participants-inner">
-                            <h3>Field Coordination Team</h3>
+                            <h3>Field Coordination Team & Volunteers</h3>
                             <p class="mb-4">Our dedicated local coordinators and volunteers oversee the distribution and logistics for this event on-ground.</p>
                             <div class="row clearfix g-3">
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="p-3 border rounded text-center bg-white shadow-sm">
-                                        <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-2 team-avatar-orange">
-                                            S
+                                @if(isset($recentVolunteers) && $recentVolunteers->count() > 0)
+                                    @foreach($recentVolunteers as $idx => $vol)
+                                        @php
+                                            $avatarClasses = ['team-avatar-orange', 'team-avatar-teal', 'team-avatar-dark'];
+                                            $avatarClass = $avatarClasses[$idx % 3];
+                                        @endphp
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="p-3 border rounded text-center bg-white shadow-sm h-100">
+                                                <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-2 {{ $avatarClass }}">
+                                                    {{ strtoupper(substr($vol->name, 0, 1)) }}
+                                                </div>
+                                                <h5 class="fw-bold mb-1">{{ $vol->name }}</h5>
+                                                <span class="text-muted small">{{ $vol->address ?: 'Dhaka Division' }}</span>
+                                                <p class="small text-muted mt-2">{{ Str::limit($vol->experience ?: 'Field Logistics & Volunteer Wing', 40) }}</p>
+                                            </div>
                                         </div>
-                                        <h5 class="fw-bold mb-1">Shanti Nagar Field Unit</h5>
-                                        <span class="text-muted small">Dhaka Central Division</span>
-                                        <p class="small text-muted mt-2">Logistics & Relief Kit Packing</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="p-3 border rounded text-center bg-white shadow-sm">
-                                        <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-2 team-avatar-teal">
-                                            M
+                                    @endforeach
+                                @else
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="p-3 border rounded text-center bg-white shadow-sm">
+                                            <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-2 team-avatar-orange">
+                                                S
+                                            </div>
+                                            <h5 class="fw-bold mb-1">Shanti Nagar Field Unit</h5>
+                                            <span class="text-muted small">Dhaka Central Division</span>
+                                            <p class="small text-muted mt-2">Logistics & Relief Kit Packing</p>
                                         </div>
-                                        <h5 class="fw-bold mb-1">Medical Aid Cell</h5>
-                                        <span class="text-muted small">Health & Hygiene Volunteer Wing</span>
-                                        <p class="small text-muted mt-2">Beneficiary Health Checkups</p>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="p-3 border rounded text-center bg-white shadow-sm">
-                                        <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-2 team-avatar-dark">
-                                            V
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="p-3 border rounded text-center bg-white shadow-sm">
+                                            <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-2 team-avatar-teal">
+                                                M
+                                            </div>
+                                            <h5 class="fw-bold mb-1">Medical Aid Cell</h5>
+                                            <span class="text-muted small">Health & Hygiene Volunteer Wing</span>
+                                            <p class="small text-muted mt-2">Beneficiary Health Checkups</p>
                                         </div>
-                                        <h5 class="fw-bold mb-1">Youth Volunteers</h5>
-                                        <span class="text-muted small">Community Engagement</span>
-                                        <p class="small text-muted mt-2">Ground Survey & Verification</p>
                                     </div>
-                                </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="p-3 border rounded text-center bg-white shadow-sm">
+                                            <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-2 team-avatar-dark">
+                                                V
+                                            </div>
+                                            <h5 class="fw-bold mb-1">Youth Volunteers</h5>
+                                            <span class="text-muted small">Community Engagement</span>
+                                            <p class="small text-muted mt-2">Ground Survey & Verification</p>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
                     
                     <div class="tab" id="tab-3">
                         <div class="contact-inner">
-                            <h3>Participate & Volunteer</h3>
+                            <h3>Participate & Volunteer for {{ $activity->name }}</h3>
+                            <p class="text-muted mb-4">Register your interest to join our on-ground volunteer team for <strong>{{ $activity->name }}</strong>.</p>
                             <div class="row clearfix">
                                 <div class="col-lg-8 col-md-12 col-sm-12 form-column">
                                     <div class="form-inner">
                                         <form action="{{ route('volunteer.submit') }}" method="post" class="default-form">
                                             @csrf
+                                            <input type="hidden" name="event_name" value="{{ $activity->name }}">
+
                                             <div class="row clearfix">
                                                 <div class="col-lg-6 col-md-6 col-sm-12 column">
                                                     <div class="form-group">
                                                         <label>Your Full Name <span>*</span></label>
-                                                        <input type="text" name="name" placeholder="Enter name" required>
+                                                        <input type="text" name="name" placeholder="Enter full name" value="{{ old('name') }}" required>
+                                                        @error('name')
+                                                            <span class="text-danger small">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-12 column">
                                                     <div class="form-group">
                                                         <label>Email Address <span>*</span></label>
-                                                        <input type="email" name="email" placeholder="Enter email" required>
+                                                        <input type="email" name="email" placeholder="Enter email" value="{{ old('email') }}" required>
+                                                        @error('email')
+                                                            <span class="text-danger small">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-12 column">
                                                     <div class="form-group">
                                                         <label>Phone / WhatsApp Number <span>*</span></label>
-                                                        <input type="text" name="phone" placeholder="+880 1700-000000" required>
+                                                        <input type="text" name="phone" placeholder="+880 1700-000000" value="{{ old('phone') }}" required>
+                                                        @error('phone')
+                                                            <span class="text-danger small">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-12 column">
                                                     <div class="form-group">
                                                         <label>City / Location</label>
-                                                        <input type="text" name="address" placeholder="e.g. Dhaka">
+                                                        <input type="text" name="address" placeholder="e.g. Shanti Nagar, Dhaka" value="{{ old('address') }}">
+                                                        @error('address')
+                                                            <span class="text-danger small">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-sm-12 column">
                                                     <div class="form-group">
-                                                        <label>Volunteer Experience / Message</label>
-                                                        <textarea name="experience" placeholder="Tell us how you would like to contribute..." rows="3"></textarea>
+                                                        <label>Volunteer Experience / Notes for This Event</label>
+                                                        <textarea name="experience" placeholder="Tell us how you would like to participate in {{ $activity->name }}..." rows="3">{{ old('experience') }}</textarea>
+                                                        @error('experience')
+                                                            <span class="text-danger small">{{ $message }}</span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-sm-12 column">
@@ -165,12 +231,12 @@
                                 <div class="col-lg-4 col-md-12 col-sm-12 sidebar-column">
                                     <div class="sidebar-inner">
                                         <div class="event-organizer p-4 border rounded bg-white shadow-sm">
-                                            <h4 class="fw-bold mb-3">Event Office</h4>
+                                            <h4 class="fw-bold mb-3">Event Coordination Office</h4>
                                             <ul class="list-unstyled mb-0 event-office-list">
-                                                <li><strong>NGO:</strong> Shanti Nagar Foundation</li>
+                                                <li><strong>Organization:</strong> Shanti Nagar Foundation</li>
                                                 <li><strong>Phone:</strong> <a href="tel:+8801700000000" class="text-decoration-none text-muted">+880 1700-000000</a></li>
                                                 <li><strong>Email:</strong> <a href="mailto:info@shantinagarfoundation.org" class="text-decoration-none text-muted">info@shantinagarfoundation.org</a></li>
-                                                <li><strong>Address:</strong> Shanti Nagar, Dhaka - 1217, Bangladesh</li>
+                                                <li><strong>Location:</strong> Shanti Nagar, Dhaka - 1217, Bangladesh</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -180,9 +246,57 @@
                     </div>
                 </div>
             </div>
+
+            {{-- Other Upcoming Activities --}}
+            @if(isset($upcomingActivities) && $upcomingActivities->count() > 0)
+                <div class="related-events mt-5 pt-4">
+                    <div class="sec-title centred mb-4">
+                        <span class="top-text">Explore More</span>
+                        <h2>Other Active Initiatives & Drives</h2>
+                    </div>
+                    <div class="row clearfix">
+                        @foreach($upcomingActivities as $otherAct)
+                            @php
+                                $otherDate = $otherAct->start_date ? \Carbon\Carbon::parse($otherAct->start_date) : now();
+                            @endphp
+                            <div class="col-lg-4 col-md-6 col-sm-12 events-block">
+                                <div class="events-block-two">
+                                    <div class="inner-box">
+                                        <div class="post-date"><h3>{{ $otherDate->format('d') }}<span>{{ $otherDate->format('M') }}</span></h3></div>
+                                        <figure class="image-box"><img src="{{ asset($otherAct->featured_image ?: 'assets/images/events/events-4.jpg') }}" alt="{{ $otherAct->name }}"></figure>
+                                        <div class="content-box">
+                                            <div class="category"><a href="{{ route('event.details', $otherAct->slug) }}"># {{ $otherAct->category ?? 'Social Welfare' }}</a></div>
+                                            <ul class="info clearfix">
+                                                <li><i class="far fa-clock"></i>10.00 AM</li>
+                                                <li><i class="far fa-map"></i>{{ Str::limit($otherAct->location ?? 'Shanti Nagar', 16) }}</li>
+                                            </ul>
+                                            <h3><a href="{{ route('event.details', $otherAct->slug) }}">{{ Str::limit($otherAct->name, 45) }}</a></h3>
+                                            <div class="links"><a href="{{ route('event.details', $otherAct->slug) }}">View Details</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
         </div>
     </div>
 </section>
 <!-- event-details end -->
 
 @endsection
+
+@push('custom-script')
+<script>
+    $(document).ready(function() {
+        if (window.location.hash === '#tab-3' || {{ $errors->any() && old('event_name') ? 'true' : 'false' }}) {
+            var targetBtn = $('.tab-btns li[data-tab="#tab-3"]');
+            if (targetBtn.length) {
+                targetBtn.trigger('click');
+            }
+        }
+    });
+</script>
+@endpush

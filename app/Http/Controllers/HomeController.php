@@ -151,13 +151,32 @@ class HomeController extends Controller
     {
         $activity = null;
         if ($slug) {
-            $activity = Project::where('slug', $slug)->with('images')->first();
+            $activity = Project::where('slug', $slug)
+                ->with(['images', 'donations.donor'])
+                ->first();
         }
         if (! $activity) {
-            $activity = Project::with('images')->first();
+            $activity = Project::with(['images', 'donations.donor'])
+                ->where('is_published', true)
+                ->first();
         }
 
-        return view('frontend.event-details', compact('activity'));
+        if (! $activity) {
+            abort(404);
+        }
+
+        $upcomingActivities = Project::where('id', '!=', $activity->id)
+            ->where('is_published', true)
+            ->orderBy('start_date', 'desc')
+            ->take(3)
+            ->get();
+
+        $recentVolunteers = Volunteer::where('status', 'approved')
+            ->latest()
+            ->take(3)
+            ->get();
+
+        return view('frontend.event-details', compact('activity', 'upcomingActivities', 'recentVolunteers'));
     }
 
     public function blog(): View
@@ -235,12 +254,37 @@ class HomeController extends Controller
      */
     public function submitVolunteer(StoreVolunteerRequest $request): RedirectResponse
     {
+        $validated = $request->validated();
+
+        $noteParts = [];
+        if (! empty($validated['event_name'])) {
+            $noteParts[] = 'Event/Initiative: '.$validated['event_name'];
+        }
+        if (! empty($validated['experience'])) {
+            $noteParts[] = 'Experience: '.$validated['experience'];
+        }
+        if (! empty($validated['notes'])) {
+            $noteParts[] = $validated['notes'];
+        }
+
+        $notes = ! empty($noteParts) ? implode(' | ', $noteParts) : null;
+
         Volunteer::create([
-            ...$request->validated(),
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'],
+            'gender' => $validated['gender'] ?? null,
+            'age_group' => $validated['age_group'] ?? null,
+            'address' => $validated['address'] ?? null,
+            'notes' => $notes,
             'status' => 'pending',
         ]);
 
-        return redirect()->back()->with('success', 'Thank you for registering as a volunteer with Shanti Nagar Foundation! We will review your application soon.');
+        $successMsg = ! empty($validated['event_name'])
+            ? "Thank you for registering to volunteer for {$validated['event_name']}! Our team will contact you shortly."
+            : 'Thank you for registering as a volunteer with Shanti Nagar Foundation! We will review your application soon.';
+
+        return redirect()->back()->with('success', $successMsg);
     }
 
     /**

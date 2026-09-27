@@ -11992,37 +11992,12 @@
    height: 100%;
    padding-left: 50px;
  }
-
- .default-sidebar:before {
-   position: absolute;
-   content: '';
-   background-color: #f4f1f0;
-   width: 5000px;
-   height: calc(100% + 220px);
-   left: 10px;
-   top: -110px;
- }
-
- .case-sidebar.default-sidebar:before {
-   top: -158px;
-   height: calc(100% + 268px);
- }
-
- .default-sidebar:after {
-   position: absolute;
-   content: '';
-   background-image: url(../images/shape/shape-44.png);
-   width: 5000px;
-   height: calc(100% + 220px);
-   left: 10px;
-   top: -110px;
-   background-repeat: repeat;
- }
-
- .case-sidebar.default-sidebar:after {
-   top: -158px;
-   height: calc(100% + 268px);
- }
+  .default-sidebar:before,
+  .case-sidebar.default-sidebar:before,
+  .default-sidebar:after,
+  .case-sidebar.default-sidebar:after {
+    display: none !important;
+  }
 
  .default-sidebar .search-widget .form-group {
    position: relative;
@@ -15668,7 +15643,7 @@
 
 /* Page Title & Badges */
 .page-title.donation-title {
-  padding: 120px 0 60px 0;
+  padding: 110px 0 140px 0;
 }
 .page-title.donation-title .title {
   margin-bottom: 20px;
@@ -15692,9 +15667,18 @@
 
 /* Case / Donation Details */
 .case-details .upper-box.kpi-row {
-  margin-top: -35px;
+  margin-top: -50px;
   position: relative;
   z-index: 2;
+}
+.case-details .donate-inner {
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+}
+.case-details .upper-box .info-box {
+  min-height: 96px;
+  padding: 14px 25px;
 }
 .case-details .lower-box.details-lower {
   padding: 70px 0 100px 0;

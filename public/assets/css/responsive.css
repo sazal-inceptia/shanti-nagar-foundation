@@ -701,9 +701,7 @@
 
   .default-sidebar:before,
   .default-sidebar:after{
-    top: 0px !important;
-    height: 100% !important;
-    left: 0px;
+    display: none !important;
   }
 
   .default-sidebar{
