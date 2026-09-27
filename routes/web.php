@@ -92,5 +92,5 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     // Volunteer Applications Management
     Route::post('/volunteers/{volunteer}/toggle-status', [VolunteerController::class, 'toggleStatus'])->name('volunteers.toggle-status');
-    Route::resource('volunteers', VolunteerController::class)->only(['index', 'destroy']);
+    Route::resource('volunteers', VolunteerController::class)->only(['index', 'show', 'destroy']);
 });

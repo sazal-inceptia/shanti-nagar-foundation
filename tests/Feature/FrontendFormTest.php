@@ -163,7 +163,7 @@ test('authenticated admin can view volunteer applications index', function () {
     $response->assertSee('Volunteer Registrations');
 });
 
-test('authenticated admin can toggle volunteer status', function () {
+test('authenticated admin can view volunteer application details', function () {
     $admin = User::first() ?? User::factory()->create();
     $vol = Volunteer::create([
         'name' => 'Approval Test',
@@ -173,10 +173,29 @@ test('authenticated admin can toggle volunteer status', function () {
         'status' => 'pending',
     ]);
 
-    $response = $this->actingAs($admin)->post(route('admin.volunteers.toggle-status', $vol->id), [
+    $response = $this->actingAs($admin)->get(route('admin.volunteers.show', $vol->id));
+
+    $response->assertStatus(200);
+    $response->assertJsonPath('success', true);
+    $response->assertJsonPath('data.name', 'Approval Test');
+});
+
+test('authenticated admin can toggle volunteer status via AJAX', function () {
+    $admin = User::first() ?? User::factory()->create();
+    $vol = Volunteer::create([
+        'name' => 'Toggle Status Test',
+        'email' => 'toggle.status@gmail.com',
+        'phone' => '+880 1700-445566',
+        'address' => 'Dhaka',
+        'status' => 'pending',
+    ]);
+
+    $response = $this->actingAs($admin)->postJson(route('admin.volunteers.toggle-status', $vol->id), [
         'status' => 'approved',
     ]);
 
-    $response->assertRedirect();
+    $response->assertStatus(200);
+    $response->assertJsonPath('success', true);
+    $response->assertJsonPath('status', 'approved');
     expect($vol->fresh()->status)->toBe('approved');
 });

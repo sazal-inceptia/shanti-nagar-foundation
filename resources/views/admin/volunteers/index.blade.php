@@ -30,7 +30,6 @@
                                     <option value="">All Applications</option>
                                     <option value="pending">Pending</option>
                                     <option value="approved">Approved</option>
-                                    <option value="rejected">Rejected</option>
                                 </select>
                             </div>
                             <div class="col-md-2 col-sm-4">
@@ -62,10 +61,10 @@
                                         <th style="width: 45px;">SL</th>
                                         <th style="min-width: 180px;">Volunteer Name</th>
                                         <th style="min-width: 180px;">Contact Details</th>
-                                        <th style="min-width: 220px;">Address &amp; Location</th>
+                                        <th style="min-width: 200px;">Address &amp; Location</th>
                                         <th style="width: 100px;">Status</th>
                                         <th style="width: 110px;">Applied Date</th>
-                                        <th style="width: 120px; text-align: center;">Actions</th>
+                                        <th style="width: 110px; text-align: center;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -76,11 +75,124 @@
             </div>
         </div>
     </div>
+
+    {{-- View Volunteer Modal with Status Change Button --}}
+    <div class="modal fade" id="viewVolunteerModal" tabindex="-1" aria-labelledby="viewVolunteerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content" style="border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(11, 15, 23, 0.1);">
+                <div class="modal-header" style="background-color: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 16px 22px;">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="d-flex align-items-center justify-content-center" style="width: 34px; height: 34px; border-radius: 8px; background-color: #ecfdf5; color: #059669; font-size: 18px;">
+                            <i class="ri-user-smile-line"></i>
+                        </div>
+                        <div>
+                            <h5 class="modal-title fw-bold text-dark mb-0" id="viewVolunteerModalLabel" style="font-size: 16px;">
+                                Volunteer Application Details
+                            </h5>
+                            <span class="text-muted" style="font-size: 12px;">Candidate Profile &amp; Experience</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding: 24px;">
+                    {{-- Volunteer Info Row --}}
+                    <div class="row g-3 p-3 rounded mb-3" style="background-color: #f8fafc; border: 1px solid #e2e8f0;">
+                        <div class="col-md-6 col-12">
+                            <span class="text-muted d-block" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Full Name</span>
+                            <strong class="text-dark" id="modal_vol_name" style="font-size: 15px;">-</strong>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <span class="text-muted d-block" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Applied Date</span>
+                            <span class="text-dark fw-semibold" id="modal_vol_applied_at" style="font-size: 13.5px;">-</span>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <span class="text-muted d-block" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Email Address</span>
+                            <a href="#" id="modal_vol_email_link" class="text-primary text-decoration-none fw-semibold" style="font-size: 13.5px;">-</a>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <span class="text-muted d-block" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Phone Number</span>
+                            <a href="#" id="modal_vol_phone_link" class="text-dark text-decoration-none fw-semibold" style="font-size: 13.5px;">-</a>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <span class="text-muted d-block" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Demographics</span>
+                            <span class="text-dark" id="modal_vol_demographics" style="font-size: 13px;">-</span>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <span class="text-muted d-block" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Status</span>
+                            <span class="badge" id="modal_vol_status_badge" style="font-size: 11px; padding: 4px 8px;">-</span>
+                        </div>
+                    </div>
+
+                    {{-- Address --}}
+                    <div class="mb-3">
+                        <span class="text-muted d-block mb-1" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Residential Address / Location</span>
+                        <div class="p-2 px-3 rounded text-dark" id="modal_vol_address" style="background-color: #ffffff; border: 1px solid #cbd5e1; font-size: 13.5px;">
+                            -
+                        </div>
+                    </div>
+
+                    {{-- Experience & Notes --}}
+                    <div>
+                        <span class="text-muted d-block mb-1" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Field Experience &amp; Notes</span>
+                        <div class="p-3 rounded text-dark" id="modal_vol_notes" style="background-color: #ffffff; border: 1px solid #cbd5e1; font-size: 13.5px; line-height: 1.6; min-height: 100px; white-space: pre-wrap;">
+                            -
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; padding: 12px 22px;">
+                    <button type="button" id="modal_vol_toggle_status_btn" class="btn btn-sm px-3" style="font-size: 13px; height: 36px; display: inline-flex; align-items: center; border-radius: 6px; font-weight: 600;">
+                        <i class="ri-refresh-line me-1"></i> Change Status
+                    </button>
+                    <a href="#" id="modal_vol_mail_btn" class="btn btn-sm btn-primary px-3" style="font-size: 13px; height: 36px; display: inline-flex; align-items: center; border-radius: 6px;">
+                        <i class="ri-mail-line me-1"></i> Send Email
+                    </a>
+                    <button type="button" class="btn btn-sm btn-outline-secondary px-3" data-bs-dismiss="modal" style="font-size: 13px; height: 36px; border-radius: 6px;">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Delete Confirmation Modal --}}
+    <div class="modal fade" id="deleteVolunteerModal" tabindex="-1" aria-labelledby="deleteModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius: 10px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(11, 15, 23, 0.1);">
+                <div class="modal-header" style="background-color: #fee2e2; border-bottom: 1px solid #fca5a5; padding: 16px 20px;">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="ri-error-warning-line text-danger" style="font-size: 22px;"></i>
+                        <h5 class="modal-title fw-bold text-danger mb-0" id="deleteModalTitle" style="font-size: 16px;">
+                            Confirm Volunteer Deletion</h5>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding: 20px;">
+                    <p class="mb-2" style="font-size: 14px; color: #334155;">
+                        Are you sure you want to delete volunteer profile of <strong id="deleteVolunteerTitle" class="text-dark"></strong>?
+                    </p>
+                    <p class="text-muted mb-0" style="font-size: 12.5px;">
+                        This volunteer candidate record will be removed from your database.
+                    </p>
+                </div>
+                <div class="modal-footer" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; padding: 12px 20px;">
+                    <button type="button" class="btn btn-sm btn-outline-secondary px-3" data-bs-dismiss="modal" style="font-size: 13px; height: 36px; border-radius: 6px;">Cancel</button>
+                    <form id="deleteVolunteerForm" method="POST" action="">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger px-4" style="font-size: 13px; height: 36px; border-radius: 6px; font-weight: 600;">
+                            Delete Permanently
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('custom-script')
     <script type="text/javascript">
         $(document).ready(function () {
+            var currentVolunteerId = null;
+            var currentVolunteerStatus = null;
+
             var table = $('#volunteers-table').DataTable({
                 processing: true,
                 serverSide: true,
@@ -121,6 +233,108 @@
                 $('#filter_status').val('');
                 $('#filter_gender').val('');
                 table.draw();
+            });
+
+            function updateModalStatusUi(status) {
+                currentVolunteerStatus = status;
+                if (status === 'approved') {
+                    $('#modal_vol_status_badge').text('Approved').attr('style', 'background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; font-size: 11px; padding: 4px 8px; font-weight: 600;');
+                    $('#modal_vol_toggle_status_btn')
+                        .html('<i class="ri-time-line me-1"></i> Mark as Pending')
+                        .attr('class', 'btn btn-sm px-3')
+                        .attr('style', 'background-color: #fffbeb; color: #b45309; border: 1px solid #fde68a; font-size: 13px; height: 36px; display: inline-flex; align-items: center; border-radius: 6px; font-weight: 600;')
+                        .data('next-status', 'pending');
+                } else {
+                    $('#modal_vol_status_badge').text('Pending').attr('style', 'background-color: #fffbeb; color: #b45309; border: 1px solid #fde68a; font-size: 11px; padding: 4px 8px; font-weight: 600;');
+                    $('#modal_vol_toggle_status_btn')
+                        .html('<i class="ri-checkbox-circle-line me-1"></i> Approve Application')
+                        .attr('class', 'btn btn-sm px-3')
+                        .attr('style', 'background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; font-size: 13px; height: 36px; display: inline-flex; align-items: center; border-radius: 6px; font-weight: 600;')
+                        .data('next-status', 'approved');
+                }
+            }
+
+            // Handle View Volunteer Modal
+            $(document).on('click', '.btn-view-volunteer', function () {
+                var url = $(this).data('url');
+                var id = $(this).data('id');
+                currentVolunteerId = id;
+
+                $('#modal_vol_name').text('Loading...');
+                $('#modal_vol_applied_at').text('Loading...');
+                $('#modal_vol_email_link').text('Loading...').attr('href', '#');
+                $('#modal_vol_phone_link').text('Loading...').attr('href', '#');
+                $('#modal_vol_demographics').text('Loading...');
+                $('#modal_vol_status_badge').text('Loading...').attr('style', '');
+                $('#modal_vol_address').text('Loading...');
+                $('#modal_vol_notes').text('Loading volunteer details...');
+
+                $('#viewVolunteerModal').modal('show');
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.success && res.data) {
+                            var data = res.data;
+                            $('#modal_vol_name').text(data.name);
+                            $('#modal_vol_applied_at').text(data.applied_at);
+                            $('#modal_vol_email_link').text(data.email).attr('href', 'mailto:' + data.email);
+                            $('#modal_vol_phone_link').text(data.phone).attr('href', 'tel:' + data.phone);
+                            $('#modal_vol_demographics').text(data.gender + ' • ' + data.age_group);
+                            $('#modal_vol_address').text(data.address);
+                            $('#modal_vol_notes').text(data.notes);
+                            $('#modal_vol_mail_btn').attr('href', 'mailto:' + data.email + '?subject=' + encodeURIComponent('Volunteer Onboarding - Shanti Nagar Foundation'));
+
+                            updateModalStatusUi(data.status);
+                        }
+                    },
+                    error: function () {
+                        $('#modal_vol_notes').text('Failed to load volunteer details. Please try again.');
+                    }
+                });
+            });
+
+            // Handle Status Toggle Inside Modal
+            $('#modal_vol_toggle_status_btn').on('click', function () {
+                if (!currentVolunteerId) return;
+
+                var btn = $(this);
+                var nextStatus = btn.data('next-status');
+                var toggleUrl = "{{ url('/admin/volunteers') }}/" + currentVolunteerId + "/toggle-status";
+
+                btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-1" role="status"></span> Updating...');
+
+                $.ajax({
+                    url: toggleUrl,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        status: nextStatus
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        btn.prop('disabled', false);
+                        if (res.success) {
+                            updateModalStatusUi(res.status);
+                            table.ajax.reload(null, false);
+                        }
+                    },
+                    error: function () {
+                        btn.prop('disabled', false);
+                        alert('Failed to update volunteer status. Please try again.');
+                    }
+                });
+            });
+
+            // Handle Delete Modal
+            $(document).on('click', '.btn-delete-volunteer', function () {
+                var url = $(this).data('url');
+                var title = $(this).data('title');
+                $('#deleteVolunteerTitle').text(title);
+                $('#deleteVolunteerForm').attr('action', url);
+                $('#deleteVolunteerModal').modal('show');
             });
         });
     </script>
