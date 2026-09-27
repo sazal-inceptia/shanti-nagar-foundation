@@ -59,7 +59,6 @@
                                 <li class="{{ request()->is('donation*') ? 'current' : '' }}"><a href="/donations">Projects & Causes</a></li>
                                 <li class="{{ request()->is('event*') ? 'current' : '' }}"><a href="/events">Activities</a></li>
                                 <li class="{{ request()->is('gallery*') ? 'current' : '' }}"><a href="/gallery">Gallery</a></li>
-                                <li class="{{ request()->is('blog*') ? 'current' : '' }}"><a href="/blog">Blog</a></li>
                                 <li class="{{ request()->is('contact*') ? 'current' : '' }}"><a href="/contact">Contact</a></li>
                             </ul>
                         </div>

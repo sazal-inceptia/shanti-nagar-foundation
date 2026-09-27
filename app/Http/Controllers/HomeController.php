@@ -179,16 +179,6 @@ class HomeController extends Controller
         return view('frontend.event-details', compact('activity', 'upcomingActivities', 'recentVolunteers'));
     }
 
-    public function blog(): View
-    {
-        return view('frontend.blog');
-    }
-
-    public function blogDetails(): View
-    {
-        return view('frontend.blog-details');
-    }
-
     public function contact(): View
     {
         return view('frontend.contact');

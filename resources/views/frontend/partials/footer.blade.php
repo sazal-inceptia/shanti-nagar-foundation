@@ -63,7 +63,7 @@
                                 <li><a href="/about">About Charity</a></li>
                                 <li><a href="/volunteer">Meet Our Volunteers</a></li>
                                 <li><a href="/events">Upcoming Events</a></li>
-                                <li><a href="/blog">Blog & Articles</a></li>
+                                <li><a href="/gallery">Photo Gallery</a></li>
                                 <li><a href="/donations">Our Causes</a></li>
                                 <li><a href="/contact">Get Touch With Us</a></li>
                             </ul>

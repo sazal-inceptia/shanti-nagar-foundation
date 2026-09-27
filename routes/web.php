@@ -24,8 +24,6 @@ Route::get('/donations', [HomeController::class, 'donations'])->name('donations'
 Route::get('/donation-details/{slug?}', [HomeController::class, 'donationDetails'])->name('donation.details');
 Route::get('/events', [HomeController::class, 'events'])->name('events');
 Route::get('/event-details/{slug?}', [HomeController::class, 'eventDetails'])->name('event.details');
-Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
-Route::get('/blog-details', [HomeController::class, 'blogDetails'])->name('blog.details');
 
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact', [HomeController::class, 'submitContact'])->name('contact.submit');

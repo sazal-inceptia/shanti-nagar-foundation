@@ -48,7 +48,7 @@
 ### Phase 2: Public Frontend Pages & UI Localization (Completed)
 - [x] **Header & Navigation**
   - [x] Dynamic active link state (`request()->is()`)
-  - [x] Update menu names: Home, About Us, Projects & Causes, Activities, Gallery, Blog, Contact
+  - [x] Update menu names: Home, About Us, Projects & Causes, Activities, Gallery, Contact (Removed unused Blog placeholder to keep focus on core NGO initiatives)
   - [x] Bangladeshi contact info & helpline (`+880 1700-000000`, Shanti Nagar, Dhaka)
 - [x] **Page Refinements**
   - [x] Remove unrelated "Charity Shops" from `contact.blade.php` and embed responsive Google Maps
