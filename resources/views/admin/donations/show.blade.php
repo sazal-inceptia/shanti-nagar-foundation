@@ -164,6 +164,11 @@
                                             ৳ {{ number_format((float) $donation->amount, 2) }}
                                         </td>
                                     </tr>
+                                    <tr style="background-color: #ffffff;">
+                                        <td colspan="4" style="padding: 10px 14px; font-size: 13px; color: #334155; border-top: 1px dashed #cbd5e1;">
+                                            <strong>In Words:</strong> <span class="fst-italic text-dark fw-semibold">{{ $donation->amount_in_words }}</span>
+                                        </td>
+                                    </tr>
                                 </tfoot>
                             </table>
                         </div>
@@ -389,4 +394,17 @@
             }
         }
     </style>
+@endpush
+
+@push('custom-script')
+    <script>
+        $(document).ready(function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('print') === '1' || urlParams.get('pdf') === '1') {
+                setTimeout(function() {
+                    window.print();
+                }, 400);
+            }
+        });
+    </script>
 @endpush

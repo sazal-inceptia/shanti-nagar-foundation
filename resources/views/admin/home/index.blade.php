@@ -133,7 +133,7 @@
 
 @section('content')
     <div class="container-fluid my-3">
-        {{-- 8 Real-Time NGO KPI Statistics Cards (Static Placeholder for now) --}}
+        {{-- 8 Real-Time Dynamic NGO KPI Statistics Cards --}}
         <div class="row g-3 mb-4">
             {{-- 1. Total Donations Received --}}
             <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
@@ -141,7 +141,7 @@
                     <div class="d-flex align-items-start justify-content-between">
                         <div>
                             <div class="stat-label">Total Donations</div>
-                            <div class="stat-value" style="color: #059669;">৳ 1,250,000.00</div>
+                            <div class="stat-value" style="color: #059669;">৳ {{ number_format($kpi['total_donations'], 2) }}</div>
                         </div>
                         <div class="stat-icon-wrapper" style="background-color: #ecfdf5; color: #059669;">
                             <i class="ri-hand-coin-line"></i>
@@ -151,7 +151,7 @@
                         <a href="{{ route('admin.donations.index') }}" class="stat-link" style="color: #059669;">
                             View Receipts <i class="ri-arrow-right-line ms-1"></i>
                         </a>
-                        <span class="badge" style="background-color: #ecfdf5; color: #065f46; font-size: 11px; font-weight: 600;">Completed</span>
+                        <span class="badge" style="background-color: #ecfdf5; color: #065f46; font-size: 11px; font-weight: 600;">{{ $kpi['donations_count'] }} Records</span>
                     </div>
                 </div>
             </div>
@@ -162,7 +162,7 @@
                     <div class="d-flex align-items-start justify-content-between">
                         <div>
                             <div class="stat-label">Total Expenditure</div>
-                            <div class="stat-value" style="color: #dc2626;">৳ 780,500.00</div>
+                            <div class="stat-value" style="color: #dc2626;">৳ {{ number_format($kpi['total_expenses'], 2) }}</div>
                         </div>
                         <div class="stat-icon-wrapper" style="background-color: #fff1f2; color: #dc2626;">
                             <i class="ri-money-dollar-circle-line"></i>
@@ -172,7 +172,7 @@
                         <a href="{{ route('admin.expenses.index') }}" class="stat-link" style="color: #dc2626;">
                             View Vouchers <i class="ri-arrow-right-line ms-1"></i>
                         </a>
-                        <span class="badge" style="background-color: #fee2e2; color: #dc2626; font-size: 11px; font-weight: 600;">Expenses & Salary</span>
+                        <span class="badge" style="background-color: #fee2e2; color: #dc2626; font-size: 11px; font-weight: 600;">Expenses &amp; Salary</span>
                     </div>
                 </div>
             </div>
@@ -183,7 +183,9 @@
                     <div class="d-flex align-items-start justify-content-between">
                         <div>
                             <div class="stat-label">Net Fund Balance</div>
-                            <div class="stat-value" style="color: #2563eb;">৳ 469,500.00</div>
+                            <div class="stat-value" style="color: {{ $kpi['net_fund_balance'] >= 0 ? '#2563eb' : '#dc2626' }};">
+                                ৳ {{ number_format($kpi['net_fund_balance'], 2) }}
+                            </div>
                         </div>
                         <div class="stat-icon-wrapper" style="background-color: #eff6ff; color: #2563eb;">
                             <i class="ri-wallet-3-line"></i>
@@ -193,7 +195,7 @@
                         <a href="{{ route('admin.reports.index') }}" class="stat-link" style="color: #2563eb;">
                             Financial Audit <i class="ri-arrow-right-line ms-1"></i>
                         </a>
-                        <span class="badge bg-light text-muted" style="font-size: 11px;">Available Funds</span>
+                        <span class="badge bg-light text-muted" style="font-size: 11px;">Available Reserve</span>
                     </div>
                 </div>
             </div>
@@ -204,7 +206,7 @@
                     <div class="d-flex align-items-start justify-content-between">
                         <div>
                             <div class="stat-label">Registered Donors</div>
-                            <div class="stat-value" style="color: #f65024;">148</div>
+                            <div class="stat-value" style="color: #f65024;">{{ number_format($kpi['total_donors']) }}</div>
                         </div>
                         <div class="stat-icon-wrapper" style="background-color: #fff3ee; color: #f65024;">
                             <i class="ri-user-heart-line"></i>
@@ -225,7 +227,7 @@
                     <div class="d-flex align-items-start justify-content-between">
                         <div>
                             <div class="stat-label">Active Projects</div>
-                            <div class="stat-value" style="color: #4f46e5;">12 / 18</div>
+                            <div class="stat-value" style="color: #4f46e5;">{{ $kpi['active_projects'] }} / {{ $kpi['total_projects'] }}</div>
                         </div>
                         <div class="stat-icon-wrapper" style="background-color: #eef2ff; color: #4f46e5;">
                             <i class="ri-heart-pulse-line"></i>
@@ -235,7 +237,7 @@
                         <a href="{{ route('admin.projects.index') }}" class="stat-link" style="color: #4f46e5;">
                             Ongoing Campaigns <i class="ri-arrow-right-line ms-1"></i>
                         </a>
-                        <span class="badge" style="background-color: #eff6ff; color: #1e40af; font-size: 11px; font-weight: 600;">Relief & Welfare</span>
+                        <span class="badge" style="background-color: #eff6ff; color: #1e40af; font-size: 11px; font-weight: 600;">Relief &amp; Welfare</span>
                     </div>
                 </div>
             </div>
@@ -245,8 +247,8 @@
                 <div class="stat-card">
                     <div class="d-flex align-items-start justify-content-between">
                         <div>
-                            <div class="stat-label">Staff & Field Workers</div>
-                            <div class="stat-value" style="color: #7c3aed;">15</div>
+                            <div class="stat-label">Staff &amp; Field Workers</div>
+                            <div class="stat-value" style="color: #7c3aed;">{{ number_format($kpi['total_employees']) }}</div>
                         </div>
                         <div class="stat-icon-wrapper" style="background-color: #f5f3ff; color: #7c3aed;">
                             <i class="ri-team-line"></i>
@@ -266,7 +268,7 @@
                 <div class="stat-card">
                     <div class="d-flex align-items-start justify-content-between">
                         <div>
-                            <div class="stat-label">Salary & Payroll</div>
+                            <div class="stat-label">Salary &amp; Payroll</div>
                             <div class="stat-value" style="color: #0284c7;">Active</div>
                         </div>
                         <div class="stat-icon-wrapper" style="background-color: #f0f9ff; color: #0284c7;">
@@ -304,7 +306,7 @@
             </div>
         </div>
 
-        {{-- Main Dashboard Data Tables Row (Static Data for Now) --}}
+        {{-- Main Dashboard Dynamic Data Tables Row --}}
         <div class="row g-3">
             {{-- Left Column: Recent Completed Donations --}}
             <div class="col-xl-7 col-lg-12">
@@ -329,50 +331,41 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><span class="fw-bold text-dark font-monospace" style="font-size: 12.5px;">REC-2026-001</span></td>
-                                        <td>
-                                            <div class="fw-bold text-dark" style="font-size: 13px;">Al-Amin Hossain</div>
-                                            <span class="text-muted" style="font-size: 11px;">+880 1711-223344</span>
-                                        </td>
-                                        <td><span class="fw-semibold text-dark d-block text-truncate" style="max-width: 170px; font-size: 12.5px;">Orphan Education Kits</span></td>
-                                        <td><span class="fw-bold" style="color: #059669; font-size: 13.5px;">৳ 25,000.00</span></td>
-                                        <td><span class="badge" style="background-color: #f1f5f9; color: #334155; font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;">bKash</span></td>
-                                        <td><span class="text-muted" style="font-size: 12px;">Sep 24, 2026</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fw-bold text-dark font-monospace" style="font-size: 12.5px;">REC-2026-002</span></td>
-                                        <td>
-                                            <div class="fw-bold text-dark" style="font-size: 13px;">Rokeya Begum</div>
-                                            <span class="text-muted" style="font-size: 11px;">+880 1819-556677</span>
-                                        </td>
-                                        <td><span class="fw-semibold text-dark d-block text-truncate" style="max-width: 170px; font-size: 12.5px;">Safe Drinking Water Tube-well</span></td>
-                                        <td><span class="fw-bold" style="color: #059669; font-size: 13.5px;">৳ 50,000.00</span></td>
-                                        <td><span class="badge" style="background-color: #f1f5f9; color: #334155; font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;">Bank Transfer</span></td>
-                                        <td><span class="text-muted" style="font-size: 12px;">Sep 23, 2026</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fw-bold text-dark font-monospace" style="font-size: 12.5px;">REC-2026-003</span></td>
-                                        <td>
-                                            <div class="fw-bold text-dark" style="font-size: 13px;">Tanvir Ahmed</div>
-                                            <span class="text-muted" style="font-size: 11px;">+880 1912-334455</span>
-                                        </td>
-                                        <td><span class="fw-semibold text-dark d-block text-truncate" style="max-width: 170px; font-size: 12.5px;">Emergency Flood & Disaster Relief</span></td>
-                                        <td><span class="fw-bold" style="color: #059669; font-size: 13.5px;">৳ 15,000.00</span></td>
-                                        <td><span class="badge" style="background-color: #f1f5f9; color: #334155; font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;">Nagad</span></td>
-                                        <td><span class="text-muted" style="font-size: 12px;">Sep 22, 2026</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fw-bold text-dark font-monospace" style="font-size: 12.5px;">REC-2026-004</span></td>
-                                        <td>
-                                            <div class="fw-bold text-dark" style="font-size: 13px;">Anonymous Well-Wisher</div>
-                                            <span class="text-muted" style="font-size: 11px;">+880 1700-000000</span>
-                                        </td>
-                                        <td><span class="fw-semibold text-dark d-block text-truncate" style="max-width: 170px; font-size: 12.5px;">Free Eye Care & Cataract Surgery</span></td>
-                                        <td><span class="fw-bold" style="color: #059669; font-size: 13.5px;">৳ 100,000.00</span></td>
-                                        <td><span class="badge" style="background-color: #f1f5f9; color: #334155; font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;">Cash</span></td>
-                                        <td><span class="text-muted" style="font-size: 12px;">Sep 21, 2026</span></td>
-                                    </tr>
+                                    @forelse($recentDonations as $donation)
+                                        <tr>
+                                            <td>
+                                                <a href="{{ route('admin.donations.show', $donation->id) }}" class="fw-bold text-dark font-monospace text-decoration-none" style="font-size: 12.5px;">
+                                                    {{ $donation->receipt_number }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <div class="fw-bold text-dark" style="font-size: 13px;">{{ $donation->donor ? $donation->donor->name : 'Anonymous Donor' }}</div>
+                                                <span class="text-muted" style="font-size: 11px;">{{ $donation->donor?->phone ?: 'N/A' }}</span>
+                                            </td>
+                                            <td>
+                                                <span class="fw-semibold text-dark d-block text-truncate" style="max-width: 170px; font-size: 12.5px;">
+                                                    {{ $donation->project ? $donation->project->name : 'General Humanitarian Fund' }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="fw-bold" style="color: #059669; font-size: 13.5px;">
+                                                    ৳ {{ number_format((float) $donation->amount, 2) }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="badge" style="background-color: #f1f5f9; color: #334155; font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;">
+                                                    {{ strtoupper($donation->payment_method) }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="text-muted" style="font-size: 12px;">{{ $donation->donation_date?->format('M d, Y') }}</span>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="6" class="text-center text-muted py-4">No completed donations recorded yet.</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
@@ -384,7 +377,7 @@
             <div class="col-xl-5 col-lg-12">
                 <div class="dashboard-section-card h-100">
                     <div class="dashboard-section-header">
-                        <h5 class="dashboard-section-title">Recent Expenses & Vouchers</h5>
+                        <h5 class="dashboard-section-title">Recent Expenses &amp; Vouchers</h5>
                         <a href="{{ route('admin.expenses.index') }}" class="btn btn-sm btn-outline-secondary px-3" style="font-size: 12px; height: 32px; border-radius: 6px; font-weight: 600;">
                             View All <i class="ri-arrow-right-line ms-1"></i>
                         </a>
@@ -401,42 +394,35 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><span class="fw-bold text-dark font-monospace" style="font-size: 12.5px;">VCH-2026-001</span></td>
-                                        <td>
-                                            <div class="fw-semibold text-dark text-truncate" style="font-size: 12.5px; max-width: 170px;">Medical Supplies</div>
-                                            <span class="text-muted text-truncate d-block" style="font-size: 11px; max-width: 160px;">Free Eye Care Camp</span>
-                                        </td>
-                                        <td><span class="fw-bold" style="color: #dc2626; font-size: 13px;">৳ 35,000.00</span></td>
-                                        <td><span class="text-muted" style="font-size: 11.5px;">Sep 24, 2026</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fw-bold text-dark font-monospace" style="font-size: 12.5px;">VCH-2026-002</span></td>
-                                        <td>
-                                            <div class="fw-semibold text-dark text-truncate" style="font-size: 12.5px; max-width: 170px;">Hardware & Pipes</div>
-                                            <span class="text-muted text-truncate d-block" style="font-size: 11px; max-width: 160px;">Safe Drinking Water Tube-well</span>
-                                        </td>
-                                        <td><span class="fw-bold" style="color: #dc2626; font-size: 13px;">৳ 48,000.00</span></td>
-                                        <td><span class="text-muted" style="font-size: 11.5px;">Sep 23, 2026</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fw-bold text-dark font-monospace" style="font-size: 12.5px;">VCH-2026-003</span></td>
-                                        <td>
-                                            <div class="fw-semibold text-dark text-truncate" style="font-size: 12.5px; max-width: 170px;">Dry Food & Water</div>
-                                            <span class="text-muted text-truncate d-block" style="font-size: 11px; max-width: 160px;">Emergency Flood Relief</span>
-                                        </td>
-                                        <td><span class="fw-bold" style="color: #dc2626; font-size: 13px;">৳ 60,000.00</span></td>
-                                        <td><span class="text-muted" style="font-size: 11.5px;">Sep 22, 2026</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span class="fw-bold text-dark font-monospace" style="font-size: 12.5px;">VCH-2026-004</span></td>
-                                        <td>
-                                            <div class="fw-semibold text-dark text-truncate" style="font-size: 12.5px; max-width: 170px;">Office Rent & Utilities</div>
-                                            <span class="text-muted text-truncate d-block" style="font-size: 11px; max-width: 160px;">Shanti Nagar HQ</span>
-                                        </td>
-                                        <td><span class="fw-bold" style="color: #dc2626; font-size: 13px;">৳ 22,000.00</span></td>
-                                        <td><span class="text-muted" style="font-size: 11.5px;">Sep 20, 2026</span></td>
-                                    </tr>
+                                    @forelse($recentExpenses as $expense)
+                                        <tr>
+                                            <td>
+                                                <a href="{{ route('admin.expenses.show', $expense->id) }}" class="fw-bold text-dark font-monospace text-decoration-none" style="font-size: 12.5px;">
+                                                    {{ $expense->voucher_number }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <div class="fw-semibold text-dark text-truncate" style="font-size: 12.5px; max-width: 170px;">
+                                                    {{ $expense->category instanceof \App\Enums\ExpenseCategory ? $expense->category->label() : ucfirst($expense->category) }}
+                                                </div>
+                                                <span class="text-muted text-truncate d-block" style="font-size: 11px; max-width: 160px;">
+                                                    {{ $expense->project ? $expense->project->name : ($expense->vendor_name ?: 'General Operating Expense') }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="fw-bold" style="color: #dc2626; font-size: 13px;">
+                                                    ৳ {{ number_format((float) $expense->amount, 2) }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="text-muted" style="font-size: 11.5px;">{{ $expense->expense_date?->format('M d, Y') }}</span>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="4" class="text-center text-muted py-4">No expense vouchers recorded yet.</td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
