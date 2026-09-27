@@ -119,9 +119,9 @@
                                     <div class="inner-box">
                                         <div class="icon-box"><i class="icon-donation-1"></i></div>
                                         <div class="count-outer count-box">
-                                            <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['directBeneficiaries'] ?? 0) }}">0</span><span>+</span>
+                                            <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['completedDonationsCount'] ?? 0) }}">0</span><span>+</span>
                                         </div>
-                                        <h4>Beneficiaries Reached</h4>
+                                        <h4>Completed Donations</h4>
                                     </div>
                                 </div>
                             </div>
@@ -182,9 +182,6 @@
                                     </div>
                                     <div class="text">
                                         <p>{{ Str::limit($urgentProject->short_description ?: $urgentProject->description, 130) }}</p>
-                                    </div>
-                                    <div class="timer">
-                                        <div class="cs-countdown" data-countdown="12/31/2026 23:59:59"></div>
                                     </div>
                                 </div>
                                 <div class="lower-box">
@@ -279,7 +276,7 @@
                                                         <div class="shape" style="background-image: url('{{ asset('assets/images/shape/shape-11.png') }}');"></div>
                                                         <div class="donate-amount clearfix">
                                                             <div class="amount-box">
-                                                                <div class="icon-box"><i class="fas fa-dollar-sign"></i></div>
+                                                                <div class="icon-box"><i class="fas fa-hand-holding-heart"></i></div>
                                                                 <h5>Charity Raised</h5>
                                                                 <div class="price">৳{{ number_format($raised) }} <span>/ ৳{{ number_format($target) }}</span></div>
                                                             </div>
@@ -341,7 +338,7 @@
                                                                 <div class="shape" style="background-image: url('{{ asset('assets/images/shape/shape-11.png') }}');"></div>
                                                                 <div class="donate-amount clearfix">
                                                                     <div class="amount-box">
-                                                                        <div class="icon-box"><i class="fas fa-dollar-sign"></i></div>
+                                                                        <div class="icon-box"><i class="fas fa-hand-holding-heart"></i></div>
                                                                         <h5>Charity Raised</h5>
                                                                         <div class="price">৳{{ number_format($raised) }} <span>/ ৳{{ number_format($target) }}</span></div>
                                                                     </div>
@@ -528,9 +525,9 @@
                         <div class="inner-box">
                             <div class="icon-box"><i class="icon-donation"></i></div>
                             <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['directBeneficiaries'] ?? 0) }}">0</span><span>+</span>
+                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['completedDonationsCount'] ?? 0) }}">0</span><span>+</span>
                             </div>
-                            <h4>Direct Beneficiaries</h4>
+                            <h4>Completed Donations</h4>
                         </div>
                     </div>
                 </div>
@@ -649,7 +646,7 @@
                                 </div>
                                 <h4 class="fw-bold mb-1">{{ $vol->name }}</h4>
                                 <span class="text-muted small d-block mb-2">{{ $vol->address ?: 'Shanti Nagar, Dhaka' }}</span>
-                                <p class="small text-muted">{{ Str::limit($vol->experience ?: 'Ground logistics & relief distribution coordination.', 60) }}</p>
+                                <p class="small text-muted">{{ Str::limit($vol->notes ?: 'Ground logistics & relief distribution coordination.', 60) }}</p>
                             </div>
                         </div>
                     @endforeach

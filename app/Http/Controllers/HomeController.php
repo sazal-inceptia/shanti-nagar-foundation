@@ -59,20 +59,14 @@ class HomeController extends Controller
             $completedDonationsCount = Donation::count();
         }
 
-        // Beneficiaries dynamically derived from database records (projects and distributions)
-        $directBeneficiaries = ($totalProjects * 150) + ($completedDonationsCount * 25) + ($activeVolunteers * 10);
-        if ($directBeneficiaries === 0) {
-            $directBeneficiaries = 100;
-        }
-
         return [
             'totalDonationsRaised' => $totalDonationsRaised,
             'totalFundsUtilized' => $totalFundsUtilized,
+            'totalExpenses' => $totalExpenses,
             'totalProjects' => $totalProjects,
             'projectsCompleted' => $projectsCompleted,
             'activeVolunteers' => $activeVolunteers,
             'totalDonors' => $totalDonors,
-            'directBeneficiaries' => $directBeneficiaries,
             'completedDonationsCount' => $completedDonationsCount,
         ];
     }

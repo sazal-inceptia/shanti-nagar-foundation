@@ -49,7 +49,7 @@ class Donor extends Model
     /**
      * Get dynamic avatar URL for donor.
      */
-    public function getAvatarUrlAttribute(): ?string
+    public function getAvatarUrlAttribute(): string
     {
         if (! empty($this->image)) {
             if (str_starts_with($this->image, 'http://') || str_starts_with($this->image, 'https://')) {
@@ -72,6 +72,19 @@ class Donor extends Model
             return asset($this->photo);
         }
 
-        return null;
+        $donorName = trim($this->name ?: ($this->is_anonymous ? 'Well-wisher' : 'Donor'));
+        $words = preg_split('/\s+/', $donorName);
+        $initials = '';
+        foreach (array_slice($words, 0, 2) as $w) {
+            $initials .= mb_strtoupper(mb_substr($w, 0, 1));
+        }
+        $initials = $initials ?: 'D';
+
+        $bgColors = ['f65024', '03c0a8', '2b59ff', '7c3aed', 'ea580c', '0d9488'];
+        $color = $bgColors[abs(crc32($donorName)) % count($bgColors)];
+
+        $svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23{$color}'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-size='38' font-weight='bold'>{$initials}</text></svg>";
+
+        return 'data:image/svg+xml;utf8,'.$svg;
     }
 }

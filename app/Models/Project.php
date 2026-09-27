@@ -116,4 +116,18 @@ class Project extends Model
 
         return round(($this->total_donations_raised / (float) $this->estimated_cost) * 100, 1);
     }
+
+    /**
+     * Calculate remaining days until project completion date.
+     */
+    public function getDaysLeftAttribute(): ?int
+    {
+        if (! $this->completion_date) {
+            return null;
+        }
+
+        $diff = (int) now()->startOfDay()->diffInDays($this->completion_date->startOfDay(), false);
+
+        return $diff >= 0 ? $diff : 0;
+    }
 }
