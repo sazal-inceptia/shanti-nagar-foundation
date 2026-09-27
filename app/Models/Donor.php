@@ -14,6 +14,7 @@ class Donor extends Model
 
     protected $fillable = [
         'name',
+        'image',
         'email',
         'phone',
         'address',
@@ -43,5 +44,34 @@ class Donor extends Model
     public function getTotalDonationAttribute(): float
     {
         return (float) $this->donations()->where('status', 'completed')->sum('amount');
+    }
+
+    /**
+     * Get dynamic avatar URL for donor.
+     */
+    public function getAvatarUrlAttribute(): ?string
+    {
+        if (! empty($this->image)) {
+            if (str_starts_with($this->image, 'http://') || str_starts_with($this->image, 'https://')) {
+                return $this->image;
+            }
+            if (file_exists(public_path($this->image))) {
+                return asset($this->image);
+            }
+            if (file_exists(public_path('storage/'.$this->image))) {
+                return asset('storage/'.$this->image);
+            }
+            if (str_starts_with($this->image, 'storage/')) {
+                return asset($this->image);
+            }
+
+            return asset($this->image);
+        }
+
+        if (! empty($this->photo) && file_exists(public_path($this->photo))) {
+            return asset($this->photo);
+        }
+
+        return null;
     }
 }

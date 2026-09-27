@@ -27,18 +27,18 @@
                     @forelse($activities as $activity)
                     @php
                         $eventDate = $activity->start_date ? \Carbon\Carbon::parse($activity->start_date) : now();
-                        $categoryName = $activity->category ?? 'Social Welfare';
+                        $categoryName = $activity->category;
                     @endphp
                     <div class="col-lg-4 col-md-6 col-sm-12 events-block">
                         <div class="events-block-two">
                             <div class="inner-box">
                                 <div class="post-date"><h3>{{ $eventDate->format('d') }}<span>{{ $eventDate->format('M') }}</span></h3></div>
-                                <figure class="image-box"><img src="{{ asset($activity->featured_image ?: 'assets/images/events/events-4.jpg') }}" alt="{{ $activity->name }}"></figure>
+                                <figure class="image-box"><img src="{{ asset($activity->featured_image) }}" alt="{{ $activity->name }}"></figure>
                                 <div class="content-box">
                                     <div class="category"><a href="{{ route('event.details', $activity->slug) }}"># {{ $categoryName }}</a></div>
                                     <ul class="info clearfix">
                                         <li><i class="far fa-clock"></i>10.00 AM</li>
-                                        <li><i class="far fa-map"></i>{{ Str::limit($activity->location ?? 'Shanti Nagar', 16) }}</li>
+                                        <li><i class="far fa-map"></i>{{ Str::limit($activity->location, 16) }}</li>
                                     </ul>
                                     <h3><a href="{{ route('event.details', $activity->slug) }}">{{ $activity->name }}</a></h3>
                                     <div class="links"><a href="{{ route('event.details', $activity->slug) }}">View Details</a></div>

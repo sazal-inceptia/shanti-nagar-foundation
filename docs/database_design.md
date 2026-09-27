@@ -28,6 +28,7 @@ erDiagram
     DONORS {
         bigint id PK
         string name
+        string image
         string email
         string phone
         text address
@@ -151,7 +152,7 @@ erDiagram
 
 ### 2. `donors`
 * Stores registered or anonymous donors (individuals and institutional trusts).
-* **Fields:** `id`, `name`, `email` (index), `phone` (index), `address`, `city`, `country`, `donor_type` (`individual`, `organization`), `is_anonymous` (bool), `notes`, `created_at`, `updated_at`, `deleted_at`.
+* **Fields:** `id`, `name`, `image` (avatar / logo), `email` (index), `phone` (index), `address`, `city`, `country`, `donor_type` (`individual`, `organization`), `is_anonymous` (bool), `notes`, `created_at`, `updated_at`, `deleted_at`.
 * **Relations:** `hasMany(Donation::class)`.
 
 ### 3. `projects`

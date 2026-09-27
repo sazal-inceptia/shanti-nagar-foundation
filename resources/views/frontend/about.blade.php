@@ -131,332 +131,46 @@
 
 
     <!-- team-section -->
-    <section class="team-section centred">
-        <div class="pattern-layer" style="background-image: url({{ asset('assets/images/shape/shape-23.png') }});"></div>
-        <div class="fluid-container">
-            <div class="sec-title centred">
-                <span class="top-text">Meet Our Team</span>
-                <h2>Most Passionate Team Members</h2>
-            </div>
-            <div class="five-item-carousel owl-carousel owl-theme owl-nav-none">
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-5.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Founder</span>
-                                <h3>Benjie Alphonso</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-1.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
+    @if(isset($teamMembers) && $teamMembers->count() > 0)
+        <section class="team-section centred">
+            <div class="pattern-layer" style="background-image: url({{ asset('assets/images/shape/shape-23.png') }});"></div>
+            <div class="fluid-container">
+                <div class="sec-title centred">
+                    <span class="top-text">Meet Our Team</span>
+                    <h2>Dedicated Foundation Officers & Field Coordinators</h2>
                 </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-6.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Manager</span>
-                                <h3>Ivor Herbertson</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-2.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-7.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Coordinator</span>
-                                <h3>Rodha Thelma</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-3.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
+                <div class="five-item-carousel owl-carousel owl-theme owl-nav-none">
+                    @foreach($teamMembers as $member)
+                        <div class="team-block-one">
+                            <div class="inner-box">
+                                <figure class="image-box">
+                                    @if($member->photo_url)
+                                        <img src="{{ $member->photo_url }}" alt="{{ $member->name }}">
+                                    @endif
+                                </figure>
+                                <div class="content-box">
+                                    <div class="info">
+                                        <span class="designation">{{ $member->designation }}</span>
+                                        <h3>{{ $member->name }}</h3>
+                                    </div>
+                                    @if($member->photo_url)
+                                        <figure class="thumb-box"><img src="{{ $member->photo_url }}" alt="{{ $member->name }}"></figure>
+                                    @endif
+                                    <div class="text">
+                                        <p>{{ $member->department }} &bull; {{ $member->present_address }}</p>
+                                    </div>
+                                </div>
+                                <ul class="social-links clearfix">
+                                    <li><a href="tel:{{ $member->phone }}"><i class="fas fa-phone-alt"></i></a></li>
+                                    <li><a href="mailto:{{ $member->email }}"><i class="fas fa-envelope"></i></a></li>
+                                </ul>
                             </div>
                         </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-8.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Valunteer</span>
-                                <h3>Luke Nobert</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-4.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-9.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Partner</span>
-                                <h3>Atulia Satija</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-5.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-5.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Founder</span>
-                                <h3>Benjie Alphonso</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-1.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-6.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Manager</span>
-                                <h3>Ivor Herbertson</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-2.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-7.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Coordinator</span>
-                                <h3>Rodha Thelma</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-3.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-8.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Valunteer</span>
-                                <h3>Luke Nobert</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-4.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-9.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Partner</span>
-                                <h3>Atulia Satija</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-5.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-5.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Founder</span>
-                                <h3>Benjie Alphonso</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-1.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-6.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Manager</span>
-                                <h3>Ivor Herbertson</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-2.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-7.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Coordinator</span>
-                                <h3>Rodha Thelma</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-3.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-8.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Valunteer</span>
-                                <h3>Luke Nobert</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-4.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="team-block-one">
-                    <div class="inner-box">
-                        <figure class="image-box"><img src="{{ asset('assets/images/team/team-9.jpg') }}" alt=""></figure>
-                        <div class="content-box">
-                            <div class="info">
-                                <span class="designation">Partner</span>
-                                <h3>Atulia Satija</h3>
-                            </div>
-                            <figure class="thumb-box"><img src="{{ asset('assets/images/team/team-5.png') }}" alt="">
-                            </figure>
-                            <div class="text">
-                                <p>He rejects pleasures to secure other greater pleasures or else he endures.</p>
-                            </div>
-                        </div>
-                        <ul class="social-links clearfix">
-                            <li><a href="/"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="/"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="/"><i class="fab fa-linkedin-in"></i></a></li>
-                        </ul>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <!-- team-section end -->
 
 

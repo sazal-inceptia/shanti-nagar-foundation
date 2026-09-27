@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="container-fluid my-3">
-        <form id="donorCreateForm" action="{{ route('admin.donors.store') }}" method="POST" autocomplete="off">
+        <form id="donorCreateForm" action="{{ route('admin.donors.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="row">
                 <div class="col-lg-8 col-12">
@@ -114,34 +114,58 @@
                     </div>
                 </div>
 
-                {{-- Right Column: Settings & Submit --}}
+                {{-- Right Column: Image, Settings & Submit --}}
                 <div class="col-lg-4 col-12">
-                    <div class="card table-card">
-                        <div class="card-header table-header">
-                            <div class="table-title">Privacy &amp; Actions</div>
-                        </div>
-                        <div class="card-body custom-form p-3">
-                            <div class="form-check form-switch mb-3">
-                                <input class="form-check-input" type="checkbox" name="is_anonymous" id="is_anonymous"
-                                    value="1" {{ old('is_anonymous') ? 'checked' : '' }} style="cursor: pointer;">
-                                <label class="form-check-label fw-semibold" for="is_anonymous" style="font-size: 13.5px; cursor: pointer;">
-                                    Mark as Anonymous Donor
-                                </label>
-                                <div class="text-muted mt-1" style="font-size: 11px;">
-                                    Name will be masked on public financial disclosures and reports.
+                    <div class="row g-3">
+                        {{-- Donor Photo Card --}}
+                        <div class="col-12">
+                            <div class="card table-card">
+                                <div class="card-header table-header">
+                                    <div class="table-title">Donor Photo / Logo</div>
+                                </div>
+                                <div class="card-body custom-form p-3">
+                                    @include('admin.includes.image-uploader', [
+                                        'name' => 'image',
+                                        'label' => 'Upload Donor Photo',
+                                        'modalTitle' => 'Upload Donor Profile Photo',
+                                        'helpText' => 'JPG, PNG, WebP up to 2MB (Square / Circle recommended)',
+                                        'shape' => 'circle',
+                                        'height' => '150px'
+                                    ])
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="row g-2 pt-2 border-top">
-                                <div class="col-6">
-                                    <button type="submit" class="btn submit-button w-100" style="background-color: #f65024; color: #fff; border-radius: 6px; font-weight: 600; height: 38px;">
-                                        <i class="ri-check-line me-1"></i> Save Donor
-                                    </button>
+                        {{-- Privacy & Actions Card --}}
+                        <div class="col-12">
+                            <div class="card table-card">
+                                <div class="card-header table-header">
+                                    <div class="table-title">Privacy &amp; Actions</div>
                                 </div>
-                                <div class="col-6">
-                                    <a href="{{ route('admin.donors.index') }}" class="btn leave-button w-100" style="background-color: #f1f5f9; color: #334155; border-radius: 6px; font-weight: 600; height: 38px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">
-                                        Cancel
-                                    </a>
+                                <div class="card-body custom-form p-3">
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" name="is_anonymous" id="is_anonymous"
+                                            value="1" {{ old('is_anonymous') ? 'checked' : '' }} style="cursor: pointer;">
+                                        <label class="form-check-label fw-semibold" for="is_anonymous" style="font-size: 13.5px; cursor: pointer;">
+                                            Mark as Anonymous Donor
+                                        </label>
+                                        <div class="text-muted mt-1" style="font-size: 11px;">
+                                            Name will be masked on public financial disclosures and reports.
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-2 pt-2 border-top">
+                                        <div class="col-6">
+                                            <button type="submit" class="btn submit-button w-100" style="background-color: #f65024; color: #fff; border-radius: 6px; font-weight: 600; height: 38px;">
+                                                <i class="ri-check-line me-1"></i> Save Donor
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="{{ route('admin.donors.index') }}" class="btn leave-button w-100" style="background-color: #f1f5f9; color: #334155; border-radius: 6px; font-weight: 600; height: 38px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">
+                                                Cancel
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

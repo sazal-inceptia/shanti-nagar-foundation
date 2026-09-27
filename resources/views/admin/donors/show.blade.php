@@ -152,10 +152,26 @@
             <div class="col-lg-4 col-12">
                 <div class="card table-card mb-3">
                     <div class="card-header table-header">
-                        <div class="table-title">Contribution Summary</div>
+                        <div class="table-title">Donor Profile &amp; Summary</div>
                     </div>
-                    <div class="card-body p-3">
-                        <div class="p-3 rounded mb-3" style="background: #f8fafc; border: 1px solid #e2e8f0;">
+                    <div class="card-body p-3 text-center">
+                        <div class="mb-3">
+                            @if($donor->avatar_url)
+                                <img src="{{ $donor->avatar_url }}" alt="{{ $donor->name }}"
+                                    class="rounded-circle border shadow-sm"
+                                    style="width: 100px; height: 100px; object-fit: cover;">
+                            @else
+                                <div class="rounded-circle border shadow-sm mx-auto d-flex align-items-center justify-content-center bg-light text-primary fw-bold"
+                                    style="width: 100px; height: 100px; font-size: 32px;">
+                                    {{ strtoupper(substr($donor->name, 0, 1)) }}
+                                </div>
+                            @endif
+                            <h5 class="fw-bold mt-2 mb-0 text-dark">{{ $donor->name }}</h5>
+                            @if($donor->city)
+                                <span class="text-muted small">{{ $donor->city }}</span>
+                            @endif
+                        </div>
+                        <div class="p-3 rounded mb-3 text-start" style="background: #f8fafc; border: 1px solid #e2e8f0;">
                             <div class="d-flex justify-content-between mb-2">
                                 <span class="text-muted" style="font-size: 12.5px;">Lifetime Contributed:</span>
                                 <strong class="text-success" style="font-size: 15px;">৳ {{ number_format((float) $donor->total_donation, 2) }}</strong>

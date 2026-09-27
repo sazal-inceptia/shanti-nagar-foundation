@@ -63,6 +63,8 @@
   - [x] Connect `/event-details/{slug}` with dynamic activity overview, field team details, and volunteer registration
   - [x] Refactor all frontend blade templates to strictly eliminate inline styles and migrate all layout, component, and typography styling to `public/assets/css/style.css`
   - [x] Make all homepage counters (Active Volunteers, Beneficiaries Reached, Relief Initiatives, Verified Donors) 100% dynamic from database models via `HomeController@getImpactStats` and animated jQuery countTo triggers
+  - [x] Convert "Our Active Initiatives" to the authentic tabbed 2-column carousel design ("Our Global Causes" layout) with category tabs and navigation controls
+  - [x] Make "Verified Contributors" donor pictures & names 100% dynamic from database records with infinite loop carousel
 - [x] **SEO & Metadata Polish**
   - [x] Add dynamic meta titles, descriptions & OpenGraph tags for individual project pages and main layout
 
@@ -80,6 +82,7 @@
   - [x] Layered Architecture: `app/Http/Controllers/Admin/ProjectController.php`, `app/Services/ProjectService.php`, `app/Http/Requests/Admin/StoreProjectRequest.php`, `app/Http/Requests/Admin/UpdateProjectRequest.php`
 - [x] **Donor & Donation Management (Req #1)**
   - [x] Donor list, profile view & lifetime donation history with Yajra DataTables
+  - [x] Unified interactive image uploader modal with cropper and removal support on Donor create/edit views
   - [x] Add offline/online donation entry with quick-add donor support
   - [x] Automatic sequential receipt generator (`REC-YYYY-001`)
   - [x] Official printable Money Receipt view (`admin/donations/show.blade.php`)

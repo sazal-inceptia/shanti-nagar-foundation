@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('donor_type', ['individual', 'organization'])->default('individual');
             $table->boolean('is_anonymous')->default(false);
             $table->text('notes')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

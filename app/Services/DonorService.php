@@ -4,8 +4,10 @@ namespace App\Services;
 
 use App\Enums\DonorType;
 use App\Models\Donor;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class DonorService
 {
@@ -49,6 +51,11 @@ class DonorService
         return DB::transaction(function () use ($data) {
             $data['is_anonymous'] = ! empty($data['is_anonymous']);
 
+            if (isset($data['image']) && $data['image'] instanceof UploadedFile) {
+                $path = $data['image']->store('uploads/donors', 'public');
+                $data['image'] = 'storage/'.$path;
+            }
+
             return Donor::create($data);
         });
     }
@@ -60,9 +67,29 @@ class DonorService
     {
         return DB::transaction(function () use ($donor, $data) {
             $data['is_anonymous'] = ! empty($data['is_anonymous']);
+
+            if (! empty($data['remove_image'])) {
+                if (! empty($donor->image)) {
+                    $oldPath = str_replace('storage/', '', $donor->image);
+                    if (Storage::disk('public')->exists($oldPath)) {
+                        Storage::disk('public')->delete($oldPath);
+                    }
+                }
+                $data['image'] = null;
+            } elseif (isset($data['image']) && $data['image'] instanceof UploadedFile) {
+                if (! empty($donor->image)) {
+                    $oldPath = str_replace('storage/', '', $donor->image);
+                    if (Storage::disk('public')->exists($oldPath)) {
+                        Storage::disk('public')->delete($oldPath);
+                    }
+                }
+                $path = $data['image']->store('uploads/donors', 'public');
+                $data['image'] = 'storage/'.$path;
+            }
+
             $donor->update($data);
 
-            return $donor;
+            return $donor->fresh();
         });
     }
 
@@ -72,6 +99,13 @@ class DonorService
     public function delete(Donor $donor): bool
     {
         return DB::transaction(function () use ($donor) {
+            if (! empty($donor->image)) {
+                $oldPath = str_replace('storage/', '', $donor->image);
+                if (Storage::disk('public')->exists($oldPath)) {
+                    Storage::disk('public')->delete($oldPath);
+                }
+            }
+
             return (bool) $donor->delete();
         });
     }

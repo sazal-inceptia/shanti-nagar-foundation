@@ -23,7 +23,7 @@
             <div class="content-box">
                 <div class="title">
                     <h6 class="donation-category-badge">
-                        # {{ $project->category ?? 'Relief & Social Cause' }}
+                        # {{ $project->category }}
                     </h6>
                     <h1>{{ $project->name }}</h1>
                 </div>
@@ -66,7 +66,7 @@
                             <li>
                                 <i class="far fa-map-marker-alt"></i>
                                 <h5>Location</h5>
-                                <p title="{{ $project->location ?? 'Shanti Nagar, Dhaka' }}">{{ Str::limit($project->location ?? 'Shanti Nagar, Dhaka', 16) }}</p>
+                                <p title="{{ $project->location }}">{{ Str::limit($project->location, 16) }}</p>
                             </li>
                             <li>
                                 <i class="fas fa-users"></i>
@@ -279,12 +279,14 @@
                                         @foreach($recentDonors as $dn)
                                             <div class="col-md-4 col-sm-6 mb-3">
                                                 <div class="p-3 border rounded bg-white shadow-sm d-flex align-items-center gap-3 donor-card-item">
-                                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold donor-avatar-circle">
-                                                        {{ strtoupper(substr($dn->donor?->name ?? 'A', 0, 1)) }}
-                                                    </div>
+                                                    @if($dn->donor?->avatar_url)
+                                                        <img src="{{ $dn->donor->avatar_url }}"
+                                                             class="rounded-circle object-fit-cover donor-avatar-circle"
+                                                             alt="{{ $dn->donor->name }}">
+                                                    @endif
                                                     <div>
                                                         <h6 class="mb-0 fw-bold text-dark donor-name-text">
-                                                            {{ $dn->donor?->name ?? 'Anonymous Donor' }}</h6>
+                                                            {{ $dn->donor?->name }}</h6>
                                                         <span class="text-success fw-bold donor-amount-text">৳{{ number_format((float) $dn->amount) }}</span>
                                                         <div class="text-muted small donor-date-text">
                                                             {{ \Carbon\Carbon::parse($dn->donation_date)->format('d M, Y') }}</div>

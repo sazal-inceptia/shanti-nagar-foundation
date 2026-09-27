@@ -1,15 +1,15 @@
 @extends('frontend.layouts.app')
 
-@section('title', ($activity->name ?? 'Social Welfare Activity') . ' — Shanti Nagar Foundation')
+@section('title', $activity->name . ' — Shanti Nagar Foundation')
 @section('meta_description', Str::limit($activity->short_description ?: $activity->description, 160))
-@section('meta_image', asset($activity->featured_image ?: 'assets/images/events/events-4.jpg'))
+@section('meta_image', asset($activity->featured_image))
 
 @section('content')
 
 @php
     $eventDate = $activity->start_date ? \Carbon\Carbon::parse($activity->start_date) : now();
     $endDate = $activity->end_date ? \Carbon\Carbon::parse($activity->end_date) : null;
-    $categoryName = $activity->category ?? 'Relief & Social Welfare';
+    $categoryName = $activity->category;
 @endphp
 
 <!-- Page Title -->
@@ -17,12 +17,12 @@
     <div class="auto-container">
         <div class="content-box">
             <div class="title">
-                <h1>{{ $activity->name ?? 'Social Welfare Activity' }}</h1>
+                <h1>{{ $activity->name }}</h1>
             </div>
             <ul class="bread-crumb clearfix">
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('events') }}">Activities & Events</a></li>
-                <li>{{ Str::limit($activity->name ?? 'Activity', 28) }}</li>
+                <li>{{ Str::limit($activity->name, 28) }}</li>
             </ul>
         </div>
     </div>
@@ -34,7 +34,7 @@
     <div class="auto-container">
         <div class="event-details-content">
             <div class="upper-box centred">
-                <h2>{{ $activity->name ?? 'Social Welfare Activity' }}</h2>
+                <h2>{{ $activity->name }}</h2>
                 <ul class="events-info clearfix">
                     <li>
                         <i class="far fa-calendar"></i>
@@ -44,11 +44,15 @@
                         @endif
                     </li>
                     <li><i class="far fa-clock"></i>10:00 AM - 04:00 PM</li>
-                    <li><i class="far fa-map"></i>{{ $activity->location ?? 'Shanti Nagar, Dhaka' }}</li>
-                    <li><i class="fas fa-tag"></i>{{ $categoryName }}</li>
+                    @if($activity->location)
+                        <li><i class="far fa-map"></i>{{ $activity->location }}</li>
+                    @endif
+                    @if($categoryName)
+                        <li><i class="fas fa-tag"></i>{{ $categoryName }}</li>
+                    @endif
                 </ul>
                 <figure class="image-box hero-image-box">
-                    <img src="{{ asset($activity->featured_image ?: 'assets/images/events/events-4.jpg') }}" alt="{{ $activity->name ?? 'Activity' }}">
+                    <img src="{{ asset($activity->featured_image) }}" alt="{{ $activity->name }}">
                 </figure>
             </div>
             
@@ -263,12 +267,12 @@
                                 <div class="events-block-two">
                                     <div class="inner-box">
                                         <div class="post-date"><h3>{{ $otherDate->format('d') }}<span>{{ $otherDate->format('M') }}</span></h3></div>
-                                        <figure class="image-box"><img src="{{ asset($otherAct->featured_image ?: 'assets/images/events/events-4.jpg') }}" alt="{{ $otherAct->name }}"></figure>
+                                        <figure class="image-box"><img src="{{ asset($otherAct->featured_image) }}" alt="{{ $otherAct->name }}"></figure>
                                         <div class="content-box">
-                                            <div class="category"><a href="{{ route('event.details', $otherAct->slug) }}"># {{ $otherAct->category ?? 'Social Welfare' }}</a></div>
+                                            <div class="category"><a href="{{ route('event.details', $otherAct->slug) }}"># {{ $otherAct->category }}</a></div>
                                             <ul class="info clearfix">
                                                 <li><i class="far fa-clock"></i>10.00 AM</li>
-                                                <li><i class="far fa-map"></i>{{ Str::limit($otherAct->location ?? 'Shanti Nagar', 16) }}</li>
+                                                <li><i class="far fa-map"></i>{{ Str::limit($otherAct->location, 16) }}</li>
                                             </ul>
                                             <h3><a href="{{ route('event.details', $otherAct->slug) }}">{{ Str::limit($otherAct->name, 45) }}</a></h3>
                                             <div class="links"><a href="{{ route('event.details', $otherAct->slug) }}">View Details</a></div>

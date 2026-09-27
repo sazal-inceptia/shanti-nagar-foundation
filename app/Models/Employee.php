@@ -39,4 +39,29 @@ class Employee extends Model
     {
         return $this->hasMany(Salary::class);
     }
+
+    /**
+     * Get dynamic photo URL for employee.
+     */
+    public function getPhotoUrlAttribute(): ?string
+    {
+        if (! empty($this->photo)) {
+            if (str_starts_with($this->photo, 'http://') || str_starts_with($this->photo, 'https://')) {
+                return $this->photo;
+            }
+            if (file_exists(public_path($this->photo))) {
+                return asset($this->photo);
+            }
+            if (file_exists(public_path('storage/'.$this->photo))) {
+                return asset('storage/'.$this->photo);
+            }
+            if (str_starts_with($this->photo, 'storage/')) {
+                return asset($this->photo);
+            }
+
+            return asset($this->photo);
+        }
+
+        return null;
+    }
 }

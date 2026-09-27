@@ -52,15 +52,17 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column all {{ $catSlug }}">
                             <div class="portfolio-block-one">
                                 <div class="inner-box">
-                                    <figure class="image"><img src="{{ asset($item->image_path) }}" alt="{{ $item->caption ?: ($item->project->name ?? 'Project Image') }}"></figure>
+                                    <figure class="image"><img src="{{ asset($item->image_path) }}" alt="{{ $item->caption ?: $item->project?->name }}"></figure>
                                     <div class="content-box">
                                         <ul class="links-list clearfix">
-                                            <li><a href="{{ asset($item->image_path) }}" class="lightbox-image" data-fancybox="gallery" data-caption="{{ $item->caption ?: ($item->project->name ?? '') }}"><i class="fas fa-expand-alt"></i></a></li>
+                                            <li><a href="{{ asset($item->image_path) }}" class="lightbox-image" data-fancybox="gallery" data-caption="{{ $item->caption ?: $item->project?->name }}"><i class="fas fa-expand-alt"></i></a></li>
                                             <li><a href="{{ $item->project ? route('donation.details', $item->project->slug) : 'javascript:void(0);' }}" title="View Project Details"><i class="far fa-file-alt"></i></a></li>
                                         </ul>
                                         <div class="text">
-                                            <span>{{ $item->project->category ?? 'Social Welfare' }}</span>
-                                            <h3><a href="{{ $item->project ? route('donation.details', $item->project->slug) : 'javascript:void(0);' }}">{{ $item->project->name ?? ($item->caption ?: 'Field Documentation') }}</a></h3>
+                                            @if($item->project?->category)
+                                                <span>{{ $item->project->category }}</span>
+                                            @endif
+                                            <h3><a href="{{ $item->project ? route('donation.details', $item->project->slug) : 'javascript:void(0);' }}">{{ $item->project?->name ?: $item->caption }}</a></h3>
                                         </div>
                                     </div>
                                 </div>

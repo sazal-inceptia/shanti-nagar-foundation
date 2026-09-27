@@ -8,6 +8,7 @@ use App\Http\Requests\StoreVolunteerRequest;
 use App\Models\ContactMessage;
 use App\Models\Donation;
 use App\Models\Donor;
+use App\Models\Employee;
 use App\Models\Expense;
 use App\Models\Project;
 use App\Models\ProjectImage;
@@ -99,24 +100,39 @@ class HomeController extends Controller
         $recentDonations = Donation::where('status', 'completed')
             ->with(['donor', 'project'])
             ->latest('donation_date')
-            ->take(6)
+            ->take(10)
             ->get();
+
+        if ($recentDonations->isEmpty()) {
+            $recentDonations = Donation::with(['donor', 'project'])
+                ->latest()
+                ->take(10)
+                ->get();
+        }
 
         $recentVolunteers = Volunteer::where('status', 'approved')->latest()->take(4)->get();
         if ($recentVolunteers->isEmpty()) {
             $recentVolunteers = Volunteer::latest()->take(4)->get();
         }
 
+        $projectCategories = Project::where('is_published', true)
+            ->pluck('category')
+            ->filter()
+            ->unique()
+            ->values()
+            ->take(4);
+
         $stats = $this->getImpactStats();
 
-        return view('frontend.index', compact('featuredProjects', 'urgentProject', 'upcomingActivities', 'recentDonations', 'recentVolunteers', 'stats'));
+        return view('frontend.index', compact('featuredProjects', 'urgentProject', 'upcomingActivities', 'recentDonations', 'recentVolunteers', 'projectCategories', 'stats'));
     }
 
     public function about(): View
     {
         $stats = $this->getImpactStats();
+        $teamMembers = Employee::where('employment_status', 'active')->get();
 
-        return view('frontend.about', compact('stats'));
+        return view('frontend.about', compact('stats', 'teamMembers'));
     }
 
     public function donations(): View

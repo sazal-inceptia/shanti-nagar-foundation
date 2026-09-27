@@ -67,59 +67,6 @@
                 </div>
             </div>
         </div>
-        <div class="banner-thumbs-carousel">
-            <div class="pattern-layer banner-shape-10"></div>
-            <div class="swiper-container banner-thumbs">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="single-item">
-                            <div class="icon-box">
-                                <div class="icon"><i class="icon-childrens-book"></i></div>
-                                <span>01</span>
-                            </div>
-                            <div class="text">
-                                <span class="top-text">Relief Program</span>
-                                <h3>Orphan Care &<br />Education Kits</h3>
-                                <a href="{{ route('donations') }}">View Details</a>
-                            </div>
-                            <figure class="image-box"><img src="{{ asset('assets/images/banner/banner-img-1.png') }}" alt="Orphan Care"></figure>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="single-item">
-                            <div class="icon-box">
-                                <div class="icon"><i class="icon-first-aid-kit"></i></div>
-                                <span>02</span>
-                            </div>
-                            <div class="text">
-                                <span class="top-text">Medical Wing</span>
-                                <h3>Hospital Support<br />& Patient Aid</h3>
-                                <a href="{{ route('donations') }}">View Details</a>
-                            </div>
-                            <figure class="image-box"><img src="{{ asset('assets/images/banner/banner-img-2.png') }}" alt="Hospital Support"></figure>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="single-item">
-                            <div class="icon-box">
-                                <div class="icon"><i class="icon-save"></i></div>
-                                <span>03</span>
-                            </div>
-                            <div class="text">
-                                <span class="top-text">Disaster Relief</span>
-                                <h3>Winter Warmth &<br />Emergency Food</h3>
-                                <a href="{{ route('donations') }}">View Details</a>
-                            </div>
-                            <figure class="image-box"><img src="{{ asset('assets/images/banner/banner-img-3.png') }}" alt="Emergency Relief"></figure>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-nav-button">
-                    <div class="swiper-button-next"><i class="fas fa-arrow-left"></i></div>
-                    <div class="swiper-button-prev"><i class="fas fa-arrow-right"></i></div>
-                </div>
-            </div>
-        </div>
     </section>
     <!-- banner-section end -->
 
@@ -189,13 +136,10 @@
     <!-- urgent-case-section -->
     @if(isset($urgentProject) && $urgentProject)
         @php
-            $uTarget = $urgentProject->estimated_cost > 0 ? (float) $urgentProject->estimated_cost : 100000;
-            $uRaised = $urgentProject->total_donations_raised > 0 ? (float) $urgentProject->total_donations_raised : 45000;
-            $uPercent = min(100, round(($uRaised / $uTarget) * 100));
+            $uTarget = (float) $urgentProject->estimated_cost;
+            $uRaised = (float) $urgentProject->total_donations_raised;
+            $uPercent = $uTarget > 0 ? min(100, round(($uRaised / $uTarget) * 100)) : 0;
             $uSupporters = $urgentProject->donations->where('status', 'completed')->count();
-            if ($uSupporters <= 0) {
-                $uSupporters = max(8, (int) round($uRaised / 2500));
-            }
         @endphp
         <section class="urgent-case-section banner-bg-1">
             <div class="outer-container">
@@ -264,7 +208,7 @@
                                         <li>
                                             <i class="far fa-map-marker-alt"></i>
                                             <h5>Location</h5>
-                                            <p>{{ Str::limit($urgentProject->location ?? 'Shanti Nagar, Dhaka', 16) }}</p>
+                                            <p>{{ Str::limit($urgentProject->location, 16) }}</p>
                                         </li>
                                         <li>
                                             <i class="fas fa-users"></i>
@@ -286,71 +230,158 @@
     @endif
     <!-- urgent-case-section end -->
 
-    <!-- case-section (Featured Projects) -->
+    <!-- case-section -->
     @if(isset($featuredProjects) && $featuredProjects->count() > 0)
-        <section class="case-section sec-pad">
+        <section class="case-section">
             <div class="auto-container">
-                <div class="sec-title centred mb-5">
-                    <span class="top-text">Our Active Initiatives</span>
-                    <h2>Spread Hope With Your Generous Support</h2>
-                    <p class="text-muted">Explore ongoing healthcare, orphan welfare, tube-well, and seasonal relief drives.</p>
-                </div>
-
-                <div class="row clearfix">
-                    @foreach($featuredProjects as $project)
-                        @php
-                            $target = $project->estimated_cost > 0 ? (float) $project->estimated_cost : 100000;
-                            $raised = $project->total_donations_raised > 0 ? (float) $project->total_donations_raised : 45000;
-                            $percent = min(100, round(($raised / $target) * 100));
-                            $supporters = $project->donations->where('status', 'completed')->count();
-                            if ($supporters <= 0) {
-                                $supporters = max(5, (int) round($raised / 3000));
-                            }
-                        @endphp
-                        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
-                            <div class="case-block-one h-100">
-                                <div class="inner-box border rounded bg-white shadow-sm h-100 d-flex flex-column">
-                                    <figure class="image-box position-relative">
-                                        <img src="{{ asset($project->featured_image ?: 'assets/images/case/case-1.jpg') }}" alt="{{ $project->name }}">
-                                    </figure>
-                                    <div class="lower-content p-4 flex-grow-1 d-flex flex-column justify-content-between">
-                                        <div class="donate-amount clearfix mb-3">
-                                            <div class="amount-box pull-left">
-                                                <div class="icon-box"><i class="fas fa-hand-holding-heart"></i></div>
-                                                <h5>Raised Fund</h5>
-                                                <div class="price">৳{{ number_format($raised) }} <span>/ ৳{{ number_format($target) }}</span></div>
-                                            </div>
-                                            <div class="percentage-box pull-right text-end">
-                                                <div class="count-text fw-bold text-success">{{ $percent }}%</div>
-                                            </div>
-                                        </div>
-                                        <div class="progress mb-3 progress-bar-wrapper">
-                                            <div class="progress-bar bg-success progress-bar-fill" role="progressbar" data-width="{{ $percent }}%" aria-valuenow="{{ $percent }}" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                        <div class="inner">
-                                            <div class="text">
-                                                <div class="category mb-1">
-                                                    <a href="{{ route('donation.details', $project->slug) }}" class="text-primary fw-semibold small"># {{ $project->category ?? 'Relief & Care' }}</a>
-                                                </div>
-                                                <h3 class="fw-bold mb-2">
-                                                    <a href="{{ route('donation.details', $project->slug) }}">{{ Str::limit($project->name, 45) }}</a>
-                                                </h3>
-                                                <p class="text-muted small mb-3">{{ Str::limit($project->short_description ?: $project->description, 90) }}</p>
-                                            </div>
-                                            <div class="d-flex justify-content-between align-items-center pt-2 border-top">
-                                                <span class="small text-muted"><i class="fas fa-users me-1 text-primary"></i> {{ $supporters }}+ Donors</span>
-                                                <a href="{{ route('donation.details', $project->slug) }}" class="theme-btn btn-one btn-sm px-3 py-1">Donate Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                <div class="tabs-box">
+                    <div class="row clearfix">
+                        <div class="col-lg-4 col-md-12 col-sm-12 title-column">
+                            <div class="title-inner text-right">
+                                <div class="sec-title">
+                                    <span class="top-text">Our Projects</span>
+                                    <h2>Spread Joy with a Donation</h2>
+                                </div>
+                                <div class="tab-btn-box">
+                                    <ul class="tab-btns tab-buttons clearfix">
+                                        <li class="tab-btn active-btn" data-tab="#tab-1">
+                                            <h5>All Categories</h5>
+                                            <div class="icon"><i class="fal fa-angle-left"></i></div>
+                                        </li>
+                                        @if(isset($projectCategories))
+                                            @foreach($projectCategories as $idx => $cat)
+                                                <li class="tab-btn" data-tab="#tab-{{ $idx + 2 }}">
+                                                    <h5>{{ $cat }}</h5>
+                                                    <div class="icon"><i class="fal fa-angle-left"></i></div>
+                                                </li>
+                                            @endforeach
+                                        @endif
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                        <div class="col-lg-8 col-md-12 col-sm-12 inner-column">
+                            <div class="tabs-content">
+                                <div class="tab active-tab" id="tab-1">
+                                    <div class="three-item-carousel owl-carousel owl-theme owl-dots-none">
+                                        @foreach($featuredProjects as $project)
+                                            @php
+                                                $target = (float) $project->estimated_cost;
+                                                $raised = (float) $project->total_donations_raised;
+                                                $percent = $target > 0 ? min(100, round(($raised / $target) * 100)) : 0;
+                                                $supporters = $project->donations->where('status', 'completed')->count();
+                                                $daysLeft = $project->days_left;
+                                            @endphp
+                                            <div class="case-block-one">
+                                                <div class="inner-box">
+                                                    <figure class="image-box"><img src="{{ asset($project->featured_image) }}" alt="{{ $project->name }}"></figure>
+                                                    <div class="lower-content">
+                                                        <div class="shape" style="background-image: url('{{ asset('assets/images/shape/shape-11.png') }}');"></div>
+                                                        <div class="donate-amount clearfix">
+                                                            <div class="amount-box">
+                                                                <div class="icon-box"><i class="fas fa-dollar-sign"></i></div>
+                                                                <h5>Charity Raised</h5>
+                                                                <div class="price">৳{{ number_format($raised) }} <span>/ ৳{{ number_format($target) }}</span></div>
+                                                            </div>
+                                                            <div class="percentage-box">
+                                                                <div class="bar">
+                                                                    <div class="bar-inner count-bar" data-percent="{{ $percent }}%"></div>
+                                                                </div>
+                                                                <div class="count-text">{{ $percent }}%</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="inner">
+                                                            <div class="text">
+                                                                <div class="category"><a href="{{ route('donation.details', $project->slug) }}"># {{ $project->category }}</a></div>
+                                                                <h3><a href="{{ route('donation.details', $project->slug) }}">{{ Str::limit($project->name, 40) }}</a></h3>
+                                                                <p>{{ Str::limit($project->short_description ?: $project->description, 75) }}</p>
+                                                            </div>
+                                                            <ul class="info-box clearfix">
+                                                                <li>
+                                                                    <i class="far fa-calendar-alt"></i>
+                                                                    <h5>Days</h5>
+                                                                    <p>{{ $daysLeft !== null ? $daysLeft . ' Days Left' : 'Ongoing' }}</p>
+                                                                </li>
+                                                                <li>
+                                                                    <i class="fas fa-users"></i>
+                                                                    <h5>{{ $supporters }}+</h5>
+                                                                    <p>Supporters</p>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
 
-                <div class="text-center mt-4">
-                    <a href="{{ route('donations') }}" class="theme-btn btn-one">View All Projects & Causes</a>
+                                @if(isset($projectCategories))
+                                    @foreach($projectCategories as $idx => $cat)
+                                        @php
+                                            $catProjects = $featuredProjects->where('category', $cat);
+                                            if ($catProjects->isEmpty()) {
+                                                $catProjects = $featuredProjects;
+                                            }
+                                        @endphp
+                                        <div class="tab" id="tab-{{ $idx + 2 }}">
+                                            <div class="three-item-carousel owl-carousel owl-theme owl-dots-none">
+                                                @foreach($catProjects as $project)
+                                                    @php
+                                                        $target = (float) $project->estimated_cost;
+                                                        $raised = (float) $project->total_donations_raised;
+                                                        $percent = $target > 0 ? min(100, round(($raised / $target) * 100)) : 0;
+                                                        $supporters = $project->donations->where('status', 'completed')->count();
+                                                        $daysLeft = $project->days_left;
+                                                    @endphp
+                                                    <div class="case-block-one">
+                                                        <div class="inner-box">
+                                                            <figure class="image-box"><img src="{{ asset($project->featured_image) }}" alt="{{ $project->name }}"></figure>
+                                                            <div class="lower-content">
+                                                                <div class="shape" style="background-image: url('{{ asset('assets/images/shape/shape-11.png') }}');"></div>
+                                                                <div class="donate-amount clearfix">
+                                                                    <div class="amount-box">
+                                                                        <div class="icon-box"><i class="fas fa-dollar-sign"></i></div>
+                                                                        <h5>Charity Raised</h5>
+                                                                        <div class="price">৳{{ number_format($raised) }} <span>/ ৳{{ number_format($target) }}</span></div>
+                                                                    </div>
+                                                                    <div class="percentage-box">
+                                                                        <div class="bar">
+                                                                            <div class="bar-inner count-bar" data-percent="{{ $percent }}%"></div>
+                                                                        </div>
+                                                                        <div class="count-text">{{ $percent }}%</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="inner">
+                                                                    <div class="text">
+                                                                        <div class="category"><a href="{{ route('donation.details', $project->slug) }}"># {{ $project->category }}</a></div>
+                                                                        <h3><a href="{{ route('donation.details', $project->slug) }}">{{ Str::limit($project->name, 40) }}</a></h3>
+                                                                        <p>{{ Str::limit($project->short_description ?: $project->description, 75) }}</p>
+                                                                    </div>
+                                                                    <ul class="info-box clearfix">
+                                                                        <li>
+                                                                            <i class="far fa-calendar-alt"></i>
+                                                                            <h5>Days</h5>
+                                                                            <p>{{ $daysLeft !== null ? $daysLeft . ' Days Left' : 'Ongoing' }}</p>
+                                                                        </li>
+                                                                        <li>
+                                                                            <i class="fas fa-users"></i>
+                                                                            <h5>{{ $supporters }}+</h5>
+                                                                            <p>Supporters</p>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -373,12 +404,18 @@
                         <div class="single-item-carousel owl-carousel owl-theme owl-dots-none">
                             @foreach($recentDonations as $rd)
                                 <div class="single-item">
-                                    <div class="donor-circle-badge">
-                                        {{ strtoupper(substr($rd->donor?->name ?? 'D', 0, 1)) }}
-                                    </div>
+                                    <figure class="image-box">
+                                        @if($rd->donor?->avatar_url)
+                                            <img src="{{ $rd->donor->avatar_url }}" alt="{{ $rd->donor->name }}">
+                                        @endif
+                                    </figure>
                                     <div class="text">
-                                        <h3>{{ $rd->donor?->name ?? 'Anonymous Supporter' }}, <span>{{ $rd->donor?->address ?? 'Dhaka, Bangladesh' }}</span></h3>
-                                        <h6>Contributed ৳{{ number_format((float) $rd->amount) }} for {{ Str::limit($rd->project?->name ?? 'General Relief Fund', 30) }}</h6>
+                                        <h3>{{ $rd->donor?->is_anonymous ? 'Well-wisher (Anonymous)' : $rd->donor?->name }}@if($rd->donor?->city || $rd->donor?->address), <span>{{ $rd->donor->city ?: $rd->donor->address }}</span>@endif</h3>
+                                        @if($rd->project)
+                                            <h6>Contributed ৳{{ number_format((float) $rd->amount) }} for {{ $rd->project->name }}</h6>
+                                        @else
+                                            <h6>Contributed ৳{{ number_format((float) $rd->amount) }}</h6>
+                                        @endif
                                     </div>
                                 </div>
                             @endforeach
@@ -537,8 +574,8 @@
                             <div class="content_block_2">
                                 <div class="content-box">
                                     <div class="sec-title light">
-                                        <span class="top-text">Field Drives & Actions</span>
-                                        <h2>Participate in Our Community Operations</h2>
+                                        <span class="top-text">Our Activities</span>
+                                        <h2>Participate in Our Community Activities</h2>
                                     </div>
                                     <div class="text">
                                         <p>Join our on-ground distribution camps and verification teams as a volunteer or observer across Dhaka and surrounding districts.</p>
@@ -562,13 +599,17 @@
                                         <div class="inner-box">
                                             <div class="shape event-shape-20"></div>
                                             <figure class="image-box">
-                                                <img src="{{ asset($act->featured_image ?: 'assets/images/events/events-1.jpg') }}" alt="{{ $act->name }}">
+                                                @if($act->featured_image)
+                                                    <img src="{{ asset($act->featured_image) }}" alt="{{ $act->name }}">
+                                                @endif
                                                 <h3>{{ $actDate->format('d') }}<span>{{ $actDate->format('M') }}</span></h3>
                                             </figure>
                                             <div class="inner">
                                                 <ul class="info clearfix">
                                                     <li><i class="far fa-clock"></i>10.00 AM</li>
-                                                    <li><i class="far fa-map"></i>{{ Str::limit($act->location ?? 'Shanti Nagar', 16) }}</li>
+                                                    @if($act->location)
+                                                        <li><i class="far fa-map"></i>{{ Str::limit($act->location, 16) }}</li>
+                                                    @endif
                                                 </ul>
                                                 <h3><a href="{{ route('event.details', $act->slug) }}">{{ Str::limit($act->name, 45) }}</a></h3>
                                                 <div class="links"><a href="{{ route('event.details', $act->slug) }}">Join & View Details</a></div>
@@ -590,7 +631,7 @@
         <div class="pattern-layer team-shape-23"></div>
         <div class="auto-container">
             <div class="sec-title centred">
-                <span class="top-text">Volunteer Network</span>
+                <span class="top-text">Volunteer Activities</span>
                 <h2>Dedicated Field Coordinators & Volunteers</h2>
                 <p>The youth and community members driving our humanitarian logistics and distribution on the ground.</p>
             </div>
@@ -645,6 +686,26 @@
         $('.fill-bar-percent').each(function() {
             var height = $(this).data('height');
             $(this).css('height', height);
+        });
+
+        // Fill count bars
+        function updateCountBars() {
+            $('.case-section .count-bar').each(function() {
+                var percent = $(this).attr('data-percent') || $(this).data('percent');
+                if (percent) {
+                    $(this).css('width', percent).addClass('counted');
+                }
+            });
+        }
+        updateCountBars();
+
+        // Case section tab click refresh
+        $('.case-section .tab-btn').on('click', function() {
+            var targetTab = $(this).attr('data-tab');
+            setTimeout(function() {
+                $(targetTab).find('.three-item-carousel').trigger('refresh.owl.carousel');
+                updateCountBars();
+            }, 150);
         });
     });
 </script>

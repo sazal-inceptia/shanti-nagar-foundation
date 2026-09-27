@@ -12,6 +12,7 @@ class DonorSeeder extends Seeder
         $donors = [
             [
                 'name' => 'Alhaj Noor Mohammad',
+                'image' => 'assets/images/resource/thumb-1.png',
                 'email' => 'noor.mohammad@gmail.com',
                 'phone' => '+8801711223344',
                 'address' => 'House 22, Road 5, Shanti Nagar',
@@ -23,6 +24,7 @@ class DonorSeeder extends Seeder
             ],
             [
                 'name' => 'Engr. Mahbubur Rahman',
+                'image' => 'assets/images/resource/thumb-2.png',
                 'email' => 'mahbub.engr@yahoo.com',
                 'phone' => '+8801819887766',
                 'address' => 'Flat 4B, Shanti Nagar Officers Quarter',
@@ -34,6 +36,7 @@ class DonorSeeder extends Seeder
             ],
             [
                 'name' => 'Dr. Farhana Yasmin',
+                'image' => 'assets/images/resource/thumb-3.png',
                 'email' => 'dr.farhana@medicare.com.bd',
                 'phone' => '+8801912345678',
                 'address' => 'Kakrail VIP Road',
@@ -45,6 +48,7 @@ class DonorSeeder extends Seeder
             ],
             [
                 'name' => 'Santi Nagar Business Welfare Trust',
+                'image' => 'assets/images/resource/thumb-4.png',
                 'email' => 'trust@shantinagarbusiness.org',
                 'phone' => '+88029345678',
                 'address' => 'Shanti Nagar Plaza, Level 3',
@@ -56,6 +60,7 @@ class DonorSeeder extends Seeder
             ],
             [
                 'name' => 'Tariqul Islam (Expatriate, UK)',
+                'image' => 'assets/images/resource/thumb-5.png',
                 'email' => 'tariqul.london@gmail.com',
                 'phone' => '+447911123456',
                 'address' => 'London, UK (Origin: Shanti Nagar)',
@@ -67,6 +72,7 @@ class DonorSeeder extends Seeder
             ],
             [
                 'name' => 'Well-wisher (Anonymous)',
+                'image' => null,
                 'email' => null,
                 'phone' => null,
                 'address' => 'Dhaka, Bangladesh',

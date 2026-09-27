@@ -35,18 +35,22 @@ class DonorController extends Controller
                     ->addIndexColumn()
                     ->addColumn('donor_info', function ($row) {
                         $showUrl = route('admin.donors.show', $row->id);
+                        $avatarUrl = $row->avatar_url;
                         $phoneHtml = $row->phone ? '<span class="text-muted" style="font-size: 11.5px;"><i class="ri-phone-line text-success me-1"></i>'.e($row->phone).'</span>' : '';
                         $emailHtml = $row->email ? '<span class="text-muted ms-2" style="font-size: 11.5px;"><i class="ri-mail-line text-primary me-1"></i>'.e($row->email).'</span>' : '';
                         $anonymousBadge = $row->is_anonymous ? '<span class="badge bg-secondary ms-1" style="font-size: 10px;">Anonymous</span>' : '';
 
-                        return '<div class="d-flex flex-column">
-                            <div class="d-flex align-items-center">
-                                <a href="'.e($showUrl).'" class="fw-bold text-dark text-decoration-none table-title-link" style="font-size: 13.5px;">'.e($row->name).'</a>
-                                '.$anonymousBadge.'
-                            </div>
-                            <div class="d-flex align-items-center mt-1 flex-wrap">
-                                '.$phoneHtml.'
-                                '.$emailHtml.'
+                        return '<div class="d-flex align-items-center">
+                            <img src="'.e($avatarUrl).'" alt="'.e($row->name).'" class="rounded-circle me-2 border" style="width: 36px; height: 36px; object-fit: cover; flex-shrink: 0;">
+                            <div class="d-flex flex-column">
+                                <div class="d-flex align-items-center">
+                                    <a href="'.e($showUrl).'" class="fw-bold text-dark text-decoration-none table-title-link" style="font-size: 13.5px;">'.e($row->name).'</a>
+                                    '.$anonymousBadge.'
+                                </div>
+                                <div class="d-flex align-items-center mt-1 flex-wrap">
+                                    '.$phoneHtml.'
+                                    '.$emailHtml.'
+                                </div>
                             </div>
                         </div>';
                     })

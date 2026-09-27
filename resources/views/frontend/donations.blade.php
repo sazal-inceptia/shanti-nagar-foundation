@@ -26,17 +26,17 @@
                 <div class="row clearfix">
                     @forelse($projects as $project)
                     @php
-                        $target = $project->estimated_cost > 0 ? $project->estimated_cost : 100000;
-                        $raised = $project->total_donations_raised > 0 ? $project->total_donations_raised : ($project->total_expense > 0 ? $project->total_expense : 45000);
-                        $percent = min(100, round(($raised / $target) * 100));
+                        $target = (float) $project->estimated_cost;
+                        $raised = (float) $project->total_donations_raised;
+                        $percent = $target > 0 ? min(100, round(($raised / $target) * 100)) : 0;
                     @endphp
                     <div class="col-lg-6 col-md-12 col-sm-12 case-block">
                         <div class="case-block-three">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="{{ asset($project->featured_image ?: 'assets/images/case/case-7.jpg') }}" alt="{{ $project->name }}"></figure>
+                                    <figure class="image"><img src="{{ asset($project->featured_image) }}" alt="{{ $project->name }}"></figure>
                                     <div class="text">
-                                        <div class="category"><a href="{{ route('donation.details', $project->slug) }}"># {{ $project->category ?? 'Social Welfare' }}</a></div>
+                                        <div class="category"><a href="{{ route('donation.details', $project->slug) }}"># {{ $project->category }}</a></div>
                                         <h3><a href="{{ route('donation.details', $project->slug) }}">{{ $project->name }}</a></h3>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                         <li>
                                             <i class="far fa-map-marker-alt"></i>
                                             <h5>Location</h5>
-                                            <p>{{ Str::limit($project->location ?? 'Shanti Nagar', 16) }}</p>
+                                            <p>{{ Str::limit($project->location, 16) }}</p>
                                         </li>
                                         <li>
                                             <i class="fas fa-tasks"></i>
