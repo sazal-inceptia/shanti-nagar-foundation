@@ -36,8 +36,8 @@
                                 <div class="image-box">
                                     <figure class="image"><img src="{{ asset($project->featured_image ?: 'assets/images/case/case-7.jpg') }}" alt="{{ $project->name }}"></figure>
                                     <div class="text">
-                                        <div class="category"><a href="/donation-details/{{ $project->slug }}"># {{ $project->category ?? 'Social Welfare' }}</a></div>
-                                        <h3><a href="/donation-details/{{ $project->slug }}">{{ $project->name }}</a></h3>
+                                        <div class="category"><a href="{{ route('donation.details', $project->slug) }}"># {{ $project->category ?? 'Social Welfare' }}</a></div>
+                                        <h3><a href="{{ route('donation.details', $project->slug) }}">{{ $project->name }}</a></h3>
                                     </div>
                                 </div>
                                 <div class="lower-content">
@@ -56,21 +56,21 @@
                                             <div class="count-text">{{ $percent }}%</div>
                                         </div>
                                         <div class="btn-box">
-                                            <button class="donate-box-btn">Donate Now</button>
+                                            <button type="button" class="donate-box-btn" onclick="if(document.querySelector('#donate-popup select[name=\'project_id\']')){ document.querySelector('#donate-popup select[name=\'project_id\']').value = '{{ $project->id }}'; if(window.jQuery && $.fn.niceSelect){ $('#donate-popup select[name=\'project_id\']').niceSelect('update'); } }">Donate Now</button>
                                         </div>
                                     </div>
                                     <ul class="info-box clearfix">
                                         <li>
                                             <i class="far fa-map-marker-alt"></i>
                                             <h5>Location</h5>
-                                            <p>{{ Str::limit($project->location ?? 'Shanti Nagar', 18) }}</p>
+                                            <p>{{ Str::limit($project->location ?? 'Shanti Nagar', 16) }}</p>
                                         </li>
                                         <li>
                                             <i class="fas fa-tasks"></i>
                                             <h5>Status</h5>
                                             <p>{{ ucfirst(str_replace('_', ' ', $project->status)) }}</p>
                                         </li>
-                                        <li class="share">
+                                        <li>
                                             <i class="fas fa-calendar-alt"></i>
                                             <h5>Date</h5>
                                             <p>{{ $project->start_date ? \Carbon\Carbon::parse($project->start_date)->format('M Y') : 'Active' }}</p>
@@ -81,13 +81,13 @@
                         </div>
                     </div>
                     @empty
-                    <div class="col-12 text-center">
-                        <p>No donation projects available at this moment.</p>
+                    <div class="col-12 text-center py-5">
+                        <p class="text-muted">No donation projects available at this moment.</p>
                     </div>
                     @endforelse
                 </div>
                 <div class="pagination-wrapper centred" style="margin-top: 30px;">
-                    {{ $projects->links() }}
+                    {{ $projects->links('vendor.pagination.custom') }}
                 </div>
             </div>
         </section>

@@ -10,7 +10,7 @@
                         <h1>Upcoming Events & Activities</h1>
                     </div>
                     <ul class="bread-crumb clearfix">
-                        <li><a href="/">Home</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
                         <li>Events</li>
                         <li>Community Outreach & Relief Drives</li>
                     </ul>
@@ -35,25 +35,25 @@
                                 <div class="post-date"><h3>{{ $eventDate->format('d') }}<span>{{ $eventDate->format('M') }}</span></h3></div>
                                 <figure class="image-box"><img src="{{ asset($activity->featured_image ?: 'assets/images/events/events-4.jpg') }}" alt="{{ $activity->name }}"></figure>
                                 <div class="content-box">
-                                    <div class="category"><a href="/event-details/{{ $activity->slug }}"># {{ $categoryName }}</a></div>
+                                    <div class="category"><a href="{{ route('event.details', $activity->slug) }}"># {{ $categoryName }}</a></div>
                                     <ul class="info clearfix">
-                                        <li><i class="far fa-clock"></i>10.00 am</li>
+                                        <li><i class="far fa-clock"></i>10.00 AM</li>
                                         <li><i class="far fa-map"></i>{{ Str::limit($activity->location ?? 'Shanti Nagar', 16) }}</li>
                                     </ul>
-                                    <h3><a href="/event-details/{{ $activity->slug }}">{{ $activity->name }}</a></h3>
-                                    <div class="links"><a href="/event-details/{{ $activity->slug }}">View Details</a></div>
+                                    <h3><a href="{{ route('event.details', $activity->slug) }}">{{ $activity->name }}</a></h3>
+                                    <div class="links"><a href="{{ route('event.details', $activity->slug) }}">View Details</a></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     @empty
-                    <div class="col-12 text-center">
-                        <p>No active activities found at the moment.</p>
+                    <div class="col-12 text-center py-5">
+                        <p class="text-muted">No active activities or events found at the moment.</p>
                     </div>
                     @endforelse
                 </div>
                 <div class="pagination-wrapper centred" style="margin-top: 30px;">
-                    {{ $activities->links() }}
+                    {{ $activities->links('vendor.pagination.custom') }}
                 </div>
             </div>
         </section>

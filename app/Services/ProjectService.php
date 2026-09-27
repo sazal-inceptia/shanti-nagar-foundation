@@ -3,9 +3,6 @@
 namespace App\Services;
 
 use App\Models\Project;
-use App\Models\ProjectImage;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -37,11 +34,11 @@ class ProjectService
     {
         $query = Project::with(['images', 'donations', 'expenses'])->latest();
 
-        if (!empty($filters['category'])) {
+        if (! empty($filters['category'])) {
             $query->where('category', $filters['category']);
         }
 
-        if (!empty($filters['status'])) {
+        if (! empty($filters['status'])) {
             $query->where('status', $filters['status']);
         }
 
@@ -53,12 +50,12 @@ class ProjectService
             $query->where('is_published', (bool) $filters['is_published']);
         }
 
-        if (!empty($filters['search'])) {
+        if (! empty($filters['search'])) {
             $search = $filters['search'];
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('location', 'like', "%{$search}%")
-                  ->orWhere('category', 'like', "%{$search}%");
+                    ->orWhere('location', 'like', "%{$search}%")
+                    ->orWhere('category', 'like', "%{$search}%");
             });
         }
 
@@ -71,8 +68,8 @@ class ProjectService
     public function store(array $data, ?UploadedFile $featuredImage = null, array $galleryFiles = []): Project
     {
         return DB::transaction(function () use ($data, $featuredImage, $galleryFiles) {
-            $slug = !empty($data['slug']) ? Str::slug($data['slug']) : Str::slug($data['name']);
-            
+            $slug = ! empty($data['slug']) ? Str::slug($data['slug']) : Str::slug($data['name']);
+
             // Ensure unique slug
             $originalSlug = $slug;
             $count = 1;
@@ -87,13 +84,13 @@ class ProjectService
                 $data['featured_image'] = $this->uploadFile($featuredImage, 'assets/images/projects');
             }
 
-            $data['is_featured'] = !empty($data['is_featured']);
-            $data['is_published'] = isset($data['is_published']) ? (bool)$data['is_published'] : true;
+            $data['is_featured'] = ! empty($data['is_featured']);
+            $data['is_published'] = isset($data['is_published']) ? (bool) $data['is_published'] : true;
 
             $project = Project::create($data);
 
             // Handle multi-image gallery upload
-            if (!empty($galleryFiles)) {
+            if (! empty($galleryFiles)) {
                 $this->uploadGallery($project, $galleryFiles);
             }
 
@@ -107,9 +104,9 @@ class ProjectService
     public function update(Project $project, array $data, ?UploadedFile $featuredImage = null, array $galleryFiles = []): Project
     {
         return DB::transaction(function () use ($project, $data, $featuredImage, $galleryFiles) {
-            if (!empty($data['name']) && empty($data['slug'])) {
+            if (! empty($data['name']) && empty($data['slug'])) {
                 $data['slug'] = Str::slug($data['name']);
-            } elseif (!empty($data['slug'])) {
+            } elseif (! empty($data['slug'])) {
                 $data['slug'] = Str::slug($data['slug']);
             }
 
@@ -121,13 +118,13 @@ class ProjectService
                 $data['featured_image'] = $this->uploadFile($featuredImage, 'assets/images/projects');
             }
 
-            $data['is_featured'] = !empty($data['is_featured']);
-            $data['is_published'] = isset($data['is_published']) ? (bool)$data['is_published'] : false;
+            $data['is_featured'] = ! empty($data['is_featured']);
+            $data['is_published'] = isset($data['is_published']) ? (bool) $data['is_published'] : false;
 
             $project->update($data);
 
             // Upload additional gallery images if present
-            if (!empty($galleryFiles)) {
+            if (! empty($galleryFiles)) {
                 $this->uploadGallery($project, $galleryFiles);
             }
 
@@ -152,9 +149,11 @@ class ProjectService
     public function toggleStatus(Project $project, string $field): bool
     {
         if (in_array($field, ['is_featured', 'is_published'])) {
-            $project->$field = !$project->$field;
+            $project->$field = ! $project->$field;
+
             return $project->save();
         }
+
         return false;
     }
 
@@ -164,14 +163,14 @@ class ProjectService
     protected function uploadFile(UploadedFile $file, string $directory): string
     {
         $destinationPath = public_path($directory);
-        if (!File::isDirectory($destinationPath)) {
+        if (! File::isDirectory($destinationPath)) {
             File::makeDirectory($destinationPath, 0755, true, true);
         }
 
-        $filename = time() . '_' . Str::random(8) . '.' . $file->getClientOriginalExtension();
+        $filename = time().'_'.Str::random(8).'.'.$file->getClientOriginalExtension();
         $file->move($destinationPath, $filename);
 
-        return $directory . '/' . $filename;
+        return $directory.'/'.$filename;
     }
 
     /**
@@ -187,7 +186,7 @@ class ProjectService
                 $highestSort++;
                 $project->images()->create([
                     'image_path' => $path,
-                    'caption'    => $project->name,
+                    'caption' => $project->name,
                     'sort_order' => $highestSort,
                 ]);
             }

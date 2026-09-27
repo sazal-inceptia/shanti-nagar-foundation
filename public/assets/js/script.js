@@ -550,7 +550,15 @@
 			
 	
 			// Isotope Filter 
-			$filter.find('li').on('click', function(){
+			$filter.find('li').on('click', function(e){
+				var $link = $(this).find('a[href]');
+				if ($link.length) {
+					if (e.target.tagName.toLowerCase() !== 'a') {
+						window.location.href = $link.attr('href');
+					}
+					return;
+				}
+
 				var selector = $(this).attr('data-filter');
 	
 				try {

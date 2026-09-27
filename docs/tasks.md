@@ -55,20 +55,14 @@
   - [x] Remove foreign marathon/skydive placeholders and convert `events.blade.php` to "Social Activities"
   - [x] Remove placeholder trophy badges from `about.blade.php`
   - [x] Add animated Transparency & Fund Summary counter section to `about.blade.php`
-  - [x] Connect `gallery.blade.php` directly to `ProjectImage` with isotope filtering
-  - [x] Make `donations.blade.php` render dynamic projects with budget progress bars
-  - [x] Fix and style "Donate Now" button & Popup modal trigger
-
----
-
-### Phase 3: Dynamic Features & Interaction (Completed)
-- [x] **Frontend Interactive Forms**
-  - [x] Connect Contact Form (`contact.blade.php`) to database with validation & flash messages
-  - [x] Connect Volunteer Application Form (`volunteer.blade.php`) with validation & status tracking
-  - [x] Connect Donate Page (`donate.blade.php`) and Donate Popup Modal to store pending donation pledges
-  - [x] Build Admin Contact Inquiries Inbox (`admin/contacts/`) with status toggle and deletion
-  - [x] Build Admin Volunteer Network Roster (`admin/volunteers/`) with status approval and deletion
-  - [x] Feature tests in `tests/Feature/FrontendFormTest.php` passing (22 total tests passing)
+  - [x] Make `donations.blade.php` render dynamic projects with budget progress bars, BDT amounts, and custom template-styled pagination
+  - [x] Connect `events.blade.php` to dynamic project activities with dates, location, and details links
+  - [x] Connect `gallery.blade.php` directly to `ProjectImage` with dynamic category isotope filtering, pagination, and lightbox popups
+  - [x] **Dynamic Project Details & Live Counters**
+  - [x] Connect `/donation-details/{slug}` with full dynamic project data, target funding progress, photos, and direct pledge form
+  - [x] Connect `/event-details/{slug}` with dynamic activity overview, field team details, and volunteer registration
+  - [x] Implement live real-time impact counters across Home (`/`) and About (`/about`) pages (Donations raised, funds utilized, completed projects, direct beneficiaries, active volunteers)
+  - [x] Feature tests in `tests/Feature/FrontendProjectDetailsTest.php` passing (26 total tests passing)
 - [ ] **SEO & Metadata Polish**
   - [ ] Add dynamic meta titles & descriptions for individual project pages
 

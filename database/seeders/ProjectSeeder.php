@@ -30,7 +30,7 @@ class ProjectSeeder extends Seeder
                     'assets/images/gallery/portfolio-7.jpg',
                     'assets/images/gallery/portfolio-11.jpg',
                     'assets/images/gallery/portfolio-14.jpg',
-                ]
+                ],
             ],
             [
                 'name' => 'Nutritious Food & Education Kit for Orphan Children',
@@ -50,7 +50,7 @@ class ProjectSeeder extends Seeder
                 'images' => [
                     'assets/images/gallery/portfolio-8.jpg',
                     'assets/images/gallery/portfolio-13.jpg',
-                ]
+                ],
             ],
             [
                 'name' => 'Warm Blankets & Winter Clothes Relief Drive',
@@ -71,7 +71,7 @@ class ProjectSeeder extends Seeder
                     'assets/images/gallery/portfolio-9.jpg',
                     'assets/images/gallery/portfolio-12.jpg',
                     'assets/images/gallery/portfolio-15.jpg',
-                ]
+                ],
             ],
             [
                 'name' => 'Deep Tube-well & Clean Drinking Water Installation',
@@ -90,7 +90,7 @@ class ProjectSeeder extends Seeder
                 'is_published' => true,
                 'images' => [
                     'assets/images/gallery/portfolio-10.jpg',
-                ]
+                ],
             ],
             [
                 'name' => 'Free Friday Medical Camp & Essential Medicine Supply',
@@ -110,7 +110,7 @@ class ProjectSeeder extends Seeder
                 'images' => [
                     'assets/images/gallery/portfolio-11.jpg',
                     'assets/images/gallery/portfolio-14.jpg',
-                ]
+                ],
             ],
             [
                 'name' => 'Emergency Food Packages for Flood-Affected Families',
@@ -130,7 +130,7 @@ class ProjectSeeder extends Seeder
                 'images' => [
                     'assets/images/gallery/portfolio-12.jpg',
                     'assets/images/gallery/portfolio-15.jpg',
-                ]
+                ],
             ],
             [
                 'name' => 'Feed Nutritious Meals to Poor Rural Children',
@@ -150,7 +150,7 @@ class ProjectSeeder extends Seeder
                 'images' => [
                     'assets/images/gallery/portfolio-8.jpg',
                     'assets/images/gallery/portfolio-13.jpg',
-                ]
+                ],
             ],
             [
                 'name' => 'Wheelchairs & Assistive Devices for Disabled Individuals',
@@ -170,7 +170,7 @@ class ProjectSeeder extends Seeder
                 'images' => [
                     'assets/images/gallery/portfolio-14.jpg',
                     'assets/images/gallery/portfolio-7.jpg',
-                ]
+                ],
             ],
             [
                 'name' => 'Primary Education Support & Scholarships for Underprivileged Girls',
@@ -190,7 +190,7 @@ class ProjectSeeder extends Seeder
                 'images' => [
                     'assets/images/gallery/portfolio-8.jpg',
                     'assets/images/gallery/portfolio-9.jpg',
-                ]
+                ],
             ],
             [
                 'name' => 'Medical Assistance & Surgery Fund for Poor Patients',
@@ -210,7 +210,7 @@ class ProjectSeeder extends Seeder
                 'images' => [
                     'assets/images/gallery/portfolio-11.jpg',
                     'assets/images/gallery/portfolio-14.jpg',
-                ]
+                ],
             ],
             [
                 'name' => 'Tree Plantation & Environmental Green Campaign',
@@ -229,7 +229,7 @@ class ProjectSeeder extends Seeder
                 'is_published' => true,
                 'images' => [
                     'assets/images/gallery/portfolio-10.jpg',
-                ]
+                ],
             ],
             [
                 'name' => 'Daily Iftar & Ramadan Food Rations for Destitute Families',
@@ -249,7 +249,7 @@ class ProjectSeeder extends Seeder
                 'images' => [
                     'assets/images/gallery/portfolio-15.jpg',
                     'assets/images/gallery/portfolio-12.jpg',
-                ]
+                ],
             ],
         ];
 
@@ -270,7 +270,7 @@ class ProjectSeeder extends Seeder
                         'image_path' => $imgPath,
                     ],
                     [
-                        'caption' => $project->name . ' - Documentation Photo ' . ($index + 1),
+                        'caption' => $project->name.' - Documentation Photo '.($index + 1),
                         'sort_order' => $index,
                     ]
                 );

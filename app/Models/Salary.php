@@ -27,12 +27,12 @@ class Salary extends Model
     ];
 
     protected $casts = [
-        'basic_amount'    => 'decimal:2',
-        'allowance'       => 'decimal:2',
-        'bonus'           => 'decimal:2',
-        'deductions'      => 'decimal:2',
+        'basic_amount' => 'decimal:2',
+        'allowance' => 'decimal:2',
+        'bonus' => 'decimal:2',
+        'deductions' => 'decimal:2',
         'net_paid_amount' => 'decimal:2',
-        'payment_date'    => 'date',
+        'payment_date' => 'date',
     ];
 
     /**

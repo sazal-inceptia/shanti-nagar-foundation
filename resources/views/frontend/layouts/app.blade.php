@@ -27,8 +27,14 @@
     <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/jquery.fancybox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/nice-select.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/jquery.bootstrap-touchspin.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/color.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
     <!-- Toastr Flash Notification CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    @stack('custom-style')
 </head>
 
 
@@ -227,6 +233,7 @@
 
     <!-- main-js -->
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    @stack('custom-script')
 
 </body><!-- End of .page_wrapper -->
 

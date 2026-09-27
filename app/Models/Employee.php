@@ -29,7 +29,7 @@ class Employee extends Model
 
     protected $casts = [
         'joining_date' => 'date',
-        'base_salary'  => 'decimal:2',
+        'base_salary' => 'decimal:2',
     ];
 
     /**

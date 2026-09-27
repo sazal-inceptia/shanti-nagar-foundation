@@ -26,7 +26,7 @@ class Donation extends Model
     ];
 
     protected $casts = [
-        'amount'        => 'decimal:2',
+        'amount' => 'decimal:2',
         'donation_date' => 'date',
     ];
 

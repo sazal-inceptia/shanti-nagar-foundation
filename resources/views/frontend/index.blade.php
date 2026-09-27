@@ -197,7 +197,7 @@
                                     <div class="inner-box">
                                         <div class="icon-box"><i class="icon-charity"></i></div>
                                         <div class="count-outer count-box">
-                                            <span class="count-text" data-speed="1500" data-stop="278">0</span>
+                                            <span class="count-text" data-speed="1500" data-stop="{{ $stats['activeVolunteers'] ?? 278 }}">0</span>
                                         </div>
                                         <h4>Volunteers</h4>
                                     </div>
@@ -208,7 +208,7 @@
                                         <div class="icon-box"><i class="icon-donation-1"></i></div>
                                         <div class="count-outer count-box">
                                             <span class="count-text" data-speed="1500"
-                                                data-stop="6.5">0</span><span>k</span>
+                                                data-stop="{{ $stats['directBeneficiaries'] ?? 12500 }}">0</span><span>+</span>
                                         </div>
                                         <h4>Beneficiaries</h4>
                                     </div>

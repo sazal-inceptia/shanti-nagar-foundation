@@ -28,7 +28,7 @@ class SalarySeeder extends Seeder
             ];
 
             foreach ($months as $m) {
-                $slipNumber = 'PAY-' . $employee->employee_id . '-' . $m['slip_suffix'];
+                $slipNumber = 'PAY-'.$employee->employee_id.'-'.$m['slip_suffix'];
                 $basic = $employee->base_salary;
                 $allowance = 2000.00;
                 $bonus = 0.00;
@@ -47,7 +47,7 @@ class SalarySeeder extends Seeder
                         'net_paid_amount' => $netPaid,
                         'payment_date' => $m['date'],
                         'payment_method' => 'bank_transfer',
-                        'transaction_reference' => 'SAL-TXN-' . rand(100000, 999999),
+                        'transaction_reference' => 'SAL-TXN-'.rand(100000, 999999),
                         'status' => 'paid',
                         'notes' => 'Monthly staff salary disbursed via official banking channel.',
                     ]

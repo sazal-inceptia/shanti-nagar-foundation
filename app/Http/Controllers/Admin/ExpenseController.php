@@ -17,9 +17,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ExpenseController extends Controller
 {
-    public function __construct(protected ExpenseService $expenseService)
-    {
-    }
+    public function __construct(protected ExpenseService $expenseService) {}
 
     /**
      * Display a listing of expenses with server-side DataTable.
@@ -49,39 +47,39 @@ class ExpenseController extends Controller
                         $dateStr = $row->expense_date ? $row->expense_date->format('M d, Y') : '-';
 
                         return '<div class="d-flex flex-column">
-                            <a href="' . e($showUrl) . '" class="fw-bold text-dark text-decoration-none table-title-link font-monospace" style="font-size: 13.5px;">' . e($row->voucher_number) . '</a>
-                            <span class="text-muted mt-1" style="font-size: 11px;"><i class="ri-calendar-line me-1"></i>' . $dateStr . '</span>
+                            <a href="'.e($showUrl).'" class="fw-bold text-dark text-decoration-none table-title-link font-monospace" style="font-size: 13.5px;">'.e($row->voucher_number).'</a>
+                            <span class="text-muted mt-1" style="font-size: 11px;"><i class="ri-calendar-line me-1"></i>'.$dateStr.'</span>
                         </div>';
                     })
                     ->addColumn('expense_title', function ($row) {
-                        $vendor = $row->recipient_or_vendor ? '<span class="text-muted" style="font-size: 11px;">To: ' . e($row->recipient_or_vendor) . '</span>' : '';
+                        $vendor = $row->recipient_or_vendor ? '<span class="text-muted" style="font-size: 11px;">To: '.e($row->recipient_or_vendor).'</span>' : '';
 
                         return '<div class="d-flex flex-column">
-                            <span class="fw-semibold text-dark" style="font-size: 13px;">' . e($row->title) . '</span>
-                            ' . $vendor . '
+                            <span class="fw-semibold text-dark" style="font-size: 13px;">'.e($row->title).'</span>
+                            '.$vendor.'
                         </div>';
                     })
                     ->addColumn('category_badge', function ($row) {
                         $catEnum = ExpenseCategory::tryFrom($row->expense_category);
                         $badgeStyle = $catEnum ? $catEnum->badgeStyle() : 'background-color: #f1f5f9; color: #334155; border: 1px solid #cbd5e1;';
 
-                        return '<span class="badge" style="' . $badgeStyle . ' font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;">' . e($row->expense_category) . '</span>';
+                        return '<span class="badge" style="'.$badgeStyle.' font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;">'.e($row->expense_category).'</span>';
                     })
                     ->addColumn('project_title', function ($row) {
                         if ($row->project) {
                             $projectUrl = route('admin.projects.show', $row->project->id);
 
-                            return '<a href="' . e($projectUrl) . '" class="badge text-start d-inline-block" style="color: #334155; font-size: 11.5px; padding: 5px 8px; border-radius: 4px; text-decoration: none; white-space: normal; line-height: 1.35; width: 100%; max-width: 220px;" title="' . e($row->project->name) . '">' . e($row->project->name) . '</a>';
+                            return '<a href="'.e($projectUrl).'" class="badge text-start d-inline-block" style="color: #334155; font-size: 11.5px; padding: 5px 8px; border-radius: 4px; text-decoration: none; white-space: normal; line-height: 1.35; width: 100%; max-width: 220px;" title="'.e($row->project->name).'">'.e($row->project->name).'</a>';
                         }
 
                         return '<span class="badge text-start d-inline-block" style="background-color: #f8fafc; color: #64748b; border: 1px solid #e2e8f0; font-size: 11.5px; padding: 5px 8px; border-radius: 4px; white-space: normal; line-height: 1.35;">Office &amp; Administrative</span>';
                     })
                     ->addColumn('formatted_amount', function ($row) {
-                        $methodBadge = '<span class="badge bg-light text-dark border ms-1" style="font-size: 10px;">' . e(strtoupper($row->payment_method)) . '</span>';
+                        $methodBadge = '<span class="badge bg-light text-dark border ms-1" style="font-size: 10px;">'.e(strtoupper($row->payment_method)).'</span>';
 
                         return '<div class="d-flex flex-column">
-                            <span class="fw-bold text-danger" style="font-size: 13.5px;">৳ ' . number_format((float) $row->amount, 2) . '</span>
-                            <div class="mt-1">' . $methodBadge . '</div>
+                            <span class="fw-bold text-danger" style="font-size: 13.5px;">৳ '.number_format((float) $row->amount, 2).'</span>
+                            <div class="mt-1">'.$methodBadge.'</div>
                         </div>';
                     })
                     ->addColumn('action-btn', function ($row) {
