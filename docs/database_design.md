@@ -184,6 +184,14 @@ erDiagram
 * **Fields:** `id`, `salary_slip_number` (unique), `employee_id` (foreign key -> `employees.id`), `month_year`, `basic_amount`, `allowance`, `bonus`, `deductions`, `net_paid_amount`, `payment_date`, `payment_method`, `transaction_reference`, `status` (`paid`, `pending`), `notes`, `created_at`, `updated_at`.
 * **Relations:** `belongsTo(Employee::class)`.
 
+### 9. `contact_messages`
+* Public visitor and donor contact inquiries submitted from the website.
+* **Fields:** `id`, `name`, `email`, `phone`, `subject`, `message`, `status` (`unread`, `read`, `replied`), `admin_reply`, `replied_at`, `created_at`, `updated_at`, `deleted_at`.
+
+### 10. `volunteers`
+* Community volunteer registrations and field helper applications.
+* **Fields:** `id`, `name`, `email`, `phone`, `gender`, `age_group`, `address`, `status` (`pending`, `approved`, `rejected`), `notes`, `created_at`, `updated_at`, `deleted_at`.
+
 ---
 
 ## 3. Eloquent Model Relationships Code Reference

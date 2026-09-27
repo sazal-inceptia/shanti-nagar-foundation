@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DonationController;
 use App\Http\Controllers\Admin\DonorController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\Admin\ExpenseController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\SalaryController;
+use App\Http\Controllers\Admin\VolunteerController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,10 +26,18 @@ Route::get('/events', [HomeController::class, 'events'])->name('events');
 Route::get('/event-details/{slug?}', [HomeController::class, 'eventDetails'])->name('event.details');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/blog-details', [HomeController::class, 'blogDetails'])->name('blog.details');
+
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::post('/contact', [HomeController::class, 'submitContact'])->name('contact.submit');
+
 Route::get('/volunteer', [HomeController::class, 'volunteer'])->name('volunteer');
+Route::post('/volunteer', [HomeController::class, 'submitVolunteer'])->name('volunteer.submit');
+
 Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
+
 Route::get('/donate', [HomeController::class, 'donate'])->name('donate');
+Route::post('/donate', [HomeController::class, 'submitDonate'])->name('donate.submit');
+
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 
 /*
@@ -79,13 +89,11 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::get('/reports/export', [ReportController::class, 'export'])->name('reports.export');
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 
-    // Admin Users
-    Route::get('/users', function () {
-        return view('admin.users.index');
-    })->name('users.index');
+    // Public Inquiries & Contact Messages
+    Route::post('/contacts/{contact}/toggle-status', [ContactMessageController::class, 'toggleStatus'])->name('contacts.toggle-status');
+    Route::resource('contacts', ContactMessageController::class)->only(['index', 'destroy']);
 
-    // Settings
-    Route::get('/settings', function () {
-        return view('admin.settings.index');
-    })->name('settings.index');
+    // Volunteer Applications Management
+    Route::post('/volunteers/{volunteer}/toggle-status', [VolunteerController::class, 'toggleStatus'])->name('volunteers.toggle-status');
+    Route::resource('volunteers', VolunteerController::class)->only(['index', 'destroy']);
 });

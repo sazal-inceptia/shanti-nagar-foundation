@@ -29,9 +29,6 @@
                 <a href="{{ route('admin.reports.index') }}" class="header-quicklink {{ request()->routeIs('admin.reports.*') ? 'active' : '' }}">
                     Reports
                 </a>
-                <a href="{{ route('admin.settings.index') }}" class="header-quicklink {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
-                    Settings
-                </a>
             </div>
         </div>
 
@@ -124,18 +121,8 @@
                             </div>
                         </div>
 
-                        {{-- Navigation Links: Profile & Settings and Logout --}}
+                        {{-- Logout --}}
                         <div class="p-2">
-                            <a class="dropdown-item d-flex align-items-center justify-content-between py-2 px-2 rounded mb-1" href="{{ route('admin.settings.index') }}" style="font-size: 13px; font-weight: 500; color: #334155;">
-                                <div class="d-flex align-items-center">
-                                    <div class="d-flex align-items-center justify-content-center rounded me-2" style="width: 28px; height: 28px; background-color: #fff3ee; color: #f95716;">
-                                        <i class="ri-user-settings-line" style="font-size: 15px;"></i>
-                                    </div>
-                                    <span>Profile &amp; Settings</span>
-                                </div>
-                                <i class="ri-arrow-right-s-line text-muted" style="font-size: 14px;"></i>
-                            </a>
-
                             <form method="POST" action="{{ route('logout') }}" class="m-0">
                                 @csrf
                                 <button type="submit" class="dropdown-item d-flex align-items-center justify-content-between py-2 px-2 rounded text-danger w-100 border-0 bg-transparent" style="font-size: 13px; font-weight: 600; cursor: pointer;">

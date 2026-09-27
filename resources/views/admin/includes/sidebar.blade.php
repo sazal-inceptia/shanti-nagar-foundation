@@ -33,7 +33,7 @@
 
         <!-- 2. Beneficiaries & Campaigns -->
         <li class="category-li">
-            <span class="link_names">Operations</span>
+            <span class="link_names">Operations &amp; Public</span>
         </li>
         <li>
             <a href="{{ route('admin.projects.index') }}" class="{{ request()->routeIs('admin.projects.*') ? 'active-focus' : '' }}">
@@ -51,6 +51,18 @@
             <a href="{{ route('admin.donations.index') }}" class="{{ request()->routeIs('admin.donations.*') ? 'active-focus' : '' }}">
                 <i class="ri-hand-coin-line"></i>
                 <span class="link_names">Donations & Funds</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('admin.contacts.index') }}" class="{{ request()->routeIs('admin.contacts.*') ? 'active-focus' : '' }}">
+                <i class="ri-mail-line"></i>
+                <span class="link_names">Contact Inquiries</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('admin.volunteers.index') }}" class="{{ request()->routeIs('admin.volunteers.*') ? 'active-focus' : '' }}">
+                <i class="ri-user-smile-line"></i>
+                <span class="link_names">Volunteer Network</span>
             </a>
         </li>
 
@@ -80,23 +92,6 @@
             <a href="{{ route('admin.reports.index') }}" class="{{ request()->routeIs('admin.reports.*') ? 'active-focus' : '' }}">
                 <i class="ri-file-chart-line"></i>
                 <span class="link_names">Financial Reports</span>
-            </a>
-        </li>
-
-        <!-- 4. System & Settings -->
-        <li class="category-li">
-            <span class="link_names">System</span>
-        </li>
-        <li>
-            <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active-focus' : '' }}">
-                <i class="ri-admin-line"></i>
-                <span class="link_names">Admin Users</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.settings.index') }}" class="{{ request()->routeIs('admin.settings.*') ? 'active-focus' : '' }}">
-                <i class="ri-settings-4-line"></i>
-                <span class="link_names">Settings</span>
             </a>
         </li>
     </ul>

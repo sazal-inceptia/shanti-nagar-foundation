@@ -63,30 +63,31 @@
                                 <p>Please feel free to get in touch using the form below. We'd love to hear from you.</p>
                             </div>
                             <div class="form-inner">
-                                <form method="post" action="#" id="contact-form" class="default-form"> 
+                                <form method="post" action="{{ route('contact.submit') }}" id="contact-form" class="default-form"> 
+                                    @csrf
                                     <div class="row clearfix">
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <i class="far fa-user"></i>
-                                            <input type="text" name="username" placeholder="Your Name" required="">
+                                            <input type="text" name="name" placeholder="Your Name *" value="{{ old('name') }}" required>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <i class="far fa-envelope"></i>
-                                            <input type="email" name="email" placeholder="Email Address" required="">
+                                            <input type="email" name="email" placeholder="Email Address *" value="{{ old('email') }}" required>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <i class="far fa-phone"></i>
-                                            <input type="text" name="phone" required="" placeholder="Phone">
+                                            <input type="text" name="phone" placeholder="Phone Number" value="{{ old('phone') }}">
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <i class="far fa-sticky-note"></i>
-                                            <input type="text" name="subject" required="" placeholder="Subject">
+                                            <input type="text" name="subject" placeholder="Subject" value="{{ old('subject') }}">
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <i class="far fa-text-height"></i>
-                                            <textarea name="message" placeholder="Message"></textarea>
+                                            <textarea name="message" placeholder="Write your message here..." required>{{ old('message') }}</textarea>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
-                                            <button class="theme-btn btn-one" type="submit" name="submit-form">Send Message</button>
+                                            <button class="theme-btn btn-one" type="submit">Send Message</button>
                                         </div>
                                     </div>
                                 </form>

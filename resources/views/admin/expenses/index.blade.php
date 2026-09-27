@@ -26,11 +26,11 @@
                     {{-- Filter Bar --}}
                     <div class="card-body border-bottom" style="background-color: #f8fafc; padding: 14px 20px;">
                         <div class="row g-2 align-items-end">
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-md-2 col-sm-4">
                                 <label class="form-label mb-1 text-muted"
                                     style="font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Category</label>
                                 <select id="filter_category" class="form-select form-select-sm custom-input" style="height: 32px; font-size: 13px;">
-                                    <option value="">All Expense Categories</option>
+                                    <option value="">All Categories</option>
                                     @foreach($categories as $catVal => $catLabel)
                                         <option value="{{ $catVal }}" {{ request('expense_category') == $catVal ? 'selected' : '' }}>
                                             {{ $catLabel }}
@@ -38,11 +38,11 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-3 col-sm-6">
+                            <div class="col-md-2 col-sm-4">
                                 <label class="form-label mb-1 text-muted"
                                     style="font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Project Allocation</label>
                                 <select id="filter_project" class="form-select form-select-sm custom-input" style="height: 32px; font-size: 13px;">
-                                    <option value="">All (Projects + General Admin)</option>
+                                    <option value="">All Projects</option>
                                     @foreach($projects as $prj)
                                         <option value="{{ $prj->id }}" {{ request('project_id') == $prj->id ? 'selected' : '' }}>
                                             {{ $prj->name }}
@@ -50,7 +50,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-2 col-sm-6">
+                            <div class="col-md-2 col-sm-4">
                                 <label class="form-label mb-1 text-muted"
                                     style="font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Payment Mode</label>
                                 <select id="filter_method" class="form-select form-select-sm custom-input" style="height: 32px; font-size: 13px;">

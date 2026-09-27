@@ -295,8 +295,8 @@
                         </div>
                     </div>
                     <div class="pt-2 mt-2 border-top d-flex justify-content-between align-items-center">
-                        <a href="{{ route('admin.settings.index') }}" class="stat-link" style="color: #d97706;">
-                            Foundation Info <i class="ri-arrow-right-line ms-1"></i>
+                        <a href="{{ route('about') }}" target="_blank" class="stat-link" style="color: #d97706;">
+                            About Foundation <i class="ri-arrow-right-line ms-1"></i>
                         </a>
                         <span class="badge bg-light text-dark border" style="font-size: 11px; font-weight: 600;">Dhaka, BD</span>
                     </div>

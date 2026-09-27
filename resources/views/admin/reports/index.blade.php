@@ -41,26 +41,26 @@
                     {{-- Filter Controls Bar --}}
                     <div class="card-body" style="background-color: #fafbfc; padding: 16px 20px; border-bottom: 1px solid #eef2f6;">
                         <form method="GET" action="{{ route('admin.reports.index') }}" class="row g-2 align-items-end">
-                            <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="col-md-2 col-sm-4">
                                 <label class="form-label mb-1 text-muted" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">
                                     <i class="ri-calendar-line me-1 text-secondary"></i> Start Date
                                 </label>
                                 <input type="date" name="start_date" class="form-control form-control-sm bg-white"
-                                    value="{{ request('start_date') }}" onclick="this.showPicker()" style="height: 36px; font-size: 13px; border-color: #d1d5db; border-radius: 6px;">
+                                    value="{{ request('start_date') }}" onclick="this.showPicker()" style="height: 32px; font-size: 13px; border-color: #d1d5db; border-radius: 6px;">
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="col-md-2 col-sm-4">
                                 <label class="form-label mb-1 text-muted" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">
                                     <i class="ri-calendar-check-line me-1 text-secondary"></i> End Date
                                 </label>
                                 <input type="date" name="end_date" class="form-control form-control-sm bg-white"
-                                    value="{{ request('end_date') }}" onclick="this.showPicker()" style="height: 36px; font-size: 13px; border-color: #d1d5db; border-radius: 6px;">
+                                    value="{{ request('end_date') }}" onclick="this.showPicker()" style="height: 32px; font-size: 13px; border-color: #d1d5db; border-radius: 6px;">
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="col-md-2 col-sm-4">
                                 <label class="form-label mb-1 text-muted" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">
                                     <i class="ri-folder-shared-line me-1 text-secondary"></i> Project Allocation
                                 </label>
-                                <select name="project_id" class="form-select form-select-sm bg-white" style="height: 36px; font-size: 13px; border-color: #d1d5db; border-radius: 6px;">
-                                    <option value="">All Projects &amp; General Fund</option>
+                                <select name="project_id" class="form-select form-select-sm bg-white" style="height: 32px; font-size: 13px; border-color: #d1d5db; border-radius: 6px;">
+                                    <option value="">All Causes</option>
                                     @foreach($projects as $prj)
                                         <option value="{{ $prj->id }}" {{ request('project_id') == $prj->id ? 'selected' : '' }}>
                                             {{ $prj->name }}
@@ -68,23 +68,23 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-lg-2 col-md-4 col-sm-4">
+                            <div class="col-md-2 col-sm-4">
                                 <label class="form-label mb-1 text-muted" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">
                                     <i class="ri-calendar-2-line me-1 text-secondary"></i> Fiscal Year
                                 </label>
-                                <select name="year" class="form-select form-select-sm bg-white" style="height: 36px; font-size: 13px; border-color: #d1d5db; border-radius: 6px;">
+                                <select name="year" class="form-select form-select-sm bg-white" style="height: 32px; font-size: 13px; border-color: #d1d5db; border-radius: 6px;">
                                     @for($y = date('Y'); $y >= 2024; $y--)
                                         <option value="{{ $y }}" {{ $year == $y ? 'selected' : '' }}>{{ $y }}</option>
                                     @endfor
                                 </select>
                             </div>
-                            <div class="col-lg-1 col-md-2 col-sm-2 d-flex align-items-end gap-1 pb-1">
+                            <div class="col-auto d-flex align-items-end gap-1">
                                 <button type="submit" class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Apply Filter"
-                                    style="background-color: #f65024; color: #fff; width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 16px; border: none; box-shadow: 0 2px 6px rgba(246, 80, 36, 0.25);">
+                                    style="background-color: #f65024; color: #fff; width: 32px; height: 32px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 15px; border: none; box-shadow: 0 2px 6px rgba(246, 80, 36, 0.25);">
                                     <i class="ri-filter-3-line"></i>
                                 </button>
                                 <a href="{{ route('admin.reports.index') }}" class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Reset Filters"
-                                    style="width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 16px; border-color: #cbd5e1;">
+                                    style="width: 32px; height: 32px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 15px; border-color: #cbd5e1;">
                                     <i class="ri-refresh-line"></i>
                                 </a>
                             </div>

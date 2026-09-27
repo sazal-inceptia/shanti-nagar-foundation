@@ -11,11 +11,9 @@
 ## 2. Planned Modules & Backend Feature Roadmap
 
 ### A. Admin Dashboard & Authentication
-- **Admin Panel Framework:** Filament / Custom Blade Dashboard / Tabler UI
-- **Roles & Permissions:**
-  - `Super Admin`: Full control over funds, settings, and users.
-  - `Accountant / Finance Officer`: Manages donations, expenses, vouchers, and salary disbursements.
-  - `Field Coordinator`: Manages project field status, photo uploads, and relief distributions.
+- **Admin Panel Framework:** Custom Laravel Blade Admin Panel (Bootstrap 5, RemixIcon, DataTables, Select2)
+- **Single Administrator Access:**
+  - Dedicated master administrator account (`admin@gmail.com`) with full administrative control over projects, donations, expenses, staff payroll, and reports.
 
 ### B. Payment Gateway Integrations (Future / Online Giving)
 - **Target Local Gateways:**
