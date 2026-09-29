@@ -4,71 +4,25 @@
 
 @section('content')
 
-    <!-- banner-section -->
-    <section class="banner-section">
-        <div class="banner-carousel">
-            <div class="swiper-container banner-content">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="image-layer banner-slide-1"></div>
-                        <div class="auto-container">
-                            <div class="content-box">
-                                <h2>Direct Relief</h2>
-                                <span>For Deserving Families</span>
-                                <h2>Across Bangladesh</h2>
-                                <p>Delivering medical equipment, orphan kits, safe water & emergency food relief<br />with 100% transparency and zero intermediaries.</p>
-                                <div class="btn-box">
-                                    <a href="{{ route('donations') }}" class="banner-btn">Explore Causes</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="othre-text centred">
-                            <span class="animation_text_word"></span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="image-layer banner-slide-2"></div>
-                        <div class="auto-container">
-                            <div class="content-box">
-                                <h2>Healthcare Aid</h2>
-                                <span>Supporting Public Wards</span>
-                                <h2>Hospital Equipment</h2>
-                                <p>Providing hospital fans, wheelchairs, emergency oxygen & medical aid<br />for underprivileged patients at government and community clinics.</p>
-                                <div class="btn-box">
-                                    <a href="{{ route('donations') }}" class="banner-btn">Support Healthcare</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="othre-text centred">
-                            <span class="animation_text_word"></span>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="image-layer banner-slide-3"></div>
-                        <div class="auto-container">
-                            <div class="content-box">
-                                <h2>Safe Water</h2>
-                                <span>Deep Tube-Wells in Rural Areas</span>
-                                <h2>Pure Water for All</h2>
-                                <p>Installing arsenic-free deep tube-wells and water filtration plants<br />for coastal and remote rural communities in Bangladesh.</p>
-                                <div class="btn-box">
-                                    <a href="{{ route('donations') }}" class="banner-btn">View Projects</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="othre-text centred">
-                            <span class="animation_text_word"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-nav-button">
-                    <div class="swiper-button-next"><i class="far fa-arrow-right"></i></div>
-                    <div class="swiper-button-prev"><i class="far fa-arrow-left"></i></div>
+    <!-- hero-banner-section -->
+    <section class="hero-banner-section">
+        <div class="auto-container">
+            <div class="content-box">
+                <span class="banner-sub-tag">Direct Humanitarian Relief</span>
+                <h1>Direct Relief For Deserving Families Across Bangladesh</h1>
+                <p>Delivering vital hospital gear, orphan kits, safe deep tube-wells, and emergency food relief with 100% financial transparency and zero intermediaries.</p>
+                <div class="btn-box">
+                    <a href="{{ route('donate') }}" class="banner-btn">
+                        <i class="fas fa-heart me-1"></i> Donate Directly
+                    </a>
+                    <a href="{{ route('donations') }}" class="banner-btn-outline">
+                        Explore Causes &amp; Initiatives
+                    </a>
                 </div>
             </div>
         </div>
     </section>
-    <!-- banner-section end -->
+    <!-- hero-banner-section end -->
 
     <!-- about-section -->
     <section class="about-section sec-pad">
