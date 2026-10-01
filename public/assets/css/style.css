@@ -5581,174 +5581,6 @@
  }
 
 
- /** subscribe-section **/
-
- .subscribe-section {
-   position: relative;
- }
-
- .subscribe-section .inner-box {
-   position: relative;
-   display: block;
-   background-color: #f4f1f0;
-   overflow: hidden;
-   border-radius: 15px;
-   padding-right: 30px;
- }
-
- .subscribe-section .inner-box:before {
-   position: absolute;
-   content: '';
-   background-image: url(../images/shape/shape-28.png);
-   width: 100%;
-   height: 100%;
-   background-repeat: repeat;
-   background-position: center;
-   left: 0px;
-   top: 0px;
-   right: 0px;
- }
-
- .subscribe-section .inner-box .left-column {
-   position: relative;
-   padding: 33px 0px 33px 185px;
- }
-
- .subscribe-section .inner-box .logo-box {
-   position: absolute;
-   left: 0px;
-   top: 0px;
-   z-index: 1;
- }
-
- .subscribe-section .inner-box .logo-box .shape {
-   position: absolute;
-   top: 42px;
-   right: -45px;
-   width: 101px;
-   height: 51px;
-   background-repeat: no-repeat;
- }
-
- .subscribe-section .inner-box .logo-box figure img {
-   max-width: 100px;
-   height: auto;
-   margin-top: 25px;
-   margin-left: 15px;
-   border-radius: 8px;
- }
-
-
- .subscribe-section .inner-box .left-column .text h3 {
-   position: relative;
-   display: block;
-   font-size: 22px;
-   line-height: 32px;
-   font-weight: 700;
-   padding-left: 70px;
- }
-
- .subscribe-section .inner-box .left-column .text h3 i {
-   position: absolute;
-   left: 0px;
-   top: 4px;
-   font-size: 55px;
-   line-height: 55px;
- }
-
- .subscribe-section .inner-box .right-column {
-   position: relative;
-   padding: 37px 0px;
- }
-
- .subscribe-section .inner-box .right-column .form-inner,
- .subscribe-section .inner-box .right-column .social-style-one {
-   position: relative;
-   float: left;
- }
-
- .subscribe-section .inner-box .right-column .form-inner {
-   width: 510px;
-   margin-right: 20px;
- }
-
- .subscribe-section .inner-box .right-column .subscribe-form .form-group {
-   position: relative;
-   margin: 0px;
- }
-
- .subscribe-section .inner-box .right-column .subscribe-form .form-group input[type='email'] {
-   position: relative;
-   display: block;
-   width: 100%;
-   height: 56px;
-   border: 2px solid #232323;
-   border-radius: 30px;
-   background: transparent;
-   font-size: 16px;
-   color: #5f5e5e;
-   padding: 10px 200px 10px 30px;
-   transition: all 500ms ease;
- }
-
- .subscribe-section .inner-box .right-column .subscribe-form .form-group button {
-   position: absolute;
-   top: 2px;
-   right: 2px;
-   height: 52px;
-   line-height: 52px;
-   width: 170px;
-   text-align: center;
-   padding: 0px 15px;
-   font-size: 14px;
-   font-family: 'Quicksand', sans-serif;
-   font-weight: 700;
-   background-color: #232323;
-   text-transform: uppercase;
-   border-radius: 0px 30px 30px 0px;
-   cursor: pointer;
-   transition: all 500ms ease;
- }
-
- .subscribe-section .inner-box .right-column .subscribe-form .form-group input:focus {}
-
- .subscribe-section .social-style-one li a {
-   width: 50px;
-   height: 50px;
-   line-height: 50px;
-   font-size: 16px;
- }
-
- .subscribe-section .social-style-one li a:before {
-   background-image: url(../images/shape/shape-29.png);
- }
-
- .subscribe-section .inner-box .right-column .callout-text {
-   float: left;
-   max-width: 480px;
-   padding: 8px 30px 8px 0px;
- }
-
- .subscribe-section .inner-box .right-column .callout-text p {
-   font-size: 15px;
-   line-height: 24px;
-   margin-bottom: 0px;
- }
-
- .subscribe-section .social-style-one {
-   padding: 3px 0px;
- }
-
- .subscribe-section .bg-layer {
-   position: absolute;
-   background-color: #232323;
-   width: 100%;
-   height: 50%;
-   left: 0px;
-   bottom: 0px;
- }
-
-
  /** main-footer **/
 
  .main-footer {
@@ -9544,10 +9376,6 @@
 
  .comingsoon-section .content-box .theme-btn {
    padding: 12.5px 43px;
- }
-
- .subscribe-section.comingsoon-page {
-   padding-bottom: 110px;
  }
 
  .comingsoon-section .icon-layer .icon-1 {
@@ -16201,7 +16029,7 @@
    right: 0 !important;
    width: 100% !important;
    z-index: 9999 !important;
-   background-color: rgba(255, 255, 255, 0.75) !important;
+   background-color: rgba(255, 255, 255, 0.85) !important;
    backdrop-filter: blur(12px) saturate(180%);
    -webkit-backdrop-filter: blur(12px) saturate(180%);
    border-bottom: 1px solid rgba(255, 255, 255, 0.4);

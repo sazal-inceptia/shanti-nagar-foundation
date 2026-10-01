@@ -478,64 +478,6 @@
     </section>
     <!-- benefits-section end -->
 
-    <!-- funfact-section (Community Numbers & Database Counters) -->
-    <section class="funfact-section alternat-2 centred funfact-bg-10">
-        <div class="auto-container">
-            <div class="sec-title light centred">
-                <span class="top-text">Community Numbers & Field Impact</span>
-                <h2>Grassroots Change Driven by Honest Stewardship</h2>
-                <p>Real-time humanitarian statistics directly tallied from our field projects, donor registry, and volunteer network.</p>
-            </div>
-            <div class="row clearfix">
-                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
-                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon-charity"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['activeVolunteers'] ?? 0) }}">0</span><span>+</span>
-                            </div>
-                            <h4>Active Volunteers</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
-                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="100ms" data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon-donation"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['completedDonationsCount'] ?? 0) }}">0</span><span>+</span>
-                            </div>
-                            <h4>Completed Donations</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
-                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="200ms" data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon-home"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['totalProjects'] ?? 0) }}">0</span><span>+</span>
-                            </div>
-                            <h4>Relief Initiatives</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
-                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon-donation-1"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['totalDonors'] ?? 0) }}">0</span><span>+</span>
-                            </div>
-                            <h4>Verified Donors</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- funfact-section end -->
-
     <!-- events-section (Upcoming Activities & Drives) -->
     @if(isset($upcomingActivities) && $upcomingActivities->count() > 0)
         <section class="events-section">
@@ -601,53 +543,65 @@
     @endif
     <!-- events-section end -->
 
-    <!-- team-section (Volunteers) -->
-    <section class="team-section centred">
-        <div class="pattern-layer team-shape-23"></div>
+
+    <!-- funfact-section (Community Numbers & Database Counters) -->
+    <section class="funfact-section alternat-2 centred funfact-bg-10">
         <div class="auto-container">
-            <div class="sec-title centred">
-                <span class="top-text">Volunteer Activities</span>
-                <h2>Dedicated Field Coordinators & Volunteers</h2>
-                <p>The youth and community members driving our humanitarian logistics and distribution on the ground.</p>
+            <div class="sec-title light centred">
+                <span class="top-text">Community Numbers & Field Impact</span>
+                <h2>Grassroots Change Driven by Honest Stewardship</h2>
+                <p>Real-time humanitarian statistics directly tallied from our field projects, donor registry, and volunteer network.</p>
             </div>
-            <div class="row clearfix g-4 justify-content-center">
-                @if(isset($recentVolunteers) && $recentVolunteers->count() > 0)
-                    @foreach($recentVolunteers as $idx => $vol)
-                        @php
-                            $avatarColors = ['team-avatar-orange', 'team-avatar-teal', 'team-avatar-dark', 'team-avatar-teal'];
-                            $colorClass = $avatarColors[$idx % count($avatarColors)];
-                        @endphp
-                        <div class="col-lg-3 col-md-6 col-sm-12">
-                            <div class="p-4 border rounded bg-white shadow-sm h-100 text-center">
-                                <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-3 {{ $colorClass }}">
-                                    {{ strtoupper(substr($vol->name, 0, 1)) }}
-                                </div>
-                                <h4 class="fw-bold mb-1">{{ $vol->name }}</h4>
-                                <span class="text-muted small d-block mb-2">{{ $vol->address ?: 'Shanti Nagar, Dhaka' }}</span>
-                                <p class="small text-muted">{{ Str::limit($vol->notes ?: 'Ground logistics & relief distribution coordination.', 60) }}</p>
+            <div class="row clearfix">
+                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
+                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-charity"></i></div>
+                            <div class="count-outer count-box">
+                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['activeVolunteers'] ?? 0) }}">0</span><span>+</span>
                             </div>
-                        </div>
-                    @endforeach
-                @else
-                    <div class="col-lg-3 col-md-6 col-sm-12">
-                        <div class="p-4 border rounded bg-white shadow-sm h-100 text-center">
-                            <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold mx-auto mb-3 team-avatar-orange">
-                                S
-                            </div>
-                            <h4 class="fw-bold mb-1">Shanti Nagar Unit</h4>
-                            <span class="text-muted small d-block mb-2">Dhaka Central Division</span>
-                            <p class="small text-muted">Relief kit packaging & medical equipment logistics.</p>
+                            <h4>Active Volunteers</h4>
                         </div>
                     </div>
-                @endif
-            </div>
-
-            <div class="mt-4">
-                <a href="{{ route('volunteer') }}" class="theme-btn btn-one">Join Our Volunteer Team</a>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
+                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="100ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-donation"></i></div>
+                            <div class="count-outer count-box">
+                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['completedDonationsCount'] ?? 0) }}">0</span><span>+</span>
+                            </div>
+                            <h4>Completed Donations</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
+                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="200ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-home"></i></div>
+                            <div class="count-outer count-box">
+                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['totalProjects'] ?? 0) }}">0</span><span>+</span>
+                            </div>
+                            <h4>Relief Initiatives</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
+                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-donation-1"></i></div>
+                            <div class="count-outer count-box">
+                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['totalDonors'] ?? 0) }}">0</span><span>+</span>
+                            </div>
+                            <h4>Verified Donors</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <!-- team-section end -->
+    <!-- funfact-section end -->
+
 
 @endsection
 

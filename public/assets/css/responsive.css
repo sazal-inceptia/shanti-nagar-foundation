@@ -163,39 +163,6 @@
     padding: 0px;
   }
 
-  .subscribe-section .inner-box .left-column{
-    float: none;
-    width: 100%;
-    text-align: center;
-    padding-left: 0px;
-    padding-bottom: 0px;
-  }
-
-  .subscribe-section .inner-box .right-column{
-    float: none;
-    width: 100%;
-    text-align: center;
-  }
-
-  .subscribe-section .inner-box .left-column .text h3{
-    display: inline-block;
-    text-align: left;
-  }
-
-  .subscribe-section .inner-box .logo-box{
-    display: none;
-  }
-
-  .subscribe-section .inner-box{
-    padding-left: 30px;
-  }
-
-  .subscribe-section .inner-box .right-column{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   .header-style-two .header-lower .outer-container{
     position: relative;
     padding: 10px 20px 10px 20px;
@@ -244,15 +211,6 @@
 
   .rtl .banner-section .banner-thumbs-carousel .single-item{
     padding-right: 360px;
-  }
-
-  .rtl .subscribe-section .inner-box{
-    padding-right: 30px;
-  }
-
-  .rtl .subscribe-section .inner-box .left-column{
-    text-align: center;
-    padding-right: 0px;
   }
 
   .history-section .tabs-box .tab-btns li{
@@ -405,9 +363,6 @@
     padding: 0px;
   }
 
-  .rtl .subscribe-section .inner-box .left-column .text h3{
-    text-align: right;
-  }
 
 }
 
@@ -494,27 +449,6 @@
 
   .news-section{
     padding-bottom: 80px;
-  }
-
-  .subscribe-section .inner-box .right-column .form-inner, 
-  .subscribe-section .inner-box .right-column .social-style-one{
-    float: none;
-    display: block;
-    text-align: center;
-  }
-
-  .subscribe-section .inner-box .right-column{
-    display: block;
-  }
-
-  .subscribe-section .inner-box .right-column .form-inner{
-    width: 100%;
-    margin: 0px;
-    margin-bottom: 15px;
-  }
-
-  .subscribe-section .inner-box .right-column .social-style-one li{
-    float: none;
   }
 
   .footer-top .footer-widget{
@@ -637,9 +571,6 @@
     margin-left: 0px;
   }
 
-  .subscribe-section .inner-box .right-column .social-style-one li{
-    margin: 0px 5px !important;
-  }
 
   .about-style-three .content_block_6 .content-box{
     margin-right: 0px;
@@ -1684,18 +1615,6 @@
     margin-top: 65px;
   }
 
-  .subscribe-section .inner-box .right-column .subscribe-form .form-group input[type='email']{
-    padding-right: 30px;
-    margin-bottom: 15px;
-  }
-
-  .subscribe-section .inner-box .right-column .subscribe-form .form-group button{
-    position: relative;
-    top: 0px;
-    right: 0px;
-    width: 100%;
-    border-radius: 30px;
-  }
 
   .footer-bottom .footer-card li{
     margin-bottom: 5px;

@@ -547,18 +547,6 @@
 	color: var(--theme-primary, #005daa);
 }
 
-.subscribe-section .inner-box .left-column .text h3 i {
-	color: var(--theme-primary, #005daa);
-}
-
-.subscribe-section .inner-box .right-column .subscribe-form .form-group button {
-	color: var(--theme-primary, #005daa);
-}
-
-.subscribe-section .inner-box .right-column .subscribe-form .form-group input:focus {
-	border-color: var(--theme-primary, #005daa) !important;
-}
-
 .footer-top .title-box .icon-box {
 	color: var(--theme-primary, #005daa);
 }
