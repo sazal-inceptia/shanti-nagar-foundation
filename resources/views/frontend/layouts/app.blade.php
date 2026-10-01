@@ -39,6 +39,7 @@
     <link href="{{ asset('assets/css/responsive.css') }}" rel="stylesheet">
     <!-- Toastr Flash Notification CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     @stack('custom-style')
 </head>
 

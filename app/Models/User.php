@@ -47,7 +47,7 @@ class User extends Authenticatable
         $initials = strtoupper(substr(trim($this->name ?: 'Admin'), 0, 1));
 
         $svg = sprintf(
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%%" height="100%%"><rect width="100" height="100" fill="#f95716"/><text x="50%%" y="55%%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="700">%s</text></svg>',
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%%" height="100%%"><rect width="100" height="100" fill="#005daa"/><text x="50%%" y="55%%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="700">%s</text></svg>',
             htmlspecialchars($initials)
         );
 

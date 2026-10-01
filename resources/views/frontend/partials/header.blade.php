@@ -1,62 +1,29 @@
-<header class="main-header header-style-one">
-    <!-- logo-box -->
-    <div class="logo-box">
-        <div class="shape" style="background-image: url({{ asset('assets/images/shape/shape-1.png') }});">
-        </div>
-        <figure class="logo"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="Shanti Nagar Foundation"></a></figure>
-    </div>
-    <!-- header-top -->
-    <div class="header-top">
-        <div class="outer-container">
-            <div class="top-inner clearfix">
-                <div class="left-column pull-left">
-                    <ul class="info-list clearfix">
-                        <li>
-                            <i class="icon-chat"></i>
-                            <span>Helpline:</span>
-                            <a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings['hotline'] ?? '+8801711000000') }}">{{ $siteSettings['hotline'] ?? '+880 1711-000000' }}</a>
-                        </li>
-                        <li>
-                            <a href="mailto:{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}">{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}</a>
-                        </li>
-                        <li>
-                            {{ $siteSettings['address'] ?? 'Shanti Nagar, Dhaka - 1217, Bangladesh.' }}
-                        </li>
-                    </ul>
+<header class="main-header snf-header">
+    <div class="header-inner-wrap">
+        <div class="auto-container">
+            <div class="header-content-box">
+                <!-- 1. Logo (In Flow / Not Absolute) -->
+                <div class="logo-box">
+                    <a href="{{ route('home') }}" class="d-inline-flex align-items-center">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="{{ $siteSettings['org_name'] ?? 'Shanti Nagar Foundation' }}" class="header-main-logo">
+                    </a>
                 </div>
-                <div class="right-column pull-right">
-                    <div class="update-news">
-                        <p><i class="icon-megaphone"></i><span>Updates:</span> Providing healthcare, clean water & direct relief across Bangladesh . . .</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- donate-btn -->
-        <div class="donate-btn">
-            <a href="{{ route('donate') }}" class="theme-btn btn-one">Donate Now</a>
-        </div>
-    </div>
-    <!-- header-lower -->
-    <div class="header-lower">
-        <div class="outer-container">
-            <div class="outer-box">
-                <div class="text">
-                    <figure class="icon-box"><img src="{{ asset('assets/images/icons/heart-1.png') }}" alt=""></figure>
-                    <a href="{{ route('volunteer') }}" class="volunteer-link"><span>Become a Volunteer</span></a>
-                </div>
+
+                <!-- 2. Navigation Menu -->
                 <div class="menu-area clearfix">
-                    <!--Mobile Navigation Toggler-->
+                    <!-- Mobile Navigation Toggler -->
                     <div class="mobile-nav-toggler">
                         <i class="icon-bar"></i>
                         <i class="icon-bar"></i>
                         <i class="icon-bar"></i>
                     </div>
+
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
                                 <li class="{{ request()->is('/') ? 'current' : '' }}"><a href="{{ route('home') }}">Home</a></li>
                                 <li class="{{ request()->is('about*') ? 'current' : '' }}"><a href="{{ route('about') }}">About Us</a></li>
-                                <li class="{{ request()->is('donation*') ? 'current' : '' }}"><a href="{{ route('donations') }}">Projects & Causes</a></li>
+                                <li class="{{ request()->is('donation*') ? 'current' : '' }}"><a href="{{ route('donations') }}">Projects &amp; Causes</a></li>
                                 <li class="{{ request()->is('event*') ? 'current' : '' }}"><a href="{{ route('events') }}">Activities</a></li>
                                 <li class="{{ request()->is('gallery*') ? 'current' : '' }}"><a href="{{ route('gallery') }}">Gallery</a></li>
                                 <li class="{{ request()->is('contact*') ? 'current' : '' }}"><a href="{{ route('contact') }}">Contact</a></li>
@@ -64,43 +31,17 @@
                         </div>
                     </nav>
                 </div>
-                <div class="nav-right-content clearfix">
-                    <ul class="social-style-one clearfix">
-                        <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube"><i class="fab fa-youtube"></i></a></li>
-                    </ul>
 
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--sticky Header-->
-    <div class="sticky-header">
-        <div class="auto-container">
-            <div class="outer-box">
-                <div class="menu-area clearfix">
-                    <nav class="main-menu clearfix">
-                        <!--Keep This Empty / Menu will come through Javascript-->
-                    </nav>
-                </div>
-                <div class="nav-right-content clearfix">
-                    <ul class="social-style-one clearfix">
-                        <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube"><i class="fab fa-youtube"></i></a></li>
-                    </ul>
-
+                <!-- 3. Donate Now Button -->
+                <div class="header-action-box">
+                    <a href="{{ route('donate') }}" class="theme-btn btn-one header-donate-btn">
+                        <i class="fas fa-heart"></i> <span>Donate Now</span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </header>
-
-
 <!-- main-header end -->
 
 <!-- Mobile Menu  -->
@@ -109,10 +50,16 @@
     <div class="close-btn"><i class="fas fa-times"></i></div>
 
     <nav class="menu-box">
-        <div class="nav-logo"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="Shanti Nagar Foundation" title="Shanti Nagar Foundation"></a>
+        <div class="nav-logo p-3 text-center">
+            <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="{{ $siteSettings['org_name'] ?? 'Shanti Nagar Foundation' }}" title="{{ $siteSettings['org_name'] ?? 'Shanti Nagar Foundation' }}" style="max-height: 70px; width: auto;"></a>
         </div>
-        <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
-        <div class="contact-info">
+        <div class="menu-outer"><!-- Cloned via Javascript --></div>
+        <div class="p-3 text-center">
+            <a href="{{ route('donate') }}" class="theme-btn btn-one w-100 justify-content-center d-inline-flex align-items-center">
+                <i class="fas fa-heart me-2"></i> Donate Now
+            </a>
+        </div>
+        <div class="contact-info mt-2">
             <h4>Contact Info</h4>
             <ul>
                 <li>{{ $siteSettings['address'] ?? 'Shanti Nagar, Dhaka - 1217, Bangladesh' }}</li>
@@ -122,10 +69,10 @@
         </div>
         <div class="social-links">
             <ul class="clearfix">
-                <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><span class="fab fa-facebook-square"></span></a></li>
-                <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><span class="fab fa-twitter"></span></a></li>
-                <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><span class="fab fa-linkedin-in"></span></a></li>
-                <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer"><span class="fab fa-youtube"></span></a></li>
+                <li><a href="{{ $siteSettings['facebook'] ?? 'https://facebook.com' }}" target="_blank" rel="noopener noreferrer"><span class="fab fa-facebook-square"></span></a></li>
+                <li><a href="{{ $siteSettings['twitter'] ?? 'https://twitter.com' }}" target="_blank" rel="noopener noreferrer"><span class="fab fa-twitter"></span></a></li>
+                <li><a href="{{ $siteSettings['linkedin'] ?? 'https://linkedin.com' }}" target="_blank" rel="noopener noreferrer"><span class="fab fa-linkedin-in"></span></a></li>
+                <li><a href="{{ $siteSettings['youtube'] ?? 'https://youtube.com' }}" target="_blank" rel="noopener noreferrer"><span class="fab fa-youtube"></span></a></li>
             </ul>
         </div>
     </nav>
