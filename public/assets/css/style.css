@@ -2456,7 +2456,7 @@
    background-repeat: no-repeat;
    background-position: center;
    background-size: cover;
-   padding: 186px 0px 20px 0px;
+   padding: 100px 0px 0 0px;
  }
 
  .banner-carousel .banner-content .swiper-slide:before {
@@ -2694,7 +2694,8 @@
    position: relative;
    display: block;
    z-index: 5;
-   margin-top: 110px;
+   margin-top: 50px;
+   margin-bottom: 20px;
    min-height: 46px;
  }
 
@@ -16103,126 +16104,129 @@
    background-image: url('../images/background/10.jpg');
  }
 
-/* Standalone Hero Banner (No Slider) */
-.hero-banner-section {
-  position: relative;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  background-image: url('../images/banner/banner-1.jpg');
-  padding: 120px 0 100px 0;
-  overflow: hidden;
-}
+ /* Standalone Hero Banner (No Slider) */
+ .hero-banner-section {
+   position: relative;
+   background-repeat: no-repeat;
+   background-position: center center;
+   background-size: cover;
+   background-image: url('../images/banner/banner-1.jpg');
+   padding: 120px 0 100px 0;
+   overflow: hidden;
+ }
 
-.hero-banner-section:before {
-  position: absolute;
-  content: '';
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, rgba(15, 23, 42, 0.90) 0%, rgba(15, 23, 42, 0.72) 60%, rgba(15, 23, 42, 0.45) 100%);
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
+ .hero-banner-section:before {
+   position: absolute;
+   content: '';
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(90deg, rgba(15, 23, 42, 0.90) 0%, rgba(15, 23, 42, 0.72) 60%, rgba(15, 23, 42, 0.45) 100%);
+   top: 0;
+   left: 0;
+   z-index: 1;
+ }
 
-.hero-banner-section .auto-container {
-  position: relative;
-  z-index: 2;
-}
+ .hero-banner-section .auto-container {
+   position: relative;
+   z-index: 2;
+ }
 
-.hero-banner-section .content-box {
-  max-width: 840px;
-}
+ .hero-banner-section .content-box {
+   max-width: 840px;
+ }
 
-.hero-banner-section .content-box .banner-sub-tag {
-  display: inline-block;
-  font-size: 26px;
-  line-height: 34px;
-  font-family: 'Caveat', cursive;
-  color: #f95716;
-  font-weight: 700;
-  margin-bottom: 8px;
-  text-transform: capitalize;
-}
+ .hero-banner-section .content-box .banner-sub-tag {
+   display: inline-block;
+   font-size: 26px;
+   line-height: 34px;
+   font-family: 'Caveat', cursive;
+   color: #f95716;
+   font-weight: 700;
+   margin-bottom: 8px;
+   text-transform: capitalize;
+ }
 
-.hero-banner-section .content-box h1 {
-  color: #ffffff;
-  font-size: 54px;
-  line-height: 64px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -0.01em;
-  margin-bottom: 18px;
-}
+ .hero-banner-section .content-box h1 {
+   color: #ffffff;
+   font-size: 54px;
+   line-height: 64px;
+   font-weight: 800;
+   text-transform: uppercase;
+   letter-spacing: -0.01em;
+   margin-bottom: 18px;
+ }
 
-.hero-banner-section .content-box p {
-  font-size: 19px;
-  line-height: 32px;
-  color: #e2e8f0;
-  margin-bottom: 34px;
-  font-weight: 400;
-  max-width: 720px;
-}
+ .hero-banner-section .content-box p {
+   font-size: 19px;
+   line-height: 32px;
+   color: #e2e8f0;
+   margin-bottom: 34px;
+   font-weight: 400;
+   max-width: 720px;
+ }
 
-.hero-banner-section .btn-box {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
+ .hero-banner-section .btn-box {
+   display: flex;
+   align-items: center;
+   gap: 16px;
+   flex-wrap: wrap;
+ }
 
-.hero-banner-section .btn-box .banner-btn {
-  background-color: #f95716;
-  color: #ffffff;
-  font-size: 15px;
-  font-weight: 700;
-  padding: 14px 34px;
-  border-radius: 6px;
-  display: inline-block;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  box-shadow: 0 4px 15px rgba(249, 87, 22, 0.35);
-}
+ .hero-banner-section .btn-box .banner-btn {
+   background-color: #f95716;
+   color: #ffffff;
+   font-size: 15px;
+   font-weight: 700;
+   padding: 14px 34px;
+   border-radius: 6px;
+   display: inline-block;
+   transition: all 0.3s ease;
+   text-decoration: none;
+   box-shadow: 0 4px 15px rgba(249, 87, 22, 0.35);
+ }
 
-.hero-banner-section .btn-box .banner-btn:hover {
-  background-color: #ffffff;
-  color: #f95716;
-  transform: translateY(-2px);
-}
+ .hero-banner-section .btn-box .banner-btn:hover {
+   background-color: #ffffff;
+   color: #f95716;
+   transform: translateY(-2px);
+ }
 
-.hero-banner-section .btn-box .banner-btn-outline {
-  background-color: transparent;
-  color: #ffffff;
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  font-size: 15px;
-  font-weight: 700;
-  padding: 12px 32px;
-  border-radius: 6px;
-  display: inline-block;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
+ .hero-banner-section .btn-box .banner-btn-outline {
+   background-color: transparent;
+   color: #ffffff;
+   border: 2px solid rgba(255, 255, 255, 0.7);
+   font-size: 15px;
+   font-weight: 700;
+   padding: 12px 32px;
+   border-radius: 6px;
+   display: inline-block;
+   transition: all 0.3s ease;
+   text-decoration: none;
+ }
 
-.hero-banner-section .btn-box .banner-btn-outline:hover {
-  background-color: #ffffff;
-  color: #0f172a;
-  border-color: #ffffff;
-  transform: translateY(-2px);
-}
+ .hero-banner-section .btn-box .banner-btn-outline:hover {
+   background-color: #ffffff;
+   color: #0f172a;
+   border-color: #ffffff;
+   transform: translateY(-2px);
+ }
 
-@media only screen and (max-width: 767px) {
-  .hero-banner-section {
-    padding: 160px 0 90px 0;
-  }
-  .hero-banner-section .content-box h1 {
-    font-size: 32px;
-    line-height: 40px;
-  }
-  .hero-banner-section .content-box p {
-    font-size: 16px;
-    line-height: 26px;
-  }
-  .hero-banner-section .content-box .banner-sub-tag {
-    font-size: 22px;
-  }
-}
+ @media only screen and (max-width: 767px) {
+   .hero-banner-section {
+     padding: 160px 0 90px 0;
+   }
+
+   .hero-banner-section .content-box h1 {
+     font-size: 32px;
+     line-height: 40px;
+   }
+
+   .hero-banner-section .content-box p {
+     font-size: 16px;
+     line-height: 26px;
+   }
+
+   .hero-banner-section .content-box .banner-sub-tag {
+     font-size: 22px;
+   }
+ }
