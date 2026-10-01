@@ -70,60 +70,43 @@
     </section>
     <!-- banner-section end -->
 
-    <!-- about-section -->
-    <section class="about-section sec-pad">
-        <div class="pattern-layer about-shape-5"></div>
+    <!-- about-style-three -->
+    <section class="about-style-three" style="background-image: url({{ asset('assets/images/background/13.jpg') }});">
         <div class="auto-container">
-            <div class="row clearfix align-items-center">
-                <div class="col-lg-6 col-md-12 col-sm-12 image-column">
-                    <div class="image_block_1">
-                        <div class="image-box">
-                            <figure class="image image-1"><img src="{{ asset('assets/images/resource/about-1.png') }}" alt="Shanti Nagar Foundation Relief"></figure>
-                            <figure class="image image-2"><img src="{{ asset('assets/images/resource/about-2.png') }}" alt="Community Aid"></figure>
-                            <figure class="image image-3"><img src="{{ asset('assets/images/icons/heart-2.png') }}" alt=""></figure>
-                            <figure class="image image-4"><img src="{{ asset('assets/images/icons/heart-3.png') }}" alt=""></figure>
-                            <figure class="image image-5"><img src="{{ asset('assets/images/icons/imoji-1.png') }}" alt=""></figure>
+            <div class="row clearfix">
+                <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                    <div class="content_block_6">
+                        <div class="content-box">
+                            <div class="sec-title">
+                                <span class="top-text">About Shanti Nagar Foundation</span>
+                                <h2>Dedicated to Social Welfare & Humanitarian Support</h2>
+                            </div>
                             <div class="text">
-                                <h4><i class="icon-donation"></i>100% Direct Relief</h4>
+                                <p>Shanti Nagar Foundation is a grassroots non-profit humanitarian organization committed to uplifting underprivileged communities across Bangladesh through direct medical aid, hospital equipment supply, orphan welfare, winter clothes distribution, deep tube-well installations, and educational support.</p>
+                                <p>We operate with a volunteer-first approach, ensuring direct on-ground procurement, verifying every beneficiary family in person, and maintaining itemized internal financial audit vouchers for 100% transparency.</p>
+                            </div>
+                            <div class="inner-box clearfix">
+                                <div class="author-box">
+                                    <div class="icon-box"><i class="icon-hand"></i></div>
+                                    <span>Governing Secretariat</span>
+                                    <h3>Shanti Nagar Association</h3>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-12 col-sm-12 content-column">
-                    <div class="content_block_1">
-                        <div class="content-box">
-                            <div class="inner">
-                                <div class="sec-title">
-                                    <span class="top-text">About Shanti Nagar Foundation</span>
-                                    <h2>Grassroots Humanitarian Aid & Social Empowerment</h2>
-                                </div>
-                                <div class="text">
-                                    <p>Headquartered in Shanti Nagar, Dhaka, our foundation connects generous donors with verified humanitarian causes across Bangladesh. Every donation directly funds essential medical gear, educational materials, emergency seasonal relief, and community welfare.</p>
-                                    <p>Our volunteer network supervises direct on-ground procurement, verifying every beneficiary and maintaining itemized internal financial audit vouchers for absolute integrity.</p>
-                                </div>
-                                <div class="btn-box">
-                                    <a href="{{ route('about') }}" class="theme-btn btn-one">Our Mission & Transparency</a>
-                                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 image-column">
+                    <div class="image_block_2">
+                        <div class="image-box">
+                            <figure class="image image-1"><img src="{{ asset('assets/images/resource/about-2.jpg') }}" alt="Shanti Nagar Foundation Relief"></figure>
+                            <figure class="image image-2"><img src="{{ asset('assets/images/resource/about-3.jpg') }}" alt="Community Aid Bangladesh"></figure>
+                            <div class="rotate-text">
+                                <figure class="text-box rotate-me"><img src="{{ asset('assets/images/icons/rotate-text-2.png') }}" alt=""></figure>
+                                <figure class="icon-box"><img src="{{ asset('assets/images/icons/bird-1.png') }}" alt=""></figure>
                             </div>
-                            <div class="funfact-inner">
-                                <div class="counter-block-one wow fadeInRight animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                                    <div class="inner-box">
-                                        <div class="icon-box"><i class="icon-charity"></i></div>
-                                        <div class="count-outer count-box">
-                                            <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['activeVolunteers'] ?? 0) }}">0</span>
-                                        </div>
-                                        <h4>Active Volunteers</h4>
-                                    </div>
-                                </div>
-                                <div class="counter-block-one wow fadeInRight animated" data-wow-delay="100ms" data-wow-duration="1500ms">
-                                    <div class="inner-box">
-                                        <div class="icon-box"><i class="icon-donation-1"></i></div>
-                                        <div class="count-outer count-box">
-                                            <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['completedDonationsCount'] ?? 0) }}">0</span><span>+</span>
-                                        </div>
-                                        <h4>Completed Donations</h4>
-                                    </div>
-                                </div>
+                            <figure class="icon-box"><img src="{{ asset('assets/images/icons/heart-7.png') }}" alt=""></figure>
+                            <div class="text">
+                                <h4><i class="icon-donation-1"></i>100% Direct Relief</h4>
                             </div>
                         </div>
                     </div>
@@ -131,7 +114,7 @@
             </div>
         </div>
     </section>
-    <!-- about-section end -->
+    <!-- about-style-three end -->
 
     <!-- urgent-case-section -->
     @if(isset($urgentProject) && $urgentProject)
@@ -146,7 +129,7 @@
                 <div class="inner-box clearfix">
                     <div class="single-block banner-bg-2">
                         <div class="text">
-                            <h3><i class="icon-tax-free"></i>Official Receipt &<br />100% Transparency</h3>
+                            <h3><i class="icon-tax-free"></i>Official Receipt & 100% Transparency</h3>
                             <p>Every donation receives an official numbered money receipt voucher.</p>
                             <ul class="list-style-one clearfix">
                                 <li>Direct field procurement by volunteer teams</li>
@@ -158,7 +141,7 @@
                     </div>
                     <div class="single-block banner-bg-3">
                         <div class="text">
-                            <h3><i class="icon-gift"></i>Sponsor an Orphan or<br />Healthcare Ward</h3>
+                            <h3><i class="icon-gift"></i>Sponsor an Orphan or Healthcare Ward</h3>
                             <p>Dedicate your Sadaqah or Zakat directly to an active relief drive.</p>
                             <ul class="list-style-one clearfix">
                                 <li>Select specific project and cause</li>
@@ -205,16 +188,12 @@
                                         <li>
                                             <i class="far fa-map-marker-alt"></i>
                                             <h5>Location</h5>
-                                            <p>{{ Str::limit($urgentProject->location, 16) }}</p>
+                                            <p>{{ Str::limit($urgentProject->location, 40) }}</p>
                                         </li>
                                         <li>
                                             <i class="fas fa-users"></i>
                                             <h5>{{ $uSupporters }}+</h5>
                                             <p>Supporters</p>
-                                        </li>
-                                        <li class="share">
-                                            <i class="fas fa-hand-holding-usd"></i>
-                                            <h5><a href="{{ route('donation.details', $urgentProject->slug) }}">Details</a></h5>
                                         </li>
                                     </ul>
                                 </div>
@@ -291,7 +270,6 @@
                                                             <div class="text">
                                                                 <div class="category"><a href="{{ route('donation.details', $project->slug) }}"># {{ $project->category }}</a></div>
                                                                 <h3><a href="{{ route('donation.details', $project->slug) }}">{{ Str::limit($project->name, 40) }}</a></h3>
-                                                                <p>{{ Str::limit($project->short_description ?: $project->description, 75) }}</p>
                                                             </div>
                                                             <ul class="info-box clearfix">
                                                                 <li>

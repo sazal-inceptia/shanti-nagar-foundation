@@ -265,7 +265,7 @@
                             <div class="progress-inner">
                                 <div class="single-progress-box">
                                     <div class="box">
-                                        <div class="piechart" data-fg-color="#f65024" data-value="{{ $pieVal1 }}">
+                                        <div class="piechart" data-fg-color="#005daa" data-value="{{ $pieVal1 }}">
                                         </div>
                                         <span>Fund <br />Utilization</span>
                                     </div>
@@ -278,7 +278,7 @@
                                 </div>
                                 <div class="single-progress-box">
                                     <div class="box">
-                                        <div class="piechart" data-fg-color="#03c0a8" data-value="{{ $pieVal2 }}">
+                                        <div class="piechart" data-fg-color="#ffb81c" data-value="{{ $pieVal2 }}">
                                         </div>
                                         <span>Direct <br />Field Aid</span>
                                     </div>

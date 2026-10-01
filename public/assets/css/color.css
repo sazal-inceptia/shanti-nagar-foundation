@@ -226,6 +226,12 @@
 	border-color: var(--theme-primary, #005daa);
 }
 
+.scroll-top:before,
+.scroll-top:after {
+	-webkit-box-shadow: 0 0 0 0 rgba(var(--theme-primary-rgb, 0, 93, 170), 0.5);
+	box-shadow: 0 0 0 0 rgba(var(--theme-primary-rgb, 0, 93, 170), 0.5);
+}
+
 .image_block_1 .image-box .text {
 	background-color: var(--theme-secondary, #ffb81c);
 }
@@ -268,6 +274,55 @@
 
 .urgent-case-section .right-column .lower-box .info-box li h5 a:hover {
 	color: var(--theme-primary, #005daa);
+}
+
+/* Urgent Case Section Yellow/Gold Banner (banner-bg-2) Dark Typography for High Contrast & Readability */
+.urgent-case-section .outer-container .single-block.banner-bg-2 h3,
+.urgent-case-section .outer-container .single-block:first-child h3 {
+	color: #0f172a !important;
+}
+
+.urgent-case-section .outer-container .single-block.banner-bg-2 h3 i,
+.urgent-case-section .outer-container .single-block:first-child h3 i {
+	color: #003366 !important;
+}
+
+.urgent-case-section .outer-container .single-block.banner-bg-2 p,
+.urgent-case-section .outer-container .single-block:first-child p {
+	color: #1e293b !important;
+	font-weight: 600;
+}
+
+.urgent-case-section .outer-container .single-block.banner-bg-2 .list-style-one li,
+.urgent-case-section .outer-container .single-block:first-child .list-style-one li {
+	color: #1e293b !important;
+	font-weight: 600;
+}
+
+.urgent-case-section .outer-container .single-block.banner-bg-2 .list-style-one li:before,
+.urgent-case-section .outer-container .single-block:first-child .list-style-one li:before {
+	color: #003366 !important;
+}
+
+.urgent-case-section .outer-container .single-block.banner-bg-2 a,
+.urgent-case-section .outer-container .single-block:first-child a {
+	color: #0f172a !important;
+	font-weight: 700;
+}
+
+.urgent-case-section .outer-container .single-block.banner-bg-2 a:before,
+.urgent-case-section .outer-container .single-block:first-child a:before {
+	background-color: #0f172a !important;
+}
+
+.urgent-case-section .outer-container .single-block.banner-bg-2 a:hover,
+.urgent-case-section .outer-container .single-block:first-child a:hover {
+	color: var(--theme-primary, #005daa) !important;
+}
+
+.urgent-case-section .outer-container .single-block.banner-bg-2 a:hover:before,
+.urgent-case-section .outer-container .single-block:first-child a:hover:before {
+	background-color: var(--theme-primary, #005daa) !important;
 }
 
 .banner-carousel .banner-content .swiper-slide .content-box span {
@@ -968,7 +1023,7 @@
 }
 
 .page-title:before {
-	background-color: var(--theme-secondary, #ffb81c);
+	background-color: var(--theme-primary, #005daa);
 }
 
 .page-title .bread-crumb li a:hover {
