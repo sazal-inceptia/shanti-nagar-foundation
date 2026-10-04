@@ -56,6 +56,9 @@
         @include('frontend.partials.footer')
         <!-- main-footer end -->
 
+        <!-- floating help drawer -->
+        @include('frontend.partials.help-drawer')
+
         <!-- donate popup -->
         <div id="donate-popup" class="donate-popup">
             <div class="close-donate"><i class="icon-close"></i></div>

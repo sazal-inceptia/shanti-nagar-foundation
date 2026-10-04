@@ -442,6 +442,10 @@
         <i class="fa-solid fa-arrow-left"></i>
         <span>Back to Website</span>
     </a>
+
+    <div class="login-footer text-center mt-3" style="font-size: 11.5px; color: #94a3b8;">
+        &copy; {{ date('Y') }} {{ config('app.name', 'Rotary Club of Shantinagar Dhaka') }} &bull; Developed by <strong style="color: var(--brand-primary); font-weight: 700;">Inceptia</strong>
+    </div>
 </div>
 
 <script>

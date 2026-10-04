@@ -229,8 +229,8 @@ erDiagram
 * **Relations:** `belongsTo(Employee::class)`.
 
 ### 11. `contact_messages`
-* Public visitor and donor contact inquiries submitted from the website.
-* **Fields:** `id`, `name`, `email`, `phone`, `subject`, `message`, `status` (`unread`, `read`, `replied`), `admin_reply`, `replied_at`, `created_at`, `updated_at`, `deleted_at`.
+* Public visitor and donor contact inquiries submitted from the website and floating quick-help drawer.
+* **Fields:** `id`, `name`, `email` (nullable), `phone` (nullable), `subject` (nullable), `message`, `status` (`unread`, `read`, `replied`), `admin_reply`, `replied_at`, `created_at`, `updated_at`, `deleted_at`.
 
 ### 12. `volunteers`
 * Community volunteer registrations and field helper applications.

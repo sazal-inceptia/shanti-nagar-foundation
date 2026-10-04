@@ -6,49 +6,117 @@
 
 @push('custom-style')
     <style>
+        /* Premium Clean NGO Dashboard Styles */
+        .dashboard-hero-bar {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        }
+
+        .dashboard-hero-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dashboard-hero-sub {
+            font-size: 12px;
+            color: #64748b;
+            margin: 0;
+        }
+
         .stat-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 16px 18px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.2s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
         }
 
         .stat-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05);
             border-color: #cbd5e1;
         }
 
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: transparent;
+        }
+        .stat-label {
+            font-size: 11.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #64748b;
+            margin-bottom: 3px;
+        }
+
+        .stat-value {
+            font-size: 19px;
+            font-weight: 600;
+            color: #0f172a;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+            margin: 2px 0 2px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-currency {
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.75;
+            margin-right: 2px;
+        }
+
+        .stat-subtext {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-bottom: 0;
+        }
+
         .stat-icon-wrapper {
-            width: 44px;
-            height: 44px;
+            width: 40px;
+            height: 40px;
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
+            font-size: 20px;
             flex-shrink: 0;
         }
 
-        .stat-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: #0f172a;
-            line-height: 1.2;
-            margin: 4px 0 2px;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: #64748b;
+        .stat-footer {
+            padding-top: 10px;
+            margin-top: 10px;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .stat-link {
@@ -57,25 +125,35 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            transition: color 0.15s ease;
+            gap: 3px;
+            transition: all 0.15s ease;
         }
 
         .stat-link:hover {
+            opacity: 0.85;
             text-decoration: underline;
         }
 
+        .stat-badge {
+            font-size: 10.5px;
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: 5px;
+        }
+
+        /* Section Cards */
         .dashboard-section-card {
             background-color: #ffffff;
             border: 1px solid #e2e8f0;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
         }
 
         .dashboard-section-header {
-            padding: 14px 20px;
+            padding: 13px 18px;
             background-color: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid #f1f5f9;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -83,7 +161,7 @@
         }
 
         .dashboard-section-title {
-            font-size: 15px;
+            font-size: 13.5px;
             font-weight: 700;
             color: #0f172a;
             margin-bottom: 0;
@@ -96,29 +174,34 @@
             content: '';
             display: inline-block;
             width: 3px;
-            height: 16px;
+            height: 14px;
             background-color: #005daa;
             border-radius: 2px;
         }
 
+        /* Tables */
+        .dashboard-table {
+            margin-bottom: 0;
+        }
+
         .dashboard-table th {
             background-color: #f8fafc;
-            color: #64748b;
-            font-size: 11.5px;
-            font-weight: 700;
+            color: #475569;
+            font-size: 11px;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 11px 16px;
+            letter-spacing: 0.04em;
+            padding: 10px 16px;
             border-bottom: 1px solid #e2e8f0;
             white-space: nowrap;
         }
 
         .dashboard-table td {
-            padding: 12px 16px;
+            padding: 11px 16px;
             vertical-align: middle;
-            font-size: 13px;
+            font-size: 12.5px;
             color: #334155;
-            border-bottom: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f8fafc;
         }
 
         .dashboard-table tbody tr:hover {
@@ -128,179 +211,158 @@
         .dashboard-table tbody tr:last-child td {
             border-bottom: none;
         }
+
+        .table-amount-inflow {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #059669;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .table-amount-outflow {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #dc2626;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .table-badge-method {
+            background-color: #f1f5f9;
+            color: #334155;
+            font-size: 10.5px;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 4px;
+            letter-spacing: 0.02em;
+        }
     </style>
 @endpush
 
 @section('content')
     <div class="container-fluid my-3">
-        {{-- 8 Real-Time Dynamic NGO KPI Statistics Cards --}}
+        {{-- Top Greeting & Quick Actions Bar --}}
+        <div class="dashboard-hero-bar">
+            <div>
+                <h4 class="dashboard-hero-title">
+                    <span>Rotary Club of Shantinagar Dhaka</span>
+                    <span class="badge" style="background-color: #e8f1f8; color: #005daa; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px;">
+                        District 3281
+                    </span>
+                </h4>
+                <p class="dashboard-hero-sub">Financial Overview, Humanitarian Relief Inflow &amp; Expenditure Ledger</p>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <span class="text-muted d-none d-sm-inline" style="font-size: 12px;">
+                    <i class="ri-calendar-line me-1"></i> {{ date('l, F d, Y') }}
+                </span>
+                <a href="{{ route('admin.donations.create') }}" class="btn btn-sm btn-primary d-inline-flex align-items-center gap-1" style="font-size: 12px; height: 32px; padding: 0 12px; border-radius: 6px;">
+                    <i class="ri-add-line"></i> Record Donation
+                </a>
+            </div>
+        </div>
+
+        {{-- 4 Primary Real-Time KPI Statistics Cards --}}
         <div class="row g-3 mb-4">
-            {{-- 1. Total Donations Received --}}
+            {{-- 1. Total Donations (Inflow) --}}
             <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                <div class="stat-card">
+                <div class="stat-card stat-card-green">
                     <div class="d-flex align-items-start justify-content-between">
                         <div>
                             <div class="stat-label">Total Donations</div>
-                            <div class="stat-value" style="color: #059669;">৳ {{ number_format($kpi['total_donations'], 2) }}</div>
+                            <div class="stat-value" style="color: #059669;">
+                                <span class="stat-currency">৳</span>{{ number_format($kpi['total_donations'], 2) }}
+                            </div>
+                            <div class="stat-subtext">Total verified collections</div>
                         </div>
                         <div class="stat-icon-wrapper" style="background-color: #ecfdf5; color: #059669;">
                             <i class="ri-hand-coin-line"></i>
                         </div>
                     </div>
-                    <div class="pt-2 mt-2 border-top d-flex justify-content-between align-items-center">
+                    <div class="stat-footer">
                         <a href="{{ route('admin.donations.index') }}" class="stat-link" style="color: #059669;">
-                            View Receipts <i class="ri-arrow-right-line ms-1"></i>
+                            View Receipts <i class="ri-arrow-right-line"></i>
                         </a>
-                        <span class="badge" style="background-color: #ecfdf5; color: #065f46; font-size: 11px; font-weight: 600;">{{ $kpi['donations_count'] }} Records</span>
+                        <span class="stat-badge" style="background-color: #ecfdf5; color: #065f46;">
+                            {{ $kpi['donations_count'] }} Records
+                        </span>
                     </div>
                 </div>
             </div>
 
-            {{-- 2. Total Expenditure --}}
+            {{-- 2. Total Expenditure (Outflow) --}}
             <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                <div class="stat-card">
+                <div class="stat-card stat-card-red">
                     <div class="d-flex align-items-start justify-content-between">
                         <div>
                             <div class="stat-label">Total Expenditure</div>
-                            <div class="stat-value" style="color: #dc2626;">৳ {{ number_format($kpi['total_expenses'], 2) }}</div>
+                            <div class="stat-value" style="color: #dc2626;">
+                                <span class="stat-currency">৳</span>{{ number_format($kpi['total_expenses'], 2) }}
+                            </div>
+                            <div class="stat-subtext">Project relief &amp; staff salary</div>
                         </div>
                         <div class="stat-icon-wrapper" style="background-color: #fff1f2; color: #dc2626;">
                             <i class="ri-money-dollar-circle-line"></i>
                         </div>
                     </div>
-                    <div class="pt-2 mt-2 border-top d-flex justify-content-between align-items-center">
+                    <div class="stat-footer">
                         <a href="{{ route('admin.expenses.index') }}" class="stat-link" style="color: #dc2626;">
-                            View Vouchers <i class="ri-arrow-right-line ms-1"></i>
+                            View Vouchers <i class="ri-arrow-right-line"></i>
                         </a>
-                        <span class="badge" style="background-color: #fee2e2; color: #dc2626; font-size: 11px; font-weight: 600;">Expenses &amp; Salary</span>
+                        <span class="stat-badge" style="background-color: #fee2e2; color: #dc2626;">
+                            Disbursements
+                        </span>
                     </div>
                 </div>
             </div>
 
-            {{-- 3. Net Fund Balance --}}
+            {{-- 3. Net Fund Balance (Available Reserve) --}}
             <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                <div class="stat-card">
+                <div class="stat-card stat-card-blue">
                     <div class="d-flex align-items-start justify-content-between">
                         <div>
-                            <div class="stat-label">Net Fund Balance</div>
-                            <div class="stat-value" style="color: {{ $kpi['net_fund_balance'] >= 0 ? '#2563eb' : '#dc2626' }};">
-                                ৳ {{ number_format($kpi['net_fund_balance'], 2) }}
+                            <div class="stat-label">Net Available Reserve</div>
+                            <div class="stat-value" style="color: {{ $kpi['net_fund_balance'] >= 0 ? '#005daa' : '#dc2626' }};">
+                                <span class="stat-currency">৳</span>{{ number_format($kpi['net_fund_balance'], 2) }}
                             </div>
+                            <div class="stat-subtext">Current treasury reserve</div>
                         </div>
-                        <div class="stat-icon-wrapper" style="background-color: #eff6ff; color: #2563eb;">
+                        <div class="stat-icon-wrapper" style="background-color: #e8f1f8; color: #005daa;">
                             <i class="ri-wallet-3-line"></i>
                         </div>
                     </div>
-                    <div class="pt-2 mt-2 border-top d-flex justify-content-between align-items-center">
-                        <a href="{{ route('admin.reports.index') }}" class="stat-link" style="color: #2563eb;">
-                            Financial Audit <i class="ri-arrow-right-line ms-1"></i>
+                    <div class="stat-footer">
+                        <a href="{{ route('admin.reports.index') }}" class="stat-link" style="color: #005daa;">
+                            Audit Statement <i class="ri-arrow-right-line"></i>
                         </a>
-                        <span class="badge bg-light text-muted" style="font-size: 11px;">Available Reserve</span>
+                        <span class="stat-badge" style="background-color: #e8f1f8; color: #005daa;">
+                            {{ $kpi['net_fund_balance'] >= 0 ? 'Surplus Reserve' : 'Deficit' }}
+                        </span>
                     </div>
                 </div>
             </div>
 
-            {{-- 4. Active Donors --}}
+            {{-- 4. Registered Donors & Supporters --}}
             <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                <div class="stat-card">
+                <div class="stat-card stat-card-indigo">
                     <div class="d-flex align-items-start justify-content-between">
                         <div>
                             <div class="stat-label">Registered Donors</div>
-                            <div class="stat-value" style="color: #f65024;">{{ number_format($kpi['total_donors']) }}</div>
+                            <div class="stat-value" style="color: #4f46e5;">
+                                {{ number_format($kpi['total_donors']) }}
+                            </div>
+                            <div class="stat-subtext">{{ $kpi['active_projects'] }} Active Relief Causes</div>
                         </div>
-                        <div class="stat-icon-wrapper" style="background-color: #fff3ee; color: #f65024;">
+                        <div class="stat-icon-wrapper" style="background-color: #eef2ff; color: #4f46e5;">
                             <i class="ri-user-heart-line"></i>
                         </div>
                     </div>
-                    <div class="pt-2 mt-2 border-top d-flex justify-content-between align-items-center">
-                        <a href="{{ route('admin.donors.index') }}" class="stat-link" style="color: #f65024;">
-                            Donor Directory <i class="ri-arrow-right-line ms-1"></i>
+                    <div class="stat-footer">
+                        <a href="{{ route('admin.donors.index') }}" class="stat-link" style="color: #4f46e5;">
+                            Donor Directory <i class="ri-arrow-right-line"></i>
                         </a>
-                        <span class="badge" style="background-color: #fff3ee; color: #f65024; font-size: 11px; font-weight: 600;">Supporters</span>
-                    </div>
-                </div>
-            </div>
-
-            {{-- 5. Active Relief Projects --}}
-            <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                <div class="stat-card">
-                    <div class="d-flex align-items-start justify-content-between">
-                        <div>
-                            <div class="stat-label">Active Projects</div>
-                            <div class="stat-value" style="color: #4f46e5;">{{ $kpi['active_projects'] }} / {{ $kpi['total_projects'] }}</div>
-                        </div>
-                        <div class="stat-icon-wrapper" style="background-color: #eef2ff; color: #4f46e5;">
-                            <i class="ri-heart-pulse-line"></i>
-                        </div>
-                    </div>
-                    <div class="pt-2 mt-2 border-top d-flex justify-content-between align-items-center">
-                        <a href="{{ route('admin.projects.index') }}" class="stat-link" style="color: #4f46e5;">
-                            Ongoing Campaigns <i class="ri-arrow-right-line ms-1"></i>
-                        </a>
-                        <span class="badge" style="background-color: #eff6ff; color: #1e40af; font-size: 11px; font-weight: 600;">Relief &amp; Welfare</span>
-                    </div>
-                </div>
-            </div>
-
-            {{-- 6. Total Staff Members --}}
-            <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                <div class="stat-card">
-                    <div class="d-flex align-items-start justify-content-between">
-                        <div>
-                            <div class="stat-label">Staff &amp; Field Workers</div>
-                            <div class="stat-value" style="color: #7c3aed;">{{ number_format($kpi['total_employees']) }}</div>
-                        </div>
-                        <div class="stat-icon-wrapper" style="background-color: #f5f3ff; color: #7c3aed;">
-                            <i class="ri-team-line"></i>
-                        </div>
-                    </div>
-                    <div class="pt-2 mt-2 border-top d-flex justify-content-between align-items-center">
-                        <a href="{{ route('admin.employees.index') }}" class="stat-link" style="color: #7c3aed;">
-                            Staff Roster <i class="ri-arrow-right-line ms-1"></i>
-                        </a>
-                        <span class="badge bg-light text-muted" style="font-size: 11px;">Active Payroll</span>
-                    </div>
-                </div>
-            </div>
-
-            {{-- 7. Monthly Payroll Link --}}
-            <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                <div class="stat-card">
-                    <div class="d-flex align-items-start justify-content-between">
-                        <div>
-                            <div class="stat-label">Salary &amp; Payroll</div>
-                            <div class="stat-value" style="color: #0284c7;">Active</div>
-                        </div>
-                        <div class="stat-icon-wrapper" style="background-color: #f0f9ff; color: #0284c7;">
-                            <i class="ri-bank-card-line"></i>
-                        </div>
-                    </div>
-                    <div class="pt-2 mt-2 border-top d-flex justify-content-between align-items-center">
-                        <a href="{{ route('admin.salaries.index') }}" class="stat-link" style="color: #0284c7;">
-                            Manage Payroll <i class="ri-arrow-right-line ms-1"></i>
-                        </a>
-                        <span class="badge bg-light text-muted" style="font-size: 11px;">Disbursements</span>
-                    </div>
-                </div>
-            </div>
-
-            {{-- 8. Organization Status --}}
-            <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-12">
-                <div class="stat-card">
-                    <div class="d-flex align-items-start justify-content-between">
-                        <div>
-                            <div class="stat-label">Organization HQ</div>
-                            <div class="stat-value" style="font-size: 18px; color: #d97706; padding-top: 5px;">Shanti Nagar</div>
-                        </div>
-                        <div class="stat-icon-wrapper" style="background-color: #fef3c7; color: #d97706;">
-                            <i class="ri-map-pin-user-line"></i>
-                        </div>
-                    </div>
-                    <div class="pt-2 mt-2 border-top d-flex justify-content-between align-items-center">
-                        <a href="{{ route('about') }}" target="_blank" class="stat-link" style="color: #d97706;">
-                            About Foundation <i class="ri-arrow-right-line ms-1"></i>
-                        </a>
-                        <span class="badge bg-light text-dark border" style="font-size: 11px; font-weight: 600;">Dhaka, BD</span>
+                        <span class="stat-badge" style="background-color: #eef2ff; color: #4338ca;">
+                            Supporters
+                        </span>
                     </div>
                 </div>
             </div>
@@ -313,7 +375,7 @@
                 <div class="dashboard-section-card h-100">
                     <div class="dashboard-section-header">
                         <h5 class="dashboard-section-title">Recent Donations</h5>
-                        <a href="{{ route('admin.donations.index') }}" class="btn btn-sm btn-outline-secondary px-3" style="font-size: 12px; height: 32px; border-radius: 6px; font-weight: 600;">
+                        <a href="{{ route('admin.donations.index') }}" class="btn btn-sm btn-outline-secondary px-3" style="font-size: 11.5px; height: 30px; border-radius: 6px; font-weight: 600;">
                             View All <i class="ri-arrow-right-line ms-1"></i>
                         </a>
                     </div>
@@ -323,10 +385,10 @@
                                 <thead>
                                     <tr>
                                         <th>Receipt #</th>
-                                        <th>Donor Name</th>
+                                        <th>Donor</th>
                                         <th>Project Cause</th>
                                         <th>Amount</th>
-                                        <th>Payment Method</th>
+                                        <th>Method</th>
                                         <th>Date</th>
                                     </tr>
                                 </thead>
@@ -334,31 +396,31 @@
                                     @forelse($recentDonations as $donation)
                                         <tr>
                                             <td>
-                                                <a href="{{ route('admin.donations.show', $donation->id) }}" class="fw-bold text-dark font-monospace text-decoration-none" style="font-size: 12.5px;">
+                                                <a href="{{ route('admin.donations.show', $donation->id) }}" class="fw-bold font-monospace text-decoration-none" style="color: #005daa; font-size: 12px;">
                                                     {{ $donation->receipt_number }}
                                                 </a>
                                             </td>
                                             <td>
-                                                <div class="fw-bold text-dark" style="font-size: 13px;">{{ $donation->donor ? $donation->donor->name : 'Anonymous Donor' }}</div>
+                                                <div class="fw-semibold text-dark" style="font-size: 12.5px;">{{ $donation->donor ? $donation->donor->name : 'Anonymous Donor' }}</div>
                                                 <span class="text-muted" style="font-size: 11px;">{{ $donation->donor?->phone ?: 'N/A' }}</span>
                                             </td>
                                             <td>
-                                                <span class="fw-semibold text-dark d-block text-truncate" style="max-width: 170px; font-size: 12.5px;">
+                                                <span class="text-dark d-block text-truncate" style="max-width: 170px; font-size: 12px; font-weight: 500;">
                                                     {{ $donation->project ? $donation->project->name : 'General Humanitarian Fund' }}
                                                 </span>
                                             </td>
                                             <td>
-                                                <span class="fw-bold" style="color: #059669; font-size: 13.5px;">
+                                                <span class="table-amount-inflow">
                                                     ৳ {{ number_format((float) $donation->amount, 2) }}
                                                 </span>
                                             </td>
                                             <td>
-                                                <span class="badge" style="background-color: #f1f5f9; color: #334155; font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;">
+                                                <span class="table-badge-method">
                                                     {{ strtoupper($donation->payment_method) }}
                                                 </span>
                                             </td>
                                             <td>
-                                                <span class="text-muted" style="font-size: 12px;">{{ $donation->donation_date?->format('M d, Y') }}</span>
+                                                <span class="text-muted" style="font-size: 11.5px;">{{ $donation->donation_date?->format('M d, Y') }}</span>
                                             </td>
                                         </tr>
                                     @empty
@@ -378,7 +440,7 @@
                 <div class="dashboard-section-card h-100">
                     <div class="dashboard-section-header">
                         <h5 class="dashboard-section-title">Recent Expenses &amp; Vouchers</h5>
-                        <a href="{{ route('admin.expenses.index') }}" class="btn btn-sm btn-outline-secondary px-3" style="font-size: 12px; height: 32px; border-radius: 6px; font-weight: 600;">
+                        <a href="{{ route('admin.expenses.index') }}" class="btn btn-sm btn-outline-secondary px-3" style="font-size: 11.5px; height: 30px; border-radius: 6px; font-weight: 600;">
                             View All <i class="ri-arrow-right-line ms-1"></i>
                         </a>
                     </div>
@@ -397,20 +459,20 @@
                                     @forelse($recentExpenses as $expense)
                                         <tr>
                                             <td>
-                                                <a href="{{ route('admin.expenses.show', $expense->id) }}" class="fw-bold text-dark font-monospace text-decoration-none" style="font-size: 12.5px;">
+                                                <a href="{{ route('admin.expenses.show', $expense->id) }}" class="fw-bold font-monospace text-decoration-none" style="color: #dc2626; font-size: 12px;">
                                                     {{ $expense->voucher_number }}
                                                 </a>
                                             </td>
                                             <td>
-                                                <div class="fw-semibold text-dark text-truncate" style="font-size: 12.5px; max-width: 170px;">
+                                                <div class="fw-semibold text-dark text-truncate" style="font-size: 12.5px; max-width: 160px;">
                                                     {{ $expense->category instanceof \App\Enums\ExpenseCategory ? $expense->category->label() : ucfirst($expense->category) }}
                                                 </div>
-                                                <span class="text-muted text-truncate d-block" style="font-size: 11px; max-width: 160px;">
+                                                <span class="text-muted text-truncate d-block" style="font-size: 11px; max-width: 150px;">
                                                     {{ $expense->project ? $expense->project->name : ($expense->vendor_name ?: 'General Operating Expense') }}
                                                 </span>
                                             </td>
                                             <td>
-                                                <span class="fw-bold" style="color: #dc2626; font-size: 13px;">
+                                                <span class="table-amount-outflow">
                                                     ৳ {{ number_format((float) $expense->amount, 2) }}
                                                 </span>
                                             </td>

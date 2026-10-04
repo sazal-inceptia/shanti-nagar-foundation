@@ -10,7 +10,8 @@
                             <h3>{{ $siteSettings['org_name'] ?? 'Rotary Club of Shantinagar Dhaka' }}</h3>
                         </div>
                         <div class="text">
-                            <p>{{ $siteSettings['tagline'] ?? 'Connecting compassionate donors directly with verified humanitarian relief, hospital equipment aid, pure water wells, and orphan welfare across Bangladesh with 100% financial transparency.' }}</p>
+                            <p>{{ $siteSettings['tagline'] ?? 'Connecting compassionate donors directly with verified humanitarian relief, hospital equipment aid, pure water wells, and orphan welfare across Bangladesh with 100% financial transparency.' }}
+                            </p>
                             <a href="{{ route('volunteer') }}" class="theme-btn btn-one">Join As Volunteer</a>
                         </div>
                     </div>
@@ -58,13 +59,18 @@
                         </div>
                         <div class="widget-content">
                             <div class="single-item">
-                                <h3><a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings['hotline'] ?? '+8801711000000') }}">{{ $siteSettings['hotline'] ?? '+880 1711-000000' }}</a></h3>
-                                <p><a href="mailto:{{ $siteSettings['email'] ?? 'contact@rotaryshantinagardhaka.org' }}">{{ $siteSettings['email'] ?? 'contact@rotaryshantinagardhaka.org' }}</a>
+                                <h3><a
+                                        href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings['hotline'] ?? '+8801711000000') }}">{{ $siteSettings['hotline'] ?? '+880 1711-000000' }}</a>
+                                </h3>
+                                <p><a
+                                        href="mailto:{{ $siteSettings['email'] ?? 'contact@rotaryshantinagardhaka.org' }}">{{
+                                        $siteSettings['email'] ?? 'contact@rotaryshantinagardhaka.org' }}</a>
                                 </p>
                             </div>
                             <div class="single-item">
                                 <h5>Head Office</h5>
-                                <p>{{ $siteSettings['address'] ?? 'House 12, Road 5, Shanti Nagar, Dhaka-1217, Bangladesh.' }}</p>
+                                <p>{{ $siteSettings['address'] ?? 'House 12, Road 5, Shanti Nagar, Dhaka-1217, Bangladesh.' }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -75,18 +81,12 @@
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="inner-box clearfix">
-                <div class="copyright pull-left">
-                    <p>&copy; {{ date('Y') }} <a href="{{ route('home') }}">{{ $siteSettings['org_name'] ?? 'Rotary Club of Shantinagar Dhaka' }}</a>. All Rights
+                <div class="copyright text-center">
+                    <p>&copy; {{ date('Y') }} <a
+                            href="{{ route('home') }}">{{ $siteSettings['org_name'] ?? 'Rotary Club of Shantinagar Dhaka' }}</a>.
+                        Developed by <strong style="color: var(--theme-secondary);">Inceptia</strong>. All Rights
                         Reserved.</p>
                 </div>
-                <ul class="footer-card pull-right clearfix">
-                    <li><span>Direct Donation Methods:</span></li>
-                    <li><a href="{{ route('donate') }}" class="donation-badge" title="bKash Merchant & Personal Donation">bKash</a></li>
-                    <li><a href="{{ route('donate') }}" class="donation-badge" title="Nagad Donation">Nagad</a></li>
-                    <li><a href="{{ route('donate') }}" class="donation-badge" title="Rocket Donation">Rocket</a></li>
-                    <li><a href="{{ route('donate') }}" class="donation-badge" title="Direct Bank Wire / Online Deposit">Bank Deposit</a></li>
-                    <li><a href="{{ route('donate') }}" class="donation-badge" title="Official Money Receipt Voucher">Cash Voucher</a></li>
-                </ul>
             </div>
         </div>
     </div>
