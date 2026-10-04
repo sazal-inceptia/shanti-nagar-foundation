@@ -34,13 +34,13 @@
                                     <select class="form-select custom-input @error('employee_id') is-invalid @enderror" name="employee_id" id="employee_id" required>
                                         <option value="">Choose Staff Member...</option>
                                         @foreach($employees as $emp)
+                                            @php $desigName = $emp->designation?->name ?? $emp->designation; @endphp
                                             <option value="{{ $emp->id }}"
                                                 data-base-salary="{{ $emp->base_salary }}"
-                                                data-designation="{{ $emp->designation }}"
-                                                data-department="{{ $emp->department }}"
+                                                data-designation="{{ $desigName }}"
                                                 data-code="{{ $emp->employee_id }}"
                                                 {{ (old('employee_id') == $emp->id || ($selectedEmployee && $selectedEmployee->id == $emp->id)) ? 'selected' : '' }}>
-                                                {{ $emp->name }} — {{ $emp->designation }} ({{ $emp->employee_id }})
+                                                {{ $emp->name }} — {{ $desigName }} ({{ $emp->employee_id }})
                                             </option>
                                         @endforeach
                                     </select>
@@ -234,7 +234,6 @@
                                 <div class="text-muted" style="font-size: 12px; line-height: 1.5;">
                                     <div>ID: <strong class="text-dark font-monospace" id="preview_emp_id">EMP-000</strong></div>
                                     <div>Designation: <strong class="text-dark" id="preview_emp_desig">-</strong></div>
-                                    <div>Department: <strong class="text-dark" id="preview_emp_dept">-</strong></div>
                                 </div>
                             </div>
                         </div>
@@ -269,7 +268,6 @@
                 if (selected.val()) {
                     var baseSalary = selected.data('base-salary');
                     var desig = selected.data('designation');
-                    var dept = selected.data('department');
                     var code = selected.data('code');
                     var name = selected.text().split('—')[0].trim();
 
@@ -280,7 +278,6 @@
                     $('#preview_emp_name').text(name);
                     $('#preview_emp_id').text(code);
                     $('#preview_emp_desig').text(desig);
-                    $('#preview_emp_dept').text(dept);
                     $('#employee_preview_card').slideDown();
                 } else {
                     $('#employee_preview_card').slideUp();

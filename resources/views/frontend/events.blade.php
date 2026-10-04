@@ -27,7 +27,7 @@
                     @forelse($activities as $activity)
                     @php
                         $eventDate = $activity->start_date ? \Carbon\Carbon::parse($activity->start_date) : now();
-                        $categoryName = $activity->category;
+                        $typeName = $activity->projectType?->name;
                     @endphp
                     <div class="col-lg-4 col-md-6 col-sm-12 events-block">
                         <div class="events-block-two">
@@ -35,7 +35,9 @@
                                 <div class="post-date"><h3>{{ $eventDate->format('d') }}<span>{{ $eventDate->format('M') }}</span></h3></div>
                                 <figure class="image-box"><img src="{{ asset($activity->featured_image) }}" alt="{{ $activity->name }}"></figure>
                                 <div class="content-box">
-                                    <div class="category"><a href="{{ route('event.details', $activity->slug) }}"># {{ $categoryName }}</a></div>
+                                    @if($typeName)
+                                        <div class="category"><a href="{{ route('event.details', $activity->slug) }}"># {{ $typeName }}</a></div>
+                                    @endif
                                     <ul class="info clearfix">
                                         <li><i class="far fa-clock"></i>10.00 AM</li>
                                         <li><i class="far fa-map"></i>{{ Str::limit($activity->location, 16) }}</li>

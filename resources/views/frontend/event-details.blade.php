@@ -9,7 +9,7 @@
 @php
     $eventDate = $activity->start_date ? \Carbon\Carbon::parse($activity->start_date) : now();
     $endDate = $activity->end_date ? \Carbon\Carbon::parse($activity->end_date) : null;
-    $categoryName = $activity->category;
+    $typeName = $activity->projectType?->name;
 @endphp
 
 <!-- Page Title -->
@@ -47,8 +47,8 @@
                     @if($activity->location)
                         <li><i class="far fa-map"></i>{{ $activity->location }}</li>
                     @endif
-                    @if($categoryName)
-                        <li><i class="fas fa-tag"></i>{{ $categoryName }}</li>
+                    @if($typeName)
+                        <li><i class="fas fa-tag"></i>{{ $typeName }}</li>
                     @endif
                 </ul>
                 <figure class="image-box hero-image-box">
@@ -269,7 +269,9 @@
                                         <div class="post-date"><h3>{{ $otherDate->format('d') }}<span>{{ $otherDate->format('M') }}</span></h3></div>
                                         <figure class="image-box"><img src="{{ asset($otherAct->featured_image) }}" alt="{{ $otherAct->name }}"></figure>
                                         <div class="content-box">
-                                            <div class="category"><a href="{{ route('event.details', $otherAct->slug) }}"># {{ $otherAct->category }}</a></div>
+                                            @if($otherAct->projectType)
+                                                <div class="category"><a href="{{ route('event.details', $otherAct->slug) }}"># {{ $otherAct->projectType->name }}</a></div>
+                                            @endif
                                             <ul class="info clearfix">
                                                 <li><i class="far fa-clock"></i>10.00 AM</li>
                                                 <li><i class="far fa-map"></i>{{ Str::limit($otherAct->location, 16) }}</li>

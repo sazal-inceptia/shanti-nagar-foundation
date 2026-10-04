@@ -26,20 +26,19 @@
                 <div class="sortable-masonry">
                     <div class="filters">
                         @php
-                            $currentCat = request('category');
+                            $currentType = request('type');
                         @endphp
                         <ul class="filter-tabs filter-btns clearfix">
-                            <li class="{{ empty($currentCat) || $currentCat === 'all' ? 'active ' : '' }}filter">
+                            <li class="{{ empty($currentType) || $currentType === 'all' ? 'active ' : '' }}filter">
                                 <a href="{{ route('gallery') }}">All Causes ({{ \App\Models\ProjectImage::whereHas('project', fn($q) => $q->where('is_published', true))->count() }})</a>
                             </li>
-                            @foreach($categories as $category)
+                            @foreach($projectTypes as $pType)
                                 @php
-                                    $catCount = \App\Models\ProjectImage::whereHas('project', fn($q) => $q->where('is_published', true)->where('category', $category))->count();
-                                    $catSlug = Str::slug($category);
-                                    $isActive = ($currentCat === $catSlug || $currentCat === $category);
+                                    $typeCount = \App\Models\ProjectImage::whereHas('project', fn($q) => $q->where('is_published', true)->where('project_type_id', $pType->id))->count();
+                                    $isActive = ($currentType === $pType->slug);
                                 @endphp
                                 <li class="{{ $isActive ? 'active ' : '' }}filter">
-                                    <a href="{{ route('gallery', ['category' => $catSlug]) }}">{{ $category }} ({{ $catCount }})</a>
+                                    <a href="{{ route('gallery', ['type' => $pType->slug]) }}">{{ $pType->name }} ({{ $typeCount }})</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -47,9 +46,9 @@
                     <div class="items-container row clearfix">
                         @forelse($galleryImages as $item)
                         @php
-                            $catSlug = 'cat-' . Str::slug($item->project->category ?? 'general');
+                            $typeSlug = 'type-' . ($item->project?->projectType?->slug ?? 'general');
                         @endphp
-                        <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column all {{ $catSlug }}">
+                        <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column all {{ $typeSlug }}">
                             <div class="portfolio-block-one">
                                 <div class="inner-box">
                                     <figure class="image"><img src="{{ asset($item->image_path) }}" alt="{{ $item->caption ?: $item->project?->name }}"></figure>
@@ -59,8 +58,8 @@
                                             <li><a href="{{ $item->project ? route('donation.details', $item->project->slug) : 'javascript:void(0);' }}" title="View Project Details"><i class="far fa-file-alt"></i></a></li>
                                         </ul>
                                         <div class="text">
-                                            @if($item->project?->category)
-                                                <span>{{ $item->project->category }}</span>
+                                            @if($item->project?->projectType)
+                                                <span>{{ $item->project->projectType->name }}</span>
                                             @endif
                                             <h3><a href="{{ $item->project ? route('donation.details', $item->project->slug) : 'javascript:void(0);' }}">{{ $item->project?->name ?: $item->caption }}</a></h3>
                                         </div>
@@ -70,7 +69,7 @@
                         </div>
                         @empty
                         <div class="col-12 text-center py-5">
-                            <p class="text-muted">No project documentation photos available in this category.</p>
+                            <p class="text-muted">No project documentation photos available in this type.</p>
                         </div>
                         @endforelse
                     </div>

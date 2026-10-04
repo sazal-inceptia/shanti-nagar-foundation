@@ -145,7 +145,7 @@
                                                 <td class="text-center align-middle" style="padding: 6px 5px;">{{ $idx + 1 }}</td>
                                                 <td class="align-middle" style="padding: 6px 10px;">
                                                     <strong class="text-dark">{{ $pb['name'] }}</strong>
-                                                    <span class="text-muted" style="font-size: 11px;">({{ $pb['category'] }})</span>
+                                                    <span class="text-muted" style="font-size: 11px;">({{ $pb['project_type'] }})</span>
                                                 </td>
                                                 <td class="align-middle text-end" style="padding: 6px 10px;">৳ {{ number_format($pb['target_amount'], 2) }}</td>
                                                 <td class="align-middle text-end text-success fw-semibold" style="padding: 6px 10px;">৳ {{ number_format($pb['total_raised'], 2) }}</td>

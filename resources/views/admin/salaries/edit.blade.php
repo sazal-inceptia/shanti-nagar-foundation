@@ -48,13 +48,13 @@
                                     <label for="employee_id" class="form-label custom-label">Staff Member <span class="text-danger">*</span></label>
                                     <select class="form-select custom-input @error('employee_id') is-invalid @enderror" name="employee_id" id="employee_id" required>
                                         @foreach($employees as $emp)
+                                            @php $desigName = $emp->designation?->name ?? $emp->designation; @endphp
                                             <option value="{{ $emp->id }}"
                                                 data-base-salary="{{ $emp->base_salary }}"
-                                                data-designation="{{ $emp->designation }}"
-                                                data-department="{{ $emp->department }}"
+                                                data-designation="{{ $desigName }}"
                                                 data-code="{{ $emp->employee_id }}"
                                                 {{ old('employee_id', $salary->employee_id) == $emp->id ? 'selected' : '' }}>
-                                                {{ $emp->name }} — {{ $emp->designation }} ({{ $emp->employee_id }})
+                                                {{ $emp->name }} — {{ $desigName }} ({{ $emp->employee_id }})
                                             </option>
                                         @endforeach
                                     </select>

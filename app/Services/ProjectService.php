@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Project;
+use App\Models\ProjectType;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -11,20 +13,16 @@ use Illuminate\Support\Str;
 class ProjectService
 {
     /**
-     * Get list of predefined categories for NGO projects & causes.
+     * Get list of active dynamic project types.
+     *
+     * @return Collection<int, ProjectType>
      */
-    public function getCategories(): array
+    public function getProjectTypes(): Collection
     {
-        return [
-            'Healthcare & Medical',
-            'Orphan & Child Care',
-            'Emergency Relief',
-            'Water & Sanitation',
-            'Education & Literacy',
-            'Winter Clothes & Warmth',
-            'Food & Nutrition',
-            'Community Welfare',
-        ];
+        return ProjectType::where('is_active', true)
+            ->orderBy('order_index', 'asc')
+            ->orderBy('name', 'asc')
+            ->get();
     }
 
     /**
@@ -32,18 +30,20 @@ class ProjectService
      */
     public function getProjects(array $filters = [], int $perPage = 15)
     {
-        $query = Project::with(['images', 'donations', 'expenses'])->latest();
+        $query = Project::with(['projectType', 'images', 'donations', 'expenses'])->latest();
 
-        if (! empty($filters['category'])) {
-            $query->where('category', $filters['category']);
+        if (! empty($filters['project_type_id'])) {
+            $query->where('project_type_id', $filters['project_type_id']);
+        }
+
+        if (! empty($filters['project_type_slug'])) {
+            $query->whereHas('projectType', function ($q) use ($filters) {
+                $q->where('slug', $filters['project_type_slug']);
+            });
         }
 
         if (! empty($filters['status'])) {
             $query->where('status', $filters['status']);
-        }
-
-        if (isset($filters['is_featured']) && $filters['is_featured'] !== '') {
-            $query->where('is_featured', (bool) $filters['is_featured']);
         }
 
         if (isset($filters['is_published']) && $filters['is_published'] !== '') {
@@ -54,8 +54,7 @@ class ProjectService
             $search = $filters['search'];
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                    ->orWhere('location', 'like', "%{$search}%")
-                    ->orWhere('category', 'like', "%{$search}%");
+                    ->orWhere('location', 'like', "%{$search}%");
             });
         }
 
@@ -84,7 +83,6 @@ class ProjectService
                 $data['featured_image'] = $this->uploadFile($featuredImage, 'assets/images/projects');
             }
 
-            $data['is_featured'] = ! empty($data['is_featured']);
             $data['is_published'] = isset($data['is_published']) ? (bool) $data['is_published'] : true;
 
             $project = Project::create($data);
@@ -118,7 +116,6 @@ class ProjectService
                 $data['featured_image'] = $this->uploadFile($featuredImage, 'assets/images/projects');
             }
 
-            $data['is_featured'] = ! empty($data['is_featured']);
             $data['is_published'] = isset($data['is_published']) ? (bool) $data['is_published'] : false;
 
             $project->update($data);
@@ -144,11 +141,11 @@ class ProjectService
     }
 
     /**
-     * Toggle a boolean field (is_featured, is_published).
+     * Toggle a boolean field (is_published).
      */
     public function toggleStatus(Project $project, string $field): bool
     {
-        if (in_array($field, ['is_featured', 'is_published'])) {
+        if (in_array($field, ['is_published'])) {
             $project->$field = ! $project->$field;
 
             return $project->save();

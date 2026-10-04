@@ -4,12 +4,12 @@ use App\Models\Donation;
 use App\Models\Donor;
 use App\Models\Project;
 use App\Models\ProjectImage;
+use App\Models\ProjectType;
 
 test('public users can view dynamic project details by slug', function () {
     $project = Project::create([
         'name' => 'Winter Relief Drive in Kurigram',
         'slug' => 'winter-relief-drive-in-kurigram-test',
-        'category' => 'Winter Relief',
         'short_description' => 'Distributing 2000 heavy blankets to families.',
         'description' => 'Comprehensive relief drive for cold affected northern region.',
         'estimated_cost' => 150000.00,
@@ -46,7 +46,6 @@ test('public users can view dynamic event details by slug', function () {
     $activity = Project::create([
         'name' => 'Free Eye Camp at Shanti Nagar',
         'slug' => 'free-eye-camp-shanti-nagar-test',
-        'category' => 'Healthcare',
         'short_description' => 'Free cataract screening and eyeglasses.',
         'description' => 'Community medical camp organized with specialist doctors.',
         'estimated_cost' => 50000.00,
@@ -62,7 +61,7 @@ test('public users can view dynamic event details by slug', function () {
     $response->assertSee('Shanti Nagar, Dhaka');
 });
 
-test('homepage and about page render with dynamic live impact stats', function () {
+test('homepage and about page render with dynamic live impact stats and leadership hierarchy', function () {
     $homeResponse = $this->get(route('home'));
     $homeResponse->assertStatus(200);
     $homeResponse->assertSee('Volunteers');
@@ -70,15 +69,29 @@ test('homepage and about page render with dynamic live impact stats', function (
 
     $aboutResponse = $this->get(route('about'));
     $aboutResponse->assertStatus(200);
-    $aboutResponse->assertSee('Total Donations Raised');
-    $aboutResponse->assertSee('Total Funds Utilized');
+    $aboutResponse->assertSee('Fund Deployment Ratio');
+    $aboutResponse->assertSee('Direct Procurement Ratio');
+    $aboutResponse->assertSee('Honorary Tribute');
+    $aboutResponse->assertSee('Executive Leadership');
+    $aboutResponse->assertSee('Board of Directors');
+    $aboutResponse->assertSee('Our Mission');
+    $aboutResponse->assertSee('Core Relief Pillars');
 });
 
 test('public donations, events, and gallery pages render dynamically', function () {
+    $type = ProjectType::firstOrCreate(
+        ['slug' => 'safe-water-initiative'],
+        [
+            'name' => 'Safe Water Initiative',
+            'badge_color' => '#0284c7',
+            'is_active' => true,
+        ]
+    );
+
     $project = Project::create([
         'name' => 'Safe Drinking Water Tube-Wells in Sunamganj',
         'slug' => 'safe-drinking-water-tube-wells-sunamganj-test',
-        'category' => 'Safe Water',
+        'project_type_id' => $type->id,
         'short_description' => 'Installing 15 deep tube-wells in flood-prone villages.',
         'description' => 'Providing clean drinking water to over 3,000 villagers.',
         'estimated_cost' => 300000.00,
@@ -105,6 +118,34 @@ test('public donations, events, and gallery pages render dynamically', function 
 
     $galleryResponse = $this->get(route('gallery'));
     $galleryResponse->assertStatus(200);
-    $galleryResponse->assertSee('Safe Water');
+    $galleryResponse->assertSee('Safe Water Initiative');
     $galleryResponse->assertSee('Tube-well construction site Sunamganj');
+});
+
+test('public donations page filters projects dynamically by project type', function () {
+    $type = ProjectType::create([
+        'name' => 'Continuous Project',
+        'slug' => 'continuous-project-test',
+        'description' => 'Projects requiring continuous ongoing funding',
+        'badge_color' => '#f65024',
+        'order_index' => 1,
+        'is_active' => true,
+    ]);
+
+    $project = Project::create([
+        'name' => 'Free Community Dialysis Support Test',
+        'slug' => 'free-community-dialysis-support-test',
+        'project_type_id' => $type->id,
+        'short_description' => 'Ongoing dialysis support for underprivileged patients.',
+        'description' => 'Continuous recurring medical funding.',
+        'estimated_cost' => 500000.00,
+        'status' => 'in_progress',
+        'location' => 'Dhaka, Bangladesh',
+        'is_published' => true,
+    ]);
+
+    $response = $this->get(route('donations', ['type' => 'continuous-project-test']));
+    $response->assertStatus(200);
+    $response->assertSee('Free Community Dialysis Support Test');
+    $response->assertSee('Continuous Project');
 });

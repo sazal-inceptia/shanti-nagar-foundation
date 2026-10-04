@@ -401,6 +401,72 @@
 		});    		
 	}
 
+	// BOD Carousel (LTR)
+	if ($('.bod-ltr-carousel').length) {
+		$('.bod-ltr-carousel').owlCarousel({
+			loop: true,
+			margin: 30,
+			nav: true,
+			dots: false,
+			smartSpeed: 700,
+			autoplay: true,
+			autoplayTimeout: 3500,
+			autoplayHoverPause: true,
+			rtl: false,
+			navText: [ '<span class="fas fa-angle-left"></span>', '<span class="fas fa-angle-right"></span>' ],
+			responsive:{
+				0:{
+					items:1
+				},
+				600:{
+					items:2
+				},
+				800:{
+					items:3
+				},
+				1024:{
+					items:4
+				},
+				1200:{
+					items:4
+				}
+			}
+		});
+	}
+
+	// Other Members Carousel (RTL)
+	if ($('.members-rtl-carousel').length) {
+		$('.members-rtl-carousel').owlCarousel({
+			loop: true,
+			margin: 30,
+			nav: true,
+			dots: false,
+			smartSpeed: 700,
+			autoplay: true,
+			autoplayTimeout: 3500,
+			autoplayHoverPause: true,
+			rtl: true,
+			navText: [ '<span class="fas fa-angle-right"></span>', '<span class="fas fa-angle-left"></span>' ],
+			responsive:{
+				0:{
+					items:1
+				},
+				600:{
+					items:2
+				},
+				800:{
+					items:3
+				},
+				1024:{
+					items:4
+				},
+				1200:{
+					items:4
+				}
+			}
+		});
+	}
+
 
 	// video-carousel
 	if ($('.video-carousel').length) {

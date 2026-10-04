@@ -25,7 +25,7 @@ class DashboardService
         $totalDonors = Donor::count();
         $activeProjects = Project::where('status', 'in_progress')->count();
         $totalProjects = Project::count();
-        $totalEmployees = Employee::where('employment_status', 'active')->count();
+        $totalEmployees = Employee::where('is_active', true)->count();
 
         return [
             'total_donations' => $totalDonations,

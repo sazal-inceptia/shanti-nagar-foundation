@@ -17,21 +17,24 @@
   - [x] Create project context & roadmap in [`docs/project_context.md`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/docs/project_context.md)
   - [x] Set up permanent developer guidelines in [`AGENTS.md`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/AGENTS.md)
 - [x] **Database Migrations**
+  - [x] Create `project_types` table migration (`continuous-project`, `monthly-project`, `signature-project`, `general-campaign`)
   - [x] Create `donors` table migration
-  - [x] Create `projects` table migration
+  - [x] Create `projects` table migration with `project_type_id` foreign key
   - [x] Create `project_images` table migration
   - [x] Create `donations` table migration
   - [x] Create `expenses` table migration
   - [x] Create `employees` table migration
   - [x] Create `salaries` table migration
 - [x] **Eloquent Models & Relationships**
+  - [x] Build `ProjectType` model with `hasMany(Project)` and `getBadgeStyleAttribute()`
   - [x] Build `User` model with expense relations
   - [x] Build `Donor` model with `hasMany(Donation)`
-  - [x] Build `Project` model with `hasMany(Donation)`, `hasMany(Expense)`, `hasMany(ProjectImage)`
+  - [x] Build `Project` model with `belongsTo(ProjectType)`, `hasMany(Donation)`, `hasMany(Expense)`, `hasMany(ProjectImage)`
   - [x] Build `ProjectImage` model with `belongsTo(Project)`
   - [x] Build `Donation` model with `belongsTo(Donor)`, `belongsTo(Project)`
   - [x] Build `Expense` model with `belongsTo(Project)`, `belongsTo(User, 'created_by')`
-  - [x] Build `Employee` model with `hasMany(Salary)`
+  - [x] Build `Designation` model with `hasMany(Employee)`
+  - [x] Build `Employee` model with `belongsTo(Designation)`, `hasMany(Salary)`
   - [x] Build `Salary` model with `belongsTo(Employee)`
 - [x] **Database Seeders (Idempotent)**
   - [x] `UserSeeder`: Admin & Staff login credentials
@@ -39,7 +42,8 @@
   - [x] `ProjectSeeder`: 12 real Bangladeshi projects with image galleries
   - [x] `DonationSeeder`: Realistic donation records & receipt vouchers
   - [x] `ExpenseSeeder`: Project procurement & utility expenditures
-  - [x] `EmployeeSeeder`: Staff profiles, NID, designations & base salaries
+  - [x] `DesignationSeeder`: Dynamic leadership and organizational staff roles
+  - [x] `EmployeeSeeder`: Staff profiles, NID, dynamic designation relationships & base salaries
   - [x] `SalarySeeder`: Monthly salary disbursement logs
   - [x] `ContactMessageSeeder`: Inquiries for relief, hospital aid, tube-wells & bank confirmations
   - [x] `VolunteerSeeder`: Community volunteers across Dhaka & regional divisions
@@ -56,9 +60,7 @@
 - [x] **Page Refinements**
   - [x] Remove unrelated "Charity Shops" from `contact.blade.php` and embed responsive Google Maps
   - [x] Refine Verified Contributors section with right-side humanitarian artwork background (`background/1.jpg`) and textured white background image on donor cards (`background/13.jpg`)
-  - [x] Remove foreign marathon/skydive placeholders and convert `events.blade.php` to "Social Activities"
-  - [x] Remove placeholder trophy badges from `about.blade.php`
-  - [x] Add animated Transparency & Fund Summary counter section to `about.blade.php`
+  - [x] Restructure `about.blade.php` to exact leadership hierarchy: (0) Best President Ever highlight, (1) President, Secretary & Treasurer executive triad with tailored speeches and role badges, (2) Board of Directors (BOD via signature `team-block-one` LTR carousel), (3) Other members (via `team-block-one` RTL carousel), (4) Feature section (Mission/Vision), (5) Contribution section, and (6) Report & Fund Summary section
   - [x] Make `donations.blade.php` render dynamic projects with budget progress bars, BDT amounts, and custom template-styled pagination
   - [x] Connect `events.blade.php` to dynamic project activities with dates, location, and details links
   - [x] Connect `gallery.blade.php` directly to `ProjectImage` with dynamic category isotope filtering, pagination, and lightbox popups
@@ -100,9 +102,9 @@
   - [x] Official printable Debit Voucher view (`admin/expenses/show.blade.php`)
   - [x] Feature tests in `tests/Feature/ExpenseTest.php` passing
 - [x] **Employee & Salary Management (Req #4)**
-  - [x] Create PHP Enum `App\Enums\EmploymentStatus` with badge styles and labels
+  - [x] Active / Inactive boolean status (`is_active`) with instant AJAX toggle switch on DataTables list and auto-active true on registration
   - [x] Build Layered Architecture: `EmployeeController`, `SalaryController`, `EmployeeService`, `SalaryService`, Form Requests (`StoreEmployeeRequest`, `UpdateEmployeeRequest`, `StoreSalaryRequest`, `UpdateSalaryRequest`)
-  - [x] Employee profile management (Auto sequential ID `EMP-101`, NID, base salary, photo upload via unified image uploader)
+  - [x] Employee profile management (Auto sequential ID `EMP-101`, NID, base salary, photo upload via unified image uploader, dynamic leadership speech, speech tag, bio, signature text/title, badge title, and social links)
   - [x] Staff profile show view with lifetime salary history ledger
   - [x] Monthly salary disbursement voucher generation with dynamic live net calculation (`basic + allow + bonus - deductions`)
   - [x] Server-side Yajra DataTables with custom filters for staff and payroll records

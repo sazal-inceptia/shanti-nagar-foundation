@@ -79,6 +79,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::resource('expenses', ExpenseController::class);
 
     // Employees & Staff Management
+    Route::post('/employees/{employee}/toggle-status', [EmployeeController::class, 'toggleStatus'])->name('employees.toggle-status');
     Route::resource('employees', EmployeeController::class);
 
     // Salaries & Payroll Disbursement

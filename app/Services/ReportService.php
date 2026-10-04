@@ -89,9 +89,10 @@ class ReportService
      */
     public function getProjectBalances(): Collection
     {
-        $projects = Project::withSum(['donations as total_donated' => function ($q) {
-            $q->where('status', 'completed');
-        }], 'amount')
+        $projects = Project::with('projectType')
+            ->withSum(['donations as total_donated' => function ($q) {
+                $q->where('status', 'completed');
+            }], 'amount')
             ->withSum('expenses as total_expensed', 'amount')
             ->orderByDesc('id')
             ->get();
@@ -106,7 +107,7 @@ class ReportService
             return [
                 'id' => $prj->id,
                 'name' => $prj->name,
-                'category' => $prj->category ?? 'Relief',
+                'project_type' => $prj->projectType?->name ?? 'General Campaign',
                 'target_amount' => $target,
                 'total_raised' => $raised,
                 'total_spent' => $spent,

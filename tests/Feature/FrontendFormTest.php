@@ -84,7 +84,6 @@ test('guest can submit public donation pledge', function () {
     $project = Project::first() ?? Project::create([
         'name' => 'Winter Relief Campaign',
         'slug' => 'winter-relief-campaign',
-        'category' => 'Disaster & Relief',
         'estimated_cost' => 500000,
         'status' => 'in_progress',
         'is_published' => true,

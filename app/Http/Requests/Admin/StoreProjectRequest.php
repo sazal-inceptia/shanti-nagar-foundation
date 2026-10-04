@@ -17,7 +17,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'slug' => ['nullable', 'string', 'max:255', Rule::unique('projects', 'slug')],
-            'category' => ['required', 'string', 'max:100'],
+            'project_type_id' => ['nullable', 'integer', 'exists:project_types,id'],
             'estimated_cost' => ['nullable', 'numeric', 'min:0'],
             'start_date' => ['nullable', 'date'],
             'completion_date' => ['nullable', 'date', 'after_or_equal:start_date'],
@@ -28,7 +28,6 @@ class StoreProjectRequest extends FormRequest
             'featured_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
             'gallery' => ['nullable', 'array'],
             'gallery.*' => ['image', 'mimes:jpeg,png,jpg,webp', 'max:5120'],
-            'is_featured' => ['nullable', 'boolean'],
             'is_published' => ['nullable', 'boolean'],
         ];
     }

@@ -54,26 +54,18 @@
                                     @enderror
                                 </div>
 
-                                {{-- Designation & Department --}}
+                                {{-- Designation / Role --}}
                                 <div class="col-md-6 col-12">
-                                    <label for="designation" class="form-label custom-label">Designation / Role <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control custom-input @error('designation') is-invalid @enderror"
-                                        name="designation" id="designation" value="{{ old('designation', $employee->designation) }}" required>
-                                    @error('designation')
-                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6 col-12">
-                                    <label for="department" class="form-label custom-label">Department <span class="text-danger">*</span></label>
-                                    <select class="form-select custom-input @error('department') is-invalid @enderror" name="department" id="department" required>
-                                        @foreach($departments as $deptKey => $deptLabel)
-                                            <option value="{{ $deptKey }}" {{ old('department', $employee->department) == $deptKey ? 'selected' : '' }}>
-                                                {{ $deptLabel }}
+                                    <label for="designation_id" class="form-label custom-label">Designation / Role <span class="text-danger">*</span></label>
+                                    <select class="form-select custom-input @error('designation_id') is-invalid @enderror" name="designation_id" id="designation_id" required>
+                                        <option value="">Select Designation...</option>
+                                        @foreach($designations as $desig)
+                                            <option value="{{ $desig->id }}" {{ old('designation_id', $employee->designation_id) == $desig->id ? 'selected' : '' }}>
+                                                {{ $desig->name }} {{ $desig->category ? '('.$desig->category.')' : '' }}
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('department')
+                                    @error('designation_id')
                                         <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -120,15 +112,15 @@
                                 </div>
 
                                 <div class="col-md-4 col-12">
-                                    <label for="employment_status" class="form-label custom-label">Employment Status <span class="text-danger">*</span></label>
-                                    <select class="form-select custom-input @error('employment_status') is-invalid @enderror" name="employment_status" id="employment_status" required>
-                                        @foreach($statuses as $stVal => $stLabel)
-                                            <option value="{{ $stVal }}" {{ old('employment_status', $employee->employment_status) == $stVal ? 'selected' : '' }}>
-                                                {{ $stLabel }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('employment_status')
+                                    <label for="is_active" class="form-label custom-label">Status</label>
+                                    <div class="form-check form-switch pt-2">
+                                        <input class="form-check-input" type="checkbox" role="switch" name="is_active" id="is_active" value="1"
+                                            {{ old('is_active', $employee->is_active) ? 'checked' : '' }} style="width: 40px; height: 20px; cursor: pointer;">
+                                        <label class="form-check-label ms-2 fw-semibold text-dark" for="is_active" style="font-size: 13px;">
+                                            Active Staff Member
+                                        </label>
+                                    </div>
+                                    @error('is_active')
                                         <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
                                     @enderror
                                 </div>

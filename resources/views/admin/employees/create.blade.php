@@ -48,27 +48,18 @@
                                     @enderror
                                 </div>
 
-                                {{-- Designation & Department --}}
+                                {{-- Designation / Role --}}
                                 <div class="col-md-6 col-12">
-                                    <label for="designation" class="form-label custom-label">Designation / Role <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control custom-input @error('designation') is-invalid @enderror"
-                                        name="designation" id="designation" value="{{ old('designation') }}" placeholder="e.g. Senior Field Coordinator" required>
-                                    @error('designation')
-                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6 col-12">
-                                    <label for="department" class="form-label custom-label">Department <span class="text-danger">*</span></label>
-                                    <select class="form-select custom-input @error('department') is-invalid @enderror" name="department" id="department" required>
-                                        <option value="">Select Department...</option>
-                                        @foreach($departments as $deptKey => $deptLabel)
-                                            <option value="{{ $deptKey }}" {{ old('department') == $deptKey ? 'selected' : '' }}>
-                                                {{ $deptLabel }}
+                                    <label for="designation_id" class="form-label custom-label">Designation / Role <span class="text-danger">*</span></label>
+                                    <select class="form-select custom-input @error('designation_id') is-invalid @enderror" name="designation_id" id="designation_id" required>
+                                        <option value="">Select Designation...</option>
+                                        @foreach($designations as $desig)
+                                            <option value="{{ $desig->id }}" {{ old('designation_id') == $desig->id ? 'selected' : '' }}>
+                                                {{ $desig->name }} {{ $desig->category ? '('.$desig->category.')' : '' }}
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('department')
+                                    @error('designation_id')
                                         <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -92,8 +83,8 @@
                                     @enderror
                                 </div>
 
-                                {{-- Joining Date, Base Salary, Status --}}
-                                <div class="col-md-4 col-12">
+                                {{-- Joining Date, Base Salary --}}
+                                <div class="col-md-6 col-12">
                                     <label for="joining_date" class="form-label custom-label">Joining Date <span class="text-danger">*</span></label>
                                     <input type="date" class="form-control custom-input @error('joining_date') is-invalid @enderror"
                                         name="joining_date" id="joining_date" value="{{ old('joining_date', date('Y-m-d')) }}" onclick="this.showPicker()" required>
@@ -102,7 +93,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-4 col-12">
+                                <div class="col-md-6 col-12">
                                     <label for="base_salary" class="form-label custom-label">Basic Monthly Salary (৳) <span class="text-danger">*</span></label>
                                     <div class="input-group">
                                         <span class="input-group-text bg-light text-muted">৳</span>
@@ -114,19 +105,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-4 col-12">
-                                    <label for="employment_status" class="form-label custom-label">Employment Status <span class="text-danger">*</span></label>
-                                    <select class="form-select custom-input @error('employment_status') is-invalid @enderror" name="employment_status" id="employment_status" required>
-                                        @foreach($statuses as $stVal => $stLabel)
-                                            <option value="{{ $stVal }}" {{ old('employment_status', 'active') == $stVal ? 'selected' : '' }}>
-                                                {{ $stLabel }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('employment_status')
-                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                <input type="hidden" name="is_active" value="1">
 
                                 {{-- NID Number --}}
                                 <div class="col-md-6 col-12">

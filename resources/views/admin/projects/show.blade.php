@@ -35,10 +35,14 @@
 
                         <div class="row g-3 mb-4">
                             <div class="col-md-3 col-6">
-                                <span class="text-muted d-block" style="font-size: 11.5px; font-weight: 600; text-transform: uppercase;">Category</span>
-                                <span class="badge" style="background-color: #f1f5f9; color: #334155; font-size: 12px; padding: 4px 8px; border-radius: 4px;">
-                                    {{ $project->category ?? 'General' }}
-                                </span>
+                                <span class="text-muted d-block" style="font-size: 11.5px; font-weight: 600; text-transform: uppercase;">Project Type</span>
+                                @if($project->projectType)
+                                    <span class="badge" style="{{ $project->projectType->badge_style }} font-size: 12px; padding: 4px 8px; border-radius: 4px;">
+                                        {{ $project->projectType->name }}
+                                    </span>
+                                @else
+                                    <span class="badge bg-light text-muted border" style="font-size: 12px; padding: 4px 8px; border-radius: 4px;">General</span>
+                                @endif
                             </div>
                             <div class="col-md-3 col-6">
                                 <span class="text-muted d-block" style="font-size: 11.5px; font-weight: 600; text-transform: uppercase;">Status</span>
@@ -257,10 +261,6 @@
                         <div class="d-flex justify-content-between py-1 border-bottom">
                             <span class="text-muted">Slug:</span>
                             <span class="font-monospace text-dark">{{ $project->slug }}</span>
-                        </div>
-                        <div class="d-flex justify-content-between py-1 border-bottom">
-                            <span class="text-muted">Homepage Featured:</span>
-                            <span>{{ $project->is_featured ? 'Yes' : 'No' }}</span>
                         </div>
                         <div class="d-flex justify-content-between py-1 border-bottom">
                             <span class="text-muted">Public Visibility:</span>

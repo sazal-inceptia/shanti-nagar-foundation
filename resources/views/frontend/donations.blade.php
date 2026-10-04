@@ -23,6 +23,25 @@
         <!-- case-page-section -->
         <section class="case-page-section">
             <div class="auto-container">
+                @if(isset($projectTypes) && $projectTypes->isNotEmpty())
+                    <div class="project-type-filters text-center mb-5">
+                        <ul class="d-flex justify-content-center gap-2 flex-wrap" style="list-style: none; padding: 0; margin: 0;">
+                            <li>
+                                <a href="{{ route('donations') }}" class="btn btn-sm rounded-pill px-4 py-2 {{ empty($selectedType) || $selectedType === 'all' ? 'btn-danger text-white shadow-sm' : 'btn-outline-secondary' }}" style="font-weight: 600; font-size: 13.5px; transition: all 0.2s ease;">
+                                    All Causes
+                                </a>
+                            </li>
+                            @foreach($projectTypes as $pType)
+                                <li>
+                                    <a href="{{ route('donations', ['type' => $pType->slug]) }}" class="btn btn-sm rounded-pill px-4 py-2 {{ $selectedType === $pType->slug ? 'btn-danger text-white shadow-sm' : 'btn-outline-secondary' }}" style="font-weight: 600; font-size: 13.5px; transition: all 0.2s ease;">
+                                        {{ $pType->name }}
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="row clearfix">
                     @forelse($projects as $project)
                     @php
@@ -36,7 +55,13 @@
                                 <div class="image-box">
                                     <figure class="image"><img src="{{ asset($project->featured_image) }}" alt="{{ $project->name }}"></figure>
                                     <div class="text">
-                                        <div class="category"><a href="{{ route('donation.details', $project->slug) }}"># {{ $project->category }}</a></div>
+                                        <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                                            @if($project->projectType)
+                                                <span class="badge" style="{{ $project->projectType->badge_style }} font-size: 11px; padding: 3px 8px; border-radius: 4px;">
+                                                    {{ $project->projectType->name }}
+                                                </span>
+                                            @endif
+                                        </div>
                                         <h3><a href="{{ route('donation.details', $project->slug) }}">{{ $project->name }}</a></h3>
                                     </div>
                                 </div>

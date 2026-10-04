@@ -330,7 +330,7 @@
                                                             {{ $pb['name'] }}
                                                         </a>
                                                         <span class="badge bg-light text-muted border mt-1" style="font-size: 11px;">
-                                                            {{ $pb['category'] }}
+                                                            {{ $pb['project_type'] }}
                                                         </span>
                                                     </td>
                                                     <td style="text-align: right;" class="text-muted">

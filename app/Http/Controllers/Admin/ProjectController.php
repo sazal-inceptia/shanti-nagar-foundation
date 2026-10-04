@@ -28,22 +28,14 @@ class ProjectController extends Controller
     public function index(Request $request): JsonResponse|View
     {
         if ($request->ajax() || $request->wantsJson()) {
-            $query = Project::query()->with(['images', 'donations', 'expenses'])->select('projects.*');
+            $query = Project::query()->with(['projectType', 'images', 'donations', 'expenses'])->select('projects.*');
 
-            if ($request->filled('category')) {
-                $query->where('category', $request->category);
+            if ($request->filled('project_type_id')) {
+                $query->where('project_type_id', $request->project_type_id);
             }
 
             if ($request->filled('status')) {
                 $query->where('status', $request->status);
-            }
-
-            if ($request->filled('is_featured')) {
-                $query->where('is_featured', (bool) $request->is_featured);
-            }
-
-            if ($request->filled('featured')) {
-                $query->where('is_featured', (bool) $request->featured);
             }
 
             if ($request->has('draw')) {
@@ -60,12 +52,12 @@ class ProjectController extends Controller
                     ->addColumn('title_details', function ($row) {
                         $showUrl = route('admin.projects.show', $row->id);
                         $locationHtml = $row->location ? '<span class="text-muted ms-2" style="font-size: 11px;"><i class="ri-map-pin-line text-danger me-1"></i>'.e($row->location).'</span>' : '';
-                        $categoryHtml = '<span class="badge" style="background-color: #f1f5f9; color: #334155; font-size: 10.5px; padding: 2px 6px; border-radius: 4px;">'.e($row->category ?? 'General').'</span>';
+                        $typeHtml = $row->projectType ? '<span class="badge" style="'.$row->projectType->badge_style.' font-size: 10.5px; padding: 2px 6px; border-radius: 4px;">'.e($row->projectType->name).'</span>' : '';
 
                         return '<div class="d-flex flex-column">
                             <a href="'.e($showUrl).'" class="fw-bold text-dark text-decoration-none table-title-link" style="font-size: 13.5px;">'.e($row->name).'</a>
-                            <div class="d-flex align-items-center mt-1">
-                                '.$categoryHtml.'
+                            <div class="d-flex align-items-center mt-1 flex-wrap gap-1">
+                                '.$typeHtml.'
                                 '.$locationHtml.'
                             </div>
                         </div>';
@@ -87,13 +79,6 @@ class ProjectController extends Controller
 
                         return '<span class="badge" style="'.$badgeStyle.' font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;">'.e(ucwords(str_replace('_', ' ', (string) $row->status))).'</span>';
                     })
-                    ->addColumn('featured_toggle', function ($row) {
-                        $checked = $row->is_featured ? 'checked' : '';
-
-                        return '<div class="form-check form-switch m-0 d-flex justify-content-center">
-                            <input class="form-check-input featured-toggle toggle-project-feature" type="checkbox" role="switch" data-id="'.$row->id.'" '.$checked.' style="cursor: pointer;">
-                        </div>';
-                    })
                     ->addColumn('published_toggle', function ($row) {
                         $checked = $row->is_published ? 'checked' : '';
 
@@ -107,7 +92,7 @@ class ProjectController extends Controller
                             'name' => $row->name,
                         ];
                     })
-                    ->rawColumns(['thumbnail', 'title_details', 'target_budget', 'status_badge', 'featured_toggle', 'published_toggle', 'action-btn'])
+                    ->rawColumns(['thumbnail', 'title_details', 'target_budget', 'status_badge', 'published_toggle', 'action-btn'])
                     ->make(true);
             }
 
@@ -117,7 +102,7 @@ class ProjectController extends Controller
             ]);
         }
 
-        $categories = $this->projectService->getCategories();
+        $projectTypes = $this->projectService->getProjectTypes();
         $statuses = [
             'planned' => 'Planned',
             'in_progress' => 'In Progress',
@@ -125,7 +110,7 @@ class ProjectController extends Controller
             'cancelled' => 'Cancelled',
         ];
 
-        return view('admin.projects.index', compact('categories', 'statuses'));
+        return view('admin.projects.index', compact('projectTypes', 'statuses'));
     }
 
     /**
@@ -133,9 +118,9 @@ class ProjectController extends Controller
      */
     public function create(): View
     {
-        $categories = $this->projectService->getCategories();
+        $projectTypes = $this->projectService->getProjectTypes();
 
-        return view('admin.projects.create', compact('categories'));
+        return view('admin.projects.create', compact('projectTypes'));
     }
 
     /**
@@ -162,6 +147,7 @@ class ProjectController extends Controller
     public function show(Project $project): View
     {
         $project->load([
+            'projectType',
             'images',
             'donations' => fn ($q) => $q->with('donor')->latest('donation_date'),
             'expenses' => fn ($q) => $q->with('creator')->latest('expense_date'),
@@ -175,10 +161,10 @@ class ProjectController extends Controller
      */
     public function edit(Project $project): View
     {
-        $categories = $this->projectService->getCategories();
+        $projectTypes = $this->projectService->getProjectTypes();
         $project->load('images');
 
-        return view('admin.projects.edit', compact('project', 'categories'));
+        return view('admin.projects.edit', compact('project', 'projectTypes'));
     }
 
     /**
@@ -212,23 +198,18 @@ class ProjectController extends Controller
     }
 
     /**
-     * Toggle status or featured status via AJAX.
+     * Toggle status via AJAX.
      */
     public function toggleStatus(Request $request, Project $project): JsonResponse
     {
         $field = $request->input('field');
         $value = $request->input('value');
 
-        if (! in_array($field, ['is_featured', 'is_published', 'status', 'featured'])) {
+        if (! in_array($field, ['is_published', 'status'])) {
             return response()->json([
                 'success' => false,
                 'message' => 'Invalid toggle field requested',
             ], 422);
-        }
-
-        // Map alias
-        if ($field === 'featured') {
-            $field = 'is_featured';
         }
 
         if ($request->has('value')) {

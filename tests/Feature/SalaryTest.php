@@ -19,10 +19,9 @@ test('authenticated admin can disburse employee salary and calculate net correct
         'employee_id' => 'EMP-TEST-200',
         'name' => 'Payroll Test Staff',
         'designation' => 'Logistics Associate',
-        'department' => 'Operations & Relief',
         'joining_date' => now(),
         'base_salary' => 28000.00,
-        'employment_status' => 'active',
+        'is_active' => true,
     ]);
 
     $postData = [
@@ -55,10 +54,9 @@ test('authenticated admin can view printable salary payslip voucher', function (
         'employee_id' => 'EMP-TEST-300',
         'name' => 'Voucher Staff',
         'designation' => 'Medical Assistant',
-        'department' => 'Healthcare & Medical Support',
         'joining_date' => now(),
         'base_salary' => 30000.00,
-        'employment_status' => 'active',
+        'is_active' => true,
     ]);
 
     $salary = Salary::create([

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\EmploymentStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreEmployeeRequest;
 use App\Http\Requests\Admin\UpdateEmployeeRequest;
+use App\Models\Designation;
 use App\Models\Employee;
 use App\Services\EmployeeService;
 use Illuminate\Http\JsonResponse;
@@ -24,14 +24,14 @@ class EmployeeController extends Controller
     public function index(Request $request): JsonResponse|View
     {
         if ($request->ajax() || $request->wantsJson()) {
-            $query = Employee::query()->select('employees.*');
+            $query = Employee::query()->with('designation')->select('employees.*');
 
-            if ($request->filled('employment_status')) {
-                $query->where('employment_status', $request->employment_status);
+            if ($request->filled('is_active')) {
+                $query->where('is_active', (bool) $request->is_active);
             }
 
-            if ($request->filled('department')) {
-                $query->where('department', $request->department);
+            if ($request->filled('designation_id')) {
+                $query->where('designation_id', $request->designation_id);
             }
 
             if ($request->has('draw')) {
@@ -58,10 +58,18 @@ class EmployeeController extends Controller
                             <span class="text-muted font-monospace" style="font-size: 11px;">'.e($row->employee_id).'</span>
                         </div>';
                     })
-                    ->addColumn('role_department', function ($row) {
-                        return '<div class="d-flex flex-column">
-                            <span class="fw-semibold text-dark" style="font-size: 12.5px;">'.e($row->designation).'</span>
-                            <span class="text-muted" style="font-size: 11px;">'.e($row->department).'</span>
+                    ->addColumn('designation_role', function ($row) {
+                        $desig = $row->designation;
+                        $desigName = ($desig instanceof Designation) ? $desig->name : (is_string($desig) ? $desig : '—');
+                        $category = ($desig instanceof Designation) ? $desig->category : null;
+
+                        $categoryHtml = $category
+                            ? '<span class="badge mt-1" style="background-color: #f8fafc; color: #475569; font-size: 11px; font-weight: 500; border: 1px solid #cbd5e1; width: fit-content;"><i class="ri-folder-user-line me-1 text-primary"></i>'.e($category).'</span>'
+                            : '';
+
+                        return '<div class="d-flex flex-column align-items-start">
+                            <span class="fw-semibold text-dark" style="font-size: 13px;">'.e($desigName).'</span>
+                            '.$categoryHtml.'
                         </div>';
                     })
                     ->addColumn('contact_info', function ($row) {
@@ -73,12 +81,26 @@ class EmployeeController extends Controller
                     ->addColumn('formatted_salary', function ($row) {
                         return '<span class="fw-bold text-dark" style="font-size: 13.5px;">৳ '.number_format((float) $row->base_salary, 2).'</span>';
                     })
-                    ->addColumn('status_badge', function ($row) {
-                        $statusEnum = EmploymentStatus::tryFrom($row->employment_status);
-                        $badgeStyle = $statusEnum ? $statusEnum->badgeStyle() : 'background-color: #f1f5f9; color: #334155; border: 1px solid #cbd5e1;';
-                        $label = $statusEnum ? $statusEnum->label() : ucfirst($row->employment_status);
+                    ->addColumn('status_toggle', function ($row) {
+                        $checked = $row->is_active ? 'checked' : '';
+                        $toggleUrl = route('admin.employees.toggle-status', $row->id);
+                        $badgeStyle = $row->is_active
+                            ? 'background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0;'
+                            : 'background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca;';
+                        $badgeText = $row->is_active ? 'Active' : 'Inactive';
 
-                        return '<span class="badge" style="'.$badgeStyle.' font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;">'.e($label).'</span>';
+                        return '<div class="d-flex align-items-center gap-2">
+                            <div class="form-check form-switch m-0" style="min-height: auto;">
+                                <input class="form-check-input status-toggle-switch" type="checkbox" role="switch"
+                                    data-url="'.e($toggleUrl).'"
+                                    data-id="'.$row->id.'"
+                                    '.$checked.'
+                                    style="cursor: pointer; width: 36px; height: 18px;">
+                            </div>
+                            <span class="badge" id="status-badge-'.$row->id.'" style="'.$badgeStyle.' font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;">
+                                '.$badgeText.'
+                            </span>
+                        </div>';
                     })
                     ->addColumn('action-btn', function ($row) {
                         return [
@@ -86,7 +108,7 @@ class EmployeeController extends Controller
                             'name' => $row->name.' ('.$row->employee_id.')',
                         ];
                     })
-                    ->rawColumns(['photo_display', 'employee_info', 'role_department', 'contact_info', 'formatted_salary', 'status_badge', 'action-btn'])
+                    ->rawColumns(['photo_display', 'employee_info', 'designation_role', 'contact_info', 'formatted_salary', 'status_toggle', 'action-btn'])
                     ->make(true);
             }
 
@@ -96,10 +118,9 @@ class EmployeeController extends Controller
             ]);
         }
 
-        $statuses = $this->employeeService->getStatuses();
-        $departments = $this->employeeService->getDepartments();
+        $designations = $this->employeeService->getDesignations();
 
-        return view('admin.employees.index', compact('statuses', 'departments'));
+        return view('admin.employees.index', compact('designations'));
     }
 
     /**
@@ -108,10 +129,9 @@ class EmployeeController extends Controller
     public function create(): View
     {
         $suggestedEmployeeId = $this->employeeService->generateEmployeeId();
-        $departments = $this->employeeService->getDepartments();
-        $statuses = $this->employeeService->getStatuses();
+        $designations = $this->employeeService->getDesignations();
 
-        return view('admin.employees.create', compact('suggestedEmployeeId', 'departments', 'statuses'));
+        return view('admin.employees.create', compact('suggestedEmployeeId', 'designations'));
     }
 
     /**
@@ -130,9 +150,12 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee): View
     {
-        $employee->load(['salaries' => function ($q) {
-            $q->latest('payment_date');
-        }]);
+        $employee->load([
+            'designation',
+            'salaries' => function ($q) {
+                $q->latest('payment_date');
+            },
+        ]);
 
         return view('admin.employees.show', compact('employee'));
     }
@@ -142,10 +165,9 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee): View
     {
-        $departments = $this->employeeService->getDepartments();
-        $statuses = $this->employeeService->getStatuses();
+        $designations = $this->employeeService->getDesignations();
 
-        return view('admin.employees.edit', compact('employee', 'departments', 'statuses'));
+        return view('admin.employees.edit', compact('employee', 'designations'));
     }
 
     /**
@@ -160,6 +182,22 @@ class EmployeeController extends Controller
     }
 
     /**
+     * Toggle active/inactive status of an employee.
+     */
+    public function toggleStatus(Employee $employee): JsonResponse
+    {
+        $employee->update([
+            'is_active' => ! $employee->is_active,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Staff status changed to '.($employee->is_active ? 'Active' : 'Inactive').' successfully.',
+            'is_active' => $employee->is_active,
+        ]);
+    }
+
+    /**
      * Soft delete employee.
      */
     public function destroy(Employee $employee): RedirectResponse
@@ -167,6 +205,6 @@ class EmployeeController extends Controller
         $this->employeeService->delete($employee);
 
         return redirect()->route('admin.employees.index')
-            ->with('success', 'Staff profile archived successfully!');
+            ->with('success', 'Staff profile archived successfully.');
     }
 }

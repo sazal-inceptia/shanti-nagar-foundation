@@ -2,9 +2,10 @@
 
 namespace App\Services;
 
-use App\Enums\EmploymentStatus;
+use App\Models\Designation;
 use App\Models\Employee;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -18,14 +19,14 @@ class EmployeeService
      */
     public function getPaginated(array $filters = [], int $perPage = 15): LengthAwarePaginator
     {
-        $query = Employee::query()->withCount('salaries');
+        $query = Employee::query()->with(['designation'])->withCount('salaries');
 
-        if (! empty($filters['employment_status'])) {
-            $query->where('employment_status', $filters['employment_status']);
+        if (isset($filters['is_active']) && $filters['is_active'] !== '') {
+            $query->where('is_active', (bool) $filters['is_active']);
         }
 
-        if (! empty($filters['department'])) {
-            $query->where('department', $filters['department']);
+        if (! empty($filters['designation_id'])) {
+            $query->where('designation_id', $filters['designation_id']);
         }
 
         if (! empty($filters['search'])) {
@@ -35,7 +36,10 @@ class EmployeeService
                     ->orWhere('name', 'like', "%{$search}%")
                     ->orWhere('phone', 'like', "%{$search}%")
                     ->orWhere('email', 'like', "%{$search}%")
-                    ->orWhere('designation', 'like', "%{$search}%");
+                    ->orWhereHas('designation', function ($dq) use ($search) {
+                        $dq->where('name', 'like', "%{$search}%")
+                            ->orWhere('category', 'like', "%{$search}%");
+                    });
             });
         }
 
@@ -131,30 +135,15 @@ class EmployeeService
     }
 
     /**
-     * Get available departments.
+     * Get all active designations dynamically from database.
      *
-     * @return array<string, string>
+     * @return Collection<int, Designation>
      */
-    public function getDepartments(): array
+    public function getDesignations(): Collection
     {
-        return [
-            'Operations & Relief' => 'Operations & Relief',
-            'Finance & Accounts' => 'Finance & Accounts',
-            'Volunteer Management' => 'Volunteer Management',
-            'Administration' => 'Administration',
-            'Healthcare & Medical' => 'Healthcare & Medical Support',
-            'Education & Welfare' => 'Education & Child Welfare',
-            'Executive Committee' => 'Executive Committee / Board',
-        ];
-    }
-
-    /**
-     * Get available employment statuses.
-     *
-     * @return array<string, string>
-     */
-    public function getStatuses(): array
-    {
-        return EmploymentStatus::options();
+        return Designation::where('is_active', true)
+            ->orderBy('order_index', 'asc')
+            ->orderBy('name', 'asc')
+            ->get();
     }
 }

@@ -62,7 +62,7 @@
                                         <option value="">General Relief &amp; Operational Fund</option>
                                         @foreach($projects as $project)
                                             <option value="{{ $project->id }}" {{ old('project_id', $donation->project_id) == $project->id ? 'selected' : '' }}>
-                                                {{ $project->name }} ({{ $project->category ?? 'General' }})
+                                                {{ $project->name }} ({{ $project->projectType?->name ?? 'General' }})
                                             </option>
                                         @endforeach
                                     </select>

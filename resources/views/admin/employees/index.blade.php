@@ -28,24 +28,21 @@
                         <div class="row g-2 align-items-end">
                             <div class="col-md-2 col-sm-4">
                                 <label class="form-label mb-1 text-muted"
-                                    style="font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Employment Status</label>
+                                    style="font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Status</label>
                                 <select id="filter_status" class="form-select form-select-sm custom-input" style="height: 32px; font-size: 13px;">
                                     <option value="">All Statuses</option>
-                                    @foreach($statuses as $stVal => $stLabel)
-                                        <option value="{{ $stVal }}" {{ request('employment_status') == $stVal ? 'selected' : '' }}>
-                                            {{ $stLabel }}
-                                        </option>
-                                    @endforeach
+                                    <option value="1" {{ request('is_active') === '1' ? 'selected' : '' }}>Active Staff</option>
+                                    <option value="0" {{ request('is_active') === '0' ? 'selected' : '' }}>Inactive Staff</option>
                                 </select>
                             </div>
-                            <div class="col-md-2 col-sm-4">
+                            <div class="col-md-3 col-sm-6">
                                 <label class="form-label mb-1 text-muted"
-                                    style="font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Department</label>
-                                <select id="filter_department" class="form-select form-select-sm custom-input" style="height: 32px; font-size: 13px;">
-                                    <option value="">All Departments</option>
-                                    @foreach($departments as $deptKey => $deptName)
-                                        <option value="{{ $deptKey }}" {{ request('department') == $deptKey ? 'selected' : '' }}>
-                                            {{ $deptName }}
+                                    style="font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Designation</label>
+                                <select id="filter_designation" class="form-select form-select-sm custom-input" style="height: 32px; font-size: 13px;">
+                                    <option value="">All Designations</option>
+                                    @foreach($designations as $desig)
+                                        <option value="{{ $desig->id }}" {{ request('designation_id') == $desig->id ? 'selected' : '' }}>
+                                            {{ $desig->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -68,10 +65,10 @@
                                     <th scope="col" style="width: 45px;">SL</th>
                                     <th scope="col" style="width: 55px;" class="text-center">Photo</th>
                                     <th scope="col" style="min-width: 130px;">Employee &amp; ID</th>
-                                    <th scope="col" style="width: 300px;">Role &amp; Department</th>
+                                    <th scope="col" style="width: 240px;">Designation / Role</th>
                                     <th scope="col" style="width: 150px;">Contact Details</th>
                                     <th scope="col" style="width: 130px;">Base Salary</th>
-                                    <th scope="col" style="width: 110px;">Status</th>
+                                    <th scope="col" style="width: 130px;">Active / Inactive</th>
                                     <th scope="col" style="width: 100px;" class="text-center">Action</th>
                                 </tr>
                             </thead>
@@ -132,18 +129,18 @@
                 ajax: {
                     url: listUrl,
                     data: function (d) {
-                        d.employment_status = $('#filter_status').val();
-                        d.department = $('#filter_department').val();
+                        d.is_active = $('#filter_status').val();
+                        d.designation_id = $('#filter_designation').val();
                     }
                 },
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
                     { data: 'photo_display', name: 'photo_display', orderable: false, searchable: false, className: 'text-center' },
                     { data: 'employee_info', name: 'name', orderable: true },
-                    { data: 'role_department', name: 'designation', orderable: true },
+                    { data: 'designation_role', name: 'designation', orderable: true },
                     { data: 'contact_info', name: 'phone', orderable: true },
                     { data: 'formatted_salary', name: 'base_salary', orderable: true },
-                    { data: 'status_badge', name: 'employment_status', orderable: true },
+                    { data: 'status_toggle', name: 'is_active', orderable: true },
                     {
                         data: 'action-btn',
                         orderable: false,
@@ -167,9 +164,47 @@
                 order: [[2, 'asc']],
                 language: {
                     search: "_INPUT_",
-                    searchPlaceholder: "Search by name, ID, phone, email...",
+                    searchPlaceholder: "Search...",
                     processing: '<div class="spinner-border spinner-border-sm text-primary" role="status"></div> Loading staff list...'
                 }
+            });
+
+            // Status Toggle Switch AJAX Handler
+            $(document).on('change', '.status-toggle-switch', function () {
+                var checkbox = $(this);
+                var id = checkbox.data('id');
+                var url = checkbox.data('url');
+                var isChecked = checkbox.is(':checked');
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        _token: "{{ csrf_token() }}"
+                    },
+                    beforeSend: function () {
+                        checkbox.prop('disabled', true);
+                    },
+                    success: function (response) {
+                        checkbox.prop('disabled', false);
+                        var badge = $('#status-badge-' + id);
+                        if (response.is_active) {
+                            badge.attr('style', 'background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;')
+                                .text('Active');
+                        } else {
+                            badge.attr('style', 'background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca; font-size: 11px; padding: 4px 8px; border-radius: 4px; font-weight: 600;')
+                                .text('Inactive');
+                        }
+                        if (typeof toastr !== 'undefined') {
+                            toastr.success(response.message);
+                        }
+                    },
+                    error: function (xhr) {
+                        checkbox.prop('disabled', false);
+                        checkbox.prop('checked', !isChecked);
+                        alert('Failed to update employee status.');
+                    }
+                });
             });
 
             // Tooltips
@@ -178,13 +213,13 @@
                 return new bootstrap.Tooltip(tooltipTriggerEl);
             });
 
-            $('#filter_status, #filter_department').on('change', function () {
+            $('#filter_status, #filter_designation').on('change', function () {
                 table.draw();
             });
 
             $('#reset_filters').on('click', function () {
                 $('#filter_status').val('');
-                $('#filter_department').val('');
+                $('#filter_designation').val('');
                 table.draw();
             });
 

@@ -28,7 +28,20 @@
                     {{-- Filter Bar --}}
                     <div class="card-body border-bottom" style="background-color: #f8fafc; padding: 14px 20px;">
                         <div class="row g-2 align-items-end">
-                            <div class="col-md-2 col-sm-4">
+                            <div class="col-md-4 col-sm-6">
+                                <label class="form-label mb-1 text-muted"
+                                    style="font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Project Type</label>
+                                <select id="filter_project_type" class="form-select form-select-sm custom-input"
+                                    style="height: 32px; font-size: 13px;">
+                                    <option value="">All Types</option>
+                                    @foreach($projectTypes as $type)
+                                        <option value="{{ $type->id }}" {{ request('project_type_id') == $type->id ? 'selected' : '' }}>
+                                            {{ $type->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
                                 <label class="form-label mb-1 text-muted"
                                     style="font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Status</label>
                                 <select id="filter_status" class="form-select form-select-sm custom-input"
@@ -39,29 +52,6 @@
                                             {{ $label }}
                                         </option>
                                     @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-2 col-sm-4">
-                                <label class="form-label mb-1 text-muted"
-                                    style="font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Category</label>
-                                <select id="filter_category" class="form-select form-select-sm custom-input"
-                                    style="height: 32px; font-size: 13px;">
-                                    <option value="">All Categories</option>
-                                    @foreach($categories as $cat)
-                                        <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>
-                                            {{ $cat }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-2 col-sm-4">
-                                <label class="form-label mb-1 text-muted"
-                                    style="font-size: 11.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Featured</label>
-                                <select id="filter_featured" class="form-select form-select-sm custom-input"
-                                    style="height: 32px; font-size: 13px;">
-                                    <option value="">All Projects</option>
-                                    <option value="1" {{ request('is_featured') === '1' ? 'selected' : '' }}>Featured Only</option>
-                                    <option value="0" {{ request('is_featured') === '0' ? 'selected' : '' }}>Standard Only</option>
                                 </select>
                             </div>
                             <div class="col-auto d-flex align-items-end">
@@ -84,7 +74,6 @@
                                     <th scope="col">Project Title & Cause</th>
                                     <th scope="col" style="width: 140px;">Target Budget</th>
                                     <th scope="col" style="width: 110px;">Status</th>
-                                    <th scope="col" style="width: 90px;" class="text-center">Featured</th>
                                     <th scope="col" style="width: 90px;" class="text-center">Published</th>
                                     <th scope="col" style="width: 110px;" class="text-center">Action</th>
                                 </tr>
@@ -146,9 +135,8 @@
                 ajax: {
                     url: listUrl,
                     data: function (d) {
+                        d.project_type_id = $('#filter_project_type').val();
                         d.status = $('#filter_status').val();
-                        d.category = $('#filter_category').val();
-                        d.is_featured = $('#filter_featured').val();
                     }
                 },
                 columns: [
@@ -157,7 +145,6 @@
                     { data: 'title_details', name: 'name', orderable: true },
                     { data: 'target_budget', name: 'estimated_cost', orderable: true },
                     { data: 'status_badge', name: 'status', orderable: true },
-                    { data: 'featured_toggle', name: 'is_featured', orderable: false, searchable: false, className: 'text-center' },
                     { data: 'published_toggle', name: 'is_published', orderable: false, searchable: false, className: 'text-center' },
                     {
                         data: 'action-btn',
@@ -194,48 +181,18 @@
             });
 
             // Filter triggers
-            $('#filter_status, #filter_category, #filter_featured').on('change', function () {
+            $('#filter_project_type, #filter_status').on('change', function () {
                 table.draw();
             });
 
             $('#reset_filters').on('click', function () {
+                $('#filter_project_type').val('');
                 $('#filter_status').val('');
-                $('#filter_category').val('');
-                $('#filter_featured').val('');
                 if (window.history.pushState) {
                     var cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
                     window.history.pushState({ path: cleanUrl }, '', cleanUrl);
                 }
                 table.draw();
-            });
-
-            // AJAX Toggle Switch for Featured
-            $(document).on('change', '.toggle-project-feature', function () {
-                var projectId = $(this).data('id');
-                var isChecked = $(this).is(':checked') ? 1 : 0;
-                var $switch = $(this);
-
-                $.ajax({
-                    url: "{{ url('/admin/projects') }}/" + projectId + "/toggle-status",
-                    type: 'POST',
-                    data: {
-                        field: 'is_featured',
-                        value: isChecked,
-                        _token: $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function (res) {
-                        if (res.success) {
-                            toastr.success(res.message || 'Featured status updated');
-                        } else {
-                            toastr.error('Failed to update featured status');
-                            $switch.prop('checked', !isChecked);
-                        }
-                    },
-                    error: function () {
-                        toastr.error('Network error updating featured status');
-                        $switch.prop('checked', !isChecked);
-                    }
-                });
             });
 
             // AJAX Toggle Switch for Published

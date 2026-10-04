@@ -19,9 +19,13 @@
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">
-                    <h6 class="donation-category-badge">
-                        # {{ $project->category }}
-                    </h6>
+                    <div class="d-flex align-items-center justify-content-center gap-2 mb-2 flex-wrap">
+                        @if($project->projectType)
+                            <span class="badge" style="{{ $project->projectType->badge_style }} font-size: 12px; padding: 4px 10px; border-radius: 4px;">
+                                {{ $project->projectType->name }}
+                            </span>
+                        @endif
+                    </div>
                     <h1>{{ $project->name }}</h1>
                 </div>
                 <ul class="bread-crumb clearfix">
@@ -323,19 +327,19 @@
                                 </div>
                             @endif
 
-                            <!-- Relief Categories Widget -->
-                            @if(isset($categories) && $categories->count() > 0)
+                            <!-- Initiative Types Widget -->
+                            @if(isset($projectTypes) && $projectTypes->count() > 0)
                                 <div class="sidebar-widget category-widget">
                                     <div class="widget-title">
-                                        <h3>Relief Categories</h3>
+                                        <h3>Initiative Types</h3>
                                     </div>
                                     <div class="widget-content">
                                         <ul class="category-list clearfix">
-                                            @foreach($categories as $cat)
+                                            @foreach($projectTypes as $type)
                                                 <li>
-                                                    <a href="{{ route('donations') }}">
-                                                        {{ $cat->category ?: 'Social Welfare' }}
-                                                        <span>{{ str_pad($cat->count, 2, '0', STR_PAD_LEFT) }}</span>
+                                                    <a href="{{ route('donations', ['type' => $type->slug]) }}">
+                                                        {{ $type->name }}
+                                                        <span>{{ str_pad($type->projects_count, 2, '0', STR_PAD_LEFT) }}</span>
                                                     </a>
                                                 </li>
                                             @endforeach

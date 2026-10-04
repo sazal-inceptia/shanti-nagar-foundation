@@ -55,19 +55,19 @@
                                     @enderror
                                 </div>
 
-                                {{-- Category & Status --}}
+                                {{-- Project Type & Status --}}
                                 <div class="col-md-6 col-12">
-                                    <label for="category" class="form-label custom-label">Sector / Category <span
-                                            class="text-danger">*</span></label>
-                                    <select class="form-select custom-input @error('category') is-invalid @enderror"
-                                        name="category" id="category" required>
-                                        @foreach($categories as $category)
-                                            <option value="{{ $category }}" {{ old('category', $project->category) == $category ? 'selected' : '' }}>
-                                                {{ $category }}
+                                    <label for="project_type_id" class="form-label custom-label">Project Type</label>
+                                    <select class="form-select custom-input @error('project_type_id') is-invalid @enderror"
+                                        name="project_type_id" id="project_type_id">
+                                        <option value="">Select Project Type...</option>
+                                        @foreach($projectTypes as $type)
+                                            <option value="{{ $type->id }}" {{ old('project_type_id', $project->project_type_id) == $type->id ? 'selected' : '' }}>
+                                                {{ $type->name }}
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('category')
+                                    @error('project_type_id')
                                         <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -186,14 +186,6 @@
                                             <label class="form-check-label fw-semibold" for="is_published"
                                                 style="font-size: 13.5px; cursor: pointer;">
                                                 Visible on Website
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" name="is_featured"
-                                                id="is_featured" value="1" {{ old('is_featured', $project->is_featured) ? 'checked' : '' }} style="cursor: pointer;">
-                                            <label class="form-check-label fw-semibold" for="is_featured"
-                                                style="font-size: 13.5px; cursor: pointer;">
-                                                Feature on Homepage
                                             </label>
                                         </div>
                                     </div>

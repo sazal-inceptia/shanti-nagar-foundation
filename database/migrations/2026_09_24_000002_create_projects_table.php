@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('category', 100)->nullable(); // e.g. Health, Education, Relief, Orphan Care, Social Welfare
+            $table->foreignId('project_type_id')->nullable()->constrained('project_types')->nullOnDelete();
             $table->text('short_description')->nullable();
             $table->longText('description')->nullable();
             $table->decimal('estimated_cost', 14, 2)->default(0.00);
@@ -22,7 +22,6 @@ return new class extends Migration
             $table->enum('status', ['planned', 'in_progress', 'completed', 'cancelled'])->default('planned');
             $table->string('location')->nullable();
             $table->string('featured_image')->nullable();
-            $table->boolean('is_featured')->default(false);
             $table->boolean('is_published')->default(true);
             $table->timestamps();
             $table->softDeletes();

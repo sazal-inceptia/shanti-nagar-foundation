@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreSalaryRequest;
 use App\Http\Requests\Admin\UpdateSalaryRequest;
+use App\Models\Designation;
 use App\Models\Employee;
 use App\Models\Salary;
 use App\Services\SalaryService;
@@ -24,7 +25,7 @@ class SalaryController extends Controller
     public function index(Request $request): JsonResponse|View
     {
         if ($request->ajax() || $request->wantsJson()) {
-            $query = Salary::query()->with('employee')->select('salaries.*');
+            $query = Salary::query()->with(['employee.designation'])->select('salaries.*');
 
             if ($request->filled('employee_id')) {
                 $query->where('employee_id', $request->employee_id);
@@ -53,10 +54,12 @@ class SalaryController extends Controller
                     ->addColumn('employee_name', function ($row) {
                         if ($row->employee) {
                             $empUrl = route('admin.employees.show', $row->employee->id);
+                            $desigModel = $row->employee->designation;
+                            $desig = ($desigModel instanceof Designation) ? $desigModel->name : (is_string($desigModel) ? $desigModel : '—');
 
                             return '<div class="d-flex flex-column">
                                 <a href="'.e($empUrl).'" class="fw-semibold text-dark text-decoration-none" style="font-size: 13px;">'.e($row->employee->name).'</a>
-                                <span class="text-muted" style="font-size: 11px;">'.e($row->employee->designation).' ('.e($row->employee->employee_id).')</span>
+                                <span class="text-muted" style="font-size: 11px;">'.e($desig).' ('.e($row->employee->employee_id).')</span>
                             </div>';
                         }
 
@@ -113,7 +116,7 @@ class SalaryController extends Controller
      */
     public function create(Request $request): View
     {
-        $employees = Employee::where('employment_status', 'active')->orderBy('name')->get();
+        $employees = Employee::where('is_active', true)->orderBy('name')->get();
         $paymentMethods = $this->salaryService->getPaymentMethods();
         $selectedEmployee = $request->filled('employee_id') ? Employee::find($request->employee_id) : null;
 

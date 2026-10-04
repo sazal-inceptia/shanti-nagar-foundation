@@ -87,8 +87,7 @@
                                     </h5>
                                     <div class="text-muted" style="font-size: 12.5px; line-height: 1.5;">
                                         <div>Employee ID: <strong class="text-dark font-monospace">{{ $salary->employee?->employee_id ?? 'N/A' }}</strong></div>
-                                        <div>Designation: <strong>{{ $salary->employee?->designation ?? 'Staff Member' }}</strong></div>
-                                        <div>Department: <strong>{{ $salary->employee?->department ?? 'General' }}</strong></div>
+                                        <div>Designation: <strong>{{ $salary->employee?->designation?->name ?? $salary->employee?->designation ?? 'Staff Member' }}</strong></div>
                                         @if($salary->employee?->phone)
                                             <div>Phone: <strong>{{ $salary->employee->phone }}</strong></div>
                                         @endif

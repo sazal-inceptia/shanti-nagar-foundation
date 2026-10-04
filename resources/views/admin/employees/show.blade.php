@@ -58,21 +58,25 @@
                         <div class="badge font-monospace mb-2" style="background-color: #e0f2fe; color: #0369a1; font-size: 12px; padding: 4px 10px;">
                             {{ $employee->employee_id }}
                         </div>
-                        <div class="text-muted fw-semibold mb-2" style="font-size: 13.5px;">{{ $employee->designation }}</div>
+                        <div class="text-muted fw-semibold mb-2" style="font-size: 13.5px;">{{ $employee->designation?->name ?? '—' }}</div>
+                        @if($employee->designation?->category)
                         <div class="mb-3">
-                            <span class="badge" style="background-color: #f1f5f9; color: #334155; font-size: 12px; padding: 4px 10px; border-radius: 4px;">
-                                {{ $employee->department }}
+                            <span class="badge" style="background-color: #f1f5f9; color: #334155; font-size: 12px; padding: 4px 10px; border-radius: 4px; border: 1px solid #e2e8f0;">
+                                <i class="ri-folder-user-line me-1 text-primary"></i> {{ $employee->designation->category }}
                             </span>
                         </div>
+                        @endif
 
                         @php
-                            $statusEnum = \App\Enums\EmploymentStatus::tryFrom($employee->employment_status);
-                            $badgeStyle = $statusEnum ? $statusEnum->badgeStyle() : 'background-color: #f1f5f9; color: #334155; border: 1px solid #cbd5e1;';
-                            $statusLabel = $statusEnum ? $statusEnum->label() : ucfirst($employee->employment_status);
+                            $badgeStyle = $employee->is_active
+                                ? 'background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0;'
+                                : 'background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca;';
+                            $statusLabel = $employee->is_active ? 'Active Staff' : 'Inactive Staff';
+                            $statusIcon = $employee->is_active ? 'ri-checkbox-circle-fill' : 'ri-close-circle-fill';
                         @endphp
                         <div>
                             <span class="badge" style="{{ $badgeStyle }} font-size: 12px; padding: 5px 12px; border-radius: 20px; font-weight: 600;">
-                                <i class="ri-checkbox-circle-fill me-1"></i> {{ $statusLabel }}
+                                <i class="{{ $statusIcon }} me-1"></i> {{ $statusLabel }}
                             </span>
                         </div>
                     </div>

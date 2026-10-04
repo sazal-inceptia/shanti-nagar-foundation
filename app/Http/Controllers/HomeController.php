@@ -12,6 +12,7 @@ use App\Models\Employee;
 use App\Models\Expense;
 use App\Models\Project;
 use App\Models\ProjectImage;
+use App\Models\ProjectType;
 use App\Models\Salary;
 use App\Models\Volunteer;
 use Illuminate\Http\RedirectResponse;
@@ -74,31 +75,32 @@ class HomeController extends Controller
     public function index(): View
     {
         $featuredProjects = Project::where('is_published', true)
-            ->with(['donations', 'expenses'])
+            ->with(['projectType', 'donations', 'expenses'])
             ->orderBy('created_at', 'desc')
             ->take(6)
             ->get();
 
         $urgentProject = Project::where('is_published', true)
             ->where('status', 'in_progress')
-            ->with(['donations', 'expenses'])
+            ->with(['projectType', 'donations', 'expenses'])
             ->orderBy('estimated_cost', 'desc')
             ->first() ?? $featuredProjects->first();
 
         $upcomingActivities = Project::where('is_published', true)
             ->whereIn('status', ['planned', 'in_progress'])
+            ->with('projectType')
             ->orderBy('start_date', 'asc')
             ->take(3)
             ->get();
 
         $recentDonations = Donation::where('status', 'completed')
-            ->with(['donor', 'project'])
+            ->with(['donor', 'project.projectType'])
             ->latest('donation_date')
             ->take(10)
             ->get();
 
         if ($recentDonations->isEmpty()) {
-            $recentDonations = Donation::with(['donor', 'project'])
+            $recentDonations = Donation::with(['donor', 'project.projectType'])
                 ->latest()
                 ->take(10)
                 ->get();
@@ -109,34 +111,131 @@ class HomeController extends Controller
             $recentVolunteers = Volunteer::latest()->take(4)->get();
         }
 
-        $projectCategories = Project::where('is_published', true)
-            ->pluck('category')
-            ->filter()
-            ->unique()
-            ->values()
-            ->take(4);
+        $projectTypes = ProjectType::where('is_active', true)->orderBy('order_index')->get();
 
         $stats = $this->getImpactStats();
 
-        return view('frontend.index', compact('featuredProjects', 'urgentProject', 'upcomingActivities', 'recentDonations', 'recentVolunteers', 'projectCategories', 'stats'));
+        return view('frontend.index', compact('featuredProjects', 'urgentProject', 'upcomingActivities', 'recentDonations', 'recentVolunteers', 'projectTypes', 'stats'));
     }
 
     public function about(): View
     {
         $stats = $this->getImpactStats();
-        $teamMembers = Employee::where('employment_status', 'active')->get();
 
-        return view('frontend.about', compact('stats', 'teamMembers'));
+        $bestPresident = Employee::with('designation')
+            ->where('is_active', true)
+            ->where('is_highlight', true)
+            ->orderBy('order_index', 'asc')
+            ->first();
+
+        $president = Employee::with('designation')
+            ->where('is_active', true)
+            ->where(function ($q) {
+                $q->where('is_highlight', false)
+                    ->orWhereNull('is_highlight');
+            })
+            ->whereHas('designation', function ($q) {
+                $q->where('category', 'Executive Leadership')
+                    ->where(function ($sq) {
+                        $sq->where('slug', 'president')
+                            ->orWhere('name', 'like', '%President%');
+                    });
+            })
+            ->where('id', '!=', $bestPresident?->id)
+            ->orderBy('order_index', 'asc')
+            ->first();
+
+        $secretary = Employee::with('designation')
+            ->where('is_active', true)
+            ->whereHas('designation', function ($q) {
+                $q->where('category', 'Executive Leadership')
+                    ->where(function ($sq) {
+                        $sq->where('slug', 'general-secretary')
+                            ->orWhere('name', 'like', '%General Secretary%')
+                            ->orWhere('name', 'like', '%Secretary%');
+                    });
+            })
+            ->where('id', '!=', $bestPresident?->id)
+            ->orderBy('order_index', 'asc')
+            ->first();
+
+        $treasurer = Employee::with('designation')
+            ->where('is_active', true)
+            ->whereHas('designation', function ($q) {
+                $q->where('category', 'Executive Leadership')
+                    ->where(function ($sq) {
+                        $sq->where('slug', 'like', '%treasurer%')
+                            ->orWhere('name', 'like', '%Treasurer%');
+                    });
+            })
+            ->where('id', '!=', $bestPresident?->id)
+            ->orderBy('order_index', 'asc')
+            ->first();
+
+        $bodMembers = Employee::with('designation')
+            ->where('is_active', true)
+            ->whereHas('designation', function ($dq) {
+                $dq->where('category', 'Board of Directors');
+            })
+            ->whereNotIn('id', array_filter([
+                $bestPresident?->id,
+                $president?->id,
+                $secretary?->id,
+                $treasurer?->id,
+            ]))
+            ->orderBy('order_index', 'asc')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        $excludedIds = array_filter([
+            $bestPresident?->id,
+            $president?->id,
+            $secretary?->id,
+            $treasurer?->id,
+            ...$bodMembers->pluck('id')->toArray(),
+        ]);
+
+        $otherMembers = Employee::with('designation')
+            ->where('is_active', true)
+            ->whereNotIn('id', $excludedIds)
+            ->orderBy('order_index', 'asc')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        $teamMembers = Employee::with('designation')
+            ->where('is_active', true)
+            ->orderBy('order_index', 'asc')
+            ->orderBy('id', 'asc')
+            ->get();
+
+        return view('frontend.about', compact(
+            'stats',
+            'bestPresident',
+            'president',
+            'secretary',
+            'treasurer',
+            'bodMembers',
+            'otherMembers',
+            'teamMembers'
+        ));
     }
 
     public function donations(): View
     {
-        $projects = Project::where('is_published', true)
-            ->with(['donations', 'expenses'])
-            ->orderBy('created_at', 'desc')
-            ->paginate(6);
+        $selectedType = request('type');
+        $query = Project::where('is_published', true)
+            ->with(['projectType', 'donations', 'expenses']);
 
-        return view('frontend.donations', compact('projects'));
+        if ($selectedType && $selectedType !== 'all') {
+            $query->whereHas('projectType', function ($q) use ($selectedType) {
+                $q->where('slug', $selectedType);
+            });
+        }
+
+        $projects = $query->orderBy('created_at', 'desc')->paginate(6)->withQueryString();
+        $projectTypes = ProjectType::where('is_active', true)->orderBy('order_index')->get();
+
+        return view('frontend.donations', compact('projects', 'projectTypes', 'selectedType'));
     }
 
     public function donationDetails(?string $slug = null): View
@@ -144,11 +243,11 @@ class HomeController extends Controller
         $project = null;
         if ($slug) {
             $project = Project::where('slug', $slug)
-                ->with(['images', 'donations.donor'])
+                ->with(['projectType', 'images', 'donations.donor'])
                 ->first();
         }
         if (! $project) {
-            $project = Project::with(['images', 'donations.donor'])
+            $project = Project::with(['projectType', 'images', 'donations.donor'])
                 ->where('is_published', true)
                 ->first();
         }
@@ -159,6 +258,7 @@ class HomeController extends Controller
 
         $recentProjects = Project::where('id', '!=', $project->id)
             ->where('is_published', true)
+            ->with('projectType')
             ->orderBy('created_at', 'desc')
             ->take(3)
             ->get();
@@ -170,19 +270,22 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
-        $categories = Project::where('is_published', true)
-            ->selectRaw('category, count(*) as count')
-            ->groupBy('category')
+        $projectTypes = ProjectType::where('is_active', true)
+            ->withCount(['projects' => function ($q) {
+                $q->where('is_published', true);
+            }])
+            ->orderBy('order_index')
             ->get();
 
         $galleryImages = ProjectImage::latest()->take(6)->get();
 
-        return view('frontend.donation-details', compact('project', 'recentProjects', 'recentDonors', 'categories', 'galleryImages'));
+        return view('frontend.donation-details', compact('project', 'recentProjects', 'recentDonors', 'projectTypes', 'galleryImages'));
     }
 
     public function events(): View
     {
         $activities = Project::where('is_published', true)
+            ->with('projectType')
             ->orderBy('start_date', 'desc')
             ->paginate(6);
 
@@ -194,11 +297,11 @@ class HomeController extends Controller
         $activity = null;
         if ($slug) {
             $activity = Project::where('slug', $slug)
-                ->with(['images', 'donations.donor'])
+                ->with(['projectType', 'images', 'donations.donor'])
                 ->first();
         }
         if (! $activity) {
-            $activity = Project::with(['images', 'donations.donor'])
+            $activity = Project::with(['projectType', 'images', 'donations.donor'])
                 ->where('is_published', true)
                 ->first();
         }
@@ -209,6 +312,7 @@ class HomeController extends Controller
 
         $upcomingActivities = Project::where('id', '!=', $activity->id)
             ->where('is_published', true)
+            ->with('projectType')
             ->orderBy('start_date', 'desc')
             ->take(3)
             ->get();
@@ -245,15 +349,14 @@ class HomeController extends Controller
 
     public function gallery(): View
     {
-        $selectedCategory = request('category');
+        $selectedType = request('type');
 
-        $query = ProjectImage::with('project')
-            ->whereHas('project', function ($q) use ($selectedCategory) {
+        $query = ProjectImage::with(['project.projectType'])
+            ->whereHas('project', function ($q) use ($selectedType) {
                 $q->where('is_published', true);
-                if ($selectedCategory && $selectedCategory !== 'all') {
-                    $q->where(function ($sub) use ($selectedCategory) {
-                        $sub->where('category', $selectedCategory)
-                            ->orWhereRaw('LOWER(REPLACE(REPLACE(category, " & ", " "), " ", "-")) = ?', [strtolower($selectedCategory)]);
+                if ($selectedType && $selectedType !== 'all') {
+                    $q->whereHas('projectType', function ($typeQuery) use ($selectedType) {
+                        $typeQuery->where('slug', $selectedType);
                     });
                 }
             })
@@ -261,14 +364,18 @@ class HomeController extends Controller
 
         $galleryImages = $query->paginate(12)->withQueryString();
 
-        $categories = Project::where('is_published', true)
-            ->whereHas('images')
-            ->pluck('category')
-            ->filter()
-            ->unique()
-            ->values();
+        $projectTypes = ProjectType::where('is_active', true)
+            ->whereHas('projects', function ($q) {
+                $q->where('is_published', true)->whereHas('images');
+            })
+            ->orderBy('order_index')
+            ->get();
 
-        return view('frontend.gallery', compact('galleryImages', 'categories', 'selectedCategory'));
+        if ($projectTypes->isEmpty()) {
+            $projectTypes = ProjectType::where('is_active', true)->orderBy('order_index')->get();
+        }
+
+        return view('frontend.gallery', compact('galleryImages', 'projectTypes', 'selectedType'));
     }
 
     /**

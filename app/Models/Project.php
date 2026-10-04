@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,7 +15,7 @@ class Project extends Model
     protected $fillable = [
         'name',
         'slug',
-        'category',
+        'project_type_id',
         'short_description',
         'description',
         'estimated_cost',
@@ -24,18 +25,25 @@ class Project extends Model
         'status',
         'location',
         'featured_image',
-        'is_featured',
         'is_published',
     ];
 
     protected $casts = [
+        'project_type_id' => 'integer',
         'estimated_cost' => 'decimal:2',
         'total_expense' => 'decimal:2',
         'start_date' => 'date',
         'completion_date' => 'date',
-        'is_featured' => 'boolean',
         'is_published' => 'boolean',
     ];
+
+    /**
+     * Get the dynamic project type (Continuous, Monthly, Signature, General).
+     */
+    public function projectType(): BelongsTo
+    {
+        return $this->belongsTo(ProjectType::class, 'project_type_id');
+    }
 
     /**
      * Get all images / documentation photos for this project.

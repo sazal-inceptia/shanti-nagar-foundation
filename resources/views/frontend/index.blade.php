@@ -222,13 +222,13 @@
                                 <div class="tab-btn-box">
                                     <ul class="tab-btns tab-buttons clearfix">
                                         <li class="tab-btn active-btn" data-tab="#tab-1">
-                                            <h5>All Categories</h5>
+                                            <h5>All Initiatives</h5>
                                             <div class="icon"><i class="fal fa-angle-left"></i></div>
                                         </li>
-                                        @if(isset($projectCategories))
-                                            @foreach($projectCategories as $idx => $cat)
+                                        @if(isset($projectTypes))
+                                            @foreach($projectTypes as $idx => $type)
                                                 <li class="tab-btn" data-tab="#tab-{{ $idx + 2 }}">
-                                                    <h5>{{ $cat }}</h5>
+                                                    <h5>{{ $type->name }}</h5>
                                                     <div class="icon"><i class="fal fa-angle-left"></i></div>
                                                 </li>
                                             @endforeach
@@ -269,7 +269,11 @@
                                                         </div>
                                                         <div class="inner">
                                                             <div class="text">
-                                                                <div class="category"><a href="{{ route('donation.details', $project->slug) }}"># {{ $project->category }}</a></div>
+                                                                <div class="category d-flex align-items-center gap-1 flex-wrap mb-1">
+                                                                    @if($project->projectType)
+                                                                        <span class="badge" style="{{ $project->projectType->badge_style }} font-size: 10.5px; padding: 2px 6px; border-radius: 4px;">{{ $project->projectType->name }}</span>
+                                                                    @endif
+                                                                </div>
                                                                 <h3><a href="{{ route('donation.details', $project->slug) }}">{{ Str::limit($project->name, 40) }}</a></h3>
                                                             </div>
                                                             <ul class="info-box clearfix">
@@ -292,17 +296,17 @@
                                     </div>
                                 </div>
 
-                                @if(isset($projectCategories))
-                                    @foreach($projectCategories as $idx => $cat)
+                                @if(isset($projectTypes))
+                                    @foreach($projectTypes as $idx => $type)
                                         @php
-                                            $catProjects = $featuredProjects->where('category', $cat);
-                                            if ($catProjects->isEmpty()) {
-                                                $catProjects = $featuredProjects;
+                                            $typeProjects = $featuredProjects->where('project_type_id', $type->id);
+                                            if ($typeProjects->isEmpty()) {
+                                                $typeProjects = $featuredProjects;
                                             }
                                         @endphp
                                         <div class="tab" id="tab-{{ $idx + 2 }}">
                                             <div class="three-item-carousel owl-carousel owl-theme owl-dots-none">
-                                                @foreach($catProjects as $project)
+                                                @foreach($typeProjects as $project)
                                                     @php
                                                         $target = (float) $project->estimated_cost;
                                                         $raised = (float) $project->total_donations_raised;
@@ -330,7 +334,11 @@
                                                                 </div>
                                                                 <div class="inner">
                                                                     <div class="text">
-                                                                        <div class="category"><a href="{{ route('donation.details', $project->slug) }}"># {{ $project->category }}</a></div>
+                                                                        <div class="category d-flex align-items-center gap-1 flex-wrap mb-1">
+                                                                            @if($project->projectType)
+                                                                                <span class="badge" style="{{ $project->projectType->badge_style }} font-size: 10.5px; padding: 2px 6px; border-radius: 4px;">{{ $project->projectType->name }}</span>
+                                                                            @endif
+                                                                        </div>
                                                                         <h3><a href="{{ route('donation.details', $project->slug) }}">{{ Str::limit($project->name, 40) }}</a></h3>
                                                                         <p>{{ Str::limit($project->short_description ?: $project->description, 75) }}</p>
                                                                     </div>

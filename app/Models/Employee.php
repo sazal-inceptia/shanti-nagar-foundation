@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -14,8 +15,7 @@ class Employee extends Model
     protected $fillable = [
         'employee_id',
         'name',
-        'designation',
-        'department',
+        'designation_id',
         'phone',
         'email',
         'nid_number',
@@ -23,14 +23,45 @@ class Employee extends Model
         'permanent_address',
         'joining_date',
         'base_salary',
-        'employment_status',
+        'is_active',
         'photo',
+        'speech',
+        'speech_tag',
+        'bio',
+        'signature_text',
+        'signature_title',
+        'badge_title',
+        'facebook_url',
+        'twitter_url',
+        'linkedin_url',
+        'order_index',
+        'is_highlight',
     ];
 
     protected $casts = [
+        'designation_id' => 'integer',
         'joining_date' => 'date',
         'base_salary' => 'decimal:2',
+        'order_index' => 'integer',
+        'is_highlight' => 'boolean',
+        'is_active' => 'boolean',
     ];
+
+    /**
+     * Get the dynamic designation record.
+     */
+    public function designation(): BelongsTo
+    {
+        return $this->belongsTo(Designation::class, 'designation_id');
+    }
+
+    /**
+     * Get dynamic designation display text.
+     */
+    public function getDesignationNameAttribute(): string
+    {
+        return $this->designation?->name ?? '—';
+    }
 
     /**
      * Get all salary payment records for this employee.
