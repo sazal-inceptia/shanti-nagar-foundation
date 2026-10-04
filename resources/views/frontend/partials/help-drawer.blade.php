@@ -5,7 +5,7 @@
         onclick="toggleHelpModal()">
 
         {{-- Vertical Text Label --}}
-        <span class="tab-vertical-text">Need Help?</span>
+        <span class="tab-vertical-text">{{ __('Need Help?') }}</span>
 
     </button>
 
@@ -23,8 +23,8 @@
                         style="width: 34px; height: 34px; object-fit: contain;">
                 </div>
                 <div>
-                    <h4 id="helpModalTitle" class="help-modal-title">Need Assistance?</h4>
-                    <p class="help-modal-sub">Rotary Club of Shantinagar Dhaka</p>
+                    <h4 id="helpModalTitle" class="help-modal-title">{{ __('Need Assistance?') }}</h4>
+                    <p class="help-modal-sub">{{ site_setting('org_name', 'Rotary Club of Shantinagar Dhaka') }}</p>
                 </div>
             </div>
             <button type="button" class="help-modal-close-btn" onclick="closeHelpModal()" aria-label="Close Modal">
@@ -37,8 +37,7 @@
             <div class="help-intro-box mb-3">
                 <p class="mb-0">
                     <i class="fas fa-info-circle me-1" style="color: var(--theme-primary, #005daa);"></i>
-                    Have questions about donations, relief projects, or volunteering? Leave your details below and our
-                    team will contact you.
+                    {{ __('Have questions about donations, relief projects, or volunteering? Leave your details below and our team will contact you.') }}
                 </p>
             </div>
 
@@ -50,21 +49,21 @@
                 {{-- Name --}}
                 <div class="form-group mb-3">
                     <label for="help_name" class="form-label text-dark fw-bold" style="font-size: 13px;">
-                        Full Name <span class="text-danger">*</span>
+                        {{ __('Full Name') }} <span class="text-danger">*</span>
                     </label>
                     <div class="input-group">
                         <span class="input-group-text bg-light border-end-0" style="color: #64748b; font-size: 13px;">
                             <i class="fas fa-user"></i>
                         </span>
                         <input type="text" id="help_name" name="name" class="form-control border-start-0"
-                            placeholder="Enter your full name" required style="font-size: 13.5px; height: 42px;">
+                            placeholder="{{ __('Enter your full name') }}" required style="font-size: 13.5px; height: 42px;">
                     </div>
                 </div>
 
                 {{-- Phone --}}
                 <div class="form-group mb-3">
                     <label for="help_phone" class="form-label text-dark fw-bold" style="font-size: 13px;">
-                        Phone Number <span class="text-danger">*</span>
+                        {{ __('Phone Number') }} <span class="text-danger">*</span>
                     </label>
                     <div class="input-group">
                         <span class="input-group-text bg-light border-end-0" style="color: #64748b; font-size: 13px;">
@@ -78,34 +77,33 @@
                 {{-- Message --}}
                 <div class="form-group mb-4">
                     <label for="help_message" class="form-label text-dark fw-bold" style="font-size: 13px;">
-                        Your Message / Question <span class="text-danger">*</span>
+                        {{ __('Your Message / Question') }} <span class="text-danger">*</span>
                     </label>
                     <textarea id="help_message" name="message" class="form-control" rows="3"
-                        placeholder="How can we assist you today?" required
+                        placeholder="{{ __('How can we assist you today?') }}" required
                         style="font-size: 13.5px; resize: none;"></textarea>
                 </div>
 
                 {{-- Submit Button --}}
                 <button type="submit" id="quickHelpSubmitBtn" class="help-modal-submit-btn">
-                    <span id="quickHelpBtnText">Send Message</span>
+                    <span id="quickHelpBtnText">{{ __('Send Message') }}</span>
                     <i id="quickHelpBtnIcon" class="fas fa-paper-plane ms-2"></i>
                 </button>
             </form>
 
             {{-- Direct Hotline Call Box --}}
             <div class="help-modal-hotline mt-3 p-2 text-center">
-                <span class="text-muted me-2" style="font-size: 11.5px; font-weight: 600; text-transform: uppercase;">Or
-                    Call Directly:</span>
-                <a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings['hotline'] ?? '+8801711000000') }}"
+                <span class="text-muted me-2" style="font-size: 11.5px; font-weight: 600; text-transform: uppercase;">{{ __('Or Call Directly:') }}</span>
+                <a href="tel:{{ preg_replace('/[^0-9+]/', '', site_setting('hotline', '+8801711000000')) }}"
                     class="fw-bold text-decoration-none" style="color: var(--theme-primary, #005daa); font-size: 14px;">
-                    <i class="fas fa-phone me-1"></i> {{ $siteSettings['hotline'] ?? '+880 1711-000000' }}
+                    <i class="fas fa-phone me-1"></i> {{ site_setting('hotline', '+880 1711-000000') }}
                 </a>
             </div>
         </div>
 
         {{-- Modal Footer --}}
         <div class="help-modal-footer py-2 px-3 text-center border-top">
-            Rotary Club of Shantinagar Dhaka &bull; Developed by <strong
+            {{ site_setting('org_name', 'Rotary Club of Shantinagar Dhaka') }} &bull; {{ __('Developed by') }} <strong
                 style="color: var(--theme-secondary, #f65024);">Inceptia</strong>
         </div>
     </div>

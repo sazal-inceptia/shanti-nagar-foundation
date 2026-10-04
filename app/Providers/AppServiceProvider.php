@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
             $view->with('siteSettings', Setting::getAll());
-            $view->with('siteProjects', Project::where('is_published', true)->select('id', 'name', 'slug')->get());
+            $view->with('siteProjects', Project::where('is_published', true)->select('id', 'name', 'name_bn', 'slug')->get());
         });
     }
 }

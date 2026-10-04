@@ -14,16 +14,20 @@ class Project extends Model
 
     protected $fillable = [
         'name',
+        'name_bn',
         'slug',
         'project_type_id',
         'short_description',
+        'short_description_bn',
         'description',
+        'description_bn',
         'estimated_cost',
         'total_expense',
         'start_date',
         'completion_date',
         'status',
         'location',
+        'location_bn',
         'featured_image',
         'is_published',
     ];
@@ -137,5 +141,37 @@ class Project extends Model
         $diff = (int) now()->startOfDay()->diffInDays($this->completion_date->startOfDay(), false);
 
         return $diff >= 0 ? $diff : 0;
+    }
+
+    /**
+     * Get localized project name based on active locale.
+     */
+    public function getLocalizedNameAttribute(): string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->name_bn)) ? $this->name_bn : (string) $this->name;
+    }
+
+    /**
+     * Get localized short description based on active locale.
+     */
+    public function getLocalizedShortDescriptionAttribute(): ?string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->short_description_bn)) ? $this->short_description_bn : $this->short_description;
+    }
+
+    /**
+     * Get localized full description based on active locale.
+     */
+    public function getLocalizedDescriptionAttribute(): ?string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->description_bn)) ? $this->description_bn : $this->description;
+    }
+
+    /**
+     * Get localized location based on active locale.
+     */
+    public function getLocalizedLocationAttribute(): ?string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->location_bn)) ? $this->location_bn : $this->location;
     }
 }

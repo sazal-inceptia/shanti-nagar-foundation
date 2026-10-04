@@ -12,8 +12,10 @@ class ProjectType extends Model
 
     protected $fillable = [
         'name',
+        'name_bn',
         'slug',
         'description',
+        'description_bn',
         'badge_color',
         'order_index',
         'is_active',
@@ -23,6 +25,22 @@ class ProjectType extends Model
         'order_index' => 'integer',
         'is_active' => 'boolean',
     ];
+
+    /**
+     * Get localized project type name based on active locale.
+     */
+    public function getLocalizedNameAttribute(): string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->name_bn)) ? $this->name_bn : (string) $this->name;
+    }
+
+    /**
+     * Get localized project type description based on active locale.
+     */
+    public function getLocalizedDescriptionAttribute(): ?string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->description_bn)) ? $this->description_bn : $this->description;
+    }
 
     /**
      * Get all projects belonging to this project type.

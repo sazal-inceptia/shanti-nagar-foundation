@@ -74,48 +74,101 @@ class HomeController extends Controller
 
     public function index(): View
     {
+        // ---------------------------------------------------------------------
+        // Section 1 & 2: Main Causes & Category Tabs (All Initiatives & Types)
+        // ---------------------------------------------------------------------
         $featuredProjects = Project::where('is_published', true)
-            ->with(['projectType', 'donations', 'expenses'])
-            ->orderBy('created_at', 'desc')
-            ->take(6)
+            ->with([
+                'projectType',
+                'donations' => fn ($query) => $query->where('status', 'completed'),
+                'expenses',
+            ])
+            ->latest('created_at')
             ->get();
 
+        // ---------------------------------------------------------------------
+        // Section 3: Spotlight Landmark Initiative (Latest Signature Project)
+        // ---------------------------------------------------------------------
         $urgentProject = Project::where('is_published', true)
-            ->where('status', 'in_progress')
-            ->with(['projectType', 'donations', 'expenses'])
-            ->orderBy('estimated_cost', 'desc')
-            ->first() ?? $featuredProjects->first();
+            ->whereHas('projectType', function ($query) {
+                $query->where('slug', 'signature-project');
+            })
+            ->with([
+                'projectType',
+                'donations' => fn ($query) => $query->where('status', 'completed'),
+                'expenses',
+            ])
+            ->latest('created_at')
+            ->first()
+            ?? Project::where('is_published', true)
+                ->where('status', 'in_progress')
+                ->with([
+                    'projectType',
+                    'donations' => fn ($query) => $query->where('status', 'completed'),
+                    'expenses',
+                ])
+                ->latest('created_at')
+                ->first()
+            ?? $featuredProjects->first();
 
+        // ---------------------------------------------------------------------
+        // Section 4: Upcoming Field Activities & Humanitarian Drives
+        // ---------------------------------------------------------------------
+        $today = now()->toDateString();
         $upcomingActivities = Project::where('is_published', true)
             ->whereIn('status', ['planned', 'in_progress'])
             ->with('projectType')
+            ->orderByRaw('CASE WHEN start_date >= ? THEN 0 ELSE 1 END', [$today])
             ->orderBy('start_date', 'asc')
             ->take(3)
             ->get();
 
+        if ($upcomingActivities->count() < 3) {
+            $upcomingActivities = Project::where('is_published', true)
+                ->with('projectType')
+                ->latest('created_at')
+                ->take(3)
+                ->get();
+        }
+
+        // ---------------------------------------------------------------------
+        // Section 5: Verified Contributors & Patrons Carousel
+        // ---------------------------------------------------------------------
         $recentDonations = Donation::where('status', 'completed')
             ->with(['donor', 'project.projectType'])
             ->latest('donation_date')
+            ->latest('id')
             ->take(10)
             ->get();
 
         if ($recentDonations->isEmpty()) {
             $recentDonations = Donation::with(['donor', 'project.projectType'])
-                ->latest()
+                ->latest('id')
                 ->take(10)
                 ->get();
         }
 
-        $recentVolunteers = Volunteer::where('status', 'approved')->latest()->take(4)->get();
-        if ($recentVolunteers->isEmpty()) {
-            $recentVolunteers = Volunteer::latest()->take(4)->get();
-        }
+        // ---------------------------------------------------------------------
+        // Section 6: Dynamic Project Category Classification
+        // ---------------------------------------------------------------------
+        $projectTypes = ProjectType::where('is_active', true)
+            ->withCount(['projects' => fn ($q) => $q->where('is_published', true)])
+            ->orderBy('order_index')
+            ->get();
 
-        $projectTypes = ProjectType::where('is_active', true)->orderBy('order_index')->get();
-
+        // ---------------------------------------------------------------------
+        // Section 7: Real-time Community Impact & Transparency Stats
+        // ---------------------------------------------------------------------
         $stats = $this->getImpactStats();
 
-        return view('frontend.index', compact('featuredProjects', 'urgentProject', 'upcomingActivities', 'recentDonations', 'recentVolunteers', 'projectTypes', 'stats'));
+        return view('frontend.index', compact(
+            'featuredProjects',
+            'urgentProject',
+            'upcomingActivities',
+            'recentDonations',
+            'projectTypes',
+            'stats'
+        ));
     }
 
     public function about(): View
@@ -222,9 +275,16 @@ class HomeController extends Controller
 
     public function donations(): View
     {
+        // ---------------------------------------------------------------------
+        // Section 1: Filtered Projects Grid (Paginated with Category Filter)
+        // ---------------------------------------------------------------------
         $selectedType = request('type');
         $query = Project::where('is_published', true)
-            ->with(['projectType', 'donations', 'expenses']);
+            ->with([
+                'projectType',
+                'donations' => fn ($q) => $q->where('status', 'completed'),
+                'expenses',
+            ]);
 
         if ($selectedType && $selectedType !== 'all') {
             $query->whereHas('projectType', function ($q) use ($selectedType) {
@@ -234,6 +294,9 @@ class HomeController extends Controller
 
         $projects = $query->orderBy('created_at', 'desc')->paginate(6)->withQueryString();
 
+        // ---------------------------------------------------------------------
+        // Section 2: Active Category Tabs with Published Counts
+        // ---------------------------------------------------------------------
         $projectTypes = ProjectType::where('is_active', true)
             ->withCount(['projects' => function ($q) {
                 $q->where('is_published', true);
@@ -241,18 +304,29 @@ class HomeController extends Controller
             ->orderBy('order_index')
             ->get();
 
+        // ---------------------------------------------------------------------
+        // Section 3: Flagship Sponsored / Signature Initiatives Carousel
+        // ---------------------------------------------------------------------
         $sponsoredProjects = Project::where('is_published', true)
             ->whereHas('projectType', function ($q) {
                 $q->where('slug', 'signature-project');
             })
-            ->with(['projectType', 'donations', 'expenses'])
+            ->with([
+                'projectType',
+                'donations' => fn ($q) => $q->where('status', 'completed'),
+                'expenses',
+            ])
             ->orderBy('created_at', 'desc')
             ->get();
 
         if ($sponsoredProjects->isEmpty()) {
             $sponsoredProjects = Project::where('is_published', true)
                 ->where('status', 'in_progress')
-                ->with(['projectType', 'donations', 'expenses'])
+                ->with([
+                    'projectType',
+                    'donations' => fn ($q) => $q->where('status', 'completed'),
+                    'expenses',
+                ])
                 ->orderBy('estimated_cost', 'desc')
                 ->take(4)
                 ->get();
@@ -265,14 +339,27 @@ class HomeController extends Controller
 
     public function donationDetails(?string $slug = null): View
     {
+        // ---------------------------------------------------------------------
+        // Section 1: Target Project Details with Images & Completed Donors
+        // ---------------------------------------------------------------------
         $project = null;
         if ($slug) {
             $project = Project::where('slug', $slug)
-                ->with(['projectType', 'images', 'donations.donor'])
+                ->with([
+                    'projectType',
+                    'images',
+                    'donations' => fn ($q) => $q->where('status', 'completed')->with('donor'),
+                    'expenses',
+                ])
                 ->first();
         }
         if (! $project) {
-            $project = Project::with(['projectType', 'images', 'donations.donor'])
+            $project = Project::with([
+                'projectType',
+                'images',
+                'donations' => fn ($q) => $q->where('status', 'completed')->with('donor'),
+                'expenses',
+            ])
                 ->where('is_published', true)
                 ->first();
         }
@@ -281,20 +368,30 @@ class HomeController extends Controller
             abort(404);
         }
 
+        // ---------------------------------------------------------------------
+        // Section 2: Related Active Causes (Sidebar Widget)
+        // ---------------------------------------------------------------------
         $recentProjects = Project::where('id', '!=', $project->id)
             ->where('is_published', true)
             ->with('projectType')
             ->orderBy('created_at', 'desc')
-            ->take(3)
+            ->take(4)
             ->get();
 
+        // ---------------------------------------------------------------------
+        // Section 3: Verified Recent Contributors / Supporters
+        // ---------------------------------------------------------------------
         $recentDonors = $project->donations()
             ->where('status', 'completed')
             ->with('donor')
             ->latest('donation_date')
+            ->latest('id')
             ->take(6)
             ->get();
 
+        // ---------------------------------------------------------------------
+        // Section 4: Cause Categories (Sidebar Widget)
+        // ---------------------------------------------------------------------
         $projectTypes = ProjectType::where('is_active', true)
             ->withCount(['projects' => function ($q) {
                 $q->where('is_published', true);
@@ -309,9 +406,14 @@ class HomeController extends Controller
 
     public function events(): View
     {
+        // ---------------------------------------------------------------------
+        // Section 1: Upcoming & Planned Activities (Prioritizing Upcoming Dates)
+        // ---------------------------------------------------------------------
+        $today = now()->toDateString();
         $activities = Project::where('is_published', true)
             ->with('projectType')
-            ->orderBy('start_date', 'desc')
+            ->orderByRaw('CASE WHEN start_date >= ? THEN 0 ELSE 1 END', [$today])
+            ->orderBy('start_date', 'asc')
             ->paginate(6);
 
         return view('frontend.events', compact('activities'));
@@ -319,14 +421,17 @@ class HomeController extends Controller
 
     public function eventDetails(?string $slug = null): View
     {
+        // ---------------------------------------------------------------------
+        // Section 1: Target Activity Details & Gallery Images
+        // ---------------------------------------------------------------------
         $activity = null;
         if ($slug) {
             $activity = Project::where('slug', $slug)
-                ->with(['projectType', 'images', 'donations.donor'])
+                ->with(['projectType', 'images'])
                 ->first();
         }
         if (! $activity) {
-            $activity = Project::with(['projectType', 'images', 'donations.donor'])
+            $activity = Project::with(['projectType', 'images'])
                 ->where('is_published', true)
                 ->first();
         }
@@ -335,17 +440,38 @@ class HomeController extends Controller
             abort(404);
         }
 
+        // ---------------------------------------------------------------------
+        // Section 2: Other Upcoming Initiatives (Prioritizing Upcoming Dates)
+        // ---------------------------------------------------------------------
+        $today = now()->toDateString();
         $upcomingActivities = Project::where('id', '!=', $activity->id)
             ->where('is_published', true)
             ->with('projectType')
-            ->orderBy('start_date', 'desc')
+            ->orderByRaw('CASE WHEN start_date >= ? THEN 0 ELSE 1 END', [$today])
+            ->orderBy('start_date', 'asc')
             ->take(3)
             ->get();
 
+        if ($upcomingActivities->count() < 3) {
+            $upcomingActivities = Project::where('id', '!=', $activity->id)
+                ->where('is_published', true)
+                ->with('projectType')
+                ->latest('created_at')
+                ->take(3)
+                ->get();
+        }
+
+        // ---------------------------------------------------------------------
+        // Section 3: Field Coordination Volunteers
+        // ---------------------------------------------------------------------
         $recentVolunteers = Volunteer::where('status', 'approved')
             ->latest()
-            ->take(3)
+            ->take(6)
             ->get();
+
+        if ($recentVolunteers->isEmpty()) {
+            $recentVolunteers = Volunteer::latest()->take(6)->get();
+        }
 
         return view('frontend.event-details', compact('activity', 'upcomingActivities', 'recentVolunteers'));
     }
@@ -367,7 +493,10 @@ class HomeController extends Controller
 
     public function donate(): View
     {
-        $projects = Project::where('is_published', true)->orderBy('name')->get();
+        $projects = Project::where('is_published', true)
+            ->with('projectType')
+            ->orderBy('name')
+            ->get();
 
         return view('frontend.donate', compact('projects'));
     }
@@ -400,7 +529,19 @@ class HomeController extends Controller
             $projectTypes = ProjectType::where('is_active', true)->orderBy('order_index')->get();
         }
 
-        return view('frontend.gallery', compact('galleryImages', 'projectTypes', 'selectedType'));
+        $typeCounts = ProjectImage::join('projects', 'project_images.project_id', '=', 'projects.id')
+            ->where('projects.is_published', true)
+            ->selectRaw('projects.project_type_id, count(project_images.id) as total')
+            ->groupBy('projects.project_type_id')
+            ->pluck('total', 'projects.project_type_id');
+
+        $totalImagesCount = (int) $typeCounts->sum();
+
+        foreach ($projectTypes as $pType) {
+            $pType->gallery_images_count = (int) ($typeCounts[$pType->id] ?? 0);
+        }
+
+        return view('frontend.gallery', compact('galleryImages', 'projectTypes', 'selectedType', 'totalImagesCount'));
     }
 
     /**
@@ -410,7 +551,7 @@ class HomeController extends Controller
     {
         ContactMessage::create($request->validated());
 
-        return redirect()->back()->with('success', 'Thank you! Your message has been received. Our team will contact you shortly.');
+        return redirect()->back()->with('success', __('Thank you! Your message has been received. Our team will contact you shortly.'));
     }
 
     /**
@@ -445,8 +586,8 @@ class HomeController extends Controller
         ]);
 
         $successMsg = ! empty($validated['event_name'])
-            ? "Thank you for registering to volunteer for {$validated['event_name']}! Our team will contact you shortly."
-            : 'Thank you for registering as a volunteer with Rotary Club of Shantinagar Dhaka! We will review your application soon.';
+            ? __('Thank you for registering to volunteer for :event! Our team will contact you shortly.', ['event' => $validated['event_name']])
+            : __('Thank you for registering as a volunteer with Rotary Club of Shantinagar Dhaka! We will review your application soon.');
 
         return redirect()->back()->with('success', $successMsg);
     }
@@ -483,6 +624,24 @@ class HomeController extends Controller
             'notes' => $request->notes,
         ]);
 
-        return redirect()->back()->with('success', 'Thank you for your generous contribution of ৳ '.number_format((float) $donation->amount, 2).'! Your donation pledge (Receipt #'.$receiptNumber.') has been recorded. Our accounts team will verify your transaction.');
+        $formattedAmount = localized_number((float) $donation->amount);
+
+        return redirect()->back()->with('success', __('Thank you for your generous contribution of ৳ :amount! Your donation pledge (Receipt #:receipt) has been recorded. Our accounts team will verify your transaction.', [
+            'amount' => $formattedAmount,
+            'receipt' => $receiptNumber,
+        ]));
+    }
+
+    /**
+     * Switch frontend active application language.
+     */
+    public function switchLang(string $locale): RedirectResponse
+    {
+        if (in_array($locale, ['en', 'bn'], true)) {
+            session(['locale' => $locale]);
+            app()->setLocale($locale);
+        }
+
+        return redirect()->back();
     }
 }

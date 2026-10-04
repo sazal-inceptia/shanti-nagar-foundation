@@ -1,4 +1,7 @@
-<?php
+import re
+
+# Update ProjectSeeder
+project_seeder_content = r'''<?php
 
 namespace Database\Seeders;
 
@@ -155,139 +158,6 @@ class ProjectSeeder extends Seeder
                     'assets/images/gallery/portfolio-15.jpg',
                 ],
             ],
-            [
-                'name' => 'Emergency Food Packages for Flood-Affected Families',
-                'name_bn' => 'বন্যাদুর্গত পরিবারের জন্য জরুরি খাদ্য সামগ্রী প্যাকেজ',
-                'slug' => 'emergency-flood-food-packages',
-                'project_type_id' => $typeMap['general-campaign'] ?? null,
-                'short_description' => 'Emergency food and clean water distribution for flood-affected families in remote areas.',
-                'short_description_bn' => 'বন্যা ও প্রাকৃতিক দুর্যোগে পানিবন্দী পরিবারের মাঝে জরুরি শুকনো খাবার ও বিশুদ্ধ পানি বিতরণ।',
-                'description' => 'Distributing essential dry food rations, water purification tablets, and emergency medicine directly to stranded families.',
-                'description_bn' => 'আকস্মিক বন্যায় দুর্গত পরিবারের পাশে দাঁড়াতে চাল, ডাল, চিঁড়া, গুড়, ওরস্যালাইন ও পানি বিশুদ্ধকরণ ট্যাবলেট সমৃদ্ধ জরুরি ত্রাণ প্যাকেজ বিতরণ কর্মসূচি।',
-                'estimated_cost' => 250000.00,
-                'total_expense' => 240000.00,
-                'start_date' => now()->subMonths(5),
-                'completion_date' => now()->subMonths(4),
-                'status' => 'completed',
-                'location' => 'Sylhet & Sunamganj Flood Zones',
-                'location_bn' => 'সিলেট ও সুনামগঞ্জ বন্যাদুর্গত এলাকা',
-                'featured_image' => 'assets/images/events/events-1.jpg',
-                'is_published' => true,
-            ],
-            [
-                'name' => 'Feed Nutritious Meals to Poor Rural Children',
-                'name_bn' => 'অসহায় ও সুবিধাবঞ্চিত শিশুদের মাঝে পুষ্টিকর আহার বিতরণ',
-                'slug' => 'feed-nutritious-meals-poor-children',
-                'project_type_id' => $typeMap['monthly-project'] ?? null,
-                'short_description' => 'Regular hot meal distribution ensuring nutrition for street and slum children.',
-                'short_description_bn' => 'বস্তিবাসী ও সুবিধাবঞ্চিত পথশিশুদের স্বাস্থ্য ও পুষ্টি নিশ্চিত করতে নিয়মিত পুষ্টিকর রান্না করা খাবার বিতরণ।',
-                'description' => 'Weekly hot nutritious meal drives across urban slums and shelter homes to combat child malnutrition.',
-                'description_bn' => 'দরিদ্র শিশুদের অপুষ্টি দূরীকরণ ও শারীরিক বিকাশে সহায়তার জন্য সাপ্তাহিক পুষ্টিকর খাদ্য ও ফলমূল বিতরণ কার্যক্রম।',
-                'estimated_cost' => 95000.00,
-                'total_expense' => 90000.00,
-                'start_date' => now()->subMonths(2),
-                'completion_date' => null,
-                'status' => 'in_progress',
-                'location' => 'Shanti Nagar Slum, Dhaka',
-                'location_bn' => 'শান্তিনগর ও পল্টন বস্তি এলাকা, ঢাকা',
-                'featured_image' => 'assets/images/events/events-2.jpg',
-                'is_published' => true,
-            ],
-            [
-                'name' => 'Wheelchairs & Assistive Devices for Disabled Individuals',
-                'name_bn' => 'প্রতিবন্ধী ও শারীরিকভাবে অক্ষম ব্যক্তিদের জন্য হুইলচেয়ার বিতরণ',
-                'slug' => 'wheelchairs-assistive-devices-disabled',
-                'project_type_id' => $typeMap['signature-project'] ?? null,
-                'short_description' => 'Providing high quality wheelchairs to low-income physically challenged individuals.',
-                'short_description_bn' => 'অসহায় শারীরিক প্রতিবন্ধী ভাইবোনদের স্বাভাবিক চলাচল ও আত্মনির্ভরশীলতার জন্য বিশেষ হুইলচেয়ার উপহার।',
-                'description' => 'Empowering individuals with mobility impairments by distributing durable wheelchairs, crutches, and walking aids.',
-                'description_bn' => 'শারীরিক প্রতিবন্ধকতায় আক্রান্ত অসহায় মানুষের জীবন সহজ করতে এবং তাদের চলাফেরার স্বাধীনতা দিতে মানসম্মত হুইলচেয়ার ও সহায়ক সামগ্রী বিতরণ।',
-                'estimated_cost' => 180000.00,
-                'total_expense' => 175000.00,
-                'start_date' => now()->subMonths(3),
-                'completion_date' => null,
-                'status' => 'in_progress',
-                'location' => 'Dhaka Division Healthcare Centers',
-                'location_bn' => 'ঢাকা ও আশেপাশের জেলাসমূহ',
-                'featured_image' => 'assets/images/events/events-3.jpg',
-                'is_published' => true,
-            ],
-            [
-                'name' => 'Primary Education Support & Scholarships for Underprivileged Girls',
-                'name_bn' => 'সুবিধাবঞ্চিত কন্যাশিশুদের প্রাথমিক শিক্ষা সহায়তা ও বৃত্তি',
-                'slug' => 'primary-education-scholarships-girls',
-                'project_type_id' => $typeMap['continuous-project'] ?? null,
-                'short_description' => 'Tuition aid, books, and uniforms to prevent school dropouts among poor girl students.',
-                'short_description_bn' => 'দরিদ্র পরিবারের মেধাবী কন্যাশিশুদের স্কুল ফি, বই-খাতা ও পোশাক সরবরাহের মাধ্যমে পড়াশোনা নিশ্চিতকরণ।',
-                'description' => 'Empowering underprivileged girls through primary school stipends, study kits, and mentoring programs.',
-                'description_bn' => 'ঝরে পড়া রোধে এবং নারী শিক্ষার প্রসারে সুবিধাবঞ্চিত কন্যাশিশুদের বার্ষিক শিক্ষাবৃত্তি ও শিক্ষা উপকরণ প্রদান।',
-                'estimated_cost' => 130000.00,
-                'total_expense' => 125000.00,
-                'start_date' => now()->subMonths(6),
-                'completion_date' => null,
-                'status' => 'in_progress',
-                'location' => 'Dhaka & Rural Primary Schools',
-                'location_bn' => 'ঢাকা ও জামালপুর জেলা',
-                'featured_image' => 'assets/images/events/events-4.jpg',
-                'is_published' => true,
-            ],
-            [
-                'name' => 'Medical Assistance & Surgery Fund for Poor Patients',
-                'name_bn' => 'দরিদ্র রোগীদের জরুরি চিকিৎসা ও অস্ত্রোপচার সহায়তা তহবিল',
-                'slug' => 'medical-assistance-surgery-fund',
-                'project_type_id' => $typeMap['signature-project'] ?? null,
-                'short_description' => 'Emergency cash assistance and hospital bill grants for life-saving surgeries.',
-                'short_description_bn' => 'জীবন রক্ষাকারী অস্ত্রোপচার ও জটিল রোগের ব্যয়বহুল চিকিৎসার জন্য অসহায় রোগীদের সরাসরি আর্থিক সহায়তা।',
-                'description' => 'Funding urgent surgeries, ICU care, and specialized diagnostics for patients who cannot afford treatment costs.',
-                'description_bn' => 'অর্থের অভাবে বন্ধ হয়ে যাওয়া চিকিৎসা পুনরায় সচল করতে সরকারি হাসপাতালের দরিদ্র রোগীদের অস্ত্রোপচার ফি, রক্ত ও ওষুধের সম্পূর্ণ খরচ বহন।',
-                'estimated_cost' => 220000.00,
-                'total_expense' => 210000.00,
-                'start_date' => now()->subMonths(2),
-                'completion_date' => null,
-                'status' => 'in_progress',
-                'location' => 'National Institute of Diseases, Dhaka',
-                'location_bn' => 'জাতীয় বক্ষব্যাধি ইনস্টিটিউট ও হাসপাতাল, ঢাকা',
-                'featured_image' => 'assets/images/events/events-5.jpg',
-                'is_published' => true,
-            ],
-            [
-                'name' => 'Tree Plantation & Environmental Green Campaign',
-                'name_bn' => 'বৃক্ষরোপণ কর্মসূচি ও পরিবেশ সুরক্ষা ক্যাম্পেইন',
-                'slug' => 'tree-plantation-environmental-campaign',
-                'project_type_id' => $typeMap['general-campaign'] ?? null,
-                'short_description' => 'Planting fruit, timber, and medicinal saplings across public school grounds and roadsides.',
-                'short_description_bn' => 'পরিবেশের ভারসাম্য রক্ষা ও জলবায়ু পরিবর্তন মোকাবিলায় ফলজ, বনজ ও ঔষধি গাছের চারা রোপণ।',
-                'description' => 'Promoting ecological resilience and air quality through mass tree plantation campaigns led by youth volunteers.',
-                'description_bn' => 'সবুজ বাংলাদেশ গড়ার প্রত্যয়ে শিক্ষা প্রতিষ্ঠান, সড়ক ও নদীর তীরে ফলজ ও ঔষধি গাছের চারা রোপণ ও পরিচর্যা।',
-                'estimated_cost' => 60000.00,
-                'total_expense' => 58000.00,
-                'start_date' => now()->subMonths(4),
-                'completion_date' => now()->subMonths(3),
-                'status' => 'completed',
-                'location' => 'Dhaka & Gazipur Green Zones',
-                'location_bn' => 'ঢাকা ও গাজীপুর অঞ্চল',
-                'featured_image' => 'assets/images/events/events-6.jpg',
-                'is_published' => true,
-            ],
-            [
-                'name' => 'Daily Iftar & Ramadan Food Rations for Destitute Families',
-                'name_bn' => 'অসহায় পরিবারের জন্য দৈনিক ইফতার ও রমজান খাদ্য সামগ্রী',
-                'slug' => 'ramadan-iftar-food-rations',
-                'project_type_id' => $typeMap['monthly-project'] ?? null,
-                'short_description' => 'Daily nutritious hot iftar distribution for day laborers and destitute families.',
-                'short_description_bn' => 'পবিত্র মাহে রমজানে দরিদ্র শ্রমজীবী ও ছিন্নমূল মানুষের জন্য পুষ্টিকর ইফতার ও সাহরির খাদ্য উপহার।',
-                'description' => 'Distributing warm wholesome iftar boxes and food packs to hardworking daily wage earners during Ramadan.',
-                'description_bn' => 'রমজানের পবিত্রতা ও ভ্রাতৃত্ববোধ ছড়িয়ে দিতে প্রতিদিন শত শত ছিন্নমূল মানুষের মাঝে স্বাস্থ্যসম্মত ইফতার বিতরণ কর্মসূচি।',
-                'estimated_cost' => 160000.00,
-                'total_expense' => 155000.00,
-                'start_date' => now()->subMonths(7),
-                'completion_date' => now()->subMonths(6),
-                'status' => 'completed',
-                'location' => 'Shanti Nagar Intersection, Dhaka',
-                'location_bn' => 'শান্তিনগর মোড় ও বায়তুল মোকাররম এলাকা, ঢাকা',
-                'featured_image' => 'assets/images/events/events-7.jpg',
-                'is_published' => true,
-            ],
         ];
 
         foreach ($projects as $pData) {
@@ -299,14 +169,14 @@ class ProjectSeeder extends Seeder
                 $pData
             );
 
-            if (! empty($images)) {
+            if (!empty($images)) {
                 foreach ($images as $idx => $imgPath) {
                     ProjectImage::updateOrCreate(
                         ['project_id' => $project->id, 'image_path' => $imgPath],
                         [
-                            'caption' => $project->name.' - Field Documentation',
-                            'caption_bn' => $project->name_bn.' - মাঠপর্যায়ের কার্যক্রম',
-                            'sort_order' => $idx + 1,
+                            'caption' => $project->name . ' - Field Documentation',
+                            'caption_bn' => $project->name_bn . ' - মাঠপর্যায়ের কার্যক্রম',
+                            'order_index' => $idx + 1,
                         ]
                     );
                 }
@@ -314,3 +184,160 @@ class ProjectSeeder extends Seeder
         }
     }
 }
+'''
+
+# Update EmployeeSeeder
+employee_seeder_content = r'''<?php
+
+namespace Database\Seeders;
+
+use App\Models\Designation;
+use App\Models\Employee;
+use Illuminate\Database\Seeder;
+
+class EmployeeSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $this->call(DesignationSeeder::class);
+        $employees = [
+            // 0) Highlight for Best President Ever
+            [
+                'employee_id' => 'EMP-001',
+                'name' => 'Alhaj Mohammad Nurul Islam',
+                'name_bn' => 'আলহাজ্ব মোহাম্মদ নুরুল ইসলাম',
+                'designation' => 'President',
+                'phone' => '+8801711001122',
+                'email' => 'patron@shantinagarfoundation.org',
+                'nid_number' => '19602692550000001',
+                'present_address' => 'House 14, Road 3, Shanti Nagar, Dhaka',
+                'permanent_address' => 'Shanti Nagar, Dhaka-1217',
+                'joining_date' => '2015-01-01',
+                'base_salary' => 0.00,
+                'is_active' => true,
+                'photo' => 'assets/images/team/team-9.jpg',
+                'speech' => '“A true humanitarian mission is not measured by the size of donations, but by the purity of transparency and the dignity restored to every vulnerable life we touch.”',
+                'speech_tag' => 'Lifetime Humanitarian Philosophy',
+                'bio' => 'Recognized as the foundational cornerstone and most beloved leader of Rotary Club of Shantinagar Dhaka. Under his visionary stewardship, our grassroots relief initiatives reached over 50,000 underprivileged families with 100% itemized audit transparency and direct field procurement.',
+                'bio_bn' => 'রোটারি ক্লাব অব শান্তিনগর ঢাকার স্বপ্নদ্রষ্টা ও আজীবন পৃষ্ঠপোষক। তাঁর দূরদর্শী নেতৃত্বে আমাদের মানবিক সেবামূলক কাজ ৫০,০০০-এরও বেশি পরিবারের কাছে সরাসরি পৌঁছেছে।',
+                'signature_text' => 'Alhaj Mohammad Nurul Islam',
+                'signature_title' => 'Founding Pillar • Lifetime Patron',
+                'badge_title' => 'Honorary Tribute • Lifetime Patron',
+                'facebook_url' => 'https://facebook.com',
+                'twitter_url' => 'https://twitter.com',
+                'linkedin_url' => 'https://linkedin.com',
+                'order_index' => 1,
+                'is_highlight' => true,
+            ],
+
+            // 1) President
+            [
+                'employee_id' => 'EMP-002',
+                'name' => 'Advocate Mahfuzur Rahman',
+                'name_bn' => 'এডভোকেট মাহফুজুর রহমান',
+                'designation' => 'President',
+                'phone' => '+8801711223344',
+                'email' => 'president@shantinagarfoundation.org',
+                'nid_number' => '19722692550000002',
+                'present_address' => 'Kakrail, Dhaka-1000',
+                'permanent_address' => 'Kakrail, Dhaka',
+                'joining_date' => '2018-03-01',
+                'base_salary' => 0.00,
+                'is_active' => true,
+                'photo' => 'assets/images/team/team-5.jpg',
+                'speech' => 'Our sacred mission is ensuring no underprivileged family in our community is left without healthcare, clean water, or emergency shelter. At Rotary Club of Shantinagar Dhaka, we believe true leadership is rooted in selfless service. By uniting generous benefactors with verified grassroots programs, we turn empathy into permanent, dignity-restoring action across Bangladesh.',
+                'speech_tag' => "President's Address & Vision",
+                'bio' => 'Serving as President with a focus on institutional governance, legal compliance, and strategic grassroots outreach across Bangladesh.',
+                'bio_bn' => 'সভাপতি হিসেবে তিনি প্রশাসনিক স্বচ্ছতা, প্রাতিষ্ঠানিক সুশাসন ও তৃণমূল সেবামূলক কার্যক্রমে নেতৃত্ব দিয়ে আসছেন।',
+                'signature_text' => 'Advocate Mahfuzur Rahman',
+                'signature_title' => 'President • Rotary Club of Shantinagar Dhaka',
+                'badge_title' => 'President',
+                'facebook_url' => 'https://facebook.com',
+                'twitter_url' => 'https://twitter.com',
+                'linkedin_url' => 'https://linkedin.com',
+                'order_index' => 2,
+                'is_highlight' => false,
+            ],
+
+            // 2) General Secretary
+            [
+                'employee_id' => 'EMP-003',
+                'name' => 'Dr. Tariqul Islam',
+                'name_bn' => 'ডা: তরিকুল ইসলাম',
+                'designation' => 'General Secretary',
+                'phone' => '+8801811334455',
+                'email' => 'secretary@shantinagarfoundation.org',
+                'nid_number' => '19782692550000003',
+                'present_address' => 'Shanti Nagar, Dhaka-1217',
+                'permanent_address' => 'Shanti Nagar, Dhaka',
+                'joining_date' => '2019-01-15',
+                'base_salary' => 0.00,
+                'is_active' => true,
+                'photo' => 'assets/images/team/team-6.jpg',
+                'speech' => 'Every single project is managed with 100% internal audit transparency and direct field verification. We leave zero room for intermediaries.',
+                'speech_tag' => "General Secretary's Report",
+                'bio' => 'Coordinating day-to-day relief administration, volunteer brigades, medical drives, and transparent field operations.',
+                'bio_bn' => 'প্রতিদিনের ত্রাণ বিতরণ, স্বেচ্ছাসেবী টিম ও স্বাস্থ্য ক্যাম্পের সফল সমন্বয় সাধন করেন।',
+                'signature_text' => 'Dr. Tariqul Islam',
+                'signature_title' => 'General Secretary • Rotary Club of Shantinagar Dhaka',
+                'badge_title' => 'General Secretary',
+                'facebook_url' => 'https://facebook.com',
+                'twitter_url' => 'https://twitter.com',
+                'linkedin_url' => 'https://linkedin.com',
+                'order_index' => 3,
+                'is_highlight' => false,
+            ],
+
+            // 3) Treasurer & Finance Secretary
+            [
+                'employee_id' => 'EMP-004',
+                'name' => 'Engr. Shahabuddin Ahmed',
+                'name_bn' => 'প্রকৌশলী শাহাবুদ্দিন আহমেদ',
+                'designation' => 'Treasurer & Finance Secretary',
+                'phone' => '+8801911445566',
+                'email' => 'treasurer@shantinagarfoundation.org',
+                'nid_number' => '19752692550000004',
+                'present_address' => 'Bijoy Nagar, Dhaka-1000',
+                'permanent_address' => 'Bijoy Nagar, Dhaka',
+                'joining_date' => '2019-06-01',
+                'base_salary' => 0.00,
+                'is_active' => true,
+                'photo' => 'assets/images/team/team-7.jpg',
+                'speech' => 'Every Taka donated to Rotary Club of Shantinagar Dhaka is fully audited and mapped directly to concrete relief deliverables with itemized vouchers.',
+                'speech_tag' => 'Financial Transparency Commitment',
+                'bio' => 'Managing accounting systems, financial integrity, donation voucher audits, and regulatory reporting.',
+                'bio_bn' => 'আর্থিক স্বচ্ছতা ও প্রতিটি ব্যয়ের পুঙ্খানুপুঙ্খ হিসাব সংরক্ষণের দায়িত্ব পালন করেন।',
+                'signature_text' => 'Engr. Shahabuddin Ahmed',
+                'signature_title' => 'Treasurer • Rotary Club of Shantinagar Dhaka',
+                'badge_title' => 'Treasurer & Finance Secretary',
+                'facebook_url' => 'https://facebook.com',
+                'twitter_url' => 'https://twitter.com',
+                'linkedin_url' => 'https://linkedin.com',
+                'order_index' => 4,
+                'is_highlight' => false,
+            ],
+        ];
+
+        foreach ($employees as $data) {
+            $designationName = $data['designation'];
+            unset($data['designation']);
+
+            $desig = Designation::where('name', $designationName)->first();
+            $data['designation_id'] = $desig?->id;
+
+            Employee::updateOrCreate(
+                ['employee_id' => $data['employee_id']],
+                $data
+            );
+        }
+    }
+}
+'''
+
+with open('/Users/zesan/Desktop/My-Work/shanti-nagar-foundation/database/seeders/ProjectSeeder.php', 'w', encoding='utf-8') as f:
+    f.write(project_seeder_content)
+
+with open('/Users/zesan/Desktop/My-Work/shanti-nagar-foundation/database/seeders/EmployeeSeeder.php', 'w', encoding='utf-8') as f:
+    f.write(employee_seeder_content)
+
+print("Updated ProjectSeeder and EmployeeSeeder successfully.")

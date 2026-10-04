@@ -14,8 +14,17 @@ class ProjectImage extends Model
         'project_id',
         'image_path',
         'caption',
+        'caption_bn',
         'sort_order',
     ];
+
+    /**
+     * Get localized image caption based on active locale.
+     */
+    public function getLocalizedCaptionAttribute(): ?string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->caption_bn)) ? $this->caption_bn : $this->caption;
+    }
 
     /**
      * Get the project that owns this image.

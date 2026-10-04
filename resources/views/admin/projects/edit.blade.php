@@ -34,13 +34,22 @@
                         </div>
                         <div class="card-body custom-form p-4">
                             <div class="row g-3">
-                                {{-- Project Name --}}
-                                <div class="col-md-8 col-12">
-                                    <label for="name" class="form-label custom-label">Project Title <span
+                                {{-- Project Name (EN & BN) --}}
+                                <div class="col-md-6 col-12">
+                                    <label for="name" class="form-label custom-label">Project Title (English) <span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control custom-input @error('name') is-invalid @enderror"
                                         name="name" id="name" value="{{ old('name', $project->name) }}" required>
                                     @error('name')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 col-12">
+                                    <label for="name_bn" class="form-label custom-label">Project Title (বাংলা / Bangla)</label>
+                                    <input type="text" class="form-control custom-input @error('name_bn') is-invalid @enderror"
+                                        name="name_bn" id="name_bn" value="{{ old('name_bn', $project->name_bn) }}" placeholder="যেমন: নিরাপদ খাবার পানির টিউবওয়েল স্থাপন">
+                                    @error('name_bn')
                                         <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -56,14 +65,14 @@
                                 </div>
 
                                 {{-- Project Type & Status --}}
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-4 col-12">
                                     <label for="project_type_id" class="form-label custom-label">Project Type</label>
                                     <select class="form-select custom-input @error('project_type_id') is-invalid @enderror"
                                         name="project_type_id" id="project_type_id">
                                         <option value="">Select Project Type...</option>
                                         @foreach($projectTypes as $type)
                                             <option value="{{ $type->id }}" {{ old('project_type_id', $project->project_type_id) == $type->id ? 'selected' : '' }}>
-                                                {{ $type->name }}
+                                                {{ $type->name }} {{ $type->name_bn ? '('.$type->name_bn.')' : '' }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -72,7 +81,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6 col-12">
+                                <div class="col-md-4 col-12">
                                     <label for="status" class="form-label custom-label">Campaign Status <span
                                             class="text-danger">*</span></label>
                                     <select class="form-select custom-input @error('status') is-invalid @enderror"
@@ -87,8 +96,8 @@
                                     @enderror
                                 </div>
 
-                                {{-- Target Budget & Site Location --}}
-                                <div class="col-md-6 col-12">
+                                {{-- Target Budget & Site Location (EN & BN) --}}
+                                <div class="col-md-4 col-12">
                                     <label for="estimated_cost" class="form-label custom-label">Target Budget (৳ BDT) <span
                                             class="text-danger">*</span></label>
                                     <div class="input-group">
@@ -103,13 +112,24 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6 col-12">
-                                    <label for="location" class="form-label custom-label">Beneficiary Location</label>
+                                <div class="col-md-4 col-12">
+                                    <label for="location" class="form-label custom-label">Location (English)</label>
                                     <input type="text"
                                         class="form-control custom-input @error('location') is-invalid @enderror"
                                         name="location" id="location" value="{{ old('location', $project->location) }}"
                                         placeholder="e.g. Shanti Nagar, Dhaka">
                                     @error('location')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <label for="location_bn" class="form-label custom-label">Location (বাংলা / Bangla)</label>
+                                    <input type="text"
+                                        class="form-control custom-input @error('location_bn') is-invalid @enderror"
+                                        name="location_bn" id="location_bn" value="{{ old('location_bn', $project->location_bn) }}"
+                                        placeholder="যেমন: শান্তিনগর, ঢাকা">
+                                    @error('location_bn')
                                         <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -140,29 +160,51 @@
                                     @enderror
                                 </div>
 
-                                {{-- Short Description --}}
-                                <div class="col-12">
-                                    <label for="short_description" class="form-label custom-label">Short Summary (Featured
-                                        Snippet)</label>
+                                {{-- Short Description (EN & BN) --}}
+                                <div class="col-md-6 col-12">
+                                    <label for="short_description" class="form-label custom-label">Short Summary (English)</label>
                                     <textarea
                                         class="form-control custom-input @error('short_description') is-invalid @enderror"
                                         name="short_description" id="short_description" rows="3"
+                                        placeholder="Concise overview in English..."
                                         style="resize: none;">{{ old('short_description', $project->short_description) }}</textarea>
                                     @error('short_description')
                                         <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
                                     @enderror
                                 </div>
 
-                                {{-- Full Description --}}
+                                <div class="col-md-6 col-12">
+                                    <label for="short_description_bn" class="form-label custom-label">Short Summary (বাংলা / Bangla)</label>
+                                    <textarea
+                                        class="form-control custom-input @error('short_description_bn') is-invalid @enderror"
+                                        name="short_description_bn" id="short_description_bn" rows="3"
+                                        placeholder="সংক্ষিপ্ত বিবরণ বাংলায় লিখুন..."
+                                        style="resize: none;">{{ old('short_description_bn', $project->short_description_bn) }}</textarea>
+                                    @error('short_description_bn')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                {{-- Full Description (EN & BN) --}}
                                 <div class="col-12">
-                                    <label for="description" class="form-label custom-label">Full Project Overview &amp;
-                                        Humanitarian Impact</label>
+                                    <label for="description" class="form-label custom-label">Full Project Overview (English)</label>
                                     <textarea class="form-control custom-input @error('description') is-invalid @enderror"
                                         name="description" id="description"
-                                        rows="8">{{ old('description', $project->description) }}</textarea>
+                                        rows="6" placeholder="Detailed story, beneficiary criteria, and fund execution plan in English...">{{ old('description', $project->description) }}</textarea>
                                     @error('description')
                                         <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
                                     @enderror
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="description_bn" class="form-label custom-label">Full Project Overview (বাংলা / Bangla)</label>
+                                    <textarea class="form-control custom-input @error('description_bn') is-invalid @enderror"
+                                        name="description_bn" id="description_bn"
+                                        rows="6" placeholder="প্রকল্পের বিস্তারিত বিবরণ ও সার্বিক মানবকল্যাণমূলক তথ্য বাংলায় লিখুন...">{{ old('description_bn', $project->description_bn) }}</textarea>
+                                    @error('description_bn')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
                                 </div>
                             </div>
                         </div>

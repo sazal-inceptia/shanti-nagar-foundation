@@ -7,11 +7,11 @@
             <div class="auto-container">
                 <div class="content-box">
                     <div class="title">
-                        <h1>Get In Touch</h1>
+                        <h1>{{ __('Contact Us') }}</h1>
                     </div>
                     <ul class="bread-crumb clearfix">
-                        <li><a href="/">Home</a></li>
-                        <li>Contact</li>
+                        <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
+                        <li>{{ __('Contact') }}</li>
                     </ul>
                 </div>
             </div>
@@ -26,30 +26,30 @@
                     <div class="col-lg-5 col-md-12 col-sm-12 inner-column">
                         <div class="contact-info-inner">
                             <div class="sec-title">
-                                <span class="top-text">Connecting Always</span>
-                                <h2>Hear by our Heart</h2>
-                                <p>Our team is available to help with your enquiries on email & phone, or visit our central office.</p>
+                                <span class="top-text">{{ __('Contact Us') }}</span>
+                                <h2>{{ __('Get In Touch') }}</h2>
+                                <p>{{ __('Our team is available to help with your enquiries on email & phone, or visit our central office.') }}</p>
                             </div>
                             <div class="info-box">
                                 <div class="single-item">
-                                    <h4>Quick Contact</h4>
+                                    <h4>{{ __('Call Hotline') }}</h4>
                                     <div class="text">
                                         <div class="icon-box"><i class="icon-phone-call"></i></div>
-                                        <p>Main Office<br /><a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings['hotline'] ?? '+8801711000000') }}">{{ $siteSettings['hotline'] ?? '+880 1711-000000' }}</a></p>
+                                        <p>{{ __('Head Office') }}<br /><a href="tel:{{ preg_replace('/[^0-9+]/', '', site_setting('hotline', '+8801711000000')) }}">{{ site_setting('hotline', '+880 1711-000000') }}</a></p>
                                     </div>
                                 </div>
                                 <div class="single-item">
-                                    <h4>Email Address</h4>
+                                    <h4>{{ __('Email Us') }}</h4>
                                     <div class="text">
                                         <div class="icon-box"><i class="icon-letter"></i></div>
-                                        <p>Mail to<br /><a href="mailto:{{ $siteSettings['email'] ?? 'contact@rotaryshantinagardhaka.org' }}">{{ $siteSettings['email'] ?? 'contact@rotaryshantinagardhaka.org' }}</a></p>
+                                        <p>{{ __('Email Address') }}<br /><a href="mailto:{{ site_setting('email', 'contact@rotaryshantinagardhaka.org') }}">{{ site_setting('email', 'contact@rotaryshantinagardhaka.org') }}</a></p>
                                     </div>
                                 </div>
                                 <div class="single-item">
-                                    <h4>Mailing Address</h4>
+                                    <h4>{{ __('Head Office') }}</h4>
                                     <div class="text">
                                         <div class="icon-box"><i class="icon-location"></i></div>
-                                        <p>{{ $siteSettings['address'] ?? 'House 12, Road 5, Shanti Nagar, Dhaka-1217, Bangladesh.' }}</p>
+                                        <p>{{ site_setting('address', 'House 12, Road 5, Shanti Nagar, Dhaka-1217, Bangladesh.') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -58,9 +58,9 @@
                     <div class="col-lg-7 col-md-12 col-sm-12 inner-column">
                         <div class="contact-form-inner">
                             <div class="sec-title">
-                                <span class="top-text">Drop a Line</span>
-                                <h2>Leave us a Message</h2>
-                                <p>Please feel free to get in touch using the form below. We'd love to hear from you.</p>
+                                <span class="top-text">{{ __('Send Us A Message') }}</span>
+                                <h2>{{ __('Get In Touch') }}</h2>
+                                <p>{{ __('Have questions about donations, relief projects, or volunteering? Leave your details below and our team will contact you.') }}</p>
                             </div>
                             <div class="form-inner">
                                 <form method="post" action="{{ route('contact.submit') }}" id="contact-form" class="default-form"> 
@@ -68,26 +68,26 @@
                                     <div class="row clearfix">
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <i class="far fa-user"></i>
-                                            <input type="text" name="name" placeholder="Your Name *" value="{{ old('name') }}" required>
+                                            <input type="text" name="name" placeholder="{{ __('Your Name') }} *" value="{{ old('name') }}" required>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <i class="far fa-envelope"></i>
-                                            <input type="email" name="email" placeholder="Email Address *" value="{{ old('email') }}" required>
+                                            <input type="email" name="email" placeholder="{{ __('Email Address') }} *" value="{{ old('email') }}" required>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <i class="far fa-phone"></i>
-                                            <input type="text" name="phone" placeholder="Phone Number" value="{{ old('phone') }}">
+                                            <input type="text" name="phone" placeholder="{{ __('Phone Number') }}" value="{{ old('phone') }}">
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 form-group">
                                             <i class="far fa-sticky-note"></i>
-                                            <input type="text" name="subject" placeholder="Subject" value="{{ old('subject') }}">
+                                            <input type="text" name="subject" placeholder="{{ __('Subject') }}" value="{{ old('subject') }}">
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
                                             <i class="far fa-text-height"></i>
-                                            <textarea name="message" placeholder="Write your message here..." required>{{ old('message') }}</textarea>
+                                            <textarea name="message" placeholder="{{ __('Write Your Message') }}..." required>{{ old('message') }}</textarea>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 form-group message-btn">
-                                            <button class="theme-btn btn-one" type="submit">Send Message</button>
+                                            <button class="theme-btn btn-one" type="submit">{{ __('Send Message') }}</button>
                                         </div>
                                     </div>
                                 </form>
@@ -113,9 +113,9 @@
                                     <div class="shape-2" style="background-image: url({{ asset('assets/images/shape/shape-14.png') }});"></div>
                                     <i class="icon-chatting"></i>
                                 </div>
-                                <h3>Direct Support</h3>
-                                <p>Get in touch with our team for quick help and information.</p>
-                                <a href="tel:+8801700000000" class="theme-btn btn-one">Call Helpline</a>
+                                <h3>{{ __('Direct Support') }}</h3>
+                                <p>{{ __('Get in touch with our team for quick help and information.') }}</p>
+                                <a href="tel:{{ preg_replace('/[^0-9+]/', '', site_setting('hotline', '+8801711000000')) }}" class="theme-btn btn-one">{{ __('Call Helpline') }}</a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 single-column">
@@ -126,9 +126,9 @@
                                     <div class="shape-2" style="background-image: url({{ asset('assets/images/shape/shape-14.png') }});"></div>
                                     <i class="icon-loyalty"></i>
                                 </div>
-                                <h3>Become a Volunteer</h3>
-                                <p>Join our volunteer network and create a lasting impact in society.</p>
-                                <a href="{{ route('volunteer') }}" class="theme-btn btn-one">Join With Us</a>
+                                <h3>{{ __('Become a Volunteer') }}</h3>
+                                <p>{{ __('Join our volunteer network and create a lasting impact in society.') }}</p>
+                                <a href="{{ route('volunteer') }}" class="theme-btn btn-one">{{ __('Join With Us') }}</a>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 single-column">
@@ -138,9 +138,9 @@
                                     <div class="shape-2" style="background-image: url({{ asset('assets/images/shape/shape-14.png') }});"></div>
                                     <i class="icon-search-1"></i>
                                 </div>
-                                <h3>Charity FAQ’s</h3>
-                                <p>Find clear answers to commonly asked questions about our causes.</p>
-                                <a href="{{ route('faq') }}" class="theme-btn btn-one">View FAQs</a>
+                                <h3>{{ __('Charity FAQs') }}</h3>
+                                <p>{{ __('Find clear answers to commonly asked questions about our causes.') }}</p>
+                                <a href="{{ route('faq') }}" class="theme-btn btn-one">{{ __('View FAQs') }}</a>
                             </div>
                         </div>
                     </div>

@@ -7,12 +7,12 @@
             <div class="auto-container">
                 <div class="content-box">
                     <div class="title">
-                        <h1>Project Documentation & Gallery</h1>
+                        <h1>{{ __('Project Documentation & Gallery') }}</h1>
                     </div>
                     <ul class="bread-crumb clearfix">
-                        <li><a href="{{ route('home') }}">Home</a></li>
-                        <li>Gallery</li>
-                        <li>Completed Social Welfare Projects & Field Photos</li>
+                        <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
+                        <li>{{ __('Gallery') }}</li>
+                        <li>{{ __('Completed Social Welfare Projects & Field Photos') }}</li>
                     </ul>
                 </div>
             </div>
@@ -30,15 +30,15 @@
                         @endphp
                         <ul class="filter-tabs filter-btns clearfix">
                             <li class="{{ empty($currentType) || $currentType === 'all' ? 'active ' : '' }}filter">
-                                <a href="{{ route('gallery') }}">All Causes ({{ \App\Models\ProjectImage::whereHas('project', fn($q) => $q->where('is_published', true))->count() }})</a>
+                                <a href="{{ route('gallery') }}">{{ __('All Causes') }} ({{ localized_number($totalImagesCount ?? 0) }})</a>
                             </li>
                             @foreach($projectTypes as $pType)
                                 @php
-                                    $typeCount = \App\Models\ProjectImage::whereHas('project', fn($q) => $q->where('is_published', true)->where('project_type_id', $pType->id))->count();
+                                    $typeCount = $pType->gallery_images_count ?? 0;
                                     $isActive = ($currentType === $pType->slug);
                                 @endphp
                                 <li class="{{ $isActive ? 'active ' : '' }}filter">
-                                    <a href="{{ route('gallery', ['type' => $pType->slug]) }}">{{ $pType->name }} ({{ $typeCount }})</a>
+                                    <a href="{{ route('gallery', ['type' => $pType->slug]) }}">{{ $pType->localized_name }} ({{ localized_number($typeCount) }})</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -47,21 +47,30 @@
                         @forelse($galleryImages as $item)
                         @php
                             $typeSlug = 'type-' . ($item->project?->projectType?->slug ?? 'general');
+                            $itemCaption = $item->localized_caption ?: ($item->project?->localized_name ?? '');
                         @endphp
                         <div class="col-lg-4 col-md-6 col-sm-12 masonry-item small-column all {{ $typeSlug }}">
                             <div class="portfolio-block-one">
                                 <div class="inner-box">
-                                    <figure class="image"><img src="{{ asset($item->image_path) }}" alt="{{ $item->caption ?: $item->project?->name }}"></figure>
+                                    <figure class="image"><img src="{{ asset($item->image_path) }}" alt="{{ $itemCaption }}"></figure>
                                     <div class="content-box">
                                         <ul class="links-list clearfix">
-                                            <li><a href="{{ asset($item->image_path) }}" class="lightbox-image" data-fancybox="gallery" data-caption="{{ $item->caption ?: $item->project?->name }}"><i class="fas fa-expand-alt"></i></a></li>
-                                            <li><a href="{{ $item->project ? route('donation.details', $item->project->slug) : 'javascript:void(0);' }}" title="View Project Details"><i class="far fa-file-alt"></i></a></li>
+                                            <li><a href="{{ asset($item->image_path) }}" class="lightbox-image" data-fancybox="gallery" data-caption="{{ $itemCaption }}"><i class="fas fa-expand-alt"></i></a></li>
+                                            @if($item->project)
+                                            <li><a href="{{ route('donation.details', $item->project->slug) }}" title="{{ __('View Project Details') }}"><i class="far fa-file-alt"></i></a></li>
+                                            @endif
                                         </ul>
                                         <div class="text">
                                             @if($item->project?->projectType)
-                                                <span>{{ $item->project->projectType->name }}</span>
+                                                <span>{{ $item->project->projectType->localized_name }}</span>
                                             @endif
-                                            <h3><a href="{{ $item->project ? route('donation.details', $item->project->slug) : 'javascript:void(0);' }}">{{ $item->project?->name ?: $item->caption }}</a></h3>
+                                            <h3>
+                                                @if($item->project)
+                                                    <a href="{{ route('donation.details', $item->project->slug) }}">{{ $itemCaption }}</a>
+                                                @else
+                                                    <span>{{ $itemCaption }}</span>
+                                                @endif
+                                            </h3>
                                         </div>
                                     </div>
                                 </div>
@@ -69,7 +78,7 @@
                         </div>
                         @empty
                         <div class="col-12 text-center py-5">
-                            <p class="text-muted">No project documentation photos available in this type.</p>
+                            <p class="text-muted">{{ __('No project documentation photos available in this type.') }}</p>
                         </div>
                         @endforelse
                     </div>

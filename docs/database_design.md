@@ -21,8 +21,10 @@ erDiagram
     PROJECT_TYPES {
         bigint id PK
         string name
+        string name_bn
         string slug UK
         string description
+        string description_bn
         string badge_color
         int order_index
         boolean is_active
@@ -32,6 +34,7 @@ erDiagram
     DESIGNATIONS {
         bigint id PK
         string name
+        string name_bn
         string slug UK
         string category
         int order_index
@@ -67,16 +70,20 @@ erDiagram
     PROJECTS {
         bigint id PK
         string name
+        string name_bn
         string slug UK
         bigint project_type_id FK
         text short_description
+        text short_description_bn
         longText description
+        longText description_bn
         decimal estimated_cost
         decimal total_expense
         date start_date
         date completion_date
         enum status "planned, in_progress, completed, cancelled"
         string location
+        string location_bn
         string featured_image
         boolean is_published
         timestamps created_at_updated_at
@@ -88,6 +95,7 @@ erDiagram
         bigint project_id FK
         string image_path
         string caption
+        string caption_bn
         integer sort_order
         timestamps created_at_updated_at
     }
@@ -130,8 +138,10 @@ erDiagram
         bigint id PK
         string employee_id UK
         string name
+        string name_bn
         bigint designation_id FK
         string designation
+        string designation_bn
         string phone
         string email
         string nid_number
@@ -143,11 +153,17 @@ erDiagram
         boolean is_highlight
         string photo
         text speech
+        text speech_bn
         string speech_tag
+        string speech_tag_bn
         text bio
+        text bio_bn
         string signature_text
+        string signature_text_bn
         string signature_title
+        string signature_title_bn
         string badge_title
+        string badge_title_bn
         string facebook_url
         string twitter_url
         string linkedin_url
@@ -173,6 +189,15 @@ erDiagram
         text notes
         timestamps created_at_updated_at
     }
+
+    SETTINGS {
+        bigint id PK
+        string key UK
+        text value
+        text value_bn
+        string group
+        timestamps created_at_updated_at
+    }
 ```
 
 ---
@@ -181,7 +206,7 @@ erDiagram
 
 ### 1. `project_types`
 * Dynamic classification for projects (Continuous Project, Monthly Project, Signature Project, General Campaign).
-* **Fields:** `id`, `name`, `slug` (unique), `description`, `badge_color`, `order_index`, `is_active` (boolean), `created_at`, `updated_at`.
+* **Fields:** `id`, `name`, `name_bn`, `slug` (unique), `description`, `description_bn`, `badge_color`, `order_index`, `is_active` (boolean), `created_at`, `updated_at`.
 * **Relations:** `hasMany(Project::class)`.
 
 ### 2. `users`
@@ -195,12 +220,12 @@ erDiagram
 
 ### 4. `projects`
 * Manages social welfare campaigns, community initiatives, and emergency relief drives.
-* **Fields:** `id`, `name`, `slug` (unique), `project_type_id` (foreign key -> `project_types.id`, nullable), `short_description`, `description`, `estimated_cost`, `total_expense`, `start_date`, `completion_date`, `status` (`planned`, `in_progress`, `completed`, `cancelled`), `location`, `featured_image`, `is_published`, `created_at`, `updated_at`, `deleted_at`.
+* **Fields:** `id`, `name`, `name_bn`, `slug` (unique), `project_type_id` (foreign key -> `project_types.id`, nullable), `short_description`, `short_description_bn`, `description`, `description_bn`, `estimated_cost`, `total_expense`, `start_date`, `completion_date`, `status` (`planned`, `in_progress`, `completed`, `cancelled`), `location`, `location_bn`, `featured_image`, `is_published`, `created_at`, `updated_at`, `deleted_at`.
 * **Relations:** `belongsTo(ProjectType::class)`, `hasMany(Donation::class)`, `hasMany(Expense::class)`, `hasMany(ProjectImage::class)`.
 
 ### 5. `project_images`
 * High-resolution field photos and completion documentation linked to projects.
-* **Fields:** `id`, `project_id` (foreign key -> `projects.id`), `image_path`, `caption`, `sort_order`, `created_at`, `updated_at`.
+* **Fields:** `id`, `project_id` (foreign key -> `projects.id`), `image_path`, `caption`, `caption_bn`, `sort_order`, `created_at`, `updated_at`.
 * **Relations:** `belongsTo(Project::class)`.
 
 ### 6. `donations`
@@ -215,12 +240,12 @@ erDiagram
 
 ### 8. `designations`
 * Dynamic organizational leadership and staff designations.
-* **Fields:** `id`, `name`, `slug` (unique), `category` (nullable), `order_index` (integer), `is_active` (boolean), `created_at`, `updated_at`.
+* **Fields:** `id`, `name`, `name_bn`, `slug` (unique), `category` (nullable), `order_index` (integer), `is_active` (boolean), `created_at`, `updated_at`.
 * **Relations:** `hasMany(Employee::class)`.
 
 ### 9. `employees`
 * Foundation operational staff, executive leadership members, governing body directors, and coordinators.
-* **Fields:** `id`, `employee_id` (unique), `name`, `designation_id` (foreign key -> `designations.id`, nullable), `phone`, `email`, `nid_number`, `present_address`, `permanent_address`, `joining_date`, `base_salary`, `is_active` (boolean), `is_highlight` (boolean), `photo`, `speech`, `speech_tag`, `bio`, `signature_text`, `signature_title`, `badge_title`, `facebook_url`, `twitter_url`, `linkedin_url`, `order_index`, `created_at`, `updated_at`, `deleted_at`.
+* **Fields:** `id`, `employee_id` (unique), `name`, `name_bn`, `designation_id` (foreign key -> `designations.id`, nullable), `designation`, `designation_bn`, `phone`, `email`, `nid_number`, `present_address`, `permanent_address`, `joining_date`, `base_salary`, `is_active` (boolean), `is_highlight` (boolean), `photo`, `speech`, `speech_bn`, `speech_tag`, `speech_tag_bn`, `bio`, `bio_bn`, `signature_text`, `signature_text_bn`, `signature_title`, `signature_title_bn`, `badge_title`, `badge_title_bn`, `facebook_url`, `twitter_url`, `linkedin_url`, `order_index`, `created_at`, `updated_at`, `deleted_at`.
 * **Relations:** `belongsTo(Designation::class)`, `hasMany(Salary::class)`.
 
 ### 10. `salaries`
@@ -234,7 +259,11 @@ erDiagram
 
 ### 12. `volunteers`
 * Community volunteer registrations and field helper applications.
-* **Fields:** `id`, `name`, `email`, `phone`, `gender`, `age_group`, `address`, `status` (`pending`, `approved`, `rejected`), `notes`, `created_at`, `updated_at`, `deleted_at`.
+* **Fields:** `id`, `name`, `email`, `phone`, `gender`, `age_group`, `address`, `status` (`pending`, `approved`, `rejected`), `notes`, `notes_bn`, `created_at`, `updated_at`, `deleted_at`.
+
+### 13. `settings`
+* Dynamic key-value pairs for organization settings, phone, emails, emergency helplines, social URLs, and bank details.
+* **Fields:** `id`, `key` (unique), `value`, `value_bn`, `group`, `created_at`, `updated_at`.
 
 ---
 
@@ -263,5 +292,19 @@ erDiagram
 * `Project::getTotalDonationsRaisedAttribute()`: Returns total amount from completed donations.
 * `Project::getActualExpenseTotalAttribute()`: Returns total expenses spent on the project.
 * `Project::getRemainingBudgetAttribute()`: `estimated_cost - total_expense`.
+* `Project::getLocalizedNameAttribute()`: Returns `name_bn` if locale is Bengali, falls back to `name`.
+* `Project::getLocalizedShortDescriptionAttribute()`: Returns `short_description_bn` or falls back to English.
+* `Project::getLocalizedDescriptionAttribute()`: Returns `description_bn` or falls back to English.
+* `Project::getLocalizedLocationAttribute()`: Returns `location_bn` or falls back to English.
+* `ProjectType::getLocalizedNameAttribute()`: Returns `name_bn` or falls back to English.
+* `ProjectType::getLocalizedDescriptionAttribute()`: Returns `description_bn` or falls back to English.
+* `Employee::getLocalizedNameAttribute()`: Returns `name_bn` or falls back to English.
+* `Employee::getLocalizedBioAttribute()`: Returns `bio_bn` or falls back to English.
+* `Employee::getLocalizedSpeechAttribute()`: Returns `speech_bn` or falls back to English.
+* `Employee::getLocalizedSpeechTagAttribute()`: Returns `speech_tag_bn` or falls back to English.
+* `Employee::getLocalizedSignatureTextAttribute()`: Returns `signature_text_bn` or falls back to English.
+* `Employee::getLocalizedSignatureTitleAttribute()`: Returns `signature_title_bn` or falls back to English.
+* `Employee::getLocalizedBadgeTitleAttribute()`: Returns `badge_title_bn` or falls back to English.
 * `Employee::getCurrentMonthSalaryStatusAttribute()`: Check if current month salary is paid.
+* `ProjectImage::getLocalizedCaptionAttribute()`: Returns `caption_bn` or falls back to English.
 

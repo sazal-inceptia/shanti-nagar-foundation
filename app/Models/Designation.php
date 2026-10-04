@@ -13,6 +13,7 @@ class Designation extends Model
 
     protected $fillable = [
         'name',
+        'name_bn',
         'slug',
         'category',
         'order_index',
@@ -23,6 +24,14 @@ class Designation extends Model
         'order_index' => 'integer',
         'is_active' => 'boolean',
     ];
+
+    /**
+     * Get localized designation name based on active locale.
+     */
+    public function getLocalizedNameAttribute(): string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->name_bn)) ? $this->name_bn : (string) $this->name;
+    }
 
     /**
      * Boot model events to auto-generate slug if not provided.

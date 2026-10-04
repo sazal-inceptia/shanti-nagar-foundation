@@ -3172,7 +3172,7 @@
  }
 
  .urgent-case-section .outer-container .single-block:first-child {
-   padding: 212px 20px 51px 40px;
+   padding: 180px 20px 51px 40px;
  }
 
  .urgent-case-section .outer-container .single-block:last-child {
@@ -17442,4 +17442,114 @@
    border-color: var(--theme-primary, #005daa) !important;
    outline: none !important;
    box-shadow: 0 0 0 3px rgba(0, 93, 170, 0.15) !important;
+ }
+
+ /* Multilingual Language Switcher */
+ .snf-lang-toggle {
+   display: inline-flex;
+   align-items: center;
+   background: #f1f5f9;
+   border: 1px solid #e2e8f0;
+   border-radius: 20px;
+   padding: 3px 5px;
+   gap: 2px;
+   transition: all 0.25s ease;
+ }
+
+ .snf-lang-btn {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   padding: 4px 10px;
+   font-size: 13px;
+   font-weight: 700;
+   color: #64748b;
+   border-radius: 16px;
+   text-decoration: none !important;
+   transition: all 0.2s ease;
+   line-height: 1.2;
+ }
+
+ .snf-lang-btn:hover {
+   color: var(--theme-primary, #005daa);
+ }
+
+ .snf-lang-btn.active {
+   background: var(--theme-primary, #005daa);
+   color: #ffffff !important;
+   box-shadow: 0 2px 6px rgba(0, 93, 170, 0.25);
+ }
+
+ .snf-lang-divider {
+   width: 1px;
+   height: 12px;
+   background: #cbd5e1;
+ }
+
+ /* Footer Brand & Social Styles */
+ .footer-brand-wrap {
+   display: flex;
+   align-items: center;
+   margin-bottom: 20px;
+ }
+
+ .footer-main-logo {
+   max-height: 80px;
+   width: auto;
+   object-fit: contain;
+ }
+
+ .footer-brand-info {
+   margin-left: 14px;
+ }
+
+ .footer-brand-eyebrow {
+   display: block;
+   font-size: 11px;
+   text-transform: uppercase;
+   letter-spacing: 1.2px;
+   color: var(--theme-secondary, #e8a825);
+   font-weight: 700;
+   margin-bottom: 2px;
+ }
+
+ .footer-brand-title {
+   font-size: 17px;
+   font-weight: 700;
+   color: #ffffff !important;
+   line-height: 1.3;
+   margin: 0;
+ }
+
+ .footer-brand-subtitle {
+   font-size: 12px;
+   color: #949494;
+   margin-top: 2px;
+ }
+
+ .footer-social-links {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   margin-top: 18px;
+ }
+
+ .footer-social-btn {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 38px;
+   height: 38px;
+   border-radius: 50%;
+   background: rgba(255, 255, 255, 0.08);
+   color: #ffffff;
+   font-size: 14px;
+   transition: all 0.3s ease;
+   text-decoration: none !important;
+ }
+
+ .footer-social-btn:hover {
+   background: var(--theme-primary, #005daa);
+   color: #ffffff;
+   transform: translateY(-2px);
  }

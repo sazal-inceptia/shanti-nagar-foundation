@@ -31,6 +31,7 @@ class UpdateEmployeeRequest extends FormRequest
         return [
             'employee_id' => ['required', 'string', 'max:50', Rule::unique('employees', 'employee_id')->ignore($employeeId)],
             'name' => ['required', 'string', 'max:255'],
+            'name_bn' => ['nullable', 'string', 'max:255'],
             'designation_id' => ['nullable', 'integer', 'exists:designations,id'],
             'phone' => ['nullable', 'string', 'max:30'],
             'email' => ['nullable', 'email', 'max:255'],
@@ -46,6 +47,7 @@ class UpdateEmployeeRequest extends FormRequest
             'speech' => ['nullable', 'string'],
             'speech_tag' => ['nullable', 'string', 'max:150'],
             'bio' => ['nullable', 'string'],
+            'bio_bn' => ['nullable', 'string'],
             'signature_text' => ['nullable', 'string', 'max:150'],
             'signature_title' => ['nullable', 'string', 'max:150'],
             'badge_title' => ['nullable', 'string', 'max:100'],

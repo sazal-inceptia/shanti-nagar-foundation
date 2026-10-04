@@ -65,8 +65,8 @@
             <div class="popup-inner">
                 <div class="donate-content">
                     <div class="sec-title centred">
-                        <span class="top-text">Make Your Donation</span>
-                        <h2>Creating a Brighter Tomorrow</h2>
+                        <span class="top-text">{{ __('Make Your Donation') }}</span>
+                        <h2>{{ __('Creating a Brighter Tomorrow') }}</h2>
                     </div>
                     <form action="{{ route('donate.submit') }}" method="post" class="default-form">
                         @csrf
@@ -76,14 +76,14 @@
                                     {{-- Project Selector in Popup --}}
                                     <div class="form-group mb-4">
                                         <label class="project-select-label" for="popup-project-select">
-                                            <i class="fas fa-hand-holding-heart text-primary me-1"></i> Target Relief Project / Cause
+                                            <i class="fas fa-hand-holding-heart text-primary me-1"></i> {{ __('Target Relief Project / Cause') }}
                                         </label>
                                         <div class="select-box">
                                             <select class="ignore form-select project-select" name="project_id" id="popup-project-select">
-                                                <option value="">General Humanitarian Fund (Where Most Needed)</option>
+                                                <option value="">{{ __('General Humanitarian Fund (Where Most Needed)') }}</option>
                                                 @if(isset($siteProjects))
                                                     @foreach($siteProjects as $prj)
-                                                        <option value="{{ $prj->id }}">{{ $prj->name }}</option>
+                                                        <option value="{{ $prj->id }}">{{ $prj->localized_name }}</option>
                                                     @endforeach
                                                 @endif
                                             </select>
@@ -91,37 +91,37 @@
                                     </div>
 
                                     <div class="donate-option">
-                                        <h3>Choose Contribution (BDT)</h3>
+                                        <h3>{{ __('Choose Contribution (BDT)') }}</h3>
                                         <ul class="donate-list clearfix">
                                             <li>
                                                 <input type="radio" id="donate-popup-amount-1" name="amount_preset" value="500" />
-                                                <label for="donate-popup-amount-1" onclick="setPopupAmount(500);">৳ 500</label>
+                                                <label for="donate-popup-amount-1" onclick="setPopupAmount(500);">৳ {{ localized_number(500) }}</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="donate-popup-amount-2" name="amount_preset" value="1000" checked="checked" />
-                                                <label for="donate-popup-amount-2" onclick="setPopupAmount(1000);">৳ 1,000</label>
+                                                <label for="donate-popup-amount-2" onclick="setPopupAmount(1000);">৳ {{ localized_number(1000) }}</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="donate-popup-amount-3" name="amount_preset" value="2500" />
-                                                <label for="donate-popup-amount-3" onclick="setPopupAmount(2500);">৳ 2,500</label>
+                                                <label for="donate-popup-amount-3" onclick="setPopupAmount(2500);">৳ {{ localized_number(2500) }}</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="donate-popup-amount-4" name="amount_preset" value="5000" />
-                                                <label for="donate-popup-amount-4" onclick="setPopupAmount(5000);">৳ 5,000</label>
+                                                <label for="donate-popup-amount-4" onclick="setPopupAmount(5000);">৳ {{ localized_number(5000) }}</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="donate-popup-amount-5" name="amount_preset" value="10000" />
-                                                <label for="donate-popup-amount-5" onclick="setPopupAmount(10000);">৳ 10,000</label>
+                                                <label for="donate-popup-amount-5" onclick="setPopupAmount(10000);">৳ {{ localized_number(10000) }}</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="donate-popup-amount-6" name="amount_preset" value="25000" />
-                                                <label for="donate-popup-amount-6" onclick="setPopupAmount(25000);">৳ 25,000</label>
+                                                <label for="donate-popup-amount-6" onclick="setPopupAmount(25000);">৳ {{ localized_number(25000) }}</label>
                                             </li>
                                         </ul>
                                         <div class="other-amount">
                                             <div class="text">
-                                                <h4>Enter Custom Amount (৳)</h4>
-                                                <p>Enter any specific amount in BDT</p>
+                                                <h4>{{ __('Enter Custom Amount (৳)') }}</h4>
+                                                <p>{{ __('Enter any specific amount in BDT') }}</p>
                                             </div>
                                             <div class="amount-box">
                                                 <div class="form-group mb-0">
@@ -131,23 +131,23 @@
                                         </div>
                                     </div>
                                     <div class="payment-option mt-3">
-                                        <h3>Payment Method</h3>
+                                        <h3>{{ __('Choose Payment Channel') }}</h3>
                                         <ul class="payment-list clearfix">
                                             <li>
                                                 <input type="radio" id="popup-pm-1" name="payment_method" value="bkash" checked="checked" />
-                                                <label for="popup-pm-1">bKash</label>
+                                                <label for="popup-pm-1">{{ __('bKash') }}</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="popup-pm-2" name="payment_method" value="nagad" />
-                                                <label for="popup-pm-2">Nagad</label>
+                                                <label for="popup-pm-2">{{ __('Nagad') }}</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="popup-pm-3" name="payment_method" value="bank_transfer" />
-                                                <label for="popup-pm-3">Bank</label>
+                                                <label for="popup-pm-3">{{ __('Bank Transfer') }}</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="popup-pm-4" name="payment_method" value="cash" />
-                                                <label for="popup-pm-4">Cash</label>
+                                                <label for="popup-pm-4">{{ __('Cash / Direct') }}</label>
                                             </li>
                                         </ul>
                                     </div>
@@ -155,41 +155,41 @@
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 donate-form">
                                 <div class="form-inner">
-                                    <h3>Donor Information</h3>
+                                    <h3>{{ __('Donor Information') }}</h3>
                                     <div class="row clearfix">
                                         <div class="col-lg-12 col-md-12 col-sm-12 column">
                                             <div class="form-group">
-                                                <label>Your Name <span>*</span></label>
-                                                <input type="text" name="name" placeholder="Your full name" value="{{ old('name') }}" required>
+                                                <label>{{ __('Your Name') }} <span>*</span></label>
+                                                <input type="text" name="name" placeholder="{{ __('e.g. Tanvir Ahmed') }}" value="{{ old('name') }}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 column">
                                             <div class="form-group">
-                                                <label>Email Address <span>*</span></label>
-                                                <input type="email" name="email" placeholder="Email address" value="{{ old('email') }}" required>
+                                                <label>{{ __('Email Address') }} <span>*</span></label>
+                                                <input type="email" name="email" placeholder="{{ __('e.g. tanvir@gmail.com') }}" value="{{ old('email') }}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 column">
                                             <div class="form-group">
-                                                <label>Phone Number <span>*</span></label>
-                                                <input type="text" name="phone" placeholder="+880 1700-000000" value="{{ old('phone') }}" required>
+                                                <label>{{ __('Phone Number') }} <span>*</span></label>
+                                                <input type="text" name="phone" placeholder="{{ site_setting('hotline', '+880 1711-000000') }}" value="{{ old('phone') }}" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 column">
                                             <div class="form-group">
-                                                <label>TrxID / Reference (Optional)</label>
-                                                <input type="text" name="transaction_id" placeholder="e.g. bKash TrxID or Bank Ref">
+                                                <label>{{ __('Transaction ID / Reference') }}</label>
+                                                <input type="text" name="transaction_id" placeholder="{{ __('e.g. 9B8C7D6E or Bank Deposit Slip #') }}">
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 column">
                                             <div class="form-group">
-                                                <label>Address / District</label>
-                                                <input type="text" name="address" placeholder="e.g. Shanti Nagar, Dhaka">
+                                                <label>{{ __('Living Address / Location') }}</label>
+                                                <input type="text" name="address" placeholder="{{ __('e.g. Shanti Nagar, Dhaka') }}">
                                             </div>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 column">
                                             <div class="form-group message-btn">
-                                                <button type="submit" class="theme-btn btn-one w-100">Complete Donation</button>
+                                                <button type="submit" class="theme-btn btn-one w-100">{{ __('Complete Donation') }}</button>
                                             </div>
                                         </div>
                                     </div>

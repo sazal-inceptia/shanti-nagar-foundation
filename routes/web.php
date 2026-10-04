@@ -39,6 +39,7 @@ Route::get('/donate', [HomeController::class, 'donate'])->name('donate');
 Route::post('/donate', [HomeController::class, 'submitDonate'])->name('donate.submit');
 
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
+Route::get('/lang/{locale}', [HomeController::class, 'switchLang'])->name('switch.lang');
 
 /*
 |--------------------------------------------------------------------------

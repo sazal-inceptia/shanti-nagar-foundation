@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Donation Campaigns & Projects — Rotary Club of Shantinagar Dhaka')
+@section('title', __('Projects & Causes') . ' — ' . site_setting('org_name', 'Rotary Club of Shantinagar Dhaka'))
 
 @section('content')
 
@@ -9,12 +9,12 @@
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">
-                    <h1>Donation Campaigns &amp; Projects</h1>
+                    <h1>{{ __('Projects & Causes') }}</h1>
                 </div>
                 <ul class="bread-crumb clearfix">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li>Donations</li>
-                    <li>Active Relief &amp; Welfare Causes</li>
+                    <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
+                    <li>{{ __('Projects & Causes') }}</li>
+                    <li>{{ __('Active Relief Causes') }}</li>
                 </ul>
             </div>
         </div>
@@ -26,8 +26,8 @@
         <section class="case-section donations-sponsored-section">
             <div class="auto-container">
                 <div class="sec-title centred mb-50">
-                    <span class="top-text">Flagship Sponsorship</span>
-                    <h2>Sponsored &amp; Signature Initiatives</h2>
+                    <span class="top-text">{{ __('Flagship Sponsorship') }}</span>
+                    <h2>{{ __('Sponsored & Signature Initiatives') }}</h2>
                 </div>
                 <div class="single-item-carousel owl-carousel owl-theme owl-dots-none">
                     @foreach($sponsoredProjects as $sProject)
@@ -43,7 +43,7 @@
                                 <div class="image-box">
                                     <figure class="image">
                                         <a href="{{ route('donation.details', $sProject->slug) }}">
-                                            <img src="{{ asset($sProject->featured_image) }}" alt="{{ $sProject->name }}">
+                                            <img src="{{ asset($sProject->featured_image) }}" alt="{{ $sProject->localized_name }}">
                                         </a>
                                     </figure>
                                 </div>
@@ -51,47 +51,46 @@
                                     <div class="text">
                                         <div class="category">
                                             <a
-                                                href="{{ route('donations', ['type' => $sProject->projectType?->slug]) }}">{{ $sProject->projectType?->name ?? 'Signature Project' }}</a>
+                                                href="{{ route('donations', ['type' => $sProject->projectType?->slug]) }}">{{ $sProject->projectType?->localized_name ?? __('Signature Project') }}</a>
                                         </div>
-                                        <h3><a href="{{ route('donation.details', $sProject->slug) }}">{{ $sProject->name }}</a>
+                                        <h3><a href="{{ route('donation.details', $sProject->slug) }}">{{ $sProject->localized_name }}</a>
                                         </h3>
-                                        <p>{{ Str::limit($sProject->short_description ?: $sProject->description, 170) }}</p>
+                                        <p>{{ Str::limit($sProject->localized_short_description ?: $sProject->localized_description, 170) }}</p>
                                     </div>
                                     <div class="donate-inner clearfix">
                                         <div class="pattern-layer"></div>
                                         <div class="amount-box">
                                             <div class="icon-box"><i class="icon-donation-1"></i></div>
-                                            <h5>Fund Raised</h5>
-                                            <div class="price">৳{{ number_format($sRaised) }} <span>/
-                                                    ৳{{ number_format($sTarget) }}</span></div>
+                                            <h5>{{ __('Fund Raised') }}</h5>
+                                            <div class="price">৳{{ localized_number($sRaised) }} <span>/
+                                                    ৳{{ localized_number($sTarget) }}</span></div>
                                         </div>
                                         <div class="percentage-box">
                                             <div class="bar">
                                                 <div class="bar-inner count-bar" data-percent="{{ $sPercent }}%"></div>
                                             </div>
-                                            <div class="count-text">{{ $sPercent }}%</div>
+                                            <div class="count-text">{{ localized_number($sPercent) }}%</div>
                                         </div>
                                         <div class="btn-box">
                                             <button type="button" class="donate-box-btn"
-                                                onclick="if(document.querySelector('#donate-popup select[name=\'project_id\']')){ document.querySelector('#donate-popup select[name=\'project_id\']').value = '{{ $sProject->id }}'; if(window.jQuery && $.fn.niceSelect){ $('#donate-popup select[name=\'project_id\']').niceSelect('update'); } }">Donate
-                                                Now</button>
+                                                onclick="if(document.querySelector('#donate-popup select[name=\'project_id\']')){ document.querySelector('#donate-popup select[name=\'project_id\']').value = '{{ $sProject->id }}'; if(window.jQuery && $.fn.niceSelect){ $('#donate-popup select[name=\'project_id\']').niceSelect('update'); } }">{{ __('Donate Now') }}</button>
                                         </div>
                                     </div>
                                     <ul class="info-box clearfix">
                                         <li>
                                             <i class="far fa-map-marker-alt"></i>
-                                            <h5>Location</h5>
-                                            <p>{{ Str::limit($sProject->location ?: 'Dhaka, Bangladesh', 14) }}</p>
+                                            <h5>{{ __('Location') }}</h5>
+                                            <p>{{ Str::limit($sProject->localized_location ?: __('Dhaka, Bangladesh'), 14) }}</p>
                                         </li>
                                         <li>
                                             <i class="fas fa-users"></i>
-                                            <h5>Supporters</h5>
-                                            <p>{{ $sSupporters }}+ Donors</p>
+                                            <h5>{{ __('Supporters') }}</h5>
+                                            <p>{{ localized_number($sSupporters) }}+ {{ __('Donors') }}</p>
                                         </li>
                                         <li>
                                             <i class="fas fa-calendar-alt"></i>
-                                            <h5>Timeline</h5>
-                                            <p>{{ $sDaysLeft !== null ? $sDaysLeft . ' Days Left' : 'Ongoing' }}</p>
+                                            <h5>{{ __('Timeline') }}</h5>
+                                            <p>{{ $sDaysLeft !== null ? localized_number($sDaysLeft) . ' ' . __('Days Left') : __('Ongoing') }}</p>
                                         </li>
                                     </ul>
                                 </div>
@@ -109,8 +108,8 @@
         class="case-page-section portfolio-section centred donations-explore-section {{ isset($sponsoredProjects) && $sponsoredProjects->isNotEmpty() ? '' : 'standalone' }}">
         <div class="auto-container">
             <div class="sec-title centred mb-50">
-                <span class="top-text">Transparent Welfare</span>
-                <h2>Explore All Community Projects</h2>
+                <span class="top-text">{{ __('Transparency & Governance') }}</span>
+                <h2>{{ __('Explore All Causes') }}</h2>
             </div>
 
             <div class="sortable-masonry">
@@ -120,8 +119,8 @@
                     @endphp
                     <ul class="filter-tabs filter-btns clearfix">
                         <li class="{{ empty($currentType) || $currentType === 'all' ? 'active ' : '' }}filter">
-                            <a href="{{ route('donations') }}">All Causes
-                                ({{ $totalCausesCount ?? \App\Models\Project::where('is_published', true)->count() }})</a>
+                            <a href="{{ route('donations') }}">{{ __('All Causes') }}
+                                ({{ localized_number($totalCausesCount ?? \App\Models\Project::where('is_published', true)->count()) }})</a>
                         </li>
                         @foreach($projectTypes as $pType)
                             @php
@@ -129,8 +128,8 @@
                                 $isActive = ($currentType === $pType->slug);
                             @endphp
                             <li class="{{ $isActive ? 'active ' : '' }}filter">
-                                <a href="{{ route('donations', ['type' => $pType->slug]) }}">{{ $pType->name }}
-                                    ({{ $typeCount }})</a>
+                                <a href="{{ route('donations', ['type' => $pType->slug]) }}">{{ $pType->localized_name }}
+                                    ({{ localized_number($typeCount) }})</a>
                             </li>
                         @endforeach
                     </ul>
@@ -143,6 +142,7 @@
                             $raised = (float) $project->total_donations_raised;
                             $percent = $target > 0 ? min(100, round(($raised / $target) * 100)) : 0;
                             $typeSlug = 'type-' . ($project->projectType?->slug ?? 'general');
+                            $projDate = $project->start_date ? \Carbon\Carbon::parse($project->start_date) : null;
                         @endphp
                         <div class="col-lg-6 col-md-12 col-sm-12 masonry-item small-column all {{ $typeSlug }}">
                             <div class="case-block-three">
@@ -150,16 +150,16 @@
                                     <div class="image-box">
                                         <figure class="image">
                                             <a href="{{ route('donation.details', $project->slug) }}">
-                                                <img src="{{ asset($project->featured_image) }}" alt="{{ $project->name }}">
+                                                <img src="{{ asset($project->featured_image) }}" alt="{{ $project->localized_name }}">
                                             </a>
                                         </figure>
                                         <div class="text">
                                             <div class="category">
                                                 <a
-                                                    href="{{ route('donations', ['type' => $project->projectType?->slug]) }}">{{ $project->projectType?->name ?? 'Community Cause' }}</a>
+                                                    href="{{ route('donations', ['type' => $project->projectType?->slug]) }}">{{ $project->projectType?->localized_name ?? __('Relief Programs') }}</a>
                                             </div>
                                             <h3><a
-                                                    href="{{ route('donation.details', $project->slug) }}">{{ $project->name }}</a>
+                                                    href="{{ route('donation.details', $project->slug) }}">{{ $project->localized_name }}</a>
                                             </h3>
                                         </div>
                                     </div>
@@ -169,37 +169,36 @@
                                             <div class="pattern-layer-2"></div>
                                             <div class="amount-box">
                                                 <div class="icon-box"><i class="icon-donation-1"></i></div>
-                                                <h5>Fund Raised</h5>
-                                                <div class="price">৳{{ number_format($raised) }} <span>/
-                                                        ৳{{ number_format($target) }}</span></div>
+                                                <h5>{{ __('Fund Raised') }}</h5>
+                                                <div class="price">৳{{ localized_number($raised) }} <span>/
+                                                        ৳{{ localized_number($target) }}</span></div>
                                             </div>
                                             <div class="percentage-box">
                                                 <div class="bar">
                                                     <div class="bar-inner count-bar" data-percent="{{ $percent }}%"></div>
                                                 </div>
-                                                <div class="count-text">{{ $percent }}%</div>
+                                                <div class="count-text">{{ localized_number($percent) }}%</div>
                                             </div>
                                             <div class="btn-box">
                                                 <button type="button" class="donate-box-btn"
-                                                    onclick="if(document.querySelector('#donate-popup select[name=\'project_id\']')){ document.querySelector('#donate-popup select[name=\'project_id\']').value = '{{ $project->id }}'; if(window.jQuery && $.fn.niceSelect){ $('#donate-popup select[name=\'project_id\']').niceSelect('update'); } }">Donate
-                                                    Now</button>
+                                                    onclick="if(document.querySelector('#donate-popup select[name=\'project_id\']')){ document.querySelector('#donate-popup select[name=\'project_id\']').value = '{{ $project->id }}'; if(window.jQuery && $.fn.niceSelect){ $('#donate-popup select[name=\'project_id\']').niceSelect('update'); } }">{{ __('Donate Now') }}</button>
                                             </div>
                                         </div>
                                         <ul class="info-box clearfix">
                                             <li>
                                                 <i class="far fa-map-marker-alt"></i>
-                                                <h5>Location</h5>
-                                                <p>{{ Str::limit($project->location ?: 'Dhaka, Bangladesh', 16) }}</p>
+                                                <h5>{{ __('Location') }}</h5>
+                                                <p>{{ Str::limit($project->localized_location ?: __('Dhaka, Bangladesh'), 16) }}</p>
                                             </li>
                                             <li>
                                                 <i class="fas fa-tasks"></i>
-                                                <h5>Status</h5>
-                                                <p>{{ ucfirst(str_replace('_', ' ', $project->status)) }}</p>
+                                                <h5>{{ __('Project Status') }}</h5>
+                                                <p>{{ __($project->status == 'completed' ? 'Completed' : ($project->status == 'in_progress' ? 'In Progress' : 'Planned')) }}</p>
                                             </li>
                                             <li>
                                                 <i class="fas fa-calendar-alt"></i>
-                                                <h5>Date</h5>
-                                                <p>{{ $project->start_date ? \Carbon\Carbon::parse($project->start_date)->format('M Y') : 'Active' }}
+                                                <h5>{{ __('Timeline') }}</h5>
+                                                <p>{{ $projDate ? (is_bengali() ? $projDate->translatedFormat('M Y') : $projDate->format('M Y')) : __('Ongoing') }}
                                                 </p>
                                             </li>
                                         </ul>
@@ -209,7 +208,7 @@
                         </div>
                     @empty
                         <div class="col-12 text-center py-5">
-                            <p class="text-muted">No donation projects available in this category.</p>
+                            <p class="text-muted">{{ __('No projects found in this category.') }}</p>
                         </div>
                     @endforelse
                 </div>

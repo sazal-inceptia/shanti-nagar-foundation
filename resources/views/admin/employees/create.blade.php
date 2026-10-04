@@ -28,8 +28,8 @@
                         </div>
                         <div class="card-body custom-form p-4">
                             <div class="row g-3">
-                                {{-- Employee ID & Full Name --}}
-                                <div class="col-md-5 col-12">
+                                {{-- Employee ID & Full Name (EN & BN) --}}
+                                <div class="col-md-4 col-12">
                                     <label for="employee_id" class="form-label custom-label">Employee ID <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control custom-input font-monospace @error('employee_id') is-invalid @enderror"
                                         name="employee_id" id="employee_id" value="{{ old('employee_id', $suggestedEmployeeId) }}" required>
@@ -39,11 +39,20 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-7 col-12">
-                                    <label for="name" class="form-label custom-label">Full Name <span class="text-danger">*</span></label>
+                                <div class="col-md-4 col-12">
+                                    <label for="name" class="form-label custom-label">Full Name (English) <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control custom-input @error('name') is-invalid @enderror"
                                         name="name" id="name" value="{{ old('name') }}" placeholder="e.g. Md. Tariqul Islam" required>
                                     @error('name')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <label for="name_bn" class="form-label custom-label">Full Name (বাংলা / Bangla)</label>
+                                    <input type="text" class="form-control custom-input @error('name_bn') is-invalid @enderror"
+                                        name="name_bn" id="name_bn" value="{{ old('name_bn') }}" placeholder="যেমন: মো: তরিকুল ইসলাম">
+                                    @error('name_bn')
                                         <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
                                     @enderror
                                 </div>

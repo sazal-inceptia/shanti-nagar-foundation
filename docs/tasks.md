@@ -62,8 +62,10 @@
   - [x] Refine Verified Contributors section with right-side humanitarian artwork background (`background/1.jpg`) and textured white background image on donor cards (`background/13.jpg`)
   - [x] Restructure `about.blade.php` to exact leadership hierarchy: (0) Best President Ever highlight, (1) President, Secretary & Treasurer executive triad with tailored speeches and role badges, (2) Board of Directors (BOD via signature `team-block-one` LTR carousel), (3) Other members (via `team-block-one` RTL carousel), (4) Feature section (Mission/Vision), (5) Contribution section, and (6) Report & Fund Summary section
   - [x] Make `donations.blade.php` render a sponsored projects carousel (1 item at a time) with signature initiative branding, followed by gallery-style dynamic Isotope project type filtering, budget progress bars, and custom pagination
-  - [x] Connect `events.blade.php` to dynamic project activities with dates, location, and details links
-  - [x] Connect `gallery.blade.php` directly to `ProjectImage` with dynamic category isotope filtering, pagination, and lightbox popups
+  - [x] Connect `events.blade.php` and `event-details.blade.php` to dynamic project activities with dates, location, volunteer team, registration, and details links
+  - [x] Connect `gallery.blade.php` directly to `ProjectImage` with eager-loaded queries, precomputed category counts, dynamic category isotope filtering, pagination, and lightbox popups
+  - [x] Connect `contact.blade.php` with direct hotline/email integration, feedback submission, and 100% bilingual English/Bangla localization
+  - [x] Update `volunteer.blade.php` and `faq.blade.php` with authentic Bangladeshi boy volunteer/student imagery (`volunteer-boy.png` and `faq-boy.png`)
   - [x] **Dynamic Project Details & Live Counters**
   - [x] Connect `/donation-details/{slug}` with full dynamic project data, target funding progress, photos, and direct pledge form
   - [x] Connect `/event-details/{slug}` with dynamic activity overview, field team details, and volunteer registration
@@ -127,8 +129,33 @@
 
 ---
 
+### Phase 5: Universal Multilingual Support (English & Bangla) (Completed)
+- [x] **Localization Architecture & Routing**
+  - [x] Configured default locale `en` with fallback `en` and alternate `bn` in `config/app.php`
+  - [x] Built middleware `app/Http/Middleware/SetLocale.php` attached to the `web` middleware group
+  - [x] Created route `GET /lang/{locale}` (`switch.lang`) for session-persistent language switching
+  - [x] Added interactive language switch toggle (`EN` | `বাংলা`) in header bar and mobile menu (`.snf-lang-toggle`)
+- [x] **Multilingual Database Schema & Model Localized Accessors**
+  - [x] Created migration `2026_10_04_100923_add_multilingual_bn_columns_to_all_tables.php` with `name_bn`, `short_description_bn`, `description_bn`, `location_bn`, `caption_bn`, `bio_bn`, `speech_bn`, `notes_bn`, `value_bn`
+  - [x] Updated Eloquent models (`Project`, `ProjectType`, `ProjectImage`, `Designation`, `Employee`, `Setting`) with localized fallback accessors (`localized_name`, `localized_short_description`, `localized_description`, `localized_location`, `localized_bio`, `localized_speech`, `localized_caption`)
+  - [x] Created helper functions in `app/helpers.php`: `site_setting()`, `is_bengali()`, `bengali_number()`, `localized_number()`
+- [x] **Universal Static UI Translations**
+  - [x] Created comprehensive JSON translation dictionaries in `lang/en.json` and `lang/bn.json`
+  - [x] Localized all public Blade views:
+    - Master layout & modals: `app.blade.php`, `header.blade.php`, `footer.blade.php`, `help-drawer.blade.php`
+    - Pages: `index.blade.php`, `about.blade.php`, `donate.blade.php`, `donations.blade.php`, `donation-details.blade.php`, `events.blade.php`, `event-details.blade.php`, `gallery.blade.php`, `volunteer.blade.php`, `contact.blade.php`, `faq.blade.php`
+- [x] **Admin Bilingual Input Support**
+  - [x] Added bilingual form inputs (English + Bangla tabs/fields) across Project CRUD (`admin/projects/create.blade.php`, `edit.blade.php`), Staff Profiles (`admin/employees/create.blade.php`, `edit.blade.php`), and Organization Settings (`admin/settings/index.blade.php`)
+- [x] **Database Seeders with Authentic Bangla Content**
+  - [x] Seeded rich, authentic Bengali translations for Project Types, Projects, Designations, Staff bios/speeches, and Organization Settings
+- [x] **Automated Testing Suite**
+  - [x] Feature tests in `tests/Feature/LocalizationTest.php` verifying session switching, model fallback accessors, and localized frontend rendering passing across all public views (4/4 tests, 36 assertions)
+
+---
+
 ## 📊 Overall Progress Summary
 - **Phase 1 (Database & Models):** 100% Complete ✅
 - **Phase 2 (Frontend Localization & Dynamic Binding):** 100% Complete ✅
 - **Phase 3 (Frontend Forms & Interactions):** 100% Complete ✅
 - **Phase 4 (Admin Dashboard & Financial Management):** 100% Complete ✅
+- **Phase 5 (Universal Multilingual Support - EN & BN):** 100% Complete ✅

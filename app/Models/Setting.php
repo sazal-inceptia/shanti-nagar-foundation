@@ -27,6 +27,23 @@ class Setting extends Model
     }
 
     /**
+     * Get a localized setting value based on active application locale.
+     */
+    public static function getLocalized(string $key, ?string $default = null): ?string
+    {
+        $all = self::getAll();
+
+        if (app()->getLocale() === 'bn') {
+            $bnKey = $key.'_bn';
+            if (! empty($all[$bnKey])) {
+                return $all[$bnKey];
+            }
+        }
+
+        return $all[$key] ?? $default;
+    }
+
+    /**
      * Set a setting value by key.
      */
     public static function set(string $key, ?string $value, string $group = 'general'): self

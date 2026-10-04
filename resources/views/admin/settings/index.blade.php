@@ -43,19 +43,37 @@
                                             </h6>
                                         </div>
                                         <div class="card-body p-4">
-                                            <div class="mb-3">
-                                                <label class="form-label text-dark fw-semibold"
-                                                    style="font-size: 13px;">Foundation Name</label>
-                                                <input type="text" name="org_name" class="form-control form-control-sm"
-                                                    value="{{ $settings['org_name'] }}" required
-                                                    style="font-size: 13px; height: 38px;">
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6 col-12">
+                                                    <label class="form-label text-dark fw-semibold"
+                                                        style="font-size: 13px;">Organization Name (English)</label>
+                                                    <input type="text" name="org_name" class="form-control form-control-sm"
+                                                        value="{{ $settings['org_name'] ?? '' }}" required
+                                                        style="font-size: 13px; height: 38px;">
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <label class="form-label text-dark fw-semibold"
+                                                        style="font-size: 13px;">Organization Name (বাংলা / Bangla)</label>
+                                                    <input type="text" name="org_name_bn" class="form-control form-control-sm"
+                                                        value="{{ $settings['org_name_bn'] ?? '' }}" placeholder="রোটারি ক্লাব অব শান্তিনগর ঢাকা"
+                                                        style="font-size: 13px; height: 38px;">
+                                                </div>
                                             </div>
 
-                                            <div class="mb-3">
-                                                <label class="form-label text-dark fw-semibold"
-                                                    style="font-size: 13px;">Mission / Tagline</label>
-                                                <textarea name="tagline" class="form-control form-control-sm" rows="2"
-                                                    style="font-size: 13px;">{{ $settings['tagline'] }}</textarea>
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6 col-12">
+                                                    <label class="form-label text-dark fw-semibold"
+                                                        style="font-size: 13px;">Tagline / Motto (English)</label>
+                                                    <textarea name="tagline" class="form-control form-control-sm" rows="2"
+                                                        style="font-size: 13px;">{{ $settings['tagline'] ?? '' }}</textarea>
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <label class="form-label text-dark fw-semibold"
+                                                        style="font-size: 13px;">Tagline / Motto (বাংলা / Bangla)</label>
+                                                    <textarea name="tagline_bn" class="form-control form-control-sm" rows="2"
+                                                        placeholder="মানবিক সেবা ও সমাজকল্যাণে নিবেদিত..."
+                                                        style="font-size: 13px;">{{ $settings['tagline_bn'] ?? '' }}</textarea>
+                                                </div>
                                             </div>
 
                                             <div class="row g-2 mb-3">
@@ -63,24 +81,33 @@
                                                     <label class="form-label text-dark fw-semibold"
                                                         style="font-size: 13px;">Hotline Number</label>
                                                     <input type="text" name="hotline" class="form-control form-control-sm"
-                                                        value="{{ $settings['hotline'] }}"
+                                                        value="{{ $settings['hotline'] ?? '' }}"
                                                         style="font-size: 13px; height: 38px;">
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <label class="form-label text-dark fw-semibold"
                                                         style="font-size: 13px;">Official Email</label>
                                                     <input type="email" name="email" class="form-control form-control-sm"
-                                                        value="{{ $settings['email'] }}"
+                                                        value="{{ $settings['email'] ?? '' }}"
                                                         style="font-size: 13px; height: 38px;">
                                                 </div>
                                             </div>
 
-                                            <div class="mb-0">
-                                                <label class="form-label text-dark fw-semibold"
-                                                    style="font-size: 13px;">Headquarter Address</label>
-                                                <input type="text" name="address" class="form-control form-control-sm"
-                                                    value="{{ $settings['address'] }}"
-                                                    style="font-size: 13px; height: 38px;">
+                                            <div class="row g-3 mb-0">
+                                                <div class="col-md-6 col-12">
+                                                    <label class="form-label text-dark fw-semibold"
+                                                        style="font-size: 13px;">Head Office (English)</label>
+                                                    <input type="text" name="address" class="form-control form-control-sm"
+                                                        value="{{ $settings['address'] ?? '' }}"
+                                                        style="font-size: 13px; height: 38px;">
+                                                </div>
+                                                <div class="col-md-6 col-12">
+                                                    <label class="form-label text-dark fw-semibold"
+                                                        style="font-size: 13px;">Head Office (বাংলা / Bangla)</label>
+                                                    <input type="text" name="address_bn" class="form-control form-control-sm"
+                                                        value="{{ $settings['address_bn'] ?? '' }}" placeholder="শান্তিনগর, ঢাকা - ১২১৭, বাংলাদেশ"
+                                                        style="font-size: 13px; height: 38px;">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

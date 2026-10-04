@@ -19,5 +19,6 @@ class Volunteer extends Model
         'address',
         'status',
         'notes',
+        'notes_bn',
     ];
 }

@@ -15,6 +15,7 @@ class Employee extends Model
     protected $fillable = [
         'employee_id',
         'name',
+        'name_bn',
         'designation_id',
         'phone',
         'email',
@@ -28,6 +29,7 @@ class Employee extends Model
         'speech',
         'speech_tag',
         'bio',
+        'bio_bn',
         'signature_text',
         'signature_title',
         'badge_title',
@@ -60,7 +62,59 @@ class Employee extends Model
      */
     public function getDesignationNameAttribute(): string
     {
+        if (app()->getLocale() === 'bn' && ! empty($this->designation?->name_bn)) {
+            return $this->designation->name_bn;
+        }
+
         return $this->designation?->name ?? '—';
+    }
+
+    /**
+     * Get localized employee name based on active locale.
+     */
+    public function getLocalizedNameAttribute(): string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->name_bn)) ? $this->name_bn : (string) $this->name;
+    }
+
+    /**
+     * Get localized employee biography based on active locale.
+     */
+    public function getLocalizedBioAttribute(): ?string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->bio_bn)) ? $this->bio_bn : $this->bio;
+    }
+
+    /**
+     * Get localized speech / quote based on active locale.
+     */
+    public function getLocalizedSpeechAttribute(): ?string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->speech_bn)) ? $this->speech_bn : ($this->speech ? __($this->speech) : null);
+    }
+
+    /**
+     * Get localized badge title based on active locale.
+     */
+    public function getLocalizedBadgeTitleAttribute(): ?string
+    {
+        return $this->badge_title ? __($this->badge_title) : null;
+    }
+
+    /**
+     * Get localized speech tag based on active locale.
+     */
+    public function getLocalizedSpeechTagAttribute(): ?string
+    {
+        return $this->speech_tag ? __($this->speech_tag) : null;
+    }
+
+    /**
+     * Get localized signature title based on active locale.
+     */
+    public function getLocalizedSignatureTitleAttribute(): ?string
+    {
+        return $this->signature_title ? __($this->signature_title) : null;
     }
 
     /**

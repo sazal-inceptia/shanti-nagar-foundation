@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'About Us — Rotary Club of Shantinagar Dhaka')
+@section('title', __('About Us') . ' — ' . site_setting('org_name', 'Rotary Club of Shantinagar Dhaka'))
 
 @section('content')
 
@@ -9,11 +9,11 @@
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">
-                    <h1>About Us</h1>
+                    <h1>{{ __('About Us') }}</h1>
                 </div>
                 <ul class="bread-crumb clearfix">
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li>About Us</li>
+                    <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
+                    <li>{{ __('About Us') }}</li>
                 </ul>
             </div>
         </div>
@@ -25,7 +25,7 @@
     <section class="best-president-section">
         <div class="auto-container">
             <div class="best-president-card">
-                <!-- Atmospheric Ghost Background (User's Idea) -->
+                <!-- Atmospheric Ghost Background -->
                 <div class="card-bg-ghost"
                     style="background-image: url('{{ $bestPresident?->photo_url ?: asset('assets/images/team/team-9.jpg') }}');">
                 </div>
@@ -33,20 +33,20 @@
 
                 <div class="row align-items-center clearfix content-wrap">
                     <div class="col-lg-7 col-md-12 col-sm-12 content-col">
-                        <span class="tribute-badge"><i class="fas fa-crown"></i> {{ $bestPresident?->badge_title ?: 'Honorary Tribute • Lifetime Patron' }}</span>
-                        <h2>{{ $bestPresident?->name ?? 'Alhaj Mohammad Nurul Islam' }}</h2>
+                        <span class="tribute-badge"><i class="fas fa-crown"></i> {{ $bestPresident?->badge_title ? __($bestPresident->badge_title) : __('Honorary Tribute • Lifetime Patron') }}</span>
+                        <h2>{{ $bestPresident?->localized_name ?? __('Alhaj Mohammad Nurul Islam') }}</h2>
                         <span
-                            class="leader-title">{{ $bestPresident?->designation?->name ?? (is_string($bestPresident?->designation) ? $bestPresident->designation : 'Best President Ever & Lifetime Patron') }}</span>
+                            class="leader-title">{{ $bestPresident?->designation?->localized_name ?? __('Best President Ever & Lifetime Patron') }}</span>
                         <div class="quote-box">
                             <i class="fas fa-quote-right quote-watermark"></i>
-                            “{{ $bestPresident?->speech ?: 'A true humanitarian mission is not measured by the size of donations, but by the purity of transparency and the dignity restored to every vulnerable life we touch.' }}”
+                            “{{ $bestPresident?->localized_speech ?: __('A true humanitarian mission is not measured by the size of donations, but by the purity of transparency and the dignity restored to every vulnerable life we touch.') }}”
                         </div>
                         <p class="bio-desc">
-                            {{ $bestPresident?->bio ?: 'Recognized as the foundational cornerstone and most beloved leader of Rotary Club of Shantinagar Dhaka. Under his visionary stewardship, our grassroots relief initiatives reached over 50,000 underprivileged families with 100% itemized audit transparency and direct field procurement.' }}
+                            {{ $bestPresident?->localized_bio ?: __('Recognized as the foundational cornerstone and most beloved leader of Rotary Club of Shantinagar Dhaka. Under his visionary stewardship, our grassroots relief initiatives reached over 50,000 underprivileged families with 100% itemized audit transparency and direct field procurement.') }}
                         </p>
                         <div class="president-signature-wrap">
-                            <span class="president-sign">{{ $bestPresident?->signature_text ?: ($bestPresident?->name ?? 'Alhaj Mohammad Nurul Islam') }}</span>
-                            <span class="sign-title"><i class="fas fa-check-circle me-1"></i> {{ $bestPresident?->signature_title ?: 'Founding Pillar • Lifetime Patron' }}</span>
+                            <span class="president-sign">{{ $bestPresident?->localized_name ?? __('Alhaj Mohammad Nurul Islam') }}</span>
+                            <span class="sign-title"><i class="fas fa-check-circle me-1"></i> {{ $bestPresident?->signature_title ? __($bestPresident->signature_title) : __('Founding Pillar • Lifetime Patron') }}</span>
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-12 col-sm-12 image-col mt-4 mt-lg-0">
@@ -54,9 +54,9 @@
                             <div class="img-frame">
                                 <img class="main-portrait"
                                     src="{{ $bestPresident?->photo_url ?: asset('assets/images/team/team-9.jpg') }}"
-                                    alt="{{ $bestPresident?->name ?? 'Best President Ever' }}">
-                                <div class="crown-badge" title="Best President Ever"><i class="fas fa-crown"></i></div>
-                                <div class="frame-plaque"><i class="fas fa-award me-1"></i> Lifetime Presidential Honor
+                                    alt="{{ $bestPresident?->localized_name ?? __('Best President Ever') }}">
+                                <div class="crown-badge" title="{{ __('Best President Ever') }}"><i class="fas fa-crown"></i></div>
+                                <div class="frame-plaque"><i class="fas fa-award me-1"></i> {{ __('Lifetime Presidential Honor') }}
                                 </div>
                             </div>
                         </div>
@@ -76,10 +76,9 @@
         </div>
         <div class="auto-container">
             <div class="sec-title centred">
-                <span class="top-text">Executive Leadership</span>
-                <h2>Governing Secretariat & Leadership Messages</h2>
-                <p>Guiding Rotary Club of Shantinagar Dhaka with visionary compassion, financial integrity, and grassroots action.
-                </p>
+                <span class="top-text">{{ __('Executive Leadership') }}</span>
+                <h2>{{ __('Club Leadership') }}</h2>
+                <p>{{ __('Guiding Rotary Club of Shantinagar Dhaka with visionary compassion, financial integrity, and grassroots action.') }}</p>
             </div>
 
             <div class="leadership-stack">
@@ -87,23 +86,23 @@
                 <div class="leader-speech-card president-theme rtl-layout">
                     <div class="row align-items-center">
                         <div class="col-lg-4 col-md-5 text-center leader-profile-col">
-                            <span class="role-badge"><i class="fas fa-user-tie me-1"></i> {{ $president?->badge_title ?: 'President' }}</span>
+                            <span class="role-badge"><i class="fas fa-user-tie me-1"></i> {{ $president?->badge_title ? __($president->badge_title) : __('President') }}</span>
                             <div class="avatar-box">
                                 <img src="{{ $president?->photo_url ?: asset('assets/images/team/team-5.jpg') }}"
-                                    alt="{{ $president?->name ?? 'President' }}">
+                                    alt="{{ $president?->localized_name ?? __('President') }}">
                             </div>
-                            <h3>{{ $president?->name ?? 'Advocate Mahfuzur Rahman' }}</h3>
+                            <h3>{{ $president?->localized_name ?? __('Advocate Mahfuzur Rahman') }}</h3>
                             <span
-                                class="designation-text">{{ $president?->designation?->name ?? (is_string($president?->designation) ? $president->designation : 'President, Governing Body') }}</span>
+                                class="designation-text">{{ $president?->designation?->localized_name ?? __('President') }}</span>
                             <div class="location-info">
                                 <i class="fas fa-map-marker-alt text-primary"></i>
-                                {{ $president?->present_address ?: 'Shanti Nagar, Dhaka' }}
+                                {{ $president?->present_address ? Str::limit($president->present_address, 30) : __('Shanti Nagar, Dhaka') }}
                             </div>
                             <ul class="contact-links">
-                                <li><a href="tel:{{ $president?->phone ?: '+8801711223344' }}" title="Call President"><i
+                                <li><a href="tel:{{ $president?->phone ?: '+8801711223344' }}" title="{{ __('Call President') }}"><i
                                             class="fas fa-phone"></i></a></li>
                                 <li><a href="mailto:{{ $president?->email ?: 'president@shantinagarfoundation.org' }}"
-                                        title="Email President"><i class="fas fa-envelope"></i></a></li>
+                                        title="{{ __('Email President') }}"><i class="fas fa-envelope"></i></a></li>
                                 @if($president?->facebook_url)
                                 <li><a href="{{ $president->facebook_url }}" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                                 @endif
@@ -115,14 +114,14 @@
                         <div class="col-lg-8 col-md-7 leader-speech-col">
                             <div class="speech-content">
                                 <div class="speech-header">
-                                    <span class="speech-tag"><i class="fas fa-quote-left me-2"></i> {{ $president?->speech_tag ?: "President's Address & Vision" }}</span>
+                                    <span class="speech-tag"><i class="fas fa-quote-left me-2"></i> {{ $president?->speech_tag ? __($president->speech_tag) : __("President's Address & Vision") }}</span>
                                 </div>
                                 <blockquote>
-                                    "{{ $president?->speech ?: 'Our sacred mission is ensuring no underprivileged family in our community is left without healthcare, clean water, or emergency shelter. At Rotary Club of Shantinagar Dhaka, we believe true leadership is rooted in selfless service. By uniting generous benefactors with verified grassroots programs, we turn empathy into permanent, dignity-restoring action across Bangladesh.' }}"
+                                    "{{ $president?->localized_speech ?: __('Our sacred mission is ensuring no underprivileged family in our community is left without healthcare, clean water, or emergency shelter. At Rotary Club of Shantinagar Dhaka, we believe true leadership is rooted in selfless service. By uniting generous benefactors with verified grassroots programs, we turn empathy into permanent, dignity-restoring action across Bangladesh.') }}"
                                 </blockquote>
                                 <div class="speech-footer">
-                                    <span class="leader-sign">{{ $president?->signature_text ?: ($president?->name ?? 'Advocate Mahfuzur Rahman') }}</span>
-                                    <span class="sign-sub">{{ $president?->signature_title ?: 'President • Rotary Club of Shantinagar Dhaka' }}</span>
+                                    <span class="leader-sign">{{ $president?->signature_text ?: ($president?->localized_name ?? __('Advocate Mahfuzur Rahman')) }}</span>
+                                    <span class="sign-sub">{{ $president?->signature_title ? __($president->signature_title) : __('President • Rotary Club of Shantinagar Dhaka') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -135,34 +134,34 @@
                         <div class="col-lg-8 col-md-7 order-lg-1 order-md-1 order-2 leader-speech-col">
                             <div class="speech-content">
                                 <div class="speech-header">
-                                    <span class="speech-tag"><i class="fas fa-quote-left me-2"></i> {{ $secretary?->speech_tag ?: "General Secretary's Statement" }}</span>
+                                    <span class="speech-tag"><i class="fas fa-quote-left me-2"></i> {{ $secretary?->speech_tag ? __($secretary->speech_tag) : __("General Secretary's Statement") }}</span>
                                 </div>
                                 <blockquote>
-                                    "{{ $secretary?->speech ?: 'Unwavering transparency, rapid disaster mobilization, and grounded field execution define our operational ethos. Every project is meticulously planned, vetted, and executed with our dedicated volunteer force to ensure immediate and direct relief to those facing hardship.' }}"
+                                    "{{ $secretary?->localized_speech ?: __('Unwavering transparency, rapid disaster mobilization, and grounded field execution define our operational ethos. Every project is meticulously planned, vetted, and executed with our dedicated volunteer force to ensure immediate and direct relief to those facing hardship.') }}"
                                 </blockquote>
                                 <div class="speech-footer">
-                                    <span class="leader-sign">{{ $secretary?->signature_text ?: ($secretary?->name ?? 'Dr. Kazi Ashraful Alam') }}</span>
-                                    <span class="sign-sub">{{ $secretary?->signature_title ?: 'General Secretary • Rotary Club of Shantinagar Dhaka' }}</span>
+                                    <span class="leader-sign">{{ $secretary?->signature_text ?: ($secretary?->localized_name ?? __('Dr. Tariqul Islam')) }}</span>
+                                    <span class="sign-sub">{{ $secretary?->signature_title ? __($secretary->signature_title) : __('General Secretary • Rotary Club of Shantinagar Dhaka') }}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-5 order-lg-2 order-md-2 order-1 text-center leader-profile-col">
-                            <span class="role-badge"><i class="fas fa-clipboard-check me-1"></i> {{ $secretary?->badge_title ?: 'General Secretary' }}</span>
+                            <span class="role-badge"><i class="fas fa-clipboard-check me-1"></i> {{ $secretary?->badge_title ? __($secretary->badge_title) : __('General Secretary') }}</span>
                             <div class="avatar-box">
                                 <img src="{{ $secretary?->photo_url ?: asset('assets/images/team/team-6.jpg') }}"
-                                    alt="{{ $secretary?->name ?? 'General Secretary' }}">
+                                    alt="{{ $secretary?->localized_name ?? __('General Secretary') }}">
                             </div>
-                            <h3>{{ $secretary?->name ?? 'Dr. Kazi Ashraful Alam' }}</h3>
-                            <span class="designation-text">{{ $secretary?->designation?->name ?? (is_string($secretary?->designation) ? $secretary->designation : 'General Secretary') }}</span>
+                            <h3>{{ $secretary?->localized_name ?? __('Dr. Tariqul Islam') }}</h3>
+                            <span class="designation-text">{{ $secretary?->designation?->localized_name ?? __('General Secretary') }}</span>
                             <div class="location-info">
                                 <i class="fas fa-map-marker-alt text-primary"></i>
-                                {{ $secretary?->present_address ?: 'Shanti Nagar, Dhaka' }}
+                                {{ $secretary?->present_address ? Str::limit($secretary->present_address, 30) : __('Shanti Nagar, Dhaka') }}
                             </div>
                             <ul class="contact-links">
-                                <li><a href="tel:{{ $secretary?->phone ?: '+8801712334455' }}" title="Call Secretary"><i
+                                <li><a href="tel:{{ $secretary?->phone ?: '+8801811334455' }}" title="{{ __('Call Secretary') }}"><i
                                             class="fas fa-phone"></i></a></li>
                                 <li><a href="mailto:{{ $secretary?->email ?: 'secretary@shantinagarfoundation.org' }}"
-                                        title="Email Secretary"><i class="fas fa-envelope"></i></a></li>
+                                        title="{{ __('Email Secretary') }}"><i class="fas fa-envelope"></i></a></li>
                                 @if($secretary?->facebook_url)
                                 <li><a href="{{ $secretary->facebook_url }}" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                                 @endif
@@ -178,23 +177,23 @@
                 <div class="leader-speech-card treasurer-theme rtl-layout">
                     <div class="row align-items-center">
                         <div class="col-lg-4 col-md-5 text-center leader-profile-col">
-                            <span class="role-badge"><i class="fas fa-coins me-1"></i> {{ $treasurer?->badge_title ?: 'Treasurer' }}</span>
+                            <span class="role-badge"><i class="fas fa-coins me-1"></i> {{ $treasurer?->badge_title ? __($treasurer->badge_title) : __('Treasurer') }}</span>
                             <div class="avatar-box">
                                 <img src="{{ $treasurer?->photo_url ?: asset('assets/images/team/team-7.jpg') }}"
-                                    alt="{{ $treasurer?->name ?? 'Treasurer' }}">
+                                    alt="{{ $treasurer?->localized_name ?? __('Treasurer') }}">
                             </div>
-                            <h3>{{ $treasurer?->name ?? 'Engr. Shahadat Hossain' }}</h3>
+                            <h3>{{ $treasurer?->localized_name ?? __('Engr. Shahabuddin Ahmed') }}</h3>
                             <span
-                                class="designation-text">{{ $treasurer?->designation?->name ?? (is_string($treasurer?->designation) ? $treasurer->designation : 'Treasurer & Finance Secretary') }}</span>
+                                class="designation-text">{{ $treasurer?->designation?->localized_name ?? __('Treasurer') }}</span>
                             <div class="location-info">
                                 <i class="fas fa-map-marker-alt text-primary"></i>
-                                {{ $treasurer?->present_address ?: 'Shanti Nagar, Dhaka' }}
+                                {{ $treasurer?->present_address ? Str::limit($treasurer->present_address, 30) : __('Bijoy Nagar, Dhaka') }}
                             </div>
                             <ul class="contact-links">
-                                <li><a href="tel:{{ $treasurer?->phone ?: '+8801713445566' }}" title="Call Treasurer"><i
+                                <li><a href="tel:{{ $treasurer?->phone ?: '+8801911445566' }}" title="{{ __('Call Treasurer') }}"><i
                                             class="fas fa-phone"></i></a></li>
                                 <li><a href="mailto:{{ $treasurer?->email ?: 'treasurer@shantinagarfoundation.org' }}"
-                                        title="Email Treasurer"><i class="fas fa-envelope"></i></a></li>
+                                        title="{{ __('Email Treasurer') }}"><i class="fas fa-envelope"></i></a></li>
                                 @if($treasurer?->facebook_url)
                                 <li><a href="{{ $treasurer->facebook_url }}" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
                                 @endif
@@ -206,14 +205,14 @@
                         <div class="col-lg-8 col-md-7 leader-speech-col">
                             <div class="speech-content">
                                 <div class="speech-header">
-                                    <span class="speech-tag"><i class="fas fa-quote-left me-2"></i> {{ $treasurer?->speech_tag ?: "Treasurer's Financial Assurance" }}</span>
+                                    <span class="speech-tag"><i class="fas fa-quote-left me-2"></i> {{ $treasurer?->speech_tag ? __($treasurer->speech_tag) : __("Treasurer's Financial Assurance") }}</span>
                                 </div>
                                 <blockquote>
-                                    "{{ $treasurer?->speech ?: 'We treat every single Taka as a sacred public trust (Amanah). Through strict auditing, zero-leakage fund tracking, and transparent reporting, we guarantee that your contributions directly uplift real human lives with the highest financial integrity.' }}"
+                                    "{{ $treasurer?->localized_speech ?: __('We treat every single Taka as a sacred public trust (Amanah). Through strict auditing, zero-leakage fund tracking, and transparent reporting, we guarantee that your contributions directly uplift real human lives with the highest financial integrity.') }}"
                                 </blockquote>
                                 <div class="speech-footer">
-                                    <span class="leader-sign">{{ $treasurer?->signature_text ?: ($treasurer?->name ?? 'Engr. Shahadat Hossain') }}</span>
-                                    <span class="sign-sub">{{ $treasurer?->signature_title ?: 'Treasurer • Rotary Club of Shantinagar Dhaka' }}</span>
+                                    <span class="leader-sign">{{ $treasurer?->signature_text ?: ($treasurer?->localized_name ?? __('Engr. Shahabuddin Ahmed')) }}</span>
+                                    <span class="sign-sub">{{ $treasurer?->signature_title ? __($treasurer->signature_title) : __('Treasurer • Rotary Club of Shantinagar Dhaka') }}</span>
                                 </div>
                             </div>
                         </div>
@@ -230,9 +229,9 @@
         <div class="pattern-layer" style="background-image: url({{ asset('assets/images/shape/shape-23.png') }});"></div>
         <div class="auto-container">
             <div class="sec-title centred">
-                <span class="top-text">Board of Directors (BOD)</span>
-                <h2>Esteemed Directors Guiding Our Strategic Initiatives</h2>
-                <p>Dedicated community leaders and professionals stewarding specific humanitarian relief portfolios.</p>
+                <span class="top-text">{{ __('Board of Directors (BOD)') }}</span>
+                <h2>{{ __('Esteemed Directors Guiding Our Strategic Initiatives') }}</h2>
+                <p>{{ __('Dedicated community leaders and professionals stewarding specific humanitarian relief portfolios.') }}</p>
             </div>
 
             <div class="bod-ltr-carousel owl-carousel owl-theme owl-dots-none">
@@ -240,6 +239,7 @@
                     $rawBod = (isset($bodMembers) && $bodMembers->count() > 0) ? $bodMembers : [
                         (object) [
                             'name' => 'Mohammad Anwarul Kabir',
+                            'name_bn' => 'মোহাম্মদ আনোয়ারুল কবির',
                             'designation' => 'Director (Relief Operations)',
                             'photo_url' => asset('assets/images/team/team-8.jpg'),
                             'phone' => '+8801715556677',
@@ -247,21 +247,24 @@
                         ],
                         (object) [
                             'name' => 'Begum Rashida Akhtar',
-                            'designation' => 'Director (Social Welfare)',
+                            'name_bn' => 'বেগম রাশিদা আক্তার',
+                            'designation' => 'Director (Social Welfare & Orphan Care)',
                             'photo_url' => asset('assets/images/team/team-2.jpg'),
                             'phone' => '+8801817778899',
                             'email' => 'rashida.bod@shantinagarfoundation.org'
                         ],
                         (object) [
-                            'name' => 'Dr. Tariqul Islam',
-                            'designation' => 'Director (Medical Aid)',
+                            'name' => 'Dr. Masudur Rahman',
+                            'name_bn' => 'ডা: মাসুদুর রহমান',
+                            'designation' => 'Director (Medical Aid & Healthcare)',
                             'photo_url' => asset('assets/images/team/team-3.jpg'),
                             'phone' => '+8801918889900',
-                            'email' => 'tariqul.bod@shantinagarfoundation.org'
+                            'email' => 'masud.bod@shantinagarfoundation.org'
                         ],
                         (object) [
                             'name' => 'Farhana Yasmin',
-                            'designation' => 'Director (Women & Education)',
+                            'name_bn' => 'ফারহানা ইয়াসমিন',
+                            'designation' => 'Director (Women Empowerment & Education)',
                             'photo_url' => asset('assets/images/team/team-4.jpg'),
                             'phone' => '+8801519990011',
                             'email' => 'farhana.bod@shantinagarfoundation.org'
@@ -272,34 +275,38 @@
                 @endphp
 
                 @foreach($renderBod as $bod)
+                    @php
+                        $bName = is_object($bod) && isset($bod->localized_name) ? $bod->localized_name : ((is_bengali() && !empty($bod->name_bn)) ? $bod->name_bn : ($bod->name ?? ''));
+                        $bDesig = is_object($bod->designation) ? ($bod->designation->localized_name ?? $bod->designation->name) : __($bod->designation);
+                    @endphp
                     <div class="team-block-one">
                         <div class="inner-box">
                             <figure class="image-box">
                                 <img src="{{ is_object($bod) && isset($bod->photo_url) ? $bod->photo_url : asset('assets/images/team/team-1.jpg') }}"
-                                    alt="{{ $bod->name }}">
+                                    alt="{{ $bName }}">
                             </figure>
                             <div class="content-box">
                                 <div class="info">
-                                    <span class="designation">{{ is_object($bod->designation) ? $bod->designation->name : $bod->designation }}</span>
-                                    <h3>{{ $bod->name }}</h3>
+                                    <span class="designation">{{ $bDesig }}</span>
+                                    <h3>{{ $bName }}</h3>
                                 </div>
                                 <figure class="thumb-box"><img
                                         src="{{ is_object($bod) && isset($bod->photo_url) ? $bod->photo_url : asset('assets/images/team/team-1.jpg') }}"
-                                        alt="{{ $bod->name }}"></figure>
+                                        alt="{{ $bName }}"></figure>
                                 <div class="text">
-                                    <p>{{ is_object($bod->designation) ? ($bod->designation->category ?? 'Board Member') : 'Board of Directors' }}</p>
+                                    <p>{{ is_object($bod->designation) ? __($bod->designation->category ?? 'Board Member') : __('Board of Directors') }}</p>
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
                                 @if(!empty($bod->phone))
                                     <li>
-                                        <a href="tel:{{ $bod->phone }}" title="Call {{ $bod->name }}"><i
+                                        <a href="tel:{{ $bod->phone }}" title="{{ __('Call') }} {{ $bName }}"><i
                                                 class="fas fa-phone"></i></a>
                                     </li>
                                 @endif
                                 @if(!empty($bod->email))
                                     <li>
-                                        <a href="mailto:{{ $bod->email }}" title="Email {{ $bod->name }}"><i
+                                        <a href="mailto:{{ $bod->email }}" title="{{ __('Email') }} {{ $bName }}"><i
                                                 class="fas fa-envelope"></i></a>
                                     </li>
                                 @endif
@@ -318,6 +325,7 @@
         $rawOthers = (isset($otherMembers) && $otherMembers->count() > 0) ? $otherMembers : [
             (object) [
                 'name' => 'Rafiqul Islam',
+                'name_bn' => 'রফিকুল ইসলাম',
                 'designation' => 'Field Project Coordinator',
                 'present_address' => 'Shanti Nagar, Dhaka',
                 'photo_url' => asset('assets/images/team/team-1.jpg'),
@@ -326,7 +334,8 @@
             ],
             (object) [
                 'name' => 'Fatema Begum',
-                'designation' => 'Accounts Officer',
+                'name_bn' => 'ফাতেমা বেগম',
+                'designation' => 'Accounts & Documentation Officer',
                 'present_address' => 'Malibagh, Dhaka',
                 'photo_url' => asset('assets/images/team/team-2.jpg'),
                 'phone' => '+8801815667788',
@@ -334,7 +343,8 @@
             ],
             (object) [
                 'name' => 'Kamrul Hasan',
-                'designation' => 'Volunteer Supervisor',
+                'name_bn' => 'কামরুল হাসান',
+                'designation' => 'Volunteer Supervisor & Logistics Support',
                 'present_address' => 'Shanti Nagar, Dhaka',
                 'photo_url' => asset('assets/images/team/team-3.jpg'),
                 'phone' => '+8801914332211',
@@ -342,11 +352,12 @@
             ],
             (object) [
                 'name' => 'Abdul Kader',
-                'designation' => 'Office Logistics Assistant',
+                'name_bn' => 'আব্দুল কাদের',
+                'designation' => 'Office Caretaker & Logistics Assistant',
                 'present_address' => 'Staff Quarters, Dhaka',
                 'photo_url' => asset('assets/images/team/team-4.jpg'),
                 'phone' => '+8801611009988',
-                'email' => null
+                'email' => 'kader.support@shantinagarfoundation.org'
             ],
         ];
         $otherCollection = collect($rawOthers);
@@ -355,41 +366,44 @@
     <section class="team-section centred" style="background-color: #f7f9fc; padding-top: 80px; padding-bottom: 80px;">
         <div class="auto-container">
             <div class="sec-title centred">
-                <span class="top-text">Foundation Officers & Coordinators</span>
-                <h2>Dedicated Ground Officers & Operations Team</h2>
-                <p>The passionate on-field coordinators, accountants, and volunteer supervisors executing daily relief
-                    drives.</p>
+                <span class="top-text">{{ __('Foundation Officers & Coordinators') }}</span>
+                <h2>{{ __('Dedicated Ground Officers & Operations Team') }}</h2>
+                <p>{{ __('The passionate on-field coordinators, accountants, and volunteer supervisors executing daily relief drives.') }}</p>
             </div>
 
             <div class="members-rtl-carousel owl-carousel owl-theme owl-dots-none" dir="rtl">
                 @foreach($renderOthers as $om)
+                    @php
+                        $omName = is_object($om) && isset($om->localized_name) ? $om->localized_name : ((is_bengali() && !empty($om->name_bn)) ? $om->name_bn : ($om->name ?? ''));
+                        $omDesig = is_object($om->designation) ? ($om->designation->localized_name ?? $om->designation->name) : __($om->designation);
+                    @endphp
                     <div class="team-block-one">
                         <div class="inner-box">
                             <figure class="image-box">
                                 <img src="{{ is_object($om) && isset($om->photo_url) ? $om->photo_url : asset('assets/images/team/team-1.jpg') }}"
-                                    alt="{{ $om->name }}">
+                                    alt="{{ $omName }}">
                             </figure>
                             <div class="content-box">
                                 <div class="info">
-                                    <span class="designation">{{ is_object($om->designation) ? $om->designation->name : $om->designation }}</span>
-                                    <h3>{{ $om->name }}</h3>
+                                    <span class="designation">{{ $omDesig }}</span>
+                                    <h3>{{ $omName }}</h3>
                                 </div>
                                 <figure class="thumb-box"><img
                                         src="{{ is_object($om) && isset($om->photo_url) ? $om->photo_url : asset('assets/images/team/team-1.jpg') }}"
-                                        alt="{{ $om->name }}"></figure>
+                                        alt="{{ $omName }}"></figure>
                                 <div class="text">
-                                    <p>{{ $om->present_address ?: 'Dhaka, Bangladesh' }}</p>
+                                    <p>{{ $om->present_address ? Str::limit($om->present_address, 30) : __('Dhaka, Bangladesh') }}</p>
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
                                 @if(!empty($om->phone))
                                     <li>
-                                        <a href="tel:{{ $om->phone }}" title="Call {{ $om->name }}"><i class="fas fa-phone"></i></a>
+                                        <a href="tel:{{ $om->phone }}" title="{{ __('Call') }} {{ $omName }}"><i class="fas fa-phone"></i></a>
                                     </li>
                                 @endif
                                 @if(!empty($om->email))
                                     <li>
-                                        <a href="mailto:{{ $om->email }}" title="Email {{ $om->name }}"><i
+                                        <a href="mailto:{{ $om->email }}" title="{{ __('Email') }} {{ $omName }}"><i
                                                 class="fas fa-envelope"></i></a>
                                     </li>
                                 @endif
@@ -410,44 +424,40 @@
                 <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
                     <div class="feature-block-one">
                         <div class="inner-box">
-                            <span>M</span>
+                            <span>{{ is_bengali() ? 'মি' : 'M' }}</span>
                             <div class="icon-box"><i class="icon-mission"></i></div>
-                            <h3>Our Mission</h3>
-                            <p>Delivering urgent medical equipment, healthcare aid, and emergency relief to underserved
-                                communities across Bangladesh through direct volunteer field distribution.</p>
+                            <h3>{{ __('Our Mission') }}</h3>
+                            <p>{{ __('Delivering urgent medical equipment, healthcare aid, and emergency relief to underserved communities across Bangladesh through direct volunteer field distribution.') }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
                     <div class="feature-block-one">
                         <div class="inner-box">
-                            <span>V</span>
+                            <span>{{ is_bengali() ? 'দৃ' : 'V' }}</span>
                             <div class="icon-box"><i class="icon-medical-report"></i></div>
-                            <h3>Our Vision</h3>
-                            <p>A self-reliant Bangladesh where every deserving family has access to safe drinking water,
-                                essential hospital healthcare, and dignified livelihood support.</p>
+                            <h3>{{ __('Our Vision') }}</h3>
+                            <p>{{ __('A self-reliant Bangladesh where every deserving family has access to safe drinking water, essential hospital healthcare, and dignified livelihood support.') }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
                     <div class="feature-block-one">
                         <div class="inner-box">
-                            <span>G</span>
+                            <span>{{ is_bengali() ? 'ল' : 'G' }}</span>
                             <div class="icon-box"><i class="icon-goal"></i></div>
-                            <h3>Our Goal</h3>
-                            <p>Ensuring absolute financial accountability by eliminating middlemen, procuring goods
-                                directly, and preserving itemized audit vouchers for every Taka contributed.</p>
+                            <h3>{{ __('Our Goal') }}</h3>
+                            <p>{{ __('Ensuring absolute financial accountability by eliminating middlemen, procuring goods directly, and preserving itemized audit vouchers for every Taka contributed.') }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
                     <div class="feature-block-one">
                         <div class="inner-box">
-                            <span>C</span>
+                            <span>{{ is_bengali() ? 'স' : 'C' }}</span>
                             <div class="icon-box"><i class="icon-fair-trade"></i></div>
-                            <h3>Our Community</h3>
-                            <p>Mobilizing passionate youth volunteers, healthcare workers, and local elders to identify,
-                                physically verify, and support vulnerable families with empathy.</p>
+                            <h3>{{ __('Our Community') }}</h3>
+                            <p>{{ __('Mobilizing passionate youth volunteers, healthcare workers, and local elders to identify, physically verify, and support vulnerable families with empathy.') }}</p>
                         </div>
                     </div>
                 </div>
@@ -464,58 +474,58 @@
                 <div class="pattern-layer" style="background-image: url({{ asset('assets/images/shape/shape-38.png') }});">
                 </div>
                 <div class="sec-title light centred">
-                    <span class="top-text">Core Relief Pillars</span>
-                    <h2>Our Key Focus Areas Across Bangladesh</h2>
+                    <span class="top-text">{{ __('Core Relief Pillars') }}</span>
+                    <h2>{{ __('Our Key Focus Areas Across Bangladesh') }}</h2>
                 </div>
                 <div class="four-item-carousel owl-carousel owl-theme owl-nav-none">
                     <div class="single-item">
                         <div class="inner-box">
                             <div class="icon-box">
-                                <h5>Relief</h5>
+                                <h5>{{ __('Relief') }}</h5>
                                 <i class="icon-donation"></i>
                             </div>
-                            <h3>Hospital Aid</h3>
-                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>View Causes</a>
+                            <h3>{{ __('Hospital Aid') }}</h3>
+                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
                         </div>
                     </div>
                     <div class="single-item">
                         <div class="inner-box">
                             <div class="icon-box">
-                                <h5>Pure Water</h5>
+                                <h5>{{ __('Pure Water') }}</h5>
                                 <i class="icon-charity"></i>
                             </div>
-                            <h3>Deep Tube-Wells</h3>
-                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>View Causes</a>
+                            <h3>{{ __('Deep Tube-Wells') }}</h3>
+                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
                         </div>
                     </div>
                     <div class="single-item">
                         <div class="inner-box">
                             <div class="icon-box">
-                                <h5>Education</h5>
+                                <h5>{{ __('Education') }}</h5>
                                 <i class="icon-home"></i>
                             </div>
-                            <h3>Orphan Welfare</h3>
-                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>View Causes</a>
+                            <h3>{{ __('Orphan Welfare') }}</h3>
+                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
                         </div>
                     </div>
                     <div class="single-item">
                         <div class="inner-box">
                             <div class="icon-box">
-                                <h5>Emergency</h5>
+                                <h5>{{ __('Emergency') }}</h5>
                                 <i class="icon-donation-1"></i>
                             </div>
-                            <h3>Food & Winter Relief</h3>
-                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>View Causes</a>
+                            <h3>{{ __('Food & Winter Relief') }}</h3>
+                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
                         </div>
                     </div>
                     <div class="single-item">
                         <div class="inner-box">
                             <div class="icon-box">
-                                <h5>Empowerment</h5>
+                                <h5>{{ __('Empowerment') }}</h5>
                                 <i class="icon-fair-trade"></i>
                             </div>
-                            <h3>Zakat & Sadaqah</h3>
-                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>View Causes</a>
+                            <h3>{{ __('Zakat & Sadaqah') }}</h3>
+                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
                         </div>
                     </div>
                 </div>
@@ -545,13 +555,12 @@
                     <div class="content_block_7">
                         <div class="content-box">
                             <div class="sec-title">
-                                <span class="top-text">Financial Accountability</span>
-                                <h2>100% Transparent Financial Stewardship</h2>
+                                <span class="top-text">{{ __('Financial Accountability') }}</span>
+                                <h2>{{ __('100% Transparent Financial Stewardship') }}</h2>
                             </div>
                             <div class="text">
-                                <p>Every single Taka received is deployed directly to verified ground missions, accompanied
-                                    by itemized vendor receipts and money receipts.</p>
-                                <a href="{{ route('donations') }}" class="theme-btn btn-one">Explore Active Relief</a>
+                                <p>{{ __('Every single Taka received is deployed directly to verified ground missions, accompanied by itemized vendor receipts and money receipts.') }}</p>
+                                <a href="{{ route('donations') }}" class="theme-btn btn-one">{{ __('Explore Active Relief') }}</a>
                             </div>
                         </div>
                     </div>
@@ -564,30 +573,26 @@
                                     <div class="box">
                                         <div class="piechart" data-fg-color="#005daa" data-value="{{ $pieVal1 }}">
                                         </div>
-                                        <span>Fund <br />Utilization</span>
+                                        <span>{{ __('Fund') }} <br />{{ __('Utilization') }}</span>
                                     </div>
                                     <div class="text">
-                                        <h2>{{ $utilizationRatio }}%</h2>
-                                        <h3>Fund Deployment Ratio</h3>
-                                        <p>Donations directly translated into active field relief, equipment, and community
-                                            welfare.</p>
-                                        <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>View Active
-                                            Causes</a>
+                                        <h2>{{ localized_number($utilizationRatio) }}%</h2>
+                                        <h3>{{ __('Fund Deployment Ratio') }}</h3>
+                                        <p>{{ __('Donations directly translated into active field relief, equipment, and community welfare.') }}</p>
+                                        <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>{{ __('View Active Causes') }}</a>
                                     </div>
                                 </div>
                                 <div class="single-progress-box">
                                     <div class="box">
                                         <div class="piechart" data-fg-color="#ffb81c" data-value="{{ $pieVal2 }}">
                                         </div>
-                                        <span>Direct <br />Field Aid</span>
+                                        <span>{{ __('Direct') }} <br />{{ __('Field Aid') }}</span>
                                     </div>
                                     <div class="text">
-                                        <h2>{{ $directAidRatio }}%</h2>
-                                        <h3>Direct Procurement Ratio</h3>
-                                        <p>Direct procurement of hospital gear, tube-wells, and food supplies with zero
-                                            intermediary cut.</p>
-                                        <a href="{{ route('about') }}"><i class="far fa-angle-right"></i>Our Transparency
-                                            Policy</a>
+                                        <h2>{{ localized_number($directAidRatio) }}%</h2>
+                                        <h3>{{ __('Direct Procurement Ratio') }}</h3>
+                                        <p>{{ __('Direct procurement of hospital gear, tube-wells, and food supplies with zero intermediary cut.') }}</p>
+                                        <a href="{{ route('about') }}"><i class="far fa-angle-right"></i>{{ __('Our Transparency Policy') }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -598,6 +603,8 @@
         </div>
     </section>
     <!-- End Report Section -->
+
+@endsectionport Section -->
 
 @endsection
 
