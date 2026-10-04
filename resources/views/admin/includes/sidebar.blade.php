@@ -1,18 +1,17 @@
 <div class="sidebar sidebar-navigation active">
     <div class="logo_content">
-        <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center">
+        <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center logo-interactive-anchor">
             <div class="logo-icon d-flex align-items-center justify-content-center"
-                style="width: 38px; height: 38px; background-color: #ffffff; border-radius: 8px; flex-shrink: 0; padding: 3px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); border: 1px solid #e2e8f0;">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
+                style="width: 40px; height: 40px; background-color: #ffffff; border-radius: 50%; flex-shrink: 0; padding: 2px; box-shadow: 0 2px 8px rgba(0,93,170,0.12); border: 1.5px solid #005daa; overflow: hidden;">
+                <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="rotary-rotating-logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;">
             </div>
             <div class="logo_name">
                 <div class="d-flex align-items-center">
                     <div class="d-flex flex-column text-start" style="line-height: 1.15; margin-left: 10px;">
                         <span
-                            style="font-size: 14px; font-weight: 800; color: #111A3A; letter-spacing: -0.01em; white-space: nowrap;">SHANTI
-                            NAGAR</span>
+                            style="font-size: 13px; font-weight: 800; color: #111A3A; letter-spacing: -0.01em; white-space: nowrap;">ROTARY CLUB</span>
                         <span
-                            style="font-size: 9.5px; font-weight: 700; color: #f65024; text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap;">Foundation</span>
+                            style="font-size: 9.5px; font-weight: 700; color: #005daa; text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap;">Shantinagar Dhaka</span>
                     </div>
                 </div>
             </div>

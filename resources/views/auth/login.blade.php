@@ -311,6 +311,19 @@
             align-items: center;
             gap: 0.5rem;
         }
+
+        /* Rotary Circular Logo Image Rotation Animation */
+        .rotary-rotating-logo {
+            border-radius: 50%;
+            animation: rotaryLogoRotate 20s linear infinite;
+            transform-origin: center center;
+            display: inline-block;
+        }
+
+        @keyframes rotaryLogoRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -319,12 +332,12 @@
     <div class="login-card">
         <!-- Logo -->
         <a href="{{ url('/') }}" class="login-logo-wrap" title="{{ config('app.name', 'Rotary Club of Shantinagar Dhaka') }}">
-            <div class="login-badge" style="background-color: #ffffff; border: 1px solid #e2e8f0; padding: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); width: 44px; height: 44px;">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
+            <div class="login-badge" style="background-color: #ffffff; border: 1.5px solid #005daa; padding: 2px; box-shadow: 0 2px 10px rgba(0,93,170,0.12); width: 46px; height: 46px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="rotary-rotating-logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;">
             </div>
             <div class="login-brand-text">
-                <span class="login-brand-title">SHANTI NAGAR</span>
-                <span class="login-brand-sub" style="color: #f65024;">Foundation</span>
+                <span class="login-brand-title">ROTARY CLUB</span>
+                <span class="login-brand-sub" style="color: #005daa;">Shantinagar Dhaka</span>
             </div>
         </a>
 

@@ -16059,11 +16059,89 @@
    width: auto !important;
    object-fit: contain;
    display: block;
-   transition: transform 0.25s ease;
  }
 
- .snf-header .logo-box a:hover .header-main-logo {
-   transform: scale(1.03);
+ /* ==========================================================================
+    Rotary Circular Logo Image Rotation Animation
+    ========================================================================== */
+ .rotary-rotating-logo {
+   border-radius: 50%;
+   animation: rotaryLogoRotate 20s linear infinite;
+   transform-origin: center center;
+   display: inline-block;
+ }
+
+ @keyframes rotaryLogoRotate {
+   0% {
+     transform: rotate(0deg);
+   }
+
+   100% {
+     transform: rotate(360deg);
+   }
+ }
+
+ /* ==========================================================================
+    Premium Header Brand Typography
+    ========================================================================== */
+ .header-brand-wrap {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   text-align: left;
+   line-height: 1.2;
+   padding-left: 14px;
+   margin-left: 12px;
+   border-left: 1.5px solid rgba(0, 93, 170, 0.18);
+ }
+
+ .header-brand-eyebrow {
+   font-size: 9.5px;
+   font-weight: 800;
+   color: var(--theme-primary);
+   text-transform: uppercase;
+   letter-spacing: 0.16em;
+   display: flex;
+   align-items: center;
+   gap: 5px;
+   margin-bottom: 2px;
+ }
+
+ .header-brand-title {
+   font-size: 16.5px;
+   font-weight: 800;
+   color: #0f172a;
+   letter-spacing: -0.02em;
+   white-space: nowrap;
+   line-height: 1.15;
+ }
+
+ .header-brand-subtitle {
+   font-size: 10px;
+   font-weight: 700;
+   color: var(--theme-primary);
+   text-transform: uppercase;
+   letter-spacing: 0.08em;
+   white-space: nowrap;
+   display: flex;
+   align-items: center;
+   gap: 5px;
+   margin-top: 3px;
+ }
+
+ .header-brand-subtitle .badge-district {
+   color: var(--theme-primary);
+   font-weight: 600;
+ }
+
+ .header-brand-subtitle .badge-country {
+   color: var(--theme-secondary);
+   font-weight: 700;
+ }
+
+ .header-brand-subtitle .badge-sep {
+   color: #cbd5e1;
+   font-size: 8px;
  }
 
  /* Menu Area */

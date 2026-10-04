@@ -344,6 +344,19 @@
         box-shadow: none !important;
         outline: 0 !important;
     }
+
+    /* Admin & Sidebar Rotary Logo Image Rotation Animation */
+    .rotary-rotating-logo {
+        border-radius: 50% !important;
+        animation: rotaryLogoRotate 20s linear infinite !important;
+        transform-origin: center center !important;
+        display: inline-block !important;
+    }
+
+    @keyframes rotaryLogoRotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
 </style>
 
 <!-- Admin SCSS Styles -->
