@@ -80,7 +80,7 @@ class Donor extends Model
         }
         $initials = $initials ?: 'D';
 
-        $bgColors = ['f65024', '03c0a8', '2b59ff', '7c3aed', 'ea580c', '0d9488'];
+        $bgColors = ['005daa', 'ffb81c', '003366', '009bb0', '0284c7'];
         $color = $bgColors[abs(crc32($donorName)) % count($bgColors)];
 
         $svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23{$color}'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-size='38' font-weight='bold'>{$initials}</text></svg>";

@@ -35,7 +35,7 @@
                 <!-- 3. Donate Now Button -->
                 <div class="header-action-box">
                     <a href="{{ route('donate') }}" class="theme-btn btn-one header-donate-btn">
-                        <i class="fas fa-heart"></i> <span>Donate Now</span>
+                        <span>Donate Now</span>
                     </a>
                 </div>
             </div>

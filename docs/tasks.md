@@ -51,9 +51,11 @@
 - [x] **Header & Navigation**
   - [x] Dynamic active link state (`request()->is()`)
   - [x] Update menu names: Home, About Us, Projects & Causes, Activities, Gallery, Contact (Removed unused Blog placeholder to keep focus on core NGO initiatives)
+  - [x] Integrate foundation brand title ("Shanti Nagar Foundation") and tagline ("Humanitarian Welfare Initiative") next to header logo
   - [x] Bangladeshi contact info & helpline (`+880 1700-000000`, Shanti Nagar, Dhaka)
 - [x] **Page Refinements**
   - [x] Remove unrelated "Charity Shops" from `contact.blade.php` and embed responsive Google Maps
+  - [x] Refine Verified Contributors section with right-side humanitarian artwork background (`background/1.jpg`) and textured white background image on donor cards (`background/13.jpg`)
   - [x] Remove foreign marathon/skydive placeholders and convert `events.blade.php` to "Social Activities"
   - [x] Remove placeholder trophy badges from `about.blade.php`
   - [x] Add animated Transparency & Fund Summary counter section to `about.blade.php`
@@ -67,6 +69,7 @@
   - [x] Make all homepage counters (Active Volunteers, Beneficiaries Reached, Relief Initiatives, Verified Donors) 100% dynamic from database models via `HomeController@getImpactStats` and animated jQuery countTo triggers
   - [x] Convert "Our Active Initiatives" to the authentic tabbed 2-column carousel design ("Our Global Causes" layout) with category tabs and navigation controls
   - [x] Make "Verified Contributors" donor pictures & names 100% dynamic from database records with infinite loop carousel
+  - [x] Transform "Verified Contributors" into a textured section inspired by the About section background (13.jpg), with minimalist white donor cards and 3-item carousel navigation
 - [x] **SEO & Metadata Polish**
   - [x] Add dynamic meta titles, descriptions & OpenGraph tags for individual project pages and main layout
 

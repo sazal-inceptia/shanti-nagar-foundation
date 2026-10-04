@@ -205,6 +205,7 @@
         </section>
     @endif
     <!-- urgent-case-section end -->
+     
 
     <!-- case-section -->
     @if(isset($featuredProjects) && $featuredProjects->count() > 0)
@@ -363,44 +364,172 @@
     @endif
     <!-- case-section end -->
 
-    <!-- recent-case-section (Recent Verified Donors) -->
+
+    <!-- recent-case-section (Verified Donors) -->
     @if(isset($recentDonations) && $recentDonations->count() > 0)
-        <section class="recent-case-section">
-            <div class="bg-layer banner-bg-5"></div>
-            <div class="pattern-layer case-shape-12"></div>
+        <section class="recent-case-section" style="background-image: url({{ asset('assets/images/background/1.jpg') }});">
             <div class="auto-container">
-                <div class="inner-box">
-                    <div class="shape case-shape-21"></div>
-                    <div class="inner">
-                        <div class="sec-title centred light">
-                            <span class="top-text">Verified Contributors</span>
-                            <h2>Compassionate Donors Empowering Our Humanitarian Missions</h2>
-                        </div>
-                        <div class="single-item-carousel owl-carousel owl-theme owl-dots-none">
-                            @foreach($recentDonations as $rd)
-                                <div class="single-item">
-                                    <figure class="image-box">
-                                        @if($rd->donor?->avatar_url)
-                                            <img src="{{ $rd->donor->avatar_url }}" alt="{{ $rd->donor->name }}">
-                                        @endif
-                                    </figure>
-                                    <div class="text">
-                                        <h3>{{ $rd->donor?->is_anonymous ? 'Well-wisher (Anonymous)' : $rd->donor?->name }}@if($rd->donor?->city || $rd->donor?->address), <span>{{ $rd->donor->city ?: $rd->donor->address }}</span>@endif</h3>
-                                        @if($rd->project)
-                                            <h6>Contributed ৳{{ number_format((float) $rd->amount) }} for {{ $rd->project->name }}</h6>
-                                        @else
-                                            <h6>Contributed ৳{{ number_format((float) $rd->amount) }}</h6>
-                                        @endif
+                <div class="sec-title centred">
+                    <span class="top-text">Verified Contributors</span>
+                    <h2>Compassionate Donors Empowering Our Humanitarian Missions</h2>
+                    <p>Transparent recognition of our valued well-wishers and patrons driving grassroots humanitarian change.</p>
+                </div>
+
+                <div class="three-item-carousel owl-carousel owl-theme owl-dots-none">
+                    @foreach($recentDonations as $rd)
+                        <div class="donor-clean-card">
+                            <div class="card-inner">
+                                <div class="avatar-wrap">
+                                    <img src="{{ $rd->donor?->avatar_url ?: asset('assets/images/resource/default-donor.png') }}" alt="{{ $rd->donor?->name ?? 'Donor' }}">
+                                    <span class="verified-badge" title="Verified Donation"><i class="fas fa-check"></i></span>
+                                </div>
+                                <h4 class="donor-name" title="{{ $rd->donor?->is_anonymous ? 'Well-wisher (Anonymous)' : $rd->donor?->name }}">
+                                    {{ $rd->donor?->is_anonymous ? 'Well-wisher (Anonymous)' : $rd->donor?->name }}
+                                </h4>
+                                <span class="donor-location">
+                                    <i class="fas fa-map-marker-alt"></i> {{ $rd->donor?->city ?: ($rd->donor?->address ?: 'Dhaka, Bangladesh') }}
+                                </span>
+                                <div class="contribution-box">
+                                    <div class="amount">৳{{ number_format((float) $rd->amount) }}</div>
+                                    <div class="cause" title="{{ $rd->project ? $rd->project->name : 'General Humanitarian Fund' }}">
+                                        {{ $rd->project ? Str::limit($rd->project->name, 35) : 'General Humanitarian Fund' }}
                                     </div>
                                 </div>
-                            @endforeach
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+    <!-- recent-case-section end -->
+
+
+
+    <!-- funfact-section (Community Numbers & Database Counters) -->
+    <section class="funfact-section alternat-2 centred funfact-bg-10">
+        <div class="auto-container">
+            <div class="sec-title light centred">
+                <span class="top-text">Community Numbers & Field Impact</span>
+                <h2>Grassroots Change Driven by Honest Stewardship</h2>
+                <p>Real-time humanitarian statistics directly tallied from our field projects, donor registry, and volunteer network.</p>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
+                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-charity"></i></div>
+                            <div class="count-outer count-box">
+                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['activeVolunteers'] ?? 0) }}">0</span><span>+</span>
+                            </div>
+                            <h4>Active Volunteers</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
+                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="100ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-donation"></i></div>
+                            <div class="count-outer count-box">
+                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['completedDonationsCount'] ?? 0) }}">0</span><span>+</span>
+                            </div>
+                            <h4>Completed Donations</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
+                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="200ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-home"></i></div>
+                            <div class="count-outer count-box">
+                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['totalProjects'] ?? 0) }}">0</span><span>+</span>
+                            </div>
+                            <h4>Relief Initiatives</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
+                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
+                        <div class="inner-box">
+                            <div class="icon-box"><i class="icon-donation-1"></i></div>
+                            <div class="count-outer count-box">
+                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['totalDonors'] ?? 0) }}">0</span><span>+</span>
+                            </div>
+                            <h4>Verified Donors</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- funfact-section end -->
+
+
+    <!-- events-section (Upcoming Activities & Drives) -->
+    @if(isset($upcomingActivities) && $upcomingActivities->count() > 0)
+        <section class="events-section">
+            <div class="pattern-layer event-shape-17"></div>
+            <div class="bg-layer event-bg-7"></div>
+            <div class="auto-container">
+                <div class="inner-container">
+                    <div class="shape event-shape-18"></div>
+                    <div class="row clearfix">
+                        <div class="col-lg-6 col-md-12 col-sm-12 content-column">
+                            <div class="content_block_2">
+                                <div class="content-box">
+                                    <div class="sec-title light">
+                                        <span class="top-text">Our Activities</span>
+                                        <h2>Participate in Our Community Activities</h2>
+                                    </div>
+                                    <div class="text">
+                                        <p>Join our on-ground distribution camps and verification teams as a volunteer or observer across Dhaka and surrounding districts.</p>
+                                        <a href="{{ route('events') }}" class="theme-btn btn-one">All Activities</a>
+                                    </div>
+                                    <div class="sponsors-inner">
+                                        <h3>Coordination Desk:</h3>
+                                        <p class="text-white-50">Shanti Nagar Foundation Central Cell, Dhaka - 1217</p>
+                                        <h6><a href="{{ route('volunteer') }}">Become a Volunteer</a></h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12 inner-column">
+                            <div class="right-column">
+                                @foreach($upcomingActivities as $act)
+                                    @php
+                                        $actDate = $act->start_date ? \Carbon\Carbon::parse($act->start_date) : now();
+                                    @endphp
+                                    <div class="events-block-one wow fadeInRight animated" data-wow-delay="00ms" data-wow-duration="1500ms">
+                                        <div class="inner-box">
+                                            <div class="shape event-shape-20"></div>
+                                            <figure class="image-box">
+                                                @if($act->featured_image)
+                                                    <img src="{{ asset($act->featured_image) }}" alt="{{ $act->name }}">
+                                                @endif
+                                                <h3>{{ $actDate->format('d') }}<span>{{ $actDate->format('M') }}</span></h3>
+                                            </figure>
+                                            <div class="inner">
+                                                <ul class="info clearfix">
+                                                    <li><i class="far fa-clock"></i>10.00 AM</li>
+                                                    @if($act->location)
+                                                        <li><i class="far fa-map"></i>{{ Str::limit($act->location, 16) }}</li>
+                                                    @endif
+                                                </ul>
+                                                <h3><a href="{{ route('event.details', $act->slug) }}">{{ Str::limit($act->name, 45) }}</a></h3>
+                                                <div class="links"><a href="{{ route('event.details', $act->slug) }}">Join & View Details</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     @endif
-    <!-- recent-case-section end -->
+    <!-- events-section end -->
+
 
     <!-- benefits-section -->
     <section class="benefits-section">
@@ -477,130 +606,6 @@
         </div>
     </section>
     <!-- benefits-section end -->
-
-    <!-- events-section (Upcoming Activities & Drives) -->
-    @if(isset($upcomingActivities) && $upcomingActivities->count() > 0)
-        <section class="events-section">
-            <div class="pattern-layer event-shape-17"></div>
-            <div class="bg-layer event-bg-7"></div>
-            <div class="auto-container">
-                <div class="inner-container">
-                    <div class="shape event-shape-18"></div>
-                    <div class="row clearfix">
-                        <div class="col-lg-6 col-md-12 col-sm-12 content-column">
-                            <div class="content_block_2">
-                                <div class="content-box">
-                                    <div class="sec-title light">
-                                        <span class="top-text">Our Activities</span>
-                                        <h2>Participate in Our Community Activities</h2>
-                                    </div>
-                                    <div class="text">
-                                        <p>Join our on-ground distribution camps and verification teams as a volunteer or observer across Dhaka and surrounding districts.</p>
-                                        <a href="{{ route('events') }}" class="theme-btn btn-one">All Activities</a>
-                                    </div>
-                                    <div class="sponsors-inner">
-                                        <h3>Coordination Desk:</h3>
-                                        <p class="text-white-50">Shanti Nagar Foundation Central Cell, Dhaka - 1217</p>
-                                        <h6><a href="{{ route('volunteer') }}">Become a Volunteer</a></h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12 inner-column">
-                            <div class="right-column">
-                                @foreach($upcomingActivities as $act)
-                                    @php
-                                        $actDate = $act->start_date ? \Carbon\Carbon::parse($act->start_date) : now();
-                                    @endphp
-                                    <div class="events-block-one wow fadeInRight animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                                        <div class="inner-box">
-                                            <div class="shape event-shape-20"></div>
-                                            <figure class="image-box">
-                                                @if($act->featured_image)
-                                                    <img src="{{ asset($act->featured_image) }}" alt="{{ $act->name }}">
-                                                @endif
-                                                <h3>{{ $actDate->format('d') }}<span>{{ $actDate->format('M') }}</span></h3>
-                                            </figure>
-                                            <div class="inner">
-                                                <ul class="info clearfix">
-                                                    <li><i class="far fa-clock"></i>10.00 AM</li>
-                                                    @if($act->location)
-                                                        <li><i class="far fa-map"></i>{{ Str::limit($act->location, 16) }}</li>
-                                                    @endif
-                                                </ul>
-                                                <h3><a href="{{ route('event.details', $act->slug) }}">{{ Str::limit($act->name, 45) }}</a></h3>
-                                                <div class="links"><a href="{{ route('event.details', $act->slug) }}">Join & View Details</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    @endif
-    <!-- events-section end -->
-
-
-    <!-- funfact-section (Community Numbers & Database Counters) -->
-    <section class="funfact-section alternat-2 centred funfact-bg-10">
-        <div class="auto-container">
-            <div class="sec-title light centred">
-                <span class="top-text">Community Numbers & Field Impact</span>
-                <h2>Grassroots Change Driven by Honest Stewardship</h2>
-                <p>Real-time humanitarian statistics directly tallied from our field projects, donor registry, and volunteer network.</p>
-            </div>
-            <div class="row clearfix">
-                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
-                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="00ms" data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon-charity"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['activeVolunteers'] ?? 0) }}">0</span><span>+</span>
-                            </div>
-                            <h4>Active Volunteers</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
-                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="100ms" data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon-donation"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['completedDonationsCount'] ?? 0) }}">0</span><span>+</span>
-                            </div>
-                            <h4>Completed Donations</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
-                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="200ms" data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon-home"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['totalProjects'] ?? 0) }}">0</span><span>+</span>
-                            </div>
-                            <h4>Relief Initiatives</h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-12 funfact-block">
-                    <div class="funfact-block-one wow slideInUp animated" data-wow-delay="300ms" data-wow-duration="1500ms">
-                        <div class="inner-box">
-                            <div class="icon-box"><i class="icon-donation-1"></i></div>
-                            <div class="count-outer count-box">
-                                <span class="count-text" data-speed="1500" data-stop="{{ (int) ($stats['totalDonors'] ?? 0) }}">0</span><span>+</span>
-                            </div>
-                            <h4>Verified Donors</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- funfact-section end -->
 
 
 @endsection

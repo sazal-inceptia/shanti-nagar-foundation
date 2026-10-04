@@ -1211,21 +1211,10 @@
     display: none;
   }
 
-  .recent-case-section .inner-box .inner{
-    max-height: 100%;
-    overflow: visible;
-  }
-
-  .recent-case-section .single-item-carousel{
-    height: 185px;
-  }
-
-  .recent-case-section .single-item-carousel .owl-item{
-    opacity: 0;
-  }
-
-  .recent-case-section .single-item-carousel .owl-item.active{
-    opacity: 1;
+  .recent-case-section .three-item-carousel .owl-nav {
+    position: static;
+    justify-content: center;
+    margin-top: 25px;
   }
 
   .case-details .donate-inner{
@@ -1605,10 +1594,6 @@
     display: none;
   }
 
-  .recent-case-section .inner-box{
-    padding-left: 30px;
-    padding-right: 30px;
-  }
 
   .testimonial-block-one .testimonial-thumb{
     left: 160px;
