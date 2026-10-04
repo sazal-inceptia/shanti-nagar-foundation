@@ -146,45 +146,38 @@
                                             <h3>Select Amount (৳ BDT)</h3>
                                             <ul class="donate-list clearfix">
                                                 <li>
-                                                    <input type="radio" id="damt-500" name="preset_amount" value="500"
-                                                        onclick="document.getElementById('custom_amt_input').value='500'">
-                                                    <label for="damt-500">৳ 500</label>
+                                                    <input type="radio" id="damt-500" name="preset_amount" value="500">
+                                                    <label for="damt-500" onclick="setDetailsAmount(500);">৳ 500</label>
                                                 </li>
                                                 <li>
-                                                    <input type="radio" id="damt-1000" name="preset_amount" value="1000"
-                                                        checked="checked"
-                                                        onclick="document.getElementById('custom_amt_input').value='1000'">
-                                                    <label for="damt-1000">৳ 1,000</label>
+                                                    <input type="radio" id="damt-1000" name="preset_amount" value="1000" checked="checked">
+                                                    <label for="damt-1000" onclick="setDetailsAmount(1000);">৳ 1,000</label>
                                                 </li>
                                                 <li>
-                                                    <input type="radio" id="damt-2500" name="preset_amount" value="2500"
-                                                        onclick="document.getElementById('custom_amt_input').value='2500'">
-                                                    <label for="damt-2500">৳ 2,500</label>
+                                                    <input type="radio" id="damt-2500" name="preset_amount" value="2500">
+                                                    <label for="damt-2500" onclick="setDetailsAmount(2500);">৳ 2,500</label>
                                                 </li>
                                                 <li>
-                                                    <input type="radio" id="damt-5000" name="preset_amount" value="5000"
-                                                        onclick="document.getElementById('custom_amt_input').value='5000'">
-                                                    <label for="damt-5000">৳ 5,000</label>
+                                                    <input type="radio" id="damt-5000" name="preset_amount" value="5000">
+                                                    <label for="damt-5000" onclick="setDetailsAmount(5000);">৳ 5,000</label>
                                                 </li>
                                                 <li>
-                                                    <input type="radio" id="damt-10000" name="preset_amount" value="10000"
-                                                        onclick="document.getElementById('custom_amt_input').value='10000'">
-                                                    <label for="damt-10000">৳ 10,000</label>
+                                                    <input type="radio" id="damt-10000" name="preset_amount" value="10000">
+                                                    <label for="damt-10000" onclick="setDetailsAmount(10000);">৳ 10,000</label>
                                                 </li>
                                                 <li>
-                                                    <input type="radio" id="damt-25000" name="preset_amount" value="25000"
-                                                        onclick="document.getElementById('custom_amt_input').value='25000'">
-                                                    <label for="damt-25000">৳ 25,000</label>
+                                                    <input type="radio" id="damt-25000" name="preset_amount" value="25000">
+                                                    <label for="damt-25000" onclick="setDetailsAmount(25000);">৳ 25,000</label>
                                                 </li>
                                             </ul>
                                             <div class="other-amount mt-3">
                                                 <div class="text">
-                                                    <h4>Or Enter Custom Amount (৳)</h4>
+                                                    <h4>Enter Custom Amount (৳)</h4>
                                                     <p>Enter any specific amount in BDT</p>
                                                 </div>
                                                 <div class="amount-box custom-amount-input-box">
                                                     <input type="number" id="custom_amt_input" name="amount" value="1000"
-                                                        min="10" step="1" required class="form-control">
+                                                        min="10" step="1" required class="custom-donate-input">
                                                 </div>
                                             </div>
                                         </div>
@@ -376,3 +369,31 @@
     <!-- case-details end -->
 
 @endsection
+
+@push('custom-script')
+<script>
+    function setDetailsAmount(val) {
+        var input = document.getElementById('custom_amt_input');
+        if (input) {
+            input.value = val;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var customInput = document.getElementById('custom_amt_input');
+        if (customInput) {
+            customInput.addEventListener('input', function () {
+                var currentVal = this.value;
+                var radios = document.querySelectorAll('input[name="preset_amount"]');
+                radios.forEach(function (radio) {
+                    if (radio.value === currentVal) {
+                        radio.checked = true;
+                    } else {
+                        radio.checked = false;
+                    }
+                });
+            });
+        }
+    });
+</script>
+@endpush

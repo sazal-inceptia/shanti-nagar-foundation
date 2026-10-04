@@ -61,7 +61,7 @@
   - [x] Remove unrelated "Charity Shops" from `contact.blade.php` and embed responsive Google Maps
   - [x] Refine Verified Contributors section with right-side humanitarian artwork background (`background/1.jpg`) and textured white background image on donor cards (`background/13.jpg`)
   - [x] Restructure `about.blade.php` to exact leadership hierarchy: (0) Best President Ever highlight, (1) President, Secretary & Treasurer executive triad with tailored speeches and role badges, (2) Board of Directors (BOD via signature `team-block-one` LTR carousel), (3) Other members (via `team-block-one` RTL carousel), (4) Feature section (Mission/Vision), (5) Contribution section, and (6) Report & Fund Summary section
-  - [x] Make `donations.blade.php` render dynamic projects with budget progress bars, BDT amounts, and custom template-styled pagination
+  - [x] Make `donations.blade.php` render a sponsored projects carousel (1 item at a time) with signature initiative branding, followed by gallery-style dynamic Isotope project type filtering, budget progress bars, and custom pagination
   - [x] Connect `events.blade.php` to dynamic project activities with dates, location, and details links
   - [x] Connect `gallery.blade.php` directly to `ProjectImage` with dynamic category isotope filtering, pagination, and lightbox popups
   - [x] **Dynamic Project Details & Live Counters**

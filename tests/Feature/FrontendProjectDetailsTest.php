@@ -149,3 +149,32 @@ test('public donations page filters projects dynamically by project type', funct
     $response->assertSee('Free Community Dialysis Support Test');
     $response->assertSee('Continuous Project');
 });
+
+test('public donations page renders sponsored projects carousel and gallery-style filter buttons', function () {
+    $sigType = ProjectType::firstOrCreate(
+        ['slug' => 'signature-project'],
+        [
+            'name' => 'Signature Project',
+            'badge_color' => '#dc2626',
+            'is_active' => true,
+        ]
+    );
+
+    $sigProject = Project::create([
+        'name' => 'Flagship Orphanage Facility Sponsorship',
+        'slug' => 'flagship-orphanage-facility-sponsorship',
+        'project_type_id' => $sigType->id,
+        'short_description' => 'Flagship patron sponsorship initiative.',
+        'description' => 'Providing full shelter support.',
+        'estimated_cost' => 600000.00,
+        'status' => 'in_progress',
+        'location' => 'Shanti Nagar, Dhaka',
+        'is_published' => true,
+    ]);
+
+    $response = $this->get(route('donations'));
+    $response->assertStatus(200);
+    $response->assertSee('Sponsored');
+    $response->assertSee('Flagship Orphanage Facility Sponsorship');
+    $response->assertSee('Signature Project');
+});

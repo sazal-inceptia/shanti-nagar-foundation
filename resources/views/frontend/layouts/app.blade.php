@@ -70,42 +70,59 @@
                         <div class="row clearfix">
                             <div class="col-lg-6 col-md-12 col-sm-12 donate-column">
                                 <div class="donate-box">
+                                    {{-- Project Selector in Popup --}}
+                                    <div class="form-group mb-4">
+                                        <label class="project-select-label" for="popup-project-select">
+                                            <i class="fas fa-hand-holding-heart text-primary me-1"></i> Target Relief Project / Cause
+                                        </label>
+                                        <div class="select-box">
+                                            <select class="ignore form-select project-select" name="project_id" id="popup-project-select">
+                                                <option value="">General Humanitarian Fund (Where Most Needed)</option>
+                                                @if(isset($siteProjects))
+                                                    @foreach($siteProjects as $prj)
+                                                        <option value="{{ $prj->id }}">{{ $prj->name }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="donate-option">
                                         <h3>Choose Contribution (BDT)</h3>
                                         <ul class="donate-list clearfix">
                                             <li>
                                                 <input type="radio" id="donate-popup-amount-1" name="amount_preset" value="500" />
-                                                <label for="donate-popup-amount-1" onclick="document.getElementById('popup-custom-amount').value = 500;">৳ 500</label>
+                                                <label for="donate-popup-amount-1" onclick="setPopupAmount(500);">৳ 500</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="donate-popup-amount-2" name="amount_preset" value="1000" checked="checked" />
-                                                <label for="donate-popup-amount-2" onclick="document.getElementById('popup-custom-amount').value = 1000;">৳ 1,000</label>
+                                                <label for="donate-popup-amount-2" onclick="setPopupAmount(1000);">৳ 1,000</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="donate-popup-amount-3" name="amount_preset" value="2500" />
-                                                <label for="donate-popup-amount-3" onclick="document.getElementById('popup-custom-amount').value = 2500;">৳ 2,500</label>
+                                                <label for="donate-popup-amount-3" onclick="setPopupAmount(2500);">৳ 2,500</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="donate-popup-amount-4" name="amount_preset" value="5000" />
-                                                <label for="donate-popup-amount-4" onclick="document.getElementById('popup-custom-amount').value = 5000;">৳ 5,000</label>
+                                                <label for="donate-popup-amount-4" onclick="setPopupAmount(5000);">৳ 5,000</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="donate-popup-amount-5" name="amount_preset" value="10000" />
-                                                <label for="donate-popup-amount-5" onclick="document.getElementById('popup-custom-amount').value = 10000;">৳ 10,000</label>
+                                                <label for="donate-popup-amount-5" onclick="setPopupAmount(10000);">৳ 10,000</label>
                                             </li>
                                             <li>
                                                 <input type="radio" id="donate-popup-amount-6" name="amount_preset" value="25000" />
-                                                <label for="donate-popup-amount-6" onclick="document.getElementById('popup-custom-amount').value = 25000;">৳ 25,000</label>
+                                                <label for="donate-popup-amount-6" onclick="setPopupAmount(25000);">৳ 25,000</label>
                                             </li>
                                         </ul>
                                         <div class="other-amount">
                                             <div class="text">
-                                                <h4>Custom Amount</h4>
-                                                <p>Enter your amount in ৳ BDT</p>
+                                                <h4>Enter Custom Amount (৳)</h4>
+                                                <p>Enter any specific amount in BDT</p>
                                             </div>
                                             <div class="amount-box">
                                                 <div class="form-group mb-0">
-                                                    <input type="number" id="popup-custom-amount" name="amount" value="1000" min="10" step="10" required class="popup-custom-amount-input">
+                                                    <input type="number" id="popup-custom-amount" name="amount" value="1000" min="10" step="1" required class="popup-custom-amount-input custom-donate-input">
                                                 </div>
                                             </div>
                                         </div>
@@ -234,6 +251,30 @@
                     toastr.error("{!! addslashes($error) !!}", "Validation Error");
                 @endforeach
             @endif
+        });
+
+        function setPopupAmount(val) {
+            var input = document.getElementById('popup-custom-amount');
+            if (input) {
+                input.value = val;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var customInput = document.getElementById('popup-custom-amount');
+            if (customInput) {
+                customInput.addEventListener('input', function () {
+                    var currentVal = this.value;
+                    var radios = document.querySelectorAll('#donate-popup input[name="amount_preset"]');
+                    radios.forEach(function (radio) {
+                        if (radio.value === currentVal) {
+                            radio.checked = true;
+                        } else {
+                            radio.checked = false;
+                        }
+                    });
+                });
+            }
         });
     </script>
 

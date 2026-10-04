@@ -19,11 +19,11 @@
                         <div class="donate-box donate-box-card">
                             {{-- Project Selector --}}
                             <div class="form-group mb-4">
-                                <label class="project-select-label">
-                                    Target Relief Project / Cause
+                                <label class="project-select-label" for="donate-page-project-select">
+                                    <i class="fas fa-hand-holding-heart text-primary me-1"></i> Target Relief Project / Cause
                                 </label>
                                 <div class="select-box">
-                                    <select class="wide project-select" name="project_id">
+                                    <select class="ignore form-select project-select" name="project_id" id="donate-page-project-select">
                                         <option value="">General Humanitarian Fund (Where Most Needed)</option>
                                         @foreach($projects as $prj)
                                             <option value="{{ $prj->id }}" {{ old('project_id', request('project')) == $prj->id ? 'selected' : '' }}>
@@ -40,36 +40,36 @@
                                 <ul class="donate-list clearfix">
                                     <li>
                                         <input type="radio" id="donate-page-amount-1" name="amount_preset" value="500" />
-                                        <label for="donate-page-amount-1" onclick="document.getElementById('custom-donate-amount').value = 500;">৳ 500</label>
+                                        <label for="donate-page-amount-1" onclick="setDonateAmount(500);">৳ 500</label>
                                     </li>
                                     <li>
                                         <input type="radio" id="donate-page-amount-2" name="amount_preset" value="1000" checked="checked" />
-                                        <label for="donate-page-amount-2" onclick="document.getElementById('custom-donate-amount').value = 1000;">৳ 1,000</label>
+                                        <label for="donate-page-amount-2" onclick="setDonateAmount(1000);">৳ 1,000</label>
                                     </li>
                                     <li>
                                         <input type="radio" id="donate-page-amount-3" name="amount_preset" value="2500" />
-                                        <label for="donate-page-amount-3" onclick="document.getElementById('custom-donate-amount').value = 2500;">৳ 2,500</label>
+                                        <label for="donate-page-amount-3" onclick="setDonateAmount(2500);">৳ 2,500</label>
                                     </li>
                                     <li>
                                         <input type="radio" id="donate-page-amount-4" name="amount_preset" value="5000" />
-                                        <label for="donate-page-amount-4" onclick="document.getElementById('custom-donate-amount').value = 5000;">৳ 5,000</label>
+                                        <label for="donate-page-amount-4" onclick="setDonateAmount(5000);">৳ 5,000</label>
                                     </li>
                                     <li>
                                         <input type="radio" id="donate-page-amount-5" name="amount_preset" value="10000" />
-                                        <label for="donate-page-amount-5" onclick="document.getElementById('custom-donate-amount').value = 10000;">৳ 10,000</label>
+                                        <label for="donate-page-amount-5" onclick="setDonateAmount(10000);">৳ 10,000</label>
                                     </li>
                                     <li>
                                         <input type="radio" id="donate-page-amount-6" name="amount_preset" value="25000" />
-                                        <label for="donate-page-amount-6" onclick="document.getElementById('custom-donate-amount').value = 25000;">৳ 25,000</label>
+                                        <label for="donate-page-amount-6" onclick="setDonateAmount(25000);">৳ 25,000</label>
                                     </li>
                                 </ul>
                                 <div class="other-amount mt-3">
                                     <div class="text">
-                                        <h4>Custom Amount</h4>
-                                        <p>Enter your customized amount in ৳ BDT</p>
+                                        <h4>Enter Custom Amount (৳)</h4>
+                                        <p>Enter any specific amount in BDT</p>
                                     </div>
                                     <div class="amount-box">
-                                        <input type="number" id="custom-donate-amount" name="amount" value="{{ old('amount', 1000) }}" min="10" step="10" required
+                                        <input type="number" id="custom-donate-amount" name="amount" value="{{ old('amount', 1000) }}" min="10" step="1" required
                                             class="custom-donate-input">
                                     </div>
                                 </div>
@@ -179,3 +179,33 @@
 <!-- donation-page-section end -->
 
 @endsection
+
+@push('custom-script')
+<script>
+    function setDonateAmount(val) {
+        var input = document.getElementById('custom-donate-amount');
+        if (input) {
+            input.value = val;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var customInput = document.getElementById('custom-donate-amount');
+        if (customInput) {
+            customInput.addEventListener('input', function () {
+                var currentVal = this.value;
+                var radios = document.querySelectorAll('input[name="amount_preset"]');
+                var matched = false;
+                radios.forEach(function (radio) {
+                    if (radio.value === currentVal) {
+                        radio.checked = true;
+                        matched = true;
+                    } else {
+                        radio.checked = false;
+                    }
+                });
+            });
+        }
+    });
+</script>
+@endpush

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Project;
 use App\Models\Setting;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function ($view) {
             $view->with('siteSettings', Setting::getAll());
+            $view->with('siteProjects', Project::where('is_published', true)->select('id', 'name', 'slug')->get());
         });
     }
 }

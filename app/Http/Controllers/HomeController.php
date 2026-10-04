@@ -233,9 +233,34 @@ class HomeController extends Controller
         }
 
         $projects = $query->orderBy('created_at', 'desc')->paginate(6)->withQueryString();
-        $projectTypes = ProjectType::where('is_active', true)->orderBy('order_index')->get();
 
-        return view('frontend.donations', compact('projects', 'projectTypes', 'selectedType'));
+        $projectTypes = ProjectType::where('is_active', true)
+            ->withCount(['projects' => function ($q) {
+                $q->where('is_published', true);
+            }])
+            ->orderBy('order_index')
+            ->get();
+
+        $sponsoredProjects = Project::where('is_published', true)
+            ->whereHas('projectType', function ($q) {
+                $q->where('slug', 'signature-project');
+            })
+            ->with(['projectType', 'donations', 'expenses'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        if ($sponsoredProjects->isEmpty()) {
+            $sponsoredProjects = Project::where('is_published', true)
+                ->where('status', 'in_progress')
+                ->with(['projectType', 'donations', 'expenses'])
+                ->orderBy('estimated_cost', 'desc')
+                ->take(4)
+                ->get();
+        }
+
+        $totalCausesCount = Project::where('is_published', true)->count();
+
+        return view('frontend.donations', compact('projects', 'projectTypes', 'sponsoredProjects', 'selectedType', 'totalCausesCount'));
     }
 
     public function donationDetails(?string $slug = null): View
