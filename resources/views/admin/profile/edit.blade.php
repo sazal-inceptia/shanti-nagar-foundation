@@ -49,10 +49,10 @@
                                         @if(!empty($user->image) && file_exists(public_path($user->image)))
                                             <img src="{{ asset($user->image) }}" alt="{{ $user->name }}" width="100"
                                                 height="100" class="rounded-circle object-fit-cover shadow-sm"
-                                                style="border: 3px solid #f95716;">
+                                                style="border: 3px solid #005daa;">
                                         @else
                                             <div class="rounded-circle d-flex align-items-center justify-content-center text-white shadow-sm"
-                                                style="width: 100px; height: 100px; background-color: #f95716; font-size: 38px; font-weight: 700;">
+                                                style="width: 100px; height: 100px; background-color: #005daa; font-size: 38px; font-weight: 700;">
                                                 {{ strtoupper(substr($user->name ?? 'A', 0, 1)) }}
                                             </div>
                                         @endif
@@ -63,7 +63,7 @@
 
                                     <div class="d-flex justify-content-center gap-2 mb-3">
                                         <span class="badge"
-                                            style="background-color: #fff3ee; color: #f95716; border: 1px solid rgba(249, 87, 22, 0.3); font-size: 11px; padding: 4px 10px; font-weight: 600;">
+                                            style="background-color: #e8f1f8; color: #005daa; border: 1px solid rgba(0, 93, 170, 0.3); font-size: 11px; padding: 4px 10px; font-weight: 600;">
                                             {{ ucwords(str_replace('-', ' ', $user->role ?? 'Administrator')) }}
                                         </span>
                                         <span class="badge"

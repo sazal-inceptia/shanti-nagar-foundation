@@ -1,4 +1,4 @@
-# Shanti Nagar Foundation — Project Architecture
+# Rotary Club of Shantinagar Dhaka — Project Architecture
 
 ## 1. System Architecture Overview
 

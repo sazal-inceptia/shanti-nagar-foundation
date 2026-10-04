@@ -230,11 +230,11 @@
                                     reader.readAsDataURL(file);
                                 } else {
                                     var iconClass = getFileIconClass(file.name);
-                                    col.innerHTML = '<div class="multi-doc-card d-flex align-items-center justify-content-between p-2 rounded border bg-white shadow-sm" style="border-color: #f95716 !important;">'
+                                    col.innerHTML = '<div class="multi-doc-card d-flex align-items-center justify-content-between p-2 rounded border bg-white shadow-sm" style="border-color: #005daa !important;">'
                                         + '<div class="d-flex align-items-center text-truncate me-2">'
                                         + '<i class="' + iconClass + ' me-2" style="font-size: 22px;"></i>'
                                         + '<div class="text-truncate"><span class="d-block fw-semibold text-dark text-truncate" style="font-size: 12px;" title="' + file.name + '">' + file.name + '</span>'
-                                        + '<span class="badge" style="background:rgba(249,87,22,0.1);color:#f95716;font-size:10px;">New &middot; ' + fmtBytes(file.size) + '</span></div></div>'
+                                        + '<span class="badge" style="background:rgba(0,93,170,0.1);color:#005daa;font-size:10px;">New &middot; ' + fmtBytes(file.size) + '</span></div></div>'
                                         + '<button type="button" class="btn btn-sm btn-outline-danger p-0 multi-applied-rm flex-shrink-0" data-idx="' + idx + '" data-iid="' + iid + '" style="width: 26px; height: 26px; line-height: 1;" title="Remove"><i class="ri-delete-bin-line" style="font-size: 13px;"></i></button>'
                                         + '</div>';
                                 }

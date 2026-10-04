@@ -1,6 +1,6 @@
 @extends('admin.app')
 @section('title')
-    Official Financial Audit Statement &mdash; Shanti Nagar Foundation
+    Official Financial Audit Statement &mdash; Rotary Club of Shantinagar Dhaka
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
                     <div class="card-header table-header d-flex justify-content-between align-items-center flex-wrap gap-2 py-3" style="background: #ffffff; border-bottom: 1px solid #f1f5f9;">
                         <div class="title-with-breadcrumb">
                             <div class="d-flex align-items-center gap-2">
-                                <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background: rgba(246, 80, 36, 0.1); color: #f65024;">
+                                <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background: rgba(0, 93, 170, 0.1); color: #f65024;">
                                     <i class="ri-printer-line" style="font-size: 20px;"></i>
                                 </div>
                                 <div>
@@ -37,7 +37,7 @@
                                 <i class="ri-download-2-line"></i> Export CSV
                             </a>
                             <button type="button" onclick="window.print();" class="btn btn-sm d-inline-flex align-items-center gap-1 px-3 py-2 text-white"
-                                style="background: linear-gradient(135deg, #f65024 0%, #ea580c 100%); border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 4px 12px rgba(246, 80, 36, 0.25); border: none;">
+                                style="background: linear-gradient(135deg, #f65024 0%, #ea580c 100%); border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 4px 12px rgba(0, 93, 170, 0.25); border: none;">
                                 <i class="ri-printer-line"></i> Print Statement
                             </button>
                         </div>
@@ -59,8 +59,8 @@
                                     <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
                                 </div>
                                 <div>
-                                    <h3 class="fw-bold mb-0 statement-ngo-title" style="color: #0b0f17; letter-spacing: -0.02em; font-size: 20px;">SHANTI NAGAR FOUNDATION</h3>
-                                    <p class="text-muted mb-0" style="font-size: 12.5px; font-weight: 500;">Santi Nagar Association &bull; Reg No: DHK-NGO-88219</p>
+                                    <h3 class="fw-bold mb-0 statement-ngo-title" style="color: #0b0f17; letter-spacing: -0.02em; font-size: 20px;">ROTARY CLUB OF SHANTINAGAR DHAKA</h3>
+                                    <p class="text-muted mb-0" style="font-size: 12.5px; font-weight: 500;">Rotary Club of Shantinagar Dhaka &bull; Reg No: DHK-NGO-88219</p>
                                     <p class="text-muted mb-0" style="font-size: 11.5px;">Shanti Nagar, Kakrail, Dhaka-1217, Bangladesh | Helpline: +880 1700-000000</p>
                                 </div>
                             </div>
@@ -215,7 +215,7 @@
                                 </span>
                             </div>
                             <div class="text-muted" style="font-size: 11px; font-style: italic;">
-                                Official Financial Statement &bull; Shanti Nagar Foundation
+                                Official Financial Statement &bull; Rotary Club of Shantinagar Dhaka
                             </div>
                         </div>
 
@@ -244,7 +244,7 @@
                         {{-- Official Statement Footer Note --}}
                         <div class="mt-4 pt-2 border-top text-center receipt-footer-note" style="font-size: 11px; color: #64748b;">
                             <p class="mb-0">
-                                <strong>Shanti Nagar Foundation (Santi Nagar Association)</strong> &bull; All accounts, donations, and vouchers are audited and maintained under the NGO Affairs Bureau regulations.
+                                <strong>Rotary Club of Shantinagar Dhaka</strong> &bull; All accounts, donations, and vouchers are audited and maintained under the NGO Affairs Bureau regulations.
                             </p>
                         </div>
                     </div>

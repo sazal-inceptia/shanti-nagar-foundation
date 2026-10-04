@@ -27,7 +27,7 @@
                             <a href="{{ route('admin.donations.edit', $donation->id) }}" class="add-new" style="background-color: #f1f5f9; color: #334155; border: 1px solid #e2e8f0;">
                                 <i class="ri-edit-line me-1"></i> Edit Receipt
                             </a>
-                            <button type="button" onclick="window.print();" class="add-new" style="background-color: #f65024; color: #fff; border: none; cursor: pointer;">
+                            <button type="button" onclick="window.print();" class="add-new" style="background-color: #005daa; color: #fff; border: none; cursor: pointer;">
                                 <i class="ri-printer-line me-1"></i> Print Receipt
                             </button>
                         </div>
@@ -49,13 +49,13 @@
                                     <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
                                 </div>
                                 <div>
-                                    <h3 class="fw-bold mb-0" style="color: #0b0f17; letter-spacing: -0.02em; font-size: 22px;">SHANTI NAGAR FOUNDATION</h3>
-                                    <p class="text-muted mb-0" style="font-size: 13px; font-weight: 500;">Santi Nagar Association &bull; Reg No: DHK-NGO-88219</p>
+                                    <h3 class="fw-bold mb-0" style="color: #0b0f17; letter-spacing: -0.02em; font-size: 22px;">ROTARY CLUB OF SHANTINAGAR DHAKA</h3>
+                                    <p class="text-muted mb-0" style="font-size: 13px; font-weight: 500;">Rotary Club of Shantinagar Dhaka &bull; Reg No: DHK-NGO-88219</p>
                                     <p class="text-muted mb-0" style="font-size: 12px;">Shanti Nagar, Kakrail, Dhaka-1217, Bangladesh | Helpline: +880 1700-000000</p>
                                 </div>
                             </div>
                             <div class="text-end flex-shrink-0">
-                                <span class="badge" style="background-color: #fff3ee; color: #f65024; border: 1px solid rgba(246, 80, 36, 0.35); font-size: 13px; padding: 6px 14px; border-radius: 6px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
+                                <span class="badge" style="background-color: #fff3ee; color: #f65024; border: 1px solid rgba(0, 93, 170, 0.35); font-size: 13px; padding: 6px 14px; border-radius: 6px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
                                     OFFICIAL MONEY RECEIPT
                                 </span>
                                 <div class="mt-2 text-muted" style="font-size: 12.5px;">
@@ -211,7 +211,7 @@
                         {{-- Official Receipt Bottom Note --}}
                         <div class="mt-5 pt-3 border-top text-center receipt-footer-note" style="font-size: 11.5px; color: #64748b;">
                             <p class="mb-0">
-                                <strong>Shanti Nagar Foundation (Santi Nagar Association)</strong> &bull; All donations are utilized strictly for registered humanitarian relief and social welfare programs.
+                                <strong>Rotary Club of Shantinagar Dhaka</strong> &bull; All donations are utilized strictly for registered humanitarian relief and social welfare programs.
                             </p>
                         </div>
                     </div>

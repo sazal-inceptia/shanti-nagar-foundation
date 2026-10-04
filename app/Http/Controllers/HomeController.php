@@ -446,7 +446,7 @@ class HomeController extends Controller
 
         $successMsg = ! empty($validated['event_name'])
             ? "Thank you for registering to volunteer for {$validated['event_name']}! Our team will contact you shortly."
-            : 'Thank you for registering as a volunteer with Shanti Nagar Foundation! We will review your application soon.';
+            : 'Thank you for registering as a volunteer with Rotary Club of Shantinagar Dhaka! We will review your application soon.';
 
         return redirect()->back()->with('success', $successMsg);
     }

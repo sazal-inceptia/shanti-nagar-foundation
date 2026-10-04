@@ -56,7 +56,7 @@ test('authenticated admin can view system settings page', function () {
 
     $response->assertStatus(200);
     $response->assertSee('System &amp; Organization Settings', false);
-    $response->assertSee('Shanti Nagar Foundation');
+    $response->assertSee('Rotary Club of Shantinagar Dhaka');
 });
 
 test('authenticated admin can update system settings and see changes on public pages', function () {
@@ -65,12 +65,12 @@ test('authenticated admin can update system settings and see changes on public p
     $response = $this->actingAs($admin)->put(route('admin.settings.update'), [
         'org_name' => 'Shanti Nagar Relief Foundation',
         'hotline' => '+880 1999-888777',
-        'email' => 'help@shantinagar.org',
+        'email' => 'help@rotaryshantinagardhaka.org',
         'address' => 'House 99, Shanti Nagar, Dhaka',
         'bkash_number' => '+880 1999-112233',
         'nagad_number' => '+880 1999-445566',
         'bank_name' => 'Islami Bank Limited',
-        'bank_account_name' => 'Shanti Nagar Foundation',
+        'bank_account_name' => 'Rotary Club of Shantinagar Dhaka',
         'bank_account_number' => '9999 8888 7777 6666',
         'bank_branch' => 'Kakrail Branch, Dhaka',
         'currency' => 'BDT (৳)',
@@ -83,5 +83,5 @@ test('authenticated admin can update system settings and see changes on public p
     $publicResponse = $this->get(route('contact'));
     $publicResponse->assertStatus(200);
     $publicResponse->assertSee('+880 1999-888777');
-    $publicResponse->assertSee('help@shantinagar.org');
+    $publicResponse->assertSee('help@rotaryshantinagardhaka.org');
 });

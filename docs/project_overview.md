@@ -1,6 +1,6 @@
-### Santi Nagar Association — Project Overview
+### Rotary Club of Shantinagar Dhaka — Project Overview
 
-**Santi Nagar Association** একটি **non-profit foundation/organization**। সংগঠনটির মূল উদ্দেশ্য হলো বিভিন্ন **donor/donation** থেকে পাওয়া অর্থ ব্যবহার করে অসহায় মানুষ ও বিভিন্ন সামাজিক প্রতিষ্ঠানে সহায়তা করা।
+**Rotary Club of Shantinagar Dhaka** একটি **non-profit foundation/organization**। সংগঠনটির মূল উদ্দেশ্য হলো বিভিন্ন **donor/donation** থেকে পাওয়া অর্থ ব্যবহার করে অসহায় মানুষ ও বিভিন্ন সামাজিক প্রতিষ্ঠানে সহায়তা করা।
 
 ### 1. Donation Management
 * বিভিন্ন donor সংগঠনটিকে অর্থ প্রদান করবেন।
@@ -82,4 +82,4 @@ Admin/authorized users-এর জন্য একটি dashboard থাকব�
 **Donor → Donation → Organization Fund → Project / Assistance → Expense → Documentation → Report**
 অর্থাৎ, একজন donor কত টাকা দিয়েছেন → সেই টাকা কোন project-এর জন্য ব্যবহার হয়েছে → project-এ কত খরচ হয়েছে → project-এর ছবি/ডকুমেন্টেশন → সবশেষে financial report—পুরো flow-টি system-এর মাধ্যমে track করা যাবে।
 
-**মূল লক্ষ্য:** একটি centralized system তৈরি করা, যেখানে Santi Nagar Association-এর **donation, social projects, expenses, employee salaries এবং overall financial activities** সুন্দরভাবে সংরক্ষণ ও পরিচালনা করা যাবে।
+**মূল লক্ষ্য:** একটি centralized system তৈরি করা, যেখানে Rotary Club of Shantinagar Dhaka-এর **donation, social projects, expenses, employee salaries এবং overall financial activities** সুন্দরভাবে সংরক্ষণ ও পরিচালনা করা যাবে।

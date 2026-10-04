@@ -8,7 +8,7 @@
         <div class="donate-content">
             <div class="sec-title centred">
                 <span class="top-text">Support Our Humanity Causes</span>
-                <h2>Make Your Donation to Shanti Nagar Foundation</h2>
+                <h2>Make Your Donation to Rotary Club of Shantinagar Dhaka</h2>
                 <p>Every single Taka you contribute reaches genuine underprivileged families across Bangladesh.</p>
             </div>
             <form action="{{ route('donate.submit') }}" method="post" class="default-form">
@@ -113,7 +113,7 @@
                                         <strong class="text-dark">Nagad (Merchant):</strong> {{ $siteSettings['nagad_number'] ?? '+880 1811-556677' }}
                                     </div>
                                     <div class="text-muted">
-                                        <strong class="text-dark">Bank Wire:</strong> {{ $siteSettings['bank_name'] ?? 'Islami Bank Bangladesh Ltd' }} &bull; A/C: {{ $siteSettings['bank_account_number'] ?? '2050 3820 1000 8941' }} ({{ $siteSettings['bank_account_name'] ?? 'Shanti Nagar Foundation Bangladesh' }})
+                                        <strong class="text-dark">Bank Wire:</strong> {{ $siteSettings['bank_name'] ?? 'Islami Bank Bangladesh Ltd' }} &bull; A/C: {{ $siteSettings['bank_account_number'] ?? '2050 3820 1000 8941' }} ({{ $siteSettings['bank_account_name'] ?? 'Rotary Club of Shantinagar Dhaka' }})
                                     </div>
                                 </div>
                             </div>

@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'admin@gmail.com'],
             [
-                'name' => 'Admin - Shanti Nagar Foundation',
+                'name' => 'Admin - Rotary Club of Shantinagar Dhaka',
                 'email' => 'admin@gmail.com',
                 'role' => 'admin',
                 'password' => Hash::make('password'),
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'admin2@gmail.com'],
             [
-                'name' => 'Secondary Admin - Shanti Nagar Foundation',
+                'name' => 'Secondary Admin - Rotary Club of Shantinagar Dhaka',
                 'email' => 'admin2@gmail.com',
                 'role' => 'admin',
                 'password' => Hash::make('password'),

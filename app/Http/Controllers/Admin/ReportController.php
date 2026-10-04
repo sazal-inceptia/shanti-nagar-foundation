@@ -93,7 +93,7 @@ class ReportController extends Controller
             fwrite($handle, "\xEF\xBB\xBF");
 
             // Header Section
-            fputcsv($handle, ['SHANTI NAGAR FOUNDATION / SANTI NAGAR ASSOCIATION']);
+            fputcsv($handle, ['ROTARY CLUB OF SHANTINAGAR DHAKA']);
             fputcsv($handle, ['FINANCIAL AUDIT STATEMENT & LEDGER EXPORT']);
             fputcsv($handle, ['Generated Date', date('Y-m-d H:i:s')]);
             fputcsv($handle, ['Filter Period', ($startDate ?: 'All Time').' to '.($endDate ?: 'Present')]);

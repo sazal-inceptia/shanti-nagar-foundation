@@ -7,7 +7,7 @@
                         <div class="title-box">
                             <div class="icon-box"><i class="icon-hand"></i></div>
                             <span>Grassroots Initiative</span>
-                            <h3>{{ $siteSettings['org_name'] ?? 'Shanti Nagar Foundation' }}</h3>
+                            <h3>{{ $siteSettings['org_name'] ?? 'Rotary Club of Shantinagar Dhaka' }}</h3>
                         </div>
                         <div class="text">
                             <p>{{ $siteSettings['tagline'] ?? 'Connecting compassionate donors directly with verified humanitarian relief, hospital equipment aid, pure water wells, and orphan welfare across Bangladesh with 100% financial transparency.' }}</p>
@@ -59,7 +59,7 @@
                         <div class="widget-content">
                             <div class="single-item">
                                 <h3><a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings['hotline'] ?? '+8801711000000') }}">{{ $siteSettings['hotline'] ?? '+880 1711-000000' }}</a></h3>
-                                <p><a href="mailto:{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}">{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}</a>
+                                <p><a href="mailto:{{ $siteSettings['email'] ?? 'contact@rotaryshantinagardhaka.org' }}">{{ $siteSettings['email'] ?? 'contact@rotaryshantinagardhaka.org' }}</a>
                                 </p>
                             </div>
                             <div class="single-item">
@@ -76,7 +76,7 @@
         <div class="auto-container">
             <div class="inner-box clearfix">
                 <div class="copyright pull-left">
-                    <p>&copy; {{ date('Y') }} <a href="{{ route('home') }}">{{ $siteSettings['org_name'] ?? 'Shanti Nagar Foundation' }}</a>. All Rights
+                    <p>&copy; {{ date('Y') }} <a href="{{ route('home') }}">{{ $siteSettings['org_name'] ?? 'Rotary Club of Shantinagar Dhaka' }}</a>. All Rights
                         Reserved.</p>
                 </div>
                 <ul class="footer-card pull-right clearfix">

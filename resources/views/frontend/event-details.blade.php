@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', $activity->name . ' — Shanti Nagar Foundation')
+@section('title', $activity->name . ' — Rotary Club of Shantinagar Dhaka')
 @section('meta_description', Str::limit($activity->short_description ?: $activity->description, 160))
 @section('meta_image', asset($activity->featured_image))
 
@@ -73,7 +73,7 @@
                                     <p class="lead fw-semibold text-dark mb-3">{{ $activity->short_description }}</p>
                                 @endif
                                 <div class="event-desc-text">
-                                    {!! nl2br(e($activity->description ?: 'Shanti Nagar Foundation conducts regular field visits, health camps, winter relief distributions, and community welfare initiatives across Bangladesh.')) !!}
+                                    {!! nl2br(e($activity->description ?: 'Rotary Club of Shantinagar Dhaka conducts regular field visits, health camps, winter relief distributions, and community welfare initiatives across Bangladesh.')) !!}
                                 </div>
                                 <p class="mt-3">Under this initiative, our local committee coordinates direct procurement and distribution to ensure 100% transparency and accurate beneficiary reach without intermediaries.</p>
                             </div>
@@ -237,7 +237,7 @@
                                         <div class="event-organizer p-4 border rounded bg-white shadow-sm">
                                             <h4 class="fw-bold mb-3">Event Coordination Office</h4>
                                             <ul class="list-unstyled mb-0 event-office-list">
-                                                <li><strong>Organization:</strong> Shanti Nagar Foundation</li>
+                                                <li><strong>Organization:</strong> Rotary Club of Shantinagar Dhaka</li>
                                                 <li><strong>Phone:</strong> <a href="tel:+8801700000000" class="text-decoration-none text-muted">+880 1700-000000</a></li>
                                                 <li><strong>Email:</strong> <a href="mailto:info@shantinagarfoundation.org" class="text-decoration-none text-muted">info@shantinagarfoundation.org</a></li>
                                                 <li><strong>Location:</strong> Shanti Nagar, Dhaka - 1217, Bangladesh</li>

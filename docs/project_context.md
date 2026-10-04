@@ -1,7 +1,7 @@
-# Shanti Nagar Foundation — Project Context & Roadmap
+# Rotary Club of Shantinagar Dhaka — Project Context & Roadmap
 
 ## 1. Organization & Client Identity
-- **Full Legal / Brand Name:** Shanti Nagar Foundation (পরিচালনায়: Santi Nagar Association)
+- **Full Legal / Brand Name:** Rotary Club of Shantinagar Dhaka
 - **Domain Focus:** Grassroots Non-Profit NGO & Social Welfare Foundation (Bangladesh)
 - **Primary Operational Areas:** Shanti Nagar & Kakrail (Dhaka), Rangpur/Kurigram (Winter Relief), Sunamganj/Feni/Noakhali (Flood Relief & Safe Water).
 - **Core Currency & Locale:** Bangladeshi Taka (৳ / BDT), Phone: `+880 1700-000000`, Email: `info@shantinagarfoundation.org`, Address: `House 14, Road 3, Shanti Nagar, Dhaka - 1217, Bangladesh`.

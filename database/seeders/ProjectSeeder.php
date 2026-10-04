@@ -21,7 +21,7 @@ class ProjectSeeder extends Seeder
                 'slug' => 'hospital-equipment-fan-donation-drive',
                 'project_type_id' => $typeMap['signature-project'] ?? null,
                 'short_description' => 'Providing high-speed ceiling fans and emergency patient monitors to government rural healthcare complexes.',
-                'description' => 'Shanti Nagar Foundation identified severe lack of cooling and basic patient support in local hospital wards. Under this project, 50 heavy-duty ceiling fans and basic patient monitoring equipment were supplied and installed in general wards to ensure patient comfort.',
+                'description' => 'Rotary Club of Shantinagar Dhaka identified severe lack of cooling and basic patient support in local hospital wards. Under this project, 50 heavy-duty ceiling fans and basic patient monitoring equipment were supplied and installed in general wards to ensure patient comfort.',
                 'estimated_cost' => 150000.00,
                 'total_expense' => 142000.00,
                 'start_date' => now()->addDays(15),

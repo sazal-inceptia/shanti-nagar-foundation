@@ -155,7 +155,7 @@
                                     </p>
                                     <div class="row g-2">
                                         <div class="col-6">
-                                            <button type="submit" class="btn submit-button w-100" style="background-color: #f65024; color: #fff; border-radius: 6px; font-weight: 600; height: 38px;">
+                                            <button type="submit" class="btn submit-button w-100" style="background-color: #005daa; color: #fff; border-radius: 6px; font-weight: 600; height: 38px;">
                                                 <i class="ri-check-line me-1"></i> Save Voucher
                                             </button>
                                         </div>

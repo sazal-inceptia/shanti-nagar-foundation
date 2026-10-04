@@ -285,7 +285,7 @@
                             $('#modal_vol_demographics').text(data.gender + ' • ' + data.age_group);
                             $('#modal_vol_address').text(data.address);
                             $('#modal_vol_notes').text(data.notes);
-                            $('#modal_vol_mail_btn').attr('href', 'mailto:' + data.email + '?subject=' + encodeURIComponent('Volunteer Onboarding - Shanti Nagar Foundation'));
+                            $('#modal_vol_mail_btn').attr('href', 'mailto:' + data.email + '?subject=' + encodeURIComponent('Volunteer Onboarding - Rotary Club of Shantinagar Dhaka'));
 
                             updateModalStatusUi(data.status);
                         }

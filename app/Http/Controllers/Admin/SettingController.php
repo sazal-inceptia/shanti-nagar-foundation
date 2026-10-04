@@ -18,15 +18,15 @@ class SettingController extends Controller
         $dbSettings = Setting::getAll();
 
         $defaults = [
-            'org_name' => 'Shanti Nagar Foundation',
+            'org_name' => 'Rotary Club of Shantinagar Dhaka',
             'tagline' => 'Dedicated to grassroots humanitarian relief, healthcare aid, and community empowerment in Bangladesh.',
             'hotline' => '+880 1711-000000',
-            'email' => 'contact@shantinagar.org',
+            'email' => 'contact@rotaryshantinagardhaka.org',
             'address' => 'House 12, Road 5, Shanti Nagar, Dhaka-1217, Bangladesh',
             'bkash_number' => '+880 1711-223344 (Merchant)',
             'nagad_number' => '+880 1811-556677 (Merchant)',
             'bank_name' => 'Islami Bank Bangladesh Ltd / City Bank',
-            'bank_account_name' => 'Shanti Nagar Foundation Bangladesh',
+            'bank_account_name' => 'Rotary Club of Shantinagar Dhaka',
             'bank_account_number' => '2050 3820 1000 8941',
             'bank_branch' => 'Shanti Nagar Branch, Dhaka',
             'currency' => 'BDT (৳)',

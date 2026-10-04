@@ -83,7 +83,7 @@
                                 <div class="col-md-6 col-12">
                                     <label for="email" class="form-label custom-label">Email Address</label>
                                     <input type="email" class="form-control custom-input @error('email') is-invalid @enderror"
-                                        name="email" id="email" value="{{ old('email', $employee->email) }}" placeholder="e.g. staff@shantinagar.org">
+                                        name="email" id="email" value="{{ old('email', $employee->email) }}" placeholder="e.g. staff@rotaryshantinagardhaka.org">
                                     @error('email')
                                         <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
                                     @enderror
@@ -172,7 +172,7 @@
                                     </p>
                                     <div class="row g-2">
                                         <div class="col-6">
-                                            <button type="submit" class="btn submit-button w-100" style="background-color: #f65024; color: #fff; border-radius: 6px; font-weight: 600; height: 38px;">
+                                            <button type="submit" class="btn submit-button w-100" style="background-color: #005daa; color: #fff; border-radius: 6px; font-weight: 600; height: 38px;">
                                                 <i class="ri-check-line me-1"></i> Update Staff
                                             </button>
                                         </div>

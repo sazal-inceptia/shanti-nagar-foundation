@@ -27,7 +27,7 @@ test('authenticated admin can create a new staff employee', function () {
         'name' => 'Md. Faruk Ahmed',
         'designation_id' => $designation->id,
         'phone' => '+880 1711 000111',
-        'email' => 'faruk.relief@shantinagar.org',
+        'email' => 'faruk.relief@rotaryshantinagardhaka.org',
         'nid_number' => '19902692518000999',
         'joining_date' => now()->format('Y-m-d'),
         'base_salary' => '32000.00',

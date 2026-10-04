@@ -76,7 +76,7 @@
             <div class="modal-header" style="background-color: #f8fafc; border-bottom: 1px solid #e2e8f0;">
                 <div class="d-flex align-items-center gap-2">
                     <div class="rounded-circle d-flex align-items-center justify-content-center text-white flex-shrink-0"
-                        style="width: 34px; height: 34px; background-color: #f95716;">
+                        style="width: 34px; height: 34px; background-color: #005daa;">
                         <i class="{{ $icon }}" style="font-size: 18px;"></i>
                     </div>
                     <div>
@@ -215,7 +215,7 @@
                 </button>
                 <button type="button" class="btn btn-primary btn-sm px-4 btn-modal-apply"
                     id="modalApplyBtn_{{ $domId }}" data-dom-id="{{ $domId }}"
-                    style="height: 36px; font-weight: 600; background-color: #f95716; border-color: #f95716;" disabled>
+                    style="height: 36px; font-weight: 600; background-color: #005daa; border-color: #005daa;" disabled>
                     <i class="{{ $isMultiple ? 'ri-check-double-line' : 'ri-check-line' }} me-1"></i>
                     {{ $applyBtnText }}
                 </button>

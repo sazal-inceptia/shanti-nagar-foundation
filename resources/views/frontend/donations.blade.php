@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Donation Campaigns & Projects — Shanti Nagar Foundation')
+@section('title', 'Donation Campaigns & Projects — Rotary Club of Shantinagar Dhaka')
 
 @section('content')
 

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', $project->name . ' — Shanti Nagar Foundation')
+@section('title', $project->name . ' — Rotary Club of Shantinagar Dhaka')
 @section('meta_description', Str::limit($project->short_description ?: $project->description, 160))
 @section('meta_image', asset($project->featured_image ?: 'assets/images/logo.png'))
 
@@ -103,7 +103,7 @@
                                         <p class="lead project-lead">{{ $project->short_description }}</p>
                                     @endif
                                     <div class="project-desc">
-                                        {!! nl2br(e($project->description ?: 'Shanti Nagar Foundation is dedicated to delivering transparent humanitarian relief, healthcare support, and social empowerment across Bangladesh. Every contribution directly funds verified on-the-ground initiatives without intermediaries.')) !!}
+                                        {!! nl2br(e($project->description ?: 'Rotary Club of Shantinagar Dhaka is dedicated to delivering transparent humanitarian relief, healthcare support, and social empowerment across Bangladesh. Every contribution directly funds verified on-the-ground initiatives without intermediaries.')) !!}
                                     </div>
                                 </div>
                             </div>

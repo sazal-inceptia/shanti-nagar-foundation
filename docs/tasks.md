@@ -1,4 +1,4 @@
-# Shanti Nagar Foundation — Project Tasks & Progress Tracker
+# Rotary Club of Shantinagar Dhaka — Project Tasks & Progress Tracker
 
 > **Status Legend:**
 > - [x] **Completed** (Done & Verified)
@@ -55,7 +55,7 @@
 - [x] **Header & Navigation**
   - [x] Dynamic active link state (`request()->is()`)
   - [x] Update menu names: Home, About Us, Projects & Causes, Activities, Gallery, Contact (Removed unused Blog placeholder to keep focus on core NGO initiatives)
-  - [x] Integrate foundation brand title ("Shanti Nagar Foundation") and tagline ("Humanitarian Welfare Initiative") next to header logo
+  - [x] Integrate foundation brand title ("Rotary Club of Shantinagar Dhaka") and tagline ("Humanitarian Welfare Initiative") next to header logo
   - [x] Bangladeshi contact info & helpline (`+880 1700-000000`, Shanti Nagar, Dhaka)
 - [x] **Page Refinements**
   - [x] Remove unrelated "Charity Shops" from `contact.blade.php` and embed responsive Google Maps
@@ -117,6 +117,8 @@
   - [x] Project-wise financial performance balance sheet (Target Budget, Raised, Expensed, Balance, Progress %)
   - [x] Official printable Financial Audit Statement (`admin/reports/statement.blade.php`) with borderless print layout & 3-column signature block
   - [x] CSV / Excel export functionality for auditing
+- [x] **Admin Theme & Visual Identity Harmonization**
+  - [x] Synchronized admin panel & dashboard theme palette with website primary identity (`#005daa` Royal Blue, `#004c8c` hover, `#e8f1f8` tint, and `#003366` dark) across SCSS variables, DataTables, Select2, modals, auth pages, and UI components
 - [x] **Admin Profile & System Settings Management**
   - [x] Profile Management with photo upload, NID/phone info, and password change security
   - [x] Organization & System Settings view for hotline, emails, merchant accounts, bank info

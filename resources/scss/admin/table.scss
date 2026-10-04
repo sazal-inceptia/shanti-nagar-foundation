@@ -43,7 +43,7 @@ div.dataTables_wrapper {
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
             &:focus {
-                border-color: #f95716 !important;
+                border-color: #005daa !important;
                 box-shadow: none !important;
                 outline: none !important;
             }
@@ -74,7 +74,7 @@ div.dataTables_wrapper {
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
             &:focus {
-                border-color: #f95716 !important;
+                border-color: #005daa !important;
                 box-shadow: none !important;
                 outline: none !important;
             }
@@ -110,10 +110,10 @@ div.dataTables_wrapper {
             }
 
             &.current {
-                background: #f95716 !important;
+                background: #005daa !important;
                 color: #ffffff !important;
-                border-color: #f95716 !important;
-                box-shadow: 0 2px 6px rgba(249, 87, 22, 0.25) !important;
+                border-color: #005daa !important;
+                box-shadow: 0 2px 6px rgba(0, 93, 170, 0.25) !important;
             }
 
             &.disabled {
@@ -136,7 +136,7 @@ div.dataTables_wrapper {
         border: 1px solid #e2e8f0 !important;
         border-radius: 8px !important;
         box-shadow: 0 4px 12px rgba(11, 15, 23, 0.08) !important;
-        color: #f95716 !important;
+        color: #005daa !important;
         font-weight: 600 !important;
     }
 
@@ -385,15 +385,15 @@ table.dataTable {
                 }
 
                 .btn-edit {
-                    color: #f95716;
-                    background-color: rgba(249, 87, 22, 0.1);
-                    border: 1px solid rgba(249, 87, 22, 0.2);
+                    color: #005daa;
+                    background-color: rgba(0, 93, 170, 0.1);
+                    border: 1px solid rgba(0, 93, 170, 0.2);
 
                     &:hover {
                         color: #ffffff;
-                        background-color: #f95716;
-                        border-color: #f95716;
-                        box-shadow: 0 2px 6px rgba(249, 87, 22, 0.25);
+                        background-color: #005daa;
+                        border-color: #005daa;
+                        box-shadow: 0 2px 6px rgba(0, 93, 170, 0.25);
                     }
 
                     &.btn-checked {

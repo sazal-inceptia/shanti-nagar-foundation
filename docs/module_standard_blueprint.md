@@ -1,4 +1,4 @@
-# Shanti Nagar Foundation — Standard Module Architecture & UI Blueprint
+# Rotary Club of Shantinagar Dhaka — Standard Module Architecture & UI Blueprint
 
 This document defines the standard blueprint based on the completed **Projects & Relief** module. **Every upcoming module** (Donors, Donations, Expenses, Employees, Salaries, Reports, Users, Settings) MUST adhere strictly to these architectural, design, and coding patterns.
 

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Shanti Nagar Foundation — Grassroots Humanitarian Aid & Relief in Bangladesh')
+@section('title', 'Rotary Club of Shantinagar Dhaka — Grassroots Humanitarian Aid & Relief in Bangladesh')
 
 @section('content')
 
@@ -78,11 +78,11 @@
                     <div class="content_block_6">
                         <div class="content-box">
                             <div class="sec-title">
-                                <span class="top-text">About Shanti Nagar Foundation</span>
+                                <span class="top-text">About Rotary Club of Shantinagar Dhaka</span>
                                 <h2>Dedicated to Social Welfare & Humanitarian Support</h2>
                             </div>
                             <div class="text">
-                                <p>Shanti Nagar Foundation is a grassroots non-profit humanitarian organization committed to uplifting underprivileged communities across Bangladesh through direct medical aid, hospital equipment supply, orphan welfare, winter clothes distribution, deep tube-well installations, and educational support.</p>
+                                <p>Rotary Club of Shantinagar Dhaka is a grassroots non-profit humanitarian organization committed to uplifting underprivileged communities across Bangladesh through direct medical aid, hospital equipment supply, orphan welfare, winter clothes distribution, deep tube-well installations, and educational support.</p>
                                 <p>We operate with a volunteer-first approach, ensuring direct on-ground procurement, verifying every beneficiary family in person, and maintaining itemized internal financial audit vouchers for 100% transparency.</p>
                             </div>
                             <div class="inner-box clearfix">
@@ -98,7 +98,7 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 image-column">
                     <div class="image_block_2">
                         <div class="image-box">
-                            <figure class="image image-1"><img src="{{ asset('assets/images/resource/about-2.jpg') }}" alt="Shanti Nagar Foundation Relief"></figure>
+                            <figure class="image image-1"><img src="{{ asset('assets/images/resource/about-2.jpg') }}" alt="Rotary Club of Shantinagar Dhaka Relief"></figure>
                             <figure class="image image-2"><img src="{{ asset('assets/images/resource/about-3.jpg') }}" alt="Community Aid Bangladesh"></figure>
                             <div class="rotate-text">
                                 <figure class="text-box rotate-me"><img src="{{ asset('assets/images/icons/rotate-text-2.png') }}" alt=""></figure>
@@ -495,7 +495,7 @@
                                     </div>
                                     <div class="sponsors-inner">
                                         <h3>Coordination Desk:</h3>
-                                        <p class="text-white-50">Shanti Nagar Foundation Central Cell, Dhaka - 1217</p>
+                                        <p class="text-white-50">Rotary Club of Shantinagar Dhaka Central Cell, Dhaka - 1217</p>
                                         <h6><a href="{{ route('volunteer') }}">Become a Volunteer</a></h6>
                                     </div>
                                 </div>
@@ -551,7 +551,7 @@
                             <h2>Honesty, Accountability & Direct Impact</h2>
                         </div>
                         <div class="text">
-                            <p>Shanti Nagar Foundation is built on absolute accountability. Every single Taka donated is cataloged and deployed directly to verified beneficiaries.</p>
+                            <p>Rotary Club of Shantinagar Dhaka is built on absolute accountability. Every single Taka donated is cataloged and deployed directly to verified beneficiaries.</p>
                             <a href="{{ route('about') }}" class="theme-btn btn-one">Read About Us</a>
                         </div>
                     </div>

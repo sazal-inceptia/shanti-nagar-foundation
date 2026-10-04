@@ -12,7 +12,7 @@
                     <div class="card-header table-header d-flex justify-content-between align-items-center flex-wrap gap-3 py-3" style="background: #ffffff; border-bottom: 1px solid #f1f5f9;">
                         <div class="title-with-breadcrumb">
                             <div class="d-flex align-items-center gap-2">
-                                <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background: rgba(246, 80, 36, 0.1); color: #f65024;">
+                                <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background: rgba(0, 93, 170, 0.1); color: #f65024;">
                                     <i class="ri-file-chart-line" style="font-size: 20px;"></i>
                                 </div>
                                 <div>
@@ -32,7 +32,7 @@
                                 <i class="ri-download-2-line" style="font-size: 15px;"></i> Export CSV Ledger
                             </a>
                             <a href="{{ route('admin.reports.statement', request()->query()) }}" target="_blank" class="btn btn-sm d-inline-flex align-items-center gap-1 px-3 py-2 text-white"
-                                style="background: linear-gradient(135deg, #f65024 0%, #ea580c 100%); border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 4px 12px rgba(246, 80, 36, 0.25); border: none; transition: all 0.2s ease;">
+                                style="background: linear-gradient(135deg, #f65024 0%, #ea580c 100%); border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 4px 12px rgba(0, 93, 170, 0.25); border: none; transition: all 0.2s ease;">
                                 <i class="ri-printer-line" style="font-size: 15px;"></i> Print Audit Statement
                             </a>
                         </div>
@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-auto d-flex align-items-end gap-1">
                                 <button type="submit" class="btn btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Apply Filter"
-                                    style="background-color: #f65024; color: #fff; width: 32px; height: 32px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 15px; border: none; box-shadow: 0 2px 6px rgba(246, 80, 36, 0.25);">
+                                    style="background-color: #005daa; color: #fff; width: 32px; height: 32px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; font-size: 15px; border: none; box-shadow: 0 2px 6px rgba(0, 93, 170, 0.25);">
                                     <i class="ri-filter-3-line"></i>
                                 </button>
                                 <a href="{{ route('admin.reports.index') }}" class="btn btn-sm btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Reset Filters"
@@ -561,7 +561,7 @@
         .report-nav-pills .nav-link.active {
             color: #ffffff !important;
             background: linear-gradient(135deg, #f65024 0%, #ea580c 100%) !important;
-            box-shadow: 0 4px 10px rgba(246, 80, 36, 0.35);
+            box-shadow: 0 4px 10px rgba(0, 93, 170, 0.35);
         }
         .report-nav-pills .nav-link:hover:not(.active) {
             color: #0f172a;

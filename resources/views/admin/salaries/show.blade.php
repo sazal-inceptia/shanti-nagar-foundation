@@ -32,7 +32,7 @@
                                     <i class="ri-user-line me-1"></i> Staff Profile
                                 </a>
                             @endif
-                            <button type="button" onclick="window.print();" class="add-new" style="background-color: #f65024; color: #fff; border: none; cursor: pointer;">
+                            <button type="button" onclick="window.print();" class="add-new" style="background-color: #005daa; color: #fff; border: none; cursor: pointer;">
                                 <i class="ri-printer-line me-1"></i> Print Payslip
                             </button>
                         </div>
@@ -54,8 +54,8 @@
                                     <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
                                 </div>
                                 <div>
-                                    <h3 class="fw-bold mb-0" style="color: #0b0f17; letter-spacing: -0.02em; font-size: 22px;">SHANTI NAGAR FOUNDATION</h3>
-                                    <p class="text-muted mb-0" style="font-size: 13px; font-weight: 500;">Santi Nagar Association &bull; Reg No: DHK-NGO-88219</p>
+                                    <h3 class="fw-bold mb-0" style="color: #0b0f17; letter-spacing: -0.02em; font-size: 22px;">ROTARY CLUB OF SHANTINAGAR DHAKA</h3>
+                                    <p class="text-muted mb-0" style="font-size: 13px; font-weight: 500;">Rotary Club of Shantinagar Dhaka &bull; Reg No: DHK-NGO-88219</p>
                                     <p class="text-muted mb-0" style="font-size: 12px;">Shanti Nagar, Kakrail, Dhaka-1217, Bangladesh | Helpline: +880 1700-000000</p>
                                 </div>
                             </div>
@@ -240,7 +240,7 @@
                         {{-- Official Voucher Bottom Note --}}
                         <div class="mt-5 pt-3 border-top text-center receipt-footer-note" style="font-size: 11.5px; color: #64748b;">
                             <p class="mb-0">
-                                <strong>Shanti Nagar Foundation (Santi Nagar Association)</strong> &bull; All payroll disbursements are maintained under the NGO Affairs Bureau regulations.
+                                <strong>Rotary Club of Shantinagar Dhaka</strong> &bull; All payroll disbursements are maintained under the NGO Affairs Bureau regulations.
                             </p>
                         </div>
                     </div>

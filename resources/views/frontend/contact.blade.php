@@ -42,7 +42,7 @@
                                     <h4>Email Address</h4>
                                     <div class="text">
                                         <div class="icon-box"><i class="icon-letter"></i></div>
-                                        <p>Mail to<br /><a href="mailto:{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}">{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}</a></p>
+                                        <p>Mail to<br /><a href="mailto:{{ $siteSettings['email'] ?? 'contact@rotaryshantinagardhaka.org' }}">{{ $siteSettings['email'] ?? 'contact@rotaryshantinagardhaka.org' }}</a></p>
                                     </div>
                                 </div>
                                 <div class="single-item">

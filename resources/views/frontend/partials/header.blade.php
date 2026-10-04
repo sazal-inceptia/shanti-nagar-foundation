@@ -5,7 +5,7 @@
                 <!-- 1. Logo (In Flow / Not Absolute) -->
                 <div class="logo-box">
                     <a href="{{ route('home') }}" class="d-inline-flex align-items-center">
-                        <img src="{{ asset('assets/images/logo.png') }}" alt="{{ $siteSettings['org_name'] ?? 'Shanti Nagar Foundation' }}" class="header-main-logo">
+                        <img src="{{ asset('assets/images/logo.png') }}" alt="{{ $siteSettings['org_name'] ?? 'Rotary Club of Shantinagar Dhaka' }}" class="header-main-logo">
                     </a>
                 </div>
 
@@ -51,7 +51,7 @@
 
     <nav class="menu-box">
         <div class="nav-logo p-3 text-center">
-            <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="{{ $siteSettings['org_name'] ?? 'Shanti Nagar Foundation' }}" title="{{ $siteSettings['org_name'] ?? 'Shanti Nagar Foundation' }}" style="max-height: 70px; width: auto;"></a>
+            <a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}" alt="{{ $siteSettings['org_name'] ?? 'Rotary Club of Shantinagar Dhaka' }}" title="{{ $siteSettings['org_name'] ?? 'Rotary Club of Shantinagar Dhaka' }}" style="max-height: 70px; width: auto;"></a>
         </div>
         <div class="menu-outer"><!-- Cloned via Javascript --></div>
         <div class="p-3 text-center">
@@ -64,7 +64,7 @@
             <ul>
                 <li>{{ $siteSettings['address'] ?? 'Shanti Nagar, Dhaka - 1217, Bangladesh' }}</li>
                 <li><a href="tel:{{ preg_replace('/[^0-9+]/', '', $siteSettings['hotline'] ?? '+8801711000000') }}">{{ $siteSettings['hotline'] ?? '+880 1711-000000' }}</a></li>
-                <li><a href="mailto:{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}">{{ $siteSettings['email'] ?? 'contact@shantinagar.org' }}</a></li>
+                <li><a href="mailto:{{ $siteSettings['email'] ?? 'contact@rotaryshantinagardhaka.org' }}">{{ $siteSettings['email'] ?? 'contact@rotaryshantinagardhaka.org' }}</a></li>
             </ul>
         </div>
         <div class="social-links">

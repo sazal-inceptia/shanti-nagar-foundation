@@ -5,7 +5,7 @@ description: Core standards, rules, and best practices for developing Laravel ap
 
 # Laravel Best Practices & Guidelines
 
-This skill defines the coding standards, architectural rules, and operational guidelines for the **Shanti Nagar Foundation** Laravel application.
+This skill defines the coding standards, architectural rules, and operational guidelines for the **Rotary Club of Shantinagar Dhaka** Laravel application.
 
 ## 1. Routing & Controllers Layer
 - **Admin Controllers Subfolder:** ALL Admin panel controllers MUST reside in `app/Http/Controllers/Admin/` namespace.

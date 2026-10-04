@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>{{ config('app.name', 'Shanti Nagar Foundation') }} || @yield('title', 'Admin Panel')</title>
+    <title>{{ config('app.name', 'Rotary Club of Shantinagar Dhaka') }} || @yield('title', 'Admin Panel')</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Meta data -->
-    <meta name="description" content="Shanti Nagar Foundation - NGO & Humanitarian Administration Dashboard" />
+    <meta name="description" content="Rotary Club of Shantinagar Dhaka - NGO & Humanitarian Administration Dashboard" />
 
     @include('admin.includes.favicon')
     @include('admin.includes.styles')

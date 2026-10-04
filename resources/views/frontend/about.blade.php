@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'About Us — Shanti Nagar Foundation')
+@section('title', 'About Us — Rotary Club of Shantinagar Dhaka')
 
 @section('content')
 
@@ -42,7 +42,7 @@
                             “{{ $bestPresident?->speech ?: 'A true humanitarian mission is not measured by the size of donations, but by the purity of transparency and the dignity restored to every vulnerable life we touch.' }}”
                         </div>
                         <p class="bio-desc">
-                            {{ $bestPresident?->bio ?: 'Recognized as the foundational cornerstone and most beloved leader of Shanti Nagar Foundation. Under his visionary stewardship, our grassroots relief initiatives reached over 50,000 underprivileged families with 100% itemized audit transparency and direct field procurement.' }}
+                            {{ $bestPresident?->bio ?: 'Recognized as the foundational cornerstone and most beloved leader of Rotary Club of Shantinagar Dhaka. Under his visionary stewardship, our grassroots relief initiatives reached over 50,000 underprivileged families with 100% itemized audit transparency and direct field procurement.' }}
                         </p>
                         <div class="president-signature-wrap">
                             <span class="president-sign">{{ $bestPresident?->signature_text ?: ($bestPresident?->name ?? 'Alhaj Mohammad Nurul Islam') }}</span>
@@ -78,7 +78,7 @@
             <div class="sec-title centred">
                 <span class="top-text">Executive Leadership</span>
                 <h2>Governing Secretariat & Leadership Messages</h2>
-                <p>Guiding Shanti Nagar Foundation with visionary compassion, financial integrity, and grassroots action.
+                <p>Guiding Rotary Club of Shantinagar Dhaka with visionary compassion, financial integrity, and grassroots action.
                 </p>
             </div>
 
@@ -118,11 +118,11 @@
                                     <span class="speech-tag"><i class="fas fa-quote-left me-2"></i> {{ $president?->speech_tag ?: "President's Address & Vision" }}</span>
                                 </div>
                                 <blockquote>
-                                    "{{ $president?->speech ?: 'Our sacred mission is ensuring no underprivileged family in our community is left without healthcare, clean water, or emergency shelter. At Shanti Nagar Foundation, we believe true leadership is rooted in selfless service. By uniting generous benefactors with verified grassroots programs, we turn empathy into permanent, dignity-restoring action across Bangladesh.' }}"
+                                    "{{ $president?->speech ?: 'Our sacred mission is ensuring no underprivileged family in our community is left without healthcare, clean water, or emergency shelter. At Rotary Club of Shantinagar Dhaka, we believe true leadership is rooted in selfless service. By uniting generous benefactors with verified grassroots programs, we turn empathy into permanent, dignity-restoring action across Bangladesh.' }}"
                                 </blockquote>
                                 <div class="speech-footer">
                                     <span class="leader-sign">{{ $president?->signature_text ?: ($president?->name ?? 'Advocate Mahfuzur Rahman') }}</span>
-                                    <span class="sign-sub">{{ $president?->signature_title ?: 'President • Shanti Nagar Foundation' }}</span>
+                                    <span class="sign-sub">{{ $president?->signature_title ?: 'President • Rotary Club of Shantinagar Dhaka' }}</span>
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                                 </blockquote>
                                 <div class="speech-footer">
                                     <span class="leader-sign">{{ $secretary?->signature_text ?: ($secretary?->name ?? 'Dr. Kazi Ashraful Alam') }}</span>
-                                    <span class="sign-sub">{{ $secretary?->signature_title ?: 'General Secretary • Shanti Nagar Foundation' }}</span>
+                                    <span class="sign-sub">{{ $secretary?->signature_title ?: 'General Secretary • Rotary Club of Shantinagar Dhaka' }}</span>
                                 </div>
                             </div>
                         </div>
@@ -213,7 +213,7 @@
                                 </blockquote>
                                 <div class="speech-footer">
                                     <span class="leader-sign">{{ $treasurer?->signature_text ?: ($treasurer?->name ?? 'Engr. Shahadat Hossain') }}</span>
-                                    <span class="sign-sub">{{ $treasurer?->signature_title ?: 'Treasurer • Shanti Nagar Foundation' }}</span>
+                                    <span class="sign-sub">{{ $treasurer?->signature_title ?: 'Treasurer • Rotary Club of Shantinagar Dhaka' }}</span>
                                 </div>
                             </div>
                         </div>

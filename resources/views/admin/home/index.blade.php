@@ -97,7 +97,7 @@
             display: inline-block;
             width: 3px;
             height: 16px;
-            background-color: #f65024;
+            background-color: #005daa;
             border-radius: 2px;
         }
 

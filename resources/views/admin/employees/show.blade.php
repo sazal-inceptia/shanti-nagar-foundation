@@ -27,7 +27,7 @@
                             <a href="{{ route('admin.employees.edit', $employee->id) }}" class="add-new" style="background-color: #f1f5f9; color: #334155; border: 1px solid #e2e8f0;">
                                 <i class="ri-edit-line me-1"></i> Edit Profile
                             </a>
-                            <a href="{{ route('admin.salaries.create', ['employee_id' => $employee->id]) }}" class="add-new" style="background-color: #f65024; color: #fff;">
+                            <a href="{{ route('admin.salaries.create', ['employee_id' => $employee->id]) }}" class="add-new" style="background-color: #005daa; color: #fff;">
                                 <i class="ri-money-dollar-circle-line me-1"></i> Disburse Salary
                             </a>
                         </div>
@@ -48,7 +48,7 @@
                                     class="rounded-circle border shadow-sm" style="width: 110px; height: 110px; object-fit: cover; border-width: 3px !important; border-color: #fff !important;">
                             @else
                                 <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold shadow-sm mx-auto"
-                                    style="width: 110px; height: 110px; background-color: #f65024; font-size: 38px;">
+                                    style="width: 110px; height: 110px; background-color: #005daa; font-size: 38px;">
                                     {{ strtoupper(substr($employee->name, 0, 1)) }}
                                 </div>
                             @endif
@@ -242,7 +242,7 @@
                                             <td colspan="6" class="text-center py-5 text-muted">
                                                 <i class="ri-wallet-3-line d-block mb-2" style="font-size: 32px; color: #94a3b8;"></i>
                                                 <p class="mb-2 fw-semibold">No salary records found for this employee yet.</p>
-                                                <a href="{{ route('admin.salaries.create', ['employee_id' => $employee->id]) }}" class="btn btn-sm" style="background-color: #f65024; color: #fff;">
+                                                <a href="{{ route('admin.salaries.create', ['employee_id' => $employee->id]) }}" class="btn btn-sm" style="background-color: #005daa; color: #fff;">
                                                     <i class="ri-add-line me-1"></i> Disburse First Salary
                                                 </a>
                                             </td>

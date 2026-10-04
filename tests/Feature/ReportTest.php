@@ -21,7 +21,7 @@ test('authenticated admin can view printable financial audit statement', functio
 
     $response->assertStatus(200);
     $response->assertSee('FINANCIAL AUDIT STATEMENT', false);
-    $response->assertSee('SHANTI NAGAR FOUNDATION');
+    $response->assertSee('ROTARY CLUB OF SHANTINAGAR DHAKA');
     $response->assertSee('Project &amp; Relief Causes Financial Balance Sheet', false);
 });
 

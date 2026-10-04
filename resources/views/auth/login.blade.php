@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Sign In &mdash; {{ config('app.name', 'Shanti Nagar Foundation Admin') }}</title>
+    <title>Sign In &mdash; {{ config('app.name', 'Rotary Club of Shantinagar Dhaka Admin') }}</title>
 
     <!-- Favicons -->
     @include('admin.includes.favicon')
@@ -20,10 +20,10 @@
 
     <style>
         :root {
-            --brand-primary: #f95716;
-            --brand-primary-hover: #ea4907;
-            --brand-glow: rgba(249, 87, 22, 0.2);
-            --brand-dark: #0b0f17;
+            --brand-primary: #005daa;
+            --brand-primary-hover: #004c8c;
+            --brand-glow: rgba(0, 93, 170, 0.2);
+            --brand-dark: #003366;
             --text-body: #475569;
             --border-color: #E2E8F0;
             --bg-page: #F8FAFC;
@@ -318,7 +318,7 @@
 <div class="login-wrapper">
     <div class="login-card">
         <!-- Logo -->
-        <a href="{{ url('/') }}" class="login-logo-wrap" title="{{ config('app.name', 'Shanti Nagar Foundation') }}">
+        <a href="{{ url('/') }}" class="login-logo-wrap" title="{{ config('app.name', 'Rotary Club of Shantinagar Dhaka') }}">
             <div class="login-badge" style="background-color: #ffffff; border: 1px solid #e2e8f0; padding: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); width: 44px; height: 44px;">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
             </div>

@@ -18,7 +18,7 @@ class ContactMessageSeeder extends Seeder
                 'email' => 'dr.shamsul@dhakamed.edu.bd',
                 'phone' => '+880 1711-445566',
                 'subject' => 'Emergency Dialysis Kit Donation for General Hospital',
-                'message' => 'Assalamu Alaikum. We would like to coordinate a joint healthcare initiative with Shanti Nagar Foundation to supply 50 emergency dialysis kits and nebulizers to the charity ward of Dhaka Medical College. Please let us know the procurement and handover procedure.',
+                'message' => 'Assalamu Alaikum. We would like to coordinate a joint healthcare initiative with Rotary Club of Shantinagar Dhaka to supply 50 emergency dialysis kits and nebulizers to the charity ward of Dhaka Medical College. Please let us know the procurement and handover procedure.',
                 'status' => 'unread',
             ],
             [

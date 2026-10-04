@@ -1,7 +1,7 @@
-# Shanti Nagar Foundation — Database Schema & Architecture
+# Rotary Club of Shantinagar Dhaka — Database Schema & Architecture
 
 ## Overview
-This document serves as the single source of truth for the database design and relational architecture of the **Shanti Nagar Foundation / Santi Nagar Association** web application.
+This document serves as the single source of truth for the database design and relational architecture of the **Rotary Club of Shantinagar Dhaka** web application.
 
 ---
 

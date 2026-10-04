@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Frequently Asked Questions — Shanti Nagar Foundation')
+@section('title', 'Frequently Asked Questions — Rotary Club of Shantinagar Dhaka')
 
 @section('content')
 
@@ -29,7 +29,7 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 content-column">
                     <div class="content_block_10">
                         <div class="content-box">
-                            <figure class="image"><img src="{{ asset('assets/images/resource/faq-1.png') }}" alt="Shanti Nagar Foundation FAQ"></figure>
+                            <figure class="image"><img src="{{ asset('assets/images/resource/faq-1.png') }}" alt="Rotary Club of Shantinagar Dhaka FAQ"></figure>
                             <div class="text wow fadeInLeft animated animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                                 <div class="icon-box"><i class="icon-search-1"></i></div>
                                 <h3>Have More Questions?</h3>
@@ -44,11 +44,11 @@
                         <li class="accordion block active-block">
                             <div class="acc-btn active">
                                 <div class="icon-outer"><i class="icon-right-arrow"></i></div>
-                                <h5><i class="icon-question"></i>What is Shanti Nagar Foundation?</h5>
+                                <h5><i class="icon-question"></i>What is Rotary Club of Shantinagar Dhaka?</h5>
                             </div>
                             <div class="acc-content current">
                                 <div class="text">
-                                    <p>Shanti Nagar Foundation is a grassroots non-profit humanitarian organization based in Dhaka, Bangladesh, dedicated to direct medical equipment aid, orphan welfare, arsenic-free deep tube-wells, and emergency food relief with 100% financial transparency.</p>
+                                    <p>Rotary Club of Shantinagar Dhaka is a grassroots non-profit humanitarian organization based in Dhaka, Bangladesh, dedicated to direct medical equipment aid, orphan welfare, arsenic-free deep tube-wells, and emergency food relief with 100% financial transparency.</p>
                                 </div>
                             </div>
                         </li>

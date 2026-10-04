@@ -9,7 +9,7 @@
                title="View Live Website"
                data-bs-toggle="tooltip" data-bs-placement="bottom"
                style="width: 34px; height: 34px; background-color: #f8fafc; border: 1px solid #e2e8f0; color: #334155; border-radius: 8px; transition: all 0.2s ease; padding: 0;">
-                <i class="ri-global-line" style="font-size: 17px; color: #f95716;"></i>
+                <i class="ri-global-line" style="font-size: 17px; color: #005daa;"></i>
             </a>
 
             {{-- 2. Header Quicklinks --}}
@@ -70,9 +70,9 @@
                         <div class="d-flex align-items-center"> 
                             <div class="me-2">
                                 @if(Auth::check() && !empty(Auth::user()->image) && file_exists(public_path(Auth::user()->image)))
-                                    <img id="profileImageDB" src="{{ asset(Auth::user()->image) }}" alt="img" width="32" height="32" class="rounded-circle object-fit-cover" style="border: 2px solid #f95716;"> 
+                                    <img id="profileImageDB" src="{{ asset(Auth::user()->image) }}" alt="img" width="32" height="32" class="rounded-circle object-fit-cover" style="border: 2px solid #005daa;"> 
                                 @else
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white" style="width: 32px; height: 32px; background-color: #f95716; font-weight: 700; font-size: 13px; box-shadow: 0 2px 6px rgba(249, 87, 22, 0.3);">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white" style="width: 32px; height: 32px; background-color: #005daa; font-weight: 700; font-size: 13px; box-shadow: 0 2px 6px rgba(0, 93, 170, 0.3);">
                                         {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}
                                     </div>
                                 @endif
@@ -90,9 +90,9 @@
                         <div class="px-3 py-3 border-bottom text-center d-flex flex-column align-items-center" style="background-color: #f8fafc;">
                             <div class="mb-2">
                                 @if(Auth::check() && !empty(Auth::user()->image) && file_exists(public_path(Auth::user()->image)))
-                                    <img src="{{ asset(Auth::user()->image) }}" alt="img" width="48" height="48" class="rounded-circle object-fit-cover shadow-sm" style="border: 2px solid #f95716;"> 
+                                    <img src="{{ asset(Auth::user()->image) }}" alt="img" width="48" height="48" class="rounded-circle object-fit-cover shadow-sm" style="border: 2px solid #005daa;"> 
                                 @else
-                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 48px; height: 48px; background-color: #f95716; font-weight: 700; font-size: 18px;">
+                                    <div class="rounded-circle d-flex align-items-center justify-content-center text-white shadow-sm" style="width: 48px; height: 48px; background-color: #005daa; font-weight: 700; font-size: 18px;">
                                         {{ strtoupper(substr(Auth::user()->name ?? 'A', 0, 1)) }}
                                     </div>
                                 @endif
@@ -106,7 +106,7 @@
                                 $roleName = Auth::user()?->role ?? 'Administrator';
                                 $roleBadgeStyle = match($roleName) {
                                     'superadmin' => 'background-color: #fee2e2; color: #991b1b; border: 1px solid #fca5a5;',
-                                    'admin' => 'background-color: #fff3ee; color: #f95716; border: 1px solid rgba(249, 87, 22, 0.3);',
+                                    'admin' => 'background-color: #e8f1f8; color: #005daa; border: 1px solid rgba(0, 93, 170, 0.3);',
                                     'accounts' => 'background-color: #e0f2fe; color: #075985; border: 1px solid #7dd3fc;',
                                     default => 'background-color: #f1f5f9; color: #334155; border: 1px solid #cbd5e1;',
                                 };
@@ -125,7 +125,7 @@
                         <div class="p-2 border-bottom">
                             <a href="{{ route('admin.profile.edit') }}" class="dropdown-item d-flex align-items-center justify-content-between py-2 px-2 rounded mb-1" style="font-size: 13px; font-weight: 500; color: #334155; transition: all 0.15s ease;">
                                 <div class="d-flex align-items-center">
-                                    <div class="d-flex align-items-center justify-content-center rounded me-2" style="width: 28px; height: 28px; background-color: #fff3ee; color: #f95716;">
+                                    <div class="d-flex align-items-center justify-content-center rounded me-2" style="width: 28px; height: 28px; background-color: #e8f1f8; color: #005daa;">
                                         <i class="ri-user-settings-line" style="font-size: 15px;"></i>
                                     </div>
                                     <span>My Profile</span>
@@ -187,8 +187,8 @@
     background-color: #f1f5f9;
 }
 .header-quicklink.active {
-    color: #f95716;
-    background-color: #fff3ee;
+    color: #005daa;
+    background-color: #e8f1f8;
 }
 
 .header-add-new-btn {

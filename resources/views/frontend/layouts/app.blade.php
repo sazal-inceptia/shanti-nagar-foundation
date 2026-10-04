@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <title>@yield('title', 'Shanti Nagar Foundation — Grassroots Humanitarian Aid & Relief in Bangladesh')</title>
-    <meta name="description" content="@yield('meta_description', 'Shanti Nagar Foundation is a non-profit grassroots humanitarian organization in Dhaka, Bangladesh providing direct medical equipment, orphan care, winter warmth, and safe water.')">
-    <meta property="og:title" content="@yield('title', 'Shanti Nagar Foundation — Grassroots Humanitarian Aid & Relief in Bangladesh')">
+    <title>@yield('title', 'Rotary Club of Shantinagar Dhaka — Grassroots Humanitarian Aid & Relief in Bangladesh')</title>
+    <meta name="description" content="@yield('meta_description', 'Rotary Club of Shantinagar Dhaka is a non-profit grassroots humanitarian organization in Dhaka, Bangladesh providing direct medical equipment, orphan care, winter warmth, and safe water.')">
+    <meta property="og:title" content="@yield('title', 'Rotary Club of Shantinagar Dhaka — Grassroots Humanitarian Aid & Relief in Bangladesh')">
     <meta property="og:description" content="@yield('meta_description', 'Delivering transparent humanitarian relief, healthcare support, and community welfare across Bangladesh.')">
     <meta property="og:image" content="@yield('meta_image', asset('assets/images/logo.png'))">
     <meta property="og:type" content="website">
