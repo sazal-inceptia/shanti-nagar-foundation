@@ -76,6 +76,8 @@ shanti-nagar-foundation/
 │   │   │       ├── DonationController.php       # Donation entries & receipt generator
 │   │   │       ├── ProjectController.php        # Project & Activity lifecycle
 │   │   │       ├── ExpenseController.php        # Voucher expenses & procurement
+│   │   │       ├── AlbumController.php          # Photo Albums CRUD and multi-photo organizer
+│   │   │       ├── GalleryImageController.php   # Gallery photos manager and batch uploader
 │   │   │       ├── EmployeeController.php       # Staff & personnel registry
 │   │   │       ├── SalaryController.php         # Salary disbursement & payslips
 │   │   │       └── ReportController.php         # Financial audit & exports
@@ -100,6 +102,8 @@ shanti-nagar-foundation/
 │       ├── Donor.php
 │       ├── Project.php
 │       ├── ProjectImage.php
+│       ├── Album.php
+│       ├── GalleryImage.php
 │       ├── Donation.php
 │       ├── Expense.php
 │       ├── Employee.php

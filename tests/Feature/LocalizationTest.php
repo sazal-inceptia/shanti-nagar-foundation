@@ -94,8 +94,8 @@ test('frontend views render localized strings when in bn session', function () {
 
     $galleryResponse = $this->withSession(['locale' => 'bn'])->get(route('gallery'));
     $galleryResponse->assertStatus(200);
-    $galleryResponse->assertSee('প্রকল্প নথিপত্র ও গ্যালারি');
-    $galleryResponse->assertSee('সকল উদ্যোগ');
+    $galleryResponse->assertSee('ফটো গ্যালারি ও কার্যক্রম অ্যালবাম');
+    $galleryResponse->assertSee('কার্যক্রম ও মাঠপর্যায়ের ফটো অ্যালবামসমূহ');
 
     $volunteerResponse = $this->withSession(['locale' => 'bn'])->get(route('volunteer'));
     $volunteerResponse->assertStatus(200);

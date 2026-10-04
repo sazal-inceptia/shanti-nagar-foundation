@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\AlbumController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DonationController;
 use App\Http\Controllers\Admin\DonorController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\ExpenseController;
+use App\Http\Controllers\Admin\GalleryImageController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ReportController;
@@ -39,6 +41,7 @@ Route::get('/donate', [HomeController::class, 'donate'])->name('donate');
 Route::post('/donate', [HomeController::class, 'submitDonate'])->name('donate.submit');
 
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
+Route::get('/gallery/album/{slug}', [HomeController::class, 'albumDetails'])->name('gallery.album');
 Route::get('/lang/{locale}', [HomeController::class, 'switchLang'])->name('switch.lang');
 
 /*
@@ -93,6 +96,12 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
     // Public Inquiries & Contact Messages
     Route::resource('contacts', ContactMessageController::class)->only(['index', 'show', 'destroy']);
+
+    // Albums & Photo Gallery Management
+    Route::post('/albums/{album}/toggle-status', [AlbumController::class, 'toggleStatus'])->name('albums.toggle-status');
+    Route::resource('albums', AlbumController::class);
+    Route::post('/gallery-images/{galleryImage}/toggle-status', [GalleryImageController::class, 'toggleStatus'])->name('gallery-images.toggle-status');
+    Route::resource('gallery-images', GalleryImageController::class)->parameters(['gallery-images' => 'galleryImage']);
 
     // Volunteer Applications Management
     Route::post('/volunteers/{volunteer}/toggle-status', [VolunteerController::class, 'toggleStatus'])->name('volunteers.toggle-status');

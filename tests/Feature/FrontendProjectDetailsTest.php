@@ -118,8 +118,7 @@ test('public donations, events, and gallery pages render dynamically', function 
 
     $galleryResponse = $this->get(route('gallery'));
     $galleryResponse->assertStatus(200);
-    $galleryResponse->assertSee('Safe Water Initiative');
-    $galleryResponse->assertSee('Tube-well construction site Sunamganj');
+    $galleryResponse->assertSee('Activity & Field Photo Albums');
 });
 
 test('public donations page filters projects dynamically by project type', function () {

@@ -29,7 +29,7 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 content-column">
                     <div class="content_block_10">
                         <div class="content-box">
-                            <figure class="image"><img src="{{ asset('assets/images/resource/faq-boy.png') }}" alt="{{ site_setting('org_name', 'Rotary Club of Shantinagar Dhaka') }} FAQ"></figure>
+                            <figure class="image"><img src="{{ asset('assets/images/resource/faq-1.png') }}" alt="{{ site_setting('org_name', 'Rotary Club of Shantinagar Dhaka') }} FAQ"></figure>
                             <div class="text wow fadeInLeft animated animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                                 <div class="icon-box"><i class="icon-search-1"></i></div>
                                 <h3>{{ __('Have More Questions?') }}</h3>

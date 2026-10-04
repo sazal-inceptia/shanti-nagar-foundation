@@ -265,6 +265,14 @@ erDiagram
 * Dynamic key-value pairs for organization settings, phone, emails, emergency helplines, social URLs, and bank details.
 * **Fields:** `id`, `key` (unique), `value`, `value_bn`, `group`, `created_at`, `updated_at`.
 
+### 14. `albums`
+* Activity, campaign, and event photo albums for the Rotary Club.
+* **Fields:** `id`, `title`, `title_bn`, `slug` (unique), `description`, `description_bn`, `cover_image`, `event_date`, `is_active`, `sort_order`, `created_at`, `updated_at`.
+
+### 15. `gallery_images`
+* Gallery photographs categorized under albums or standalone general field moments.
+* **Fields:** `id`, `album_id` (nullable FK -> `albums.id`), `title`, `title_bn`, `caption`, `caption_bn`, `image_path`, `is_featured`, `is_active`, `sort_order`, `created_at`, `updated_at`.
+
 ---
 
 ## 3. Eloquent Model Relationships Code Reference
@@ -287,6 +295,8 @@ erDiagram
 | **`Employee`** | `designation()` | `belongsTo` | `Designation` | `designation_id` | `Designation::hasMany(Employee)` |
 | **`Employee`** | `salaries()` | `hasMany` | `Salary` | `employee_id` | `Salary::belongsTo(Employee)` |
 | **`Salary`** | `employee()` | `belongsTo` | `Employee` | `employee_id` | `Employee::hasMany(Salary)` |
+| **`Album`** | `images()` | `hasMany` | `GalleryImage` | `album_id` | `GalleryImage::belongsTo(Album)` |
+| **`GalleryImage`**| `album()` | `belongsTo` | `Album` | `album_id` | `Album::hasMany(GalleryImage)` |
 
 ### Helper & Calculation Accessors in Models
 * `Project::getTotalDonationsRaisedAttribute()`: Returns total amount from completed donations.
@@ -307,4 +317,10 @@ erDiagram
 * `Employee::getLocalizedBadgeTitleAttribute()`: Returns `badge_title_bn` or falls back to English.
 * `Employee::getCurrentMonthSalaryStatusAttribute()`: Check if current month salary is paid.
 * `ProjectImage::getLocalizedCaptionAttribute()`: Returns `caption_bn` or falls back to English.
+* `Album::getLocalizedTitleAttribute()`: Returns `title_bn` or falls back to English.
+* `Album::getLocalizedDescriptionAttribute()`: Returns `description_bn` or falls back to English.
+* `Album::getCoverImageUrlAttribute()`: Resolves cover image URL or fallbacks.
+* `GalleryImage::getLocalizedTitleAttribute()`: Returns `title_bn` or falls back to English.
+* `GalleryImage::getLocalizedCaptionAttribute()`: Returns `caption_bn` or falls back to English.
+* `GalleryImage::getImageUrlAttribute()`: Resolves image path into asset URL.
 

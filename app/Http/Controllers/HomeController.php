@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContactMessageRequest;
 use App\Http\Requests\StorePublicDonationRequest;
 use App\Http\Requests\StoreVolunteerRequest;
+use App\Models\Album;
 use App\Models\ContactMessage;
 use App\Models\Donation;
 use App\Models\Donor;
 use App\Models\Employee;
 use App\Models\Expense;
+use App\Models\GalleryImage;
 use App\Models\Project;
 use App\Models\ProjectImage;
 use App\Models\ProjectType;
@@ -503,45 +505,43 @@ class HomeController extends Controller
 
     public function gallery(): View
     {
-        $selectedType = request('type');
-
-        $query = ProjectImage::with(['project.projectType'])
-            ->whereHas('project', function ($q) use ($selectedType) {
-                $q->where('is_published', true);
-                if ($selectedType && $selectedType !== 'all') {
-                    $q->whereHas('projectType', function ($typeQuery) use ($selectedType) {
-                        $typeQuery->where('slug', $selectedType);
-                    });
-                }
-            })
-            ->orderBy('created_at', 'desc');
-
-        $galleryImages = $query->paginate(12)->withQueryString();
-
-        $projectTypes = ProjectType::where('is_active', true)
-            ->whereHas('projects', function ($q) {
-                $q->where('is_published', true)->whereHas('images');
-            })
-            ->orderBy('order_index')
+        // 1. Active Albums (with active photos count)
+        $albums = Album::active()
+            ->withCount('activeImages')
+            ->orderBy('sort_order', 'asc')
+            ->orderBy('event_date', 'desc')
             ->get();
 
-        if ($projectTypes->isEmpty()) {
-            $projectTypes = ProjectType::where('is_active', true)->orderBy('order_index')->get();
-        }
+        // 2. Standalone Gallery Images (without album)
+        $standaloneImages = GalleryImage::active()
+            ->withoutAlbum()
+            ->orderBy('sort_order', 'asc')
+            ->latest()
+            ->paginate(12, ['*'], 'photos_page');
 
-        $typeCounts = ProjectImage::join('projects', 'project_images.project_id', '=', 'projects.id')
-            ->where('projects.is_published', true)
-            ->selectRaw('projects.project_type_id, count(project_images.id) as total')
-            ->groupBy('projects.project_type_id')
-            ->pluck('total', 'projects.project_type_id');
+        $totalAlbumsCount = $albums->count();
+        $totalPhotosCount = GalleryImage::active()->count();
 
-        $totalImagesCount = (int) $typeCounts->sum();
+        return view('frontend.gallery', compact('albums', 'standaloneImages', 'totalAlbumsCount', 'totalPhotosCount'));
+    }
 
-        foreach ($projectTypes as $pType) {
-            $pType->gallery_images_count = (int) ($typeCounts[$pType->id] ?? 0);
-        }
+    public function albumDetails(string $slug): View
+    {
+        $album = Album::active()
+            ->where('slug', $slug)
+            ->with(['activeImages' => function ($q) {
+                $q->orderBy('sort_order', 'asc')->latest();
+            }])
+            ->firstOrFail();
 
-        return view('frontend.gallery', compact('galleryImages', 'projectTypes', 'selectedType', 'totalImagesCount'));
+        $otherAlbums = Album::active()
+            ->where('id', '!=', $album->id)
+            ->withCount('activeImages')
+            ->orderBy('event_date', 'desc')
+            ->take(4)
+            ->get();
+
+        return view('frontend.album-details', compact('album', 'otherAlbums'));
     }
 
     /**

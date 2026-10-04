@@ -53,6 +53,12 @@
             </a>
         </li>
         <li>
+            <a href="{{ route('admin.albums.index') }}" class="{{ request()->routeIs('admin.albums.*', 'admin.gallery-images.*') ? 'active-focus' : '' }}">
+                <i class="ri-gallery-line"></i>
+                <span class="link_names">Media & Gallery</span>
+            </a>
+        </li>
+        <li>
             <a href="{{ route('admin.contacts.index') }}" class="{{ request()->routeIs('admin.contacts.*') ? 'active-focus' : '' }}">
                 <i class="ri-mail-line"></i>
                 <span class="link_names">Contact Inquiries</span>
