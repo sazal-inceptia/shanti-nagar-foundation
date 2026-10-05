@@ -1093,10 +1093,6 @@
 	border-color: var(--theme-primary, #005daa);
 }
 
-.content_block_8 .content-box .single-progress-box .box span {
-	color: var(--theme-primary, #005daa);
-}
-
 .content_block_8 .content-box .single-progress-box .text h2 {
 	color: var(--theme-primary, #005daa);
 }
@@ -1105,8 +1101,12 @@
 	color: var(--theme-primary, #005daa);
 }
 
-.content_block_8 .content-box .single-progress-box:last-child .box span {
+.content_block_8 .content-box .single-progress-box .box .span1 {
 	color: var(--theme-secondary, #ffb81c);
+}
+
+.content_block_8 .content-box .single-progress-box .box .span2 {
+	color: var(--theme-primary, #005daa);
 }
 
 .content_block_8 .content-box .single-progress-box:last-child .text h2 {

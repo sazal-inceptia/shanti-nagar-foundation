@@ -803,6 +803,11 @@
 
     <!-- main-js -->
     <script src="{{ asset('assets/js/script.js') }}"></script>
+
+    <!-- GSAP & ScrollTrigger Animation Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
     @stack('custom-script')
 
 </body><!-- End of .page_wrapper -->

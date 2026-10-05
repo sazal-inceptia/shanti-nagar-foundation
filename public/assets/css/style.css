@@ -9151,11 +9151,6 @@
    margin-right: 8px;
  }
 
- .content_block_8 .content-box .single-progress-box .text a:hover {}
-
- .content_block_8 .content-box .single-progress-box:last-child .box span {}
-
- .content_block_8 .content-box .single-progress-box:last-child .text h2 {}
 
  .reports-section .pattern-layer {
    position: absolute;
@@ -17602,4 +17597,446 @@
    background: var(--theme-primary, #005daa);
    color: #ffffff;
    transform: translateY(-2px);
+ }
+
+ /** -------------------------------------------------------------
+  *  Club Heritage Glassmorphic Flow (About Page)
+  *  ------------------------------------------------------------- */
+ .heritage-showcase-section {
+   position: relative;
+   padding: 100px 0 70px;
+   background-color: #0c2340;
+   background-size: cover;
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   overflow: hidden;
+ }
+
+ .heritage-showcase-section .heritage-overlay {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background: linear-gradient(180deg, rgba(12, 35, 64, 0.85) 0%, rgba(12, 35, 64, 0.72) 50%, rgba(12, 35, 64, 0.9) 100%);
+   z-index: 1;
+   pointer-events: none;
+ }
+
+ .heritage-showcase-section .heritage-content-container {
+   position: relative;
+   z-index: 2;
+ }
+
+ .heritage-flow-grid {
+   position: relative;
+ }
+
+ .heritage-flow-col {
+   position: relative;
+ }
+
+ .heritage-glass-card {
+   position: relative;
+   background-color: rgba(255, 255, 255, 0.08);
+   backdrop-filter: blur(16px);
+   -webkit-backdrop-filter: blur(16px);
+   border: 1px solid rgba(255, 255, 255, 0.18);
+   border-radius: 18px;
+   padding: 26px 20px;
+   height: 100%;
+   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+   transition: transform 0.35s ease, background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+   display: flex;
+   flex-direction: column;
+   z-index: 2;
+ }
+
+ .heritage-glass-card:hover {
+   transform: translateY(-8px);
+   background-color: rgba(255, 255, 255, 0.14);
+   border-color: rgba(255, 255, 255, 0.4);
+   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.35);
+ }
+
+ .heritage-glass-card.active-card {
+   border-color: rgba(255, 184, 28, 0.45);
+   background-color: rgba(255, 255, 255, 0.11);
+ }
+
+ .flow-connector {
+   position: absolute;
+   top: 50%;
+   right: -32px;
+   width: 31px;
+   height: 3px;
+   transform: translateY(-50%);
+   z-index: 5;
+   pointer-events: none;
+ }
+
+ .flow-connector .flow-line {
+   position: relative;
+   width: 100%;
+   height: 3px;
+   background-color: rgba(255, 255, 255, 0.2);
+   display: block;
+   overflow: hidden;
+ }
+
+ .flow-connector .flow-line-fill {
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 100%;
+   width: 100%;
+   background-color: #ffb81c;
+   transform: scaleX(0);
+   transform-origin: left center;
+ }
+
+ .heritage-card-header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 18px;
+ }
+
+ .heritage-year-badge {
+   display: inline-block;
+   font-size: 12px;
+   font-weight: 800;
+   padding: 4px 12px;
+   border-radius: 5px;
+   background-color: var(--theme-primary, #005daa);
+   color: #ffffff;
+   letter-spacing: 0.5px;
+ }
+
+ .heritage-year-badge.badge-gold {
+   background-color: var(--theme-secondary, #ffb81c);
+   color: var(--theme-heading, #0c2340);
+ }
+
+ .heritage-year-badge.badge-present {
+   background-color: var(--theme-primary, #005daa);
+   color: #ffffff;
+ }
+
+ .heritage-icon-box {
+   width: 40px;
+   height: 35px;
+   border-radius: 5px;
+   background-color: var(--theme-primary, #005daa);
+   color: #ffffff;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 18px;
+   margin-bottom: 0;
+   transition: transform 0.3s ease;
+ }
+
+ .heritage-icon-box.icon-gold {
+   background-color: var(--theme-secondary, #ffb81c);
+   color: var(--theme-heading, #0c2340);
+ }
+
+ .heritage-icon-box.icon-present {
+   background-color: #0c2340;
+   color: var(--theme-secondary, #ffb81c);
+   border: 1px solid rgba(255, 184, 28, 0.4);
+ }
+
+ .heritage-glass-card:hover .heritage-icon-box {
+   transform: scale(1.1) rotate(6deg);
+ }
+
+ .heritage-category {
+   display: block;
+   font-size: 11px;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 0.8px;
+   color: #93c5fd;
+   margin-bottom: 6px;
+ }
+
+ .heritage-category.cat-gold {
+   color: var(--theme-secondary, #ffb81c);
+ }
+
+ .heritage-title {
+   font-family: 'Quicksand', sans-serif;
+   font-size: 16.5px;
+   font-weight: 700;
+   color: #ffffff;
+   margin-bottom: 10px;
+   line-height: 1.35;
+   transition: color 0.3s ease;
+ }
+
+ .heritage-glass-card:hover .heritage-title {
+   color: var(--theme-secondary, #ffb81c);
+ }
+
+ .heritage-desc {
+   font-family: 'Nunito Sans', sans-serif;
+   font-size: 13.5px;
+   color: rgba(255, 255, 255, 0.82);
+   line-height: 1.6;
+   margin-bottom: 0;
+   flex-grow: 1;
+ }
+
+ /** -------------------------------------------------------------
+  *  Four Way Test Section
+  *  ------------------------------------------------------------- */
+ .four-way-test-section {
+   background: linear-gradient(135deg, #0c2340 0%, var(--theme-primary, #005daa) 100%);
+   color: #ffffff;
+   position: relative;
+   overflow: hidden;
+ }
+
+ .four-way-test-section .pattern-layer {
+   position: absolute;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   opacity: 0.07;
+   background-image: radial-gradient(var(--theme-secondary, #ffb81c) 2px, transparent 2px);
+   background-size: 24px 24px;
+ }
+
+ .four-way-test-section .test-card {
+   background: rgba(255, 255, 255, 0.08);
+   backdrop-filter: blur(10px);
+   -webkit-backdrop-filter: blur(10px);
+   border: 1px solid rgba(255, 255, 255, 0.15);
+   border-radius: 16px;
+   padding: 32px 24px;
+   height: 100%;
+   transition: all 0.3s ease;
+ }
+
+ .four-way-test-section .test-card:hover {
+   transform: translateY(-5px);
+   background: rgba(255, 255, 255, 0.12);
+   border-color: rgba(255, 184, 28, 0.4);
+ }
+
+ .four-way-test-section .test-number {
+   width: 48px;
+   height: 48px;
+   border-radius: 12px;
+   background: var(--theme-secondary, #ffb81c);
+   color: #0c2340;
+   font-weight: 800;
+   font-size: 20px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-bottom: 20px;
+   box-shadow: 0 4px 12px rgba(255, 184, 28, 0.35);
+ }
+
+ .four-way-test-section .test-card h4 {
+   color: #ffffff;
+   font-size: 20px;
+   font-weight: 700;
+   margin-bottom: 12px;
+ }
+
+ .four-way-test-section .test-card p {
+   color: rgba(255, 255, 255, 0.8);
+   font-size: 14.5px;
+   line-height: 1.6;
+   margin: 0;
+ }
+
+ .four-way-test-section .governance-strip {
+   border-top: 1px solid rgba(255, 255, 255, 0.15);
+ }
+
+ .four-way-test-section .governance-strip .strip-label {
+   font-size: 13px;
+   text-transform: uppercase;
+   color: var(--theme-secondary, #ffb81c);
+   font-weight: 600;
+ }
+
+ .four-way-test-section .governance-strip .strip-value {
+   font-weight: 700;
+   font-size: 16px;
+ }
+
+ /** -------------------------------------------------------------
+  *  Past Presidents & Roll of Honour (About Page Carousel)
+  *  ------------------------------------------------------------- */
+ .roll-of-honour-section {
+   position: relative;
+   background-color: #ffffff;
+ }
+
+ .roll-of-honour-section .shape-layer .shape-1 {
+   position: absolute;
+   top: 40px;
+   left: 20px;
+   width: 140px;
+   height: 140px;
+   background-repeat: no-repeat;
+   background-size: contain;
+   opacity: 0.6;
+   pointer-events: none;
+ }
+
+ .roll-of-honour-section .shape-layer .shape-2 {
+   position: absolute;
+   bottom: 30px;
+   right: 20px;
+   width: 180px;
+   height: 180px;
+   background-repeat: no-repeat;
+   background-size: contain;
+   opacity: 0.6;
+   pointer-events: none;
+ }
+
+ .president-pillar-card {
+   transition: all 0.4s ease;
+ }
+
+ .president-pillar-card:hover {
+   border-color: rgba(255, 184, 28, 0.4) !important;
+   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
+ }
+
+ .president-photo-box {
+   position: relative;
+   width: 140px !important;
+   height: 140px !important;
+   line-height: 140px !important;
+   margin: 0 auto 22px auto !important;
+   padding: 0;
+   overflow: visible;
+ }
+
+ .leader-avatar-circle {
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   overflow: hidden;
+   border: 3px solid rgba(255, 255, 255, 0.15);
+   transition: border-color 0.4s ease, transform 0.4s ease;
+ }
+
+ .president-pillar-card:hover .leader-avatar-circle {
+   border-color: var(--theme-secondary, #ffb81c);
+   transform: scale(1.05);
+ }
+
+ .leader-avatar-circle img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   object-position: center top;
+   transition: all 0.5s ease;
+ }
+
+ .president-photo-box h5 {
+   background-color: var(--theme-secondary, #ffb81c) !important;
+   color: #0c2340 !important;
+   font-size: 13px !important;
+   font-weight: 800 !important;
+   width: 60px !important;
+   height: 60px !important;
+   line-height: 52px !important;
+   right: -15px !important;
+   top: -5px !important;
+   z-index: 5;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+ }
+
+ .president-pillar-card h3 {
+   font-size: 20px !important;
+   line-height: 28px !important;
+   margin-bottom: 4px !important;
+   color: #ffffff !important;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+ }
+
+ .president-pillar-card .leader-role-text {
+   color: var(--theme-secondary, #ffb81c);
+   font-size: 13px;
+   font-weight: 600;
+   margin-bottom: 10px;
+ }
+
+ .president-pillar-card .leader-focus-tag {
+   display: block;
+   font-size: 12.5px;
+   color: #d1d5db;
+   background: rgba(255, 255, 255, 0.06);
+   border-radius: 8px;
+   padding: 6px 10px;
+   margin-bottom: 14px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+ }
+
+ .president-pillar-card .leader-theme-link {
+   font-style: italic;
+   font-size: 13px !important;
+ }
+
+ /** -------------------------------------------------------------
+  *  Weekly Fellowship Meeting & Venue Info (Reports Section Style)
+  *  ------------------------------------------------------------- */
+ .weekly-meeting-section {
+   position: relative;
+ }
+
+ .weekly-meeting-section .single-progress-box .meeting-circle-bg {
+   position: absolute;
+   left: 0px;
+   top: 0px;
+   width: 140px;
+   height: 140px;
+   border-radius: 50%;
+   background-color: var(--theme-primary, #005daa);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-size: 40px;
+   color: #ffffff;
+   box-shadow: 0 10px 25px rgba(var(--theme-primary-rgb, 0, 93, 170), 0.25);
+   transition: all 0.4s ease;
+ }
+
+ .weekly-meeting-section .single-progress-box .meeting-circle-bg.gold-bg {
+   background-color: var(--theme-secondary, #ffb81c);
+   color: #0c2340;
+   box-shadow: 0 10px 25px rgba(255, 184, 28, 0.35);
+ }
+
+ .weekly-meeting-section .single-progress-box:hover .meeting-circle-bg {
+   transform: scale(1.06) rotate(6deg);
+ }
+
+ .weekly-meeting-section .single-progress-box .meeting-icon-box span {
+   color: #ffffff;
+   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+   z-index: 2;
+ }
+
+ .weekly-meeting-section .single-progress-box .meeting-icon-box .meeting-circle-bg i {
+   opacity: 0.15;
+   position: absolute;
+   font-size: 70px;
  }

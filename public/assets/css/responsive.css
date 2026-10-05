@@ -1928,3 +1928,23 @@
   }
 
 }
+
+@media (max-width: 1199px) {
+  .flow-connector {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .heritage-showcase-section {
+    padding: 60px 0 40px;
+  }
+
+  .heritage-glass-card {
+    padding: 22px 18px;
+  }
+
+  .heritage-title {
+    font-size: 17px;
+  }
+}
