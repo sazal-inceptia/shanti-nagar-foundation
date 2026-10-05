@@ -153,13 +153,21 @@ class DesignationSeeder extends Seeder
                 'is_active' => true,
             ],
 
-            // Advisory & Foundation Staff
+            // Advisory, Past Presidents & Foundation Staff
             [
                 'name' => 'Chief Adviser & Charter President',
                 'name_bn' => 'প্রধান উপদেষ্টা ও চার্টার সভাপতি',
                 'slug' => 'chief-adviser-charter-president',
-                'category' => 'Advisory Council',
+                'category' => 'Past Presidents',
                 'order_index' => 18,
+                'is_active' => true,
+            ],
+            [
+                'name' => 'Past President',
+                'name_bn' => 'সাবেক সভাপতি (Past President)',
+                'slug' => 'past-president',
+                'category' => 'Past Presidents',
+                'order_index' => 19,
                 'is_active' => true,
             ],
             [

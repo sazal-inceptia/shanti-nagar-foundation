@@ -257,110 +257,39 @@
 
             <div class="bod-ltr-carousel owl-carousel owl-theme owl-dots-none">
                 @php
-                    $rawBod = (isset($bodMembers) && $bodMembers->count() > 0) ? $bodMembers : [
-                        (object) [
-                            'name' => 'Rtn. Syeda Salma Jafreen',
-                            'name_bn' => 'রোটা. সৈয়দা সালমা জাফরিন',
-                            'designation' => 'Joint Secretary',
-                            'photo_url' => asset('assets/images/team/salma.jpg'),
-                            'phone' => '+8801715556677',
-                            'email' => 'salma.jafreen@rcdhakaelite.org'
-                        ],
-                        (object) [
-                            'name' => 'Rtn. Archt. Faruk Ahmed',
-                            'name_bn' => 'রোটা. আর্কিটেক্ট ফারুক আহমেদ',
-                            'designation' => 'Club Trainer',
-                            'photo_url' => asset('assets/images/team/faruk_ahmed.png'),
-                            'phone' => '+8801817778899',
-                            'email' => 'faruk.ahmed@rcdhakaelite.org'
-                        ],
-                        (object) [
-                            'name' => 'Rtn. Sharmin Akter',
-                            'name_bn' => 'রোটা. শারমিন আক্তার',
-                            'designation' => 'Director - Club Administration',
-                            'photo_url' => asset('assets/images/team/sharmin_akter.jpg'),
-                            'phone' => '+8801918889900',
-                            'email' => 'sharmin.akter@rcdhakaelite.org'
-                        ],
-                        (object) [
-                            'name' => 'Rtn. Dr. M. Saifur Rahman',
-                            'name_bn' => 'রোটা. ড. এম. সাইফur রহমান',
-                            'designation' => 'Director - Membership',
-                            'photo_url' => asset('assets/images/team/saifur_rahman.png'),
-                            'phone' => '+8801519990011',
-                            'email' => 'saifur.rahman@rcdhakaelite.org'
-                        ],
-                        (object) [
-                            'name' => 'Rtn. Rabiul Hasan Joyti',
-                            'name_bn' => 'রোটা. রবিউল হাসান জ্যোতি',
-                            'designation' => 'Director - Public Relations',
-                            'photo_url' => asset('assets/images/team/robiul_joyti.jpg'),
-                            'phone' => '+8801711223344',
-                            'email' => 'robiul.joyti@rcdhakaelite.org'
-                        ],
-                        (object) [
-                            'name' => 'Rtn. Shah Alam',
-                            'name_bn' => 'রোটা. শাহ আলম',
-                            'designation' => 'Director - Service Projects',
-                            'photo_url' => asset('assets/images/team/shah_alam.jpg'),
-                            'phone' => '+8801811223344',
-                            'email' => 'shah.alam@rcdhakaelite.org'
-                        ],
-                        (object) [
-                            'name' => 'Rtn. Sinha Abu Khalid PHF',
-                            'name_bn' => 'রোটা. সিনহা আবু খালিদ পিএইচএফ',
-                            'designation' => 'Director - The Rotary Foundation (TRF)',
-                            'photo_url' => asset('assets/images/team/abu_khalid.jpg'),
-                            'phone' => '+8801911223344',
-                            'email' => 'abu.khalid@rcdhakaelite.org'
-                        ],
-                        (object) [
-                            'name' => 'Rtn. Mohammad Mahmudul Hasan',
-                            'name_bn' => 'রোটা. মোহাম্মদ মাহমুদুল হাসান',
-                            'designation' => 'Sergeant at Arms',
-                            'photo_url' => asset('assets/images/team/mahmudul_hasan.png'),
-                            'phone' => '+8801611223344',
-                            'email' => 'mahmudul.hasan@rcdhakaelite.org'
-                        ],
-                    ];
-                    $bodCollection = collect($rawBod);
-                    $renderBod = $bodCollection->count() < 6 ? $bodCollection->concat($bodCollection) : $bodCollection;
+                    $renderBod = $bodMembers->count() > 0 && $bodMembers->count() < 6 ? $bodMembers->concat($bodMembers) : $bodMembers;
                 @endphp
 
                 @foreach($renderBod as $bod)
-                    @php
-                        $bName = is_object($bod) && isset($bod->localized_name) ? $bod->localized_name : ((is_bengali() && !empty($bod->name_bn)) ? $bod->name_bn : ($bod->name ?? ''));
-                        $bDesig = is_object($bod->designation) ? ($bod->designation->localized_name ?? $bod->designation->name) : __($bod->designation);
-                    @endphp
                     <div class="team-block-one">
                         <div class="inner-box">
                             <figure class="image-box">
-                                <img src="{{ is_object($bod) && isset($bod->photo_url) ? $bod->photo_url : asset('assets/images/team/team-1.jpg') }}"
-                                    alt="{{ $bName }}">
+                                <img src="{{ $bod->photo_url }}"
+                                    alt="{{ $bod->localized_name }}">
                             </figure>
                             <div class="content-box">
                                 <div class="info">
-                                    <span class="designation">{{ $bDesig }}</span>
-                                    <h3>{{ $bName }}</h3>
+                                    <span class="designation">{{ $bod->designation_name }}</span>
+                                    <h3>{{ $bod->localized_name }}</h3>
                                 </div>
                                 <figure class="thumb-box"><img
-                                        src="{{ is_object($bod) && isset($bod->photo_url) ? $bod->photo_url : asset('assets/images/team/team-1.jpg') }}"
-                                        alt="{{ $bName }}"></figure>
+                                        src="{{ $bod->photo_url }}"
+                                        alt="{{ $bod->localized_name }}"></figure>
                                 <div class="text">
-                                    <p>{{ is_object($bod->designation) ? __($bod->designation->category ?? 'Board Member') : __('Board of Directors') }}
+                                    <p>{{ $bod->designation?->category ? __($bod->designation->category) : __('Board of Directors') }}
                                     </p>
                                 </div>
                             </div>
                             <ul class="social-links clearfix">
                                 @if(!empty($bod->phone))
                                     <li>
-                                        <a href="tel:{{ $bod->phone }}" title="{{ __('Call') }} {{ $bName }}"><i
+                                        <a href="tel:{{ $bod->phone }}" title="{{ __('Call') }} {{ $bod->localized_name }}"><i
                                                 class="fas fa-phone"></i></a>
                                     </li>
                                 @endif
                                 @if(!empty($bod->email))
                                     <li>
-                                        <a href="mailto:{{ $bod->email }}" title="{{ __('Email') }} {{ $bName }}"><i
+                                        <a href="mailto:{{ $bod->email }}" title="{{ __('Email') }} {{ $bod->localized_name }}"><i
                                                 class="fas fa-envelope"></i></a>
                                     </li>
                                 @endif
@@ -375,48 +304,6 @@
 
 
     <!-- 3) Other Members / Field Team - RTL Carousel -->
-    @php
-        $rawOthers = (isset($otherMembers) && $otherMembers->count() > 0) ? $otherMembers : [
-            (object) [
-                'name' => 'Rtn. Md. Saifullah Russel',
-                'name_bn' => 'রোটা. মো. সাইফুল্লাহ রাসেল',
-                'designation' => 'Field Project Coordinator',
-                'present_address' => 'Dhaka, Bangladesh',
-                'photo_url' => asset('assets/images/team/saifullah_russel.jpg'),
-                'phone' => '+8801712998877',
-                'email' => 'saifullah.russel@rcdhakaelite.org'
-            ],
-            (object) [
-                'name' => 'Rtn. Wahiba Akhter',
-                'name_bn' => 'রোটা. ওয়াহিবা আক্তার',
-                'designation' => 'Accounts & Documentation Officer',
-                'present_address' => 'Dhaka, Bangladesh',
-                'photo_url' => asset('assets/images/team/wahiba_akhter.jpg'),
-                'phone' => '+8801815667788',
-                'email' => 'wahiba.akhter@rcdhakaelite.org'
-            ],
-            (object) [
-                'name' => 'Rtn. Sankar Chandra Das',
-                'name_bn' => 'রোটা. শংকর চন্দ্র দাস',
-                'designation' => 'Volunteer Supervisor & Logistics Support',
-                'present_address' => 'Dhaka, Bangladesh',
-                'photo_url' => asset('assets/images/team/sankar_das.jpg'),
-                'phone' => '+8801914332211',
-                'email' => 'sankar.das@rcdhakaelite.org'
-            ],
-            (object) [
-                'name' => 'Rtn. Hamidul Haque',
-                'name_bn' => 'রোটা. হামিদুল হক',
-                'designation' => 'Operations & Logistics Assistant',
-                'present_address' => 'Dhaka, Bangladesh',
-                'photo_url' => asset('assets/images/team/hamidul_haque.jpg'),
-                'phone' => '+8801611009988',
-                'email' => 'hamidul.haque@rcdhakaelite.org'
-            ],
-        ];
-        $otherCollection = collect($rawOthers);
-        $renderOthers = $otherCollection->count() < 6 ? $otherCollection->concat($otherCollection) : $otherCollection;
-    @endphp
     <section class="team-section officers-team-section centred sec-pad">
         <div class="pattern-layer" style="background-image: url({{ asset('assets/images/shape/shape-12.png') }});"></div>
         <div class="auto-container">
@@ -428,25 +315,24 @@
             </div>
 
             <div class="members-rtl-carousel owl-carousel owl-theme owl-dots-none" dir="rtl">
+                @php
+                    $renderOthers = $otherMembers->count() > 0 && $otherMembers->count() < 6 ? $otherMembers->concat($otherMembers) : $otherMembers;
+                @endphp
                 @foreach($renderOthers as $om)
-                    @php
-                        $omName = is_object($om) && isset($om->localized_name) ? $om->localized_name : ((is_bengali() && !empty($om->name_bn)) ? $om->name_bn : ($om->name ?? ''));
-                        $omDesig = is_object($om->designation) ? ($om->designation->localized_name ?? $om->designation->name) : __($om->designation);
-                    @endphp
                     <div class="team-block-one">
                         <div class="inner-box">
                             <figure class="image-box">
-                                <img src="{{ is_object($om) && isset($om->photo_url) ? $om->photo_url : asset('assets/images/team/saifullah_russel.jpg') }}"
-                                    alt="{{ $omName }}">
+                                <img src="{{ $om->photo_url }}"
+                                    alt="{{ $om->localized_name }}">
                             </figure>
                             <div class="content-box">
                                 <div class="info">
-                                    <span class="designation">{{ $omDesig }}</span>
-                                    <h3>{{ $omName }}</h3>
+                                    <span class="designation">{{ $om->designation_name }}</span>
+                                    <h3>{{ $om->localized_name }}</h3>
                                 </div>
                                 <figure class="thumb-box"><img
-                                        src="{{ is_object($om) && isset($om->photo_url) ? $om->photo_url : asset('assets/images/team/saifullah_russel.jpg') }}"
-                                        alt="{{ $omName }}"></figure>
+                                        src="{{ $om->photo_url }}"
+                                        alt="{{ $om->localized_name }}"></figure>
                                 <div class="text">
                                     <p>{{ $om->present_address ? Str::limit($om->present_address, 30) : __('Dhaka, Bangladesh') }}
                                     </p>
@@ -455,13 +341,13 @@
                             <ul class="social-links clearfix">
                                 @if(!empty($om->phone))
                                     <li>
-                                        <a href="tel:{{ $om->phone }}" title="{{ __('Call') }} {{ $omName }}"><i
+                                        <a href="tel:{{ $om->phone }}" title="{{ __('Call') }} {{ $om->localized_name }}"><i
                                                 class="fas fa-phone"></i></a>
                                     </li>
                                 @endif
                                 @if(!empty($om->email))
                                     <li>
-                                        <a href="mailto:{{ $om->email }}" title="{{ __('Email') }} {{ $omName }}"><i
+                                        <a href="mailto:{{ $om->email }}" title="{{ __('Email') }} {{ $om->localized_name }}"><i
                                                 class="fas fa-envelope"></i></a>
                                     </li>
                                 @endif
@@ -734,128 +620,31 @@
                     <p>{{ __('Honouring the visionary leaders of Rotary Club of Shantinagar Dhaka whose selfless stewardship built our enduring humanitarian legacy.') }}</p>
                 </div>
 
-                @php
-                    $allLeaders = [
-                        [
-                            'name' => 'Rtn. Chowdhury Md. Hamid Al Mahbub',
-                            'name_bn' => 'রোটা: চৌধুরী মো: হামিদ আল মাহবুব',
-                            'tenure' => '2017 – 2018',
-                            'year_badge' => '2017-18',
-                            'role' => 'Founding Charter President',
-                            'role_bn' => 'প্রতিষ্ঠাতা চার্টার সভাপতি',
-                            'photo' => asset('assets/images/team/charter_mahbub.jpg'),
-                            'badge_icon' => 'fas fa-crown',
-                            'badge_text' => 'Charter',
-                            'phf' => 'Major Donor',
-                            'theme' => 'Rotary: Making a Difference',
-                            'focus' => 'Club Inception & District Charter',
-                            'focus_bn' => 'ক্লাব প্রতিষ্ঠা ও জেলা চার্টার লাভ',
-                        ],
-                        [
-                            'name' => 'Rtn. A. K. M. Mizanur Rahman',
-                            'name_bn' => 'রোটা: এ. কে. এম. মিজানুর রহমান',
-                            'tenure' => '2018 – 2019',
-                            'year_badge' => '2018-19',
-                            'role' => 'Past President',
-                            'role_bn' => 'সাবেক সভাপতি',
-                            'photo' => asset('assets/images/team/mizanur.jpg'),
-                            'badge_icon' => 'fas fa-medal',
-                            'badge_text' => 'PHF',
-                            'theme' => 'Be the Inspiration',
-                            'focus' => 'Deep Tube-Wells & Safe Water',
-                            'focus_bn' => 'গভীর নলকূপ ও নিরাপদ পানি',
-                        ],
-                        [
-                            'name' => 'Rtn. Golam Kibria',
-                            'name_bn' => 'রোটা: গোলাম কিবরিয়া',
-                            'tenure' => '2019 – 2020',
-                            'year_badge' => '2019-20',
-                            'role' => 'Past President',
-                            'role_bn' => 'সাবেক সভাপতি',
-                            'photo' => asset('assets/images/team/kibria.jpg'),
-                            'badge_icon' => 'fas fa-award',
-                            'badge_text' => 'Major Donor',
-                            'theme' => 'Rotary Connects the World',
-                            'focus' => 'Hospital Aid & Free Clinics',
-                            'focus_bn' => 'হাসপাতাল চিকিৎসা সহায়তা',
-                        ],
-                        [
-                            'name' => 'Rtn. Saifuddin Mohammad Khaled',
-                            'name_bn' => 'রোটা: সাইফুদ্দিন মোহাম্মদ খালেদ',
-                            'tenure' => '2020 – 2021',
-                            'year_badge' => '2020-21',
-                            'role' => 'Past President',
-                            'role_bn' => 'সাবেক সভাপতি',
-                            'photo' => asset('assets/images/team/khaled_pp.jpg'),
-                            'badge_icon' => 'fas fa-medal',
-                            'badge_text' => 'PHF',
-                            'theme' => 'Rotary Opens Opportunities',
-                            'focus' => 'Oxygen Cylinder Bank',
-                            'focus_bn' => 'অক্সিজেন সিলিন্ডার ব্যাংক',
-                        ],
-                        [
-                            'name' => 'Rtn. AKM Ali Ahad Khan',
-                            'name_bn' => 'রোটা: এ কে এম আলী আহাদ খান',
-                            'tenure' => '2021 – 2022',
-                            'year_badge' => '2021-22',
-                            'role' => 'Past President',
-                            'role_bn' => 'সাবেক সভাপতি',
-                            'photo' => asset('assets/images/team/ahad_pp.jpeg'),
-                            'badge_icon' => 'fas fa-medal',
-                            'badge_text' => 'PHF',
-                            'theme' => 'Serve to Change Lives',
-                            'focus' => 'Maternal & Women Welfare',
-                            'focus_bn' => 'মাতৃস্বাস্থ্য ও নারী কল্যাণ',
-                        ],
-                        [
-                            'name' => 'Rtn. Mohammad Abu Sufian',
-                            'name_bn' => 'রোটা: মোহাম্মদ আবু সুফিয়ান',
-                            'tenure' => '2022 – 2023',
-                            'year_badge' => '2022-23',
-                            'role' => 'Past President',
-                            'role_bn' => 'সাবেক সভাপতি',
-                            'photo' => asset('assets/images/team/sufian.jpg'),
-                            'badge_icon' => 'fas fa-medal',
-                            'badge_text' => 'PHF',
-                            'theme' => 'Imagine Rotary',
-                            'focus' => 'Orphan Welfare & Winter Relief',
-                            'focus_bn' => 'এতিম শিশু ও শীতবস্ত্র সহায়তা',
-                        ],
-                        [
-                            'name' => 'Rtn. Md. Firoz Khan',
-                            'name_bn' => 'রোটা: মো: ফিরোজ খান',
-                            'tenure' => '2023 – 2024',
-                            'year_badge' => '2023-24',
-                            'role' => 'Immediate Past President',
-                            'role_bn' => 'ইমিডিয়েট পাস্ট প্রেসিডেন্ট',
-                            'photo' => asset('assets/images/team/firoz_khan.jpg'),
-                            'badge_icon' => 'fas fa-check-double',
-                            'badge_text' => 'Major Donor',
-                            'theme' => 'Create Hope in the World',
-                            'focus' => '100% Itemized Audit Records',
-                            'focus_bn' => '১০০% প্রকাশ্য আর্থিক স্বচ্ছতা',
-                        ],
-                    ];
-                @endphp
-
                 <div class="four-item-carousel owl-carousel owl-theme owl-nav-none">
-                    @foreach($allLeaders as $leader)
+                    @php
+                        $renderLeaders = $pastPresidents->count() > 0 && $pastPresidents->count() < 4 ? $pastPresidents->concat($pastPresidents) : $pastPresidents;
+                    @endphp
+                    @foreach($renderLeaders as $leader)
                         <div class="single-item">
                             <div class="inner-box president-pillar-card">
                                 <div class="icon-box president-photo-box">
-                                    <h5>{{ $leader['year_badge'] }}</h5>
+                                    <h5>{{ $leader->year_badge ?: ($leader->tenure ?: date('Y', strtotime($leader->joining_date))) }}</h5>
                                     <div class="leader-avatar-circle">
-                                        <img src="{{ $leader['photo'] }}" alt="{{ is_bengali() ? $leader['name_bn'] : $leader['name'] }}">
+                                        <img src="{{ $leader->photo_url }}" alt="{{ $leader->localized_name }}">
                                     </div>
                                 </div>
-                                <h3>{{ is_bengali() ? $leader['name_bn'] : $leader['name'] }}</h3>
-                                <p class="leader-role-text">{{ is_bengali() ? $leader['role_bn'] : $leader['role'] }}</p>
-                                <span class="leader-focus-tag">
-                                    <i class="far fa-shield-check me-1"></i> {{ is_bengali() ? $leader['focus_bn'] : $leader['focus'] }}
-                                </span>
-                                <a href="javascript:void(0);" class="leader-theme-link" title="{{ __('RI Theme') }}: {{ $leader['theme'] }}">
-                                    <i class="far fa-angle-right"></i>"{{ $leader['theme'] }}"
-                                </a>
+                                <h3>{{ $leader->localized_name }}</h3>
+                                <p class="leader-role-text">{{ $leader->designation_name }}</p>
+                                @if($leader->localized_focus_area)
+                                    <span class="leader-focus-tag">
+                                        <i class="far fa-shield-check me-1"></i> {{ $leader->localized_focus_area }}
+                                    </span>
+                                @endif
+                                @if($leader->localized_theme)
+                                    <a href="javascript:void(0);" class="leader-theme-link" title="{{ __('RI Theme') }}: {{ $leader->localized_theme }}">
+                                        <i class="far fa-angle-right"></i>"{{ $leader->localized_theme }}"
+                                    </a>
+                                @endif
                             </div>
                         </div>
                     @endforeach

@@ -242,12 +242,24 @@ class HomeController extends Controller
             ->orderBy('id', 'asc')
             ->get();
 
+        $pastPresidents = Employee::with('designation')
+            ->where('is_active', true)
+            ->where(function ($q) {
+                $q->whereHas('designation', function ($dq) {
+                    $dq->where('category', 'Past Presidents');
+                })->orWhereNotNull('tenure');
+            })
+            ->orderBy('order_index', 'asc')
+            ->orderBy('id', 'asc')
+            ->get();
+
         $excludedIds = array_filter([
             $bestPresident?->id,
             $president?->id,
             $secretary?->id,
             $treasurer?->id,
             ...$bodMembers->pluck('id')->toArray(),
+            ...$pastPresidents->pluck('id')->toArray(),
         ]);
 
         $otherMembers = Employee::with('designation')
@@ -271,6 +283,7 @@ class HomeController extends Controller
             'treasurer',
             'bodMembers',
             'otherMembers',
+            'pastPresidents',
             'teamMembers'
         ));
     }

@@ -127,6 +127,40 @@
                             @endif
                         </div>
                     </div>
+
+                    @if($employee->tenure || $employee->rotary_theme || $employee->focus_area || $employee->badge_title)
+                    <div class="border-top p-4" style="background-color: #f1f5f9;">
+                        <h6 class="fw-bold text-dark mb-3" style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #475569 !important;">
+                            <i class="ri-medal-line me-1 text-primary"></i> Rotary Legacy &amp; Roll of Honour
+                        </h6>
+                        <div class="d-flex flex-column gap-2" style="font-size: 13px;">
+                            @if($employee->badge_title)
+                            <div class="d-flex justify-content-between py-1 border-bottom border-light">
+                                <span class="text-muted">Distinction</span>
+                                <span class="badge bg-primary text-white">{{ $employee->badge_title }}</span>
+                            </div>
+                            @endif
+                            @if($employee->tenure)
+                            <div class="d-flex justify-content-between py-1 border-bottom border-light">
+                                <span class="text-muted">Tenure Period</span>
+                                <strong class="text-dark">{{ $employee->tenure }} ({{ $employee->year_badge }})</strong>
+                            </div>
+                            @endif
+                            @if($employee->rotary_theme)
+                            <div class="py-1 border-bottom border-light">
+                                <span class="text-muted d-block">Rotary Theme:</span>
+                                <em class="text-dark font-monospace">"{{ $employee->rotary_theme }}"</em>
+                            </div>
+                            @endif
+                            @if($employee->focus_area)
+                            <div class="py-1">
+                                <span class="text-muted d-block">Milestone Focus:</span>
+                                <span class="text-dark fw-semibold">{{ $employee->focus_area }}</span>
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
 

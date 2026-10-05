@@ -164,6 +164,124 @@
                             </div>
                         </div>
                     </div>
+
+                    {{-- Rotary Leadership & Roll of Honour Details Card --}}
+                    <div class="card table-card mb-4">
+                        <div class="card-header table-header">
+                            <div class="table-title">
+                                <i class="ri-medal-line me-1 text-primary"></i> Rotary Leadership &amp; Roll of Honour (Optional)
+                            </div>
+                        </div>
+                        <div class="card-body custom-form p-4">
+                            <p class="text-muted mb-3" style="font-size: 12px; line-height: 1.5;">
+                                Fill in these fields for Executive Officers, Spotlight Founder, or Past Presidents shown on the About page.
+                            </p>
+                            <div class="row g-3">
+                                {{-- Distinction / Badge Title & Tenure --}}
+                                <div class="col-md-6 col-12">
+                                    <label for="badge_title" class="form-label custom-label">Distinction / Badge Title</label>
+                                    <input type="text" class="form-control custom-input @error('badge_title') is-invalid @enderror"
+                                        name="badge_title" id="badge_title" value="{{ old('badge_title', $employee->badge_title) }}" placeholder="e.g. PHF, Major Donor, Charter President">
+                                    @error('badge_title')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-3 col-6">
+                                    <label for="tenure" class="form-label custom-label">Tenure Period</label>
+                                    <input type="text" class="form-control custom-input @error('tenure') is-invalid @enderror"
+                                        name="tenure" id="tenure" value="{{ old('tenure', $employee->tenure) }}" placeholder="e.g. 2018 – 2019">
+                                    @error('tenure')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-3 col-6">
+                                    <label for="year_badge" class="form-label custom-label">Year Badge Tag</label>
+                                    <input type="text" class="form-control custom-input @error('year_badge') is-invalid @enderror"
+                                        name="year_badge" id="year_badge" value="{{ old('year_badge', $employee->year_badge) }}" placeholder="e.g. 2018-19">
+                                    @error('year_badge')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                {{-- Presidential Theme (EN & BN) --}}
+                                <div class="col-md-6 col-12">
+                                    <label for="rotary_theme" class="form-label custom-label">Rotary Presidential Theme (English)</label>
+                                    <input type="text" class="form-control custom-input @error('rotary_theme') is-invalid @enderror"
+                                        name="rotary_theme" id="rotary_theme" value="{{ old('rotary_theme', $employee->rotary_theme) }}" placeholder='e.g. "Be the Inspiration"'>
+                                    @error('rotary_theme')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 col-12">
+                                    <label for="rotary_theme_bn" class="form-label custom-label">Rotary Presidential Theme (বাংলা)</label>
+                                    <input type="text" class="form-control custom-input @error('rotary_theme_bn') is-invalid @enderror"
+                                        name="rotary_theme_bn" id="rotary_theme_bn" value="{{ old('rotary_theme_bn', $employee->rotary_theme_bn) }}" placeholder="যেমন: বি দ্য ইন্সপিরেশন">
+                                    @error('rotary_theme_bn')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                {{-- Focus Area / Major Milestone (EN & BN) --}}
+                                <div class="col-md-6 col-12">
+                                    <label for="focus_area" class="form-label custom-label">Key Focus / Milestone (English)</label>
+                                    <input type="text" class="form-control custom-input @error('focus_area') is-invalid @enderror"
+                                        name="focus_area" id="focus_area" value="{{ old('focus_area', $employee->focus_area) }}" placeholder="e.g. Deep Tube-Wells & Safe Water">
+                                    @error('focus_area')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 col-12">
+                                    <label for="focus_area_bn" class="form-label custom-label">Key Focus / Milestone (বাংলা)</label>
+                                    <input type="text" class="form-control custom-input @error('focus_area_bn') is-invalid @enderror"
+                                        name="focus_area_bn" id="focus_area_bn" value="{{ old('focus_area_bn', $employee->focus_area_bn) }}" placeholder="যেমন: গভীর নলকূপ ও নিরাপদ পানি">
+                                    @error('focus_area_bn')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                {{-- Speech / Vision Quote & Bio --}}
+                                <div class="col-12">
+                                    <label for="speech" class="form-label custom-label">Executive Speech / Vision Quote</label>
+                                    <textarea class="form-control custom-input @error('speech') is-invalid @enderror"
+                                        name="speech" id="speech" rows="2" placeholder="Leader speech or quote shown in leadership card...">{{ old('speech', $employee->speech) }}</textarea>
+                                    @error('speech')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <label for="order_index" class="form-label custom-label">Display Order Index</label>
+                                    <input type="number" min="0" class="form-control custom-input @error('order_index') is-invalid @enderror"
+                                        name="order_index" id="order_index" value="{{ old('order_index', $employee->order_index) }}">
+                                    @error('order_index')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <label for="signature_text" class="form-label custom-label">Signature Display Name</label>
+                                    <input type="text" class="form-control custom-input @error('signature_text') is-invalid @enderror"
+                                        name="signature_text" id="signature_text" value="{{ old('signature_text', $employee->signature_text) }}" placeholder="e.g. Rtn. Md. Ariful Hoque PHF">
+                                    @error('signature_text')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <label for="signature_title" class="form-label custom-label">Signature Title</label>
+                                    <input type="text" class="form-control custom-input @error('signature_title') is-invalid @enderror"
+                                        name="signature_title" id="signature_title" value="{{ old('signature_title', $employee->signature_title) }}" placeholder="e.g. President • Rotary Club of Shantinagar">
+                                    @error('signature_title')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 {{-- Right Column: Actions & Unified Image Uploader (Right 4 Cols) --}}

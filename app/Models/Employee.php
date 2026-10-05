@@ -33,6 +33,12 @@ class Employee extends Model
         'signature_text',
         'signature_title',
         'badge_title',
+        'tenure',
+        'year_badge',
+        'rotary_theme',
+        'rotary_theme_bn',
+        'focus_area',
+        'focus_area_bn',
         'facebook_url',
         'twitter_url',
         'linkedin_url',
@@ -115,6 +121,22 @@ class Employee extends Model
     public function getLocalizedSignatureTitleAttribute(): ?string
     {
         return $this->signature_title ? __($this->signature_title) : null;
+    }
+
+    /**
+     * Get localized rotary presidential theme based on active locale.
+     */
+    public function getLocalizedThemeAttribute(): ?string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->rotary_theme_bn)) ? $this->rotary_theme_bn : ($this->rotary_theme ? __($this->rotary_theme) : null);
+    }
+
+    /**
+     * Get localized focus area / milestone based on active locale.
+     */
+    public function getLocalizedFocusAreaAttribute(): ?string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->focus_area_bn)) ? $this->focus_area_bn : ($this->focus_area ? __($this->focus_area) : null);
     }
 
     /**

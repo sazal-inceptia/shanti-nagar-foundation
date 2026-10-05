@@ -164,6 +164,12 @@ erDiagram
         string signature_title_bn
         string badge_title
         string badge_title_bn
+        string tenure
+        string year_badge
+        string rotary_theme
+        string rotary_theme_bn
+        string focus_area
+        string focus_area_bn
         string facebook_url
         string twitter_url
         string linkedin_url

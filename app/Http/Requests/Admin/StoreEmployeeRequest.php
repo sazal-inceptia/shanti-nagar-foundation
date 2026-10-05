@@ -45,6 +45,12 @@ class StoreEmployeeRequest extends FormRequest
             'signature_text' => ['nullable', 'string', 'max:150'],
             'signature_title' => ['nullable', 'string', 'max:150'],
             'badge_title' => ['nullable', 'string', 'max:100'],
+            'tenure' => ['nullable', 'string', 'max:100'],
+            'year_badge' => ['nullable', 'string', 'max:50'],
+            'rotary_theme' => ['nullable', 'string', 'max:255'],
+            'rotary_theme_bn' => ['nullable', 'string', 'max:255'],
+            'focus_area' => ['nullable', 'string', 'max:255'],
+            'focus_area_bn' => ['nullable', 'string', 'max:255'],
             'facebook_url' => ['nullable', 'url', 'max:255'],
             'twitter_url' => ['nullable', 'url', 'max:255'],
             'linkedin_url' => ['nullable', 'url', 'max:255'],
@@ -68,6 +74,10 @@ class StoreEmployeeRequest extends FormRequest
             'base_salary' => 'basic salary (BDT)',
             'is_active' => 'active status',
             'photo' => 'profile photo',
+            'tenure' => 'tenure period',
+            'year_badge' => 'year badge',
+            'rotary_theme' => 'Rotary theme',
+            'focus_area' => 'key focus area',
         ];
     }
 }
