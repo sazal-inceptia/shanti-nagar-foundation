@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Activity;
 use App\Models\Donation;
 use App\Models\Donor;
 use App\Models\Project;
@@ -42,19 +43,18 @@ test('public users can view dynamic project details by slug', function () {
     $response->assertSee('Rafiqul Islam');
 });
 
-test('public users can view dynamic event details by slug', function () {
-    $activity = Project::create([
-        'name' => 'Free Eye Camp at Shanti Nagar',
+test('public users can view dynamic activity details by slug', function () {
+    $activity = Activity::create([
+        'title' => 'Free Eye Camp at Shanti Nagar',
         'slug' => 'free-eye-camp-shanti-nagar-test',
         'short_description' => 'Free cataract screening and eyeglasses.',
         'description' => 'Community medical camp organized with specialist doctors.',
-        'estimated_cost' => 50000.00,
-        'status' => 'planned',
         'location' => 'Shanti Nagar, Dhaka',
+        'status' => 'upcoming',
         'is_published' => true,
     ]);
 
-    $response = $this->get(route('event.details', $activity->slug));
+    $response = $this->get(route('activity.details', $activity->slug));
 
     $response->assertStatus(200);
     $response->assertSee('Free Eye Camp at Shanti Nagar');
@@ -112,9 +112,8 @@ test('public donations, events, and gallery pages render dynamically', function 
     $donationsResponse->assertSee('Safe Drinking Water Tube-Wells in Sunamganj');
     $donationsResponse->assertSee('৳');
 
-    $eventsResponse = $this->get(route('events'));
-    $eventsResponse->assertStatus(200);
-    $eventsResponse->assertSee('Safe Drinking Water Tube-Wells in Sunamganj');
+    $activitiesResponse = $this->get(route('activities'));
+    $activitiesResponse->assertStatus(200);
 
     $galleryResponse = $this->get(route('gallery'));
     $galleryResponse->assertStatus(200);
@@ -126,7 +125,7 @@ test('public donations page filters projects dynamically by project type', funct
         'name' => 'Continuous Project',
         'slug' => 'continuous-project-test',
         'description' => 'Projects requiring continuous ongoing funding',
-        'badge_color' => '#f65024',
+        'badge_color' => '#005daa',
         'order_index' => 1,
         'is_active' => true,
     ]);

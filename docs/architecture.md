@@ -74,7 +74,8 @@ shanti-nagar-foundation/
 │   │   │       ├── DashboardController.php      # Overview KPIs & financial summary
 │   │   │       ├── DonorController.php          # Donor CRM & history
 │   │   │       ├── DonationController.php       # Donation entries & receipt generator
-│   │   │       ├── ProjectController.php        # Project & Activity lifecycle
+│   │   │       ├── ProjectController.php        # Project & Cause lifecycle
+│   │   │       ├── ActivityController.php       # Club field programs & initiatives
 │   │   │       ├── ExpenseController.php        # Voucher expenses & procurement
 │   │   │       ├── AlbumController.php          # Photo Albums CRUD and multi-photo organizer
 │   │   │       ├── GalleryImageController.php   # Gallery photos manager and batch uploader
@@ -83,6 +84,7 @@ shanti-nagar-foundation/
 │   │   │       └── ReportController.php         # Financial audit & exports
 │   │   └── Requests/
 │   │       └── Admin/                           # FORM REQUEST VALIDATION LAYER
+│   │           ├── StoreActivityRequest.php, UpdateActivityRequest.php
 │   │           ├── Donor/ (StoreDonorRequest, UpdateDonorRequest)
 │   │           ├── Donation/ (StoreDonationRequest, UpdateDonationRequest)
 │   │           ├── Project/ (StoreProjectRequest, UpdateProjectRequest)
@@ -90,6 +92,7 @@ shanti-nagar-foundation/
 │   │           ├── Employee/ (StoreEmployeeRequest, UpdateEmployeeRequest)
 │   │           └── Salary/ (DisburseSalaryRequest, UpdateSalaryRequest)
 │   ├── Services/                                # DEDICATED BUSINESS SERVICE LAYER
+│   │   ├── ActivityService.php                  # Activity CRUD, DataTables & Image handling
 │   │   ├── DonorService.php                     # Donor creation, stats & history
 │   │   ├── DonationService.php                  # Donation processing & receipt logic
 │   │   ├── ProjectService.php                   # Project CRUD, budget tracking & photo upload
@@ -101,6 +104,7 @@ shanti-nagar-foundation/
 │       ├── User.php
 │       ├── Donor.php
 │       ├── Project.php
+│       ├── Activity.php
 │       ├── ProjectImage.php
 │       ├── Album.php
 │       ├── GalleryImage.php

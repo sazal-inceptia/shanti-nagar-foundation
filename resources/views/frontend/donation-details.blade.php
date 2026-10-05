@@ -103,7 +103,11 @@
                                         <p class="lead project-lead">{{ $project->localized_short_description }}</p>
                                     @endif
                                     <div class="project-desc">
-                                        {!! nl2br(e($project->localized_description ?: __('Rotary Club of Shantinagar Dhaka is dedicated to delivering transparent humanitarian relief, healthcare support, and social empowerment across Bangladesh. Every contribution directly funds verified on-the-ground initiatives without intermediaries.'))) !!}
+                                        @if($project->localized_description)
+                                            {!! $project->localized_description !!}
+                                        @else
+                                            <p>{{ __('Rotary Club of Shantinagar Dhaka is dedicated to delivering transparent humanitarian relief, healthcare support, and social empowerment across Bangladesh. Every contribution directly funds verified on-the-ground initiatives without intermediaries.') }}</p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

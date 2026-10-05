@@ -39,7 +39,7 @@
                             <ul class="links-list clearfix">
                                 <li><a href="{{ route('about') }}">{{ __('About Us') }}</a></li>
                                 <li><a href="{{ route('donations') }}">{{ __('Projects & Causes') }}</a></li>
-                                <li><a href="{{ route('events') }}">{{ __('Activities') }}</a></li>
+                                <li><a href="{{ route('activities') }}">{{ __('Activities') }}</a></li>
                                 <li><a href="{{ route('gallery') }}">{{ __('Gallery') }}</a></li>
                                 <li><a href="{{ route('volunteer') }}">{{ __('Volunteer Registration') }}</a></li>
                                 <li><a href="{{ route('faq') }}">{{ __('FAQ & Transparency') }}</a></li>

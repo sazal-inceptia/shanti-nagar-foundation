@@ -47,19 +47,8 @@
                                     @enderror
                                 </div>
 
-                                {{-- Slug --}}
-                                <div class="col-md-4 col-12">
-                                    <label for="slug" class="form-label custom-label">Slug (URL)</label>
-                                    <input type="text" class="form-control custom-input @error('slug') is-invalid @enderror"
-                                        name="slug" id="slug" value="{{ old('slug') }}" placeholder="auto-generated-if-blank">
-                                    <div class="text-muted mt-1" style="font-size: 11px;">Leave blank to auto-generate from title</div>
-                                    @error('slug')
-                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
                                 {{-- Project Type & Status --}}
-                                <div class="col-md-4 col-12">
+                                <div class="col-md-6 col-12">
                                     <label for="project_type_id" class="form-label custom-label">Project Type</label>
                                     <select class="form-select custom-input @error('project_type_id') is-invalid @enderror" name="project_type_id" id="project_type_id">
                                         <option value="">Select Project Type...</option>
@@ -74,7 +63,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-4 col-12">
+                                <div class="col-md-6 col-12">
                                     <label for="status" class="form-label custom-label">Campaign Status <span class="text-danger">*</span></label>
                                     <select class="form-select custom-input @error('status') is-invalid @enderror" name="status" id="status" required>
                                         <option value="in_progress" {{ old('status', 'in_progress') == 'in_progress' ? 'selected' : '' }}>In Progress (Active)</option>
@@ -260,25 +249,19 @@
 @endsection
 
 @push('custom-script')
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script>
         $(document).ready(function () {
-            // Auto slug generator
-            var slugManuallyChanged = false;
-            $('#slug').on('input', function () {
-                slugManuallyChanged = $(this).val().trim().length > 0;
-            });
-
-            $('#name').on('input', function () {
-                if (!slugManuallyChanged) {
-                    var nameVal = $(this).val();
-                    var slug = nameVal.toLowerCase()
-                        .replace(/[^\w\s-]/g, '')
-                        .trim()
-                        .replace(/[\s_-]+/g, '-')
-                        .replace(/^-+|-+$/g, '');
-                    $('#slug').val(slug);
-                }
-            });
+            if (document.querySelector('#description')) {
+                ClassicEditor.create(document.querySelector('#description'), {
+                    toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo']
+                }).catch(error => console.error(error));
+            }
+            if (document.querySelector('#description_bn')) {
+                ClassicEditor.create(document.querySelector('#description_bn'), {
+                    toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo']
+                }).catch(error => console.error(error));
+            }
         });
     </script>
 @endpush

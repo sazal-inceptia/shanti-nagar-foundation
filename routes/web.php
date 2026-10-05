@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\AlbumController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -26,8 +27,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 Route::get('/donations', [HomeController::class, 'donations'])->name('donations');
 Route::get('/donation-details/{slug?}', [HomeController::class, 'donationDetails'])->name('donation.details');
-Route::get('/events', [HomeController::class, 'events'])->name('events');
-Route::get('/event-details/{slug?}', [HomeController::class, 'eventDetails'])->name('event.details');
+
+// Club Activities & Field Programs
+Route::get('/activities', [HomeController::class, 'activities'])->name('activities');
+Route::get('/activities/{slug}', [HomeController::class, 'activityDetails'])->name('activity.details');
 
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact', [HomeController::class, 'submitContact'])->name('contact.submit');
@@ -72,6 +75,10 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Projects & Relief Causes Management (Resource CRUD)
     Route::post('/projects/{project}/toggle-status', [ProjectController::class, 'toggleStatus'])->name('projects.toggle-status');
     Route::resource('projects', ProjectController::class);
+
+    // Club Activities & Field Programs
+    Route::post('/activities/{activity}/toggle-status', [ActivityController::class, 'toggleStatus'])->name('activities.toggle-status');
+    Route::resource('activities', ActivityController::class);
 
     // Donors Directory
     Route::resource('donors', DonorController::class);

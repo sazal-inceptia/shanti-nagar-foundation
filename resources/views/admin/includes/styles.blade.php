@@ -357,6 +357,28 @@
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
+
+    /* CKEditor Custom Styling */
+    .ck-editor__editable_inline {
+        min-height: 180px !important;
+        border-bottom-left-radius: 6px !important;
+        border-bottom-right-radius: 6px !important;
+        font-family: inherit !important;
+        font-size: 13.5px !important;
+    }
+    .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+        border-color: #cbd5e1 !important;
+    }
+    .ck.ck-editor__main>.ck-editor__editable.ck-focused {
+        border-color: #005daa !important;
+        box-shadow: none !important;
+    }
+    .ck.ck-toolbar {
+        border-top-left-radius: 6px !important;
+        border-top-right-radius: 6px !important;
+        border-color: #cbd5e1 !important;
+        background: #f8fafc !important;
+    }
 </style>
 
 <!-- Admin SCSS Styles -->

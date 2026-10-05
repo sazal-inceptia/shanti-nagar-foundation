@@ -3,15 +3,18 @@
         <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center logo-interactive-anchor">
             <div class="logo-icon d-flex align-items-center justify-content-center"
                 style="width: 40px; height: 40px; background-color: #ffffff; border-radius: 50%; flex-shrink: 0; padding: 2px; box-shadow: 0 2px 8px rgba(0,93,170,0.12); border: 1.5px solid #005daa; overflow: hidden;">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="rotary-rotating-logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;">
+                <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="rotary-rotating-logo"
+                    style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;">
             </div>
             <div class="logo_name">
                 <div class="d-flex align-items-center">
                     <div class="d-flex flex-column text-start" style="line-height: 1.15; margin-left: 10px;">
                         <span
-                            style="font-size: 13px; font-weight: 800; color: #111A3A; letter-spacing: -0.01em; white-space: nowrap;">ROTARY CLUB</span>
+                            style="font-size: 13px; font-weight: 800; color: #111A3A; letter-spacing: -0.01em; white-space: nowrap;">ROTARY
+                            CLUB</span>
                         <span
-                            style="font-size: 9.5px; font-weight: 700; color: #005daa; text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap;">Shantinagar Dhaka</span>
+                            style="font-size: 9.5px; font-weight: 700; color: #005daa; text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap;">Shantinagar
+                            Dhaka</span>
                     </div>
                 </div>
             </div>
@@ -24,7 +27,8 @@
             <span class="link_names">Overview</span>
         </li>
         <li>
-            <a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? ' active-focus' : '' }}">
+            <a href="{{ route('admin.dashboard') }}"
+                class="{{ request()->routeIs('admin.dashboard') ? ' active-focus' : '' }}">
                 <i class="ri-dashboard-3-line"></i>
                 <span class="link_names">Dashboard</span>
             </a>
@@ -35,37 +39,52 @@
             <span class="link_names">Operations &amp; Public</span>
         </li>
         <li>
-            <a href="{{ route('admin.projects.index') }}" class="{{ request()->routeIs('admin.projects.*') ? 'active-focus' : '' }}">
+            <a href="{{ route('admin.projects.index') }}"
+                class="{{ request()->routeIs('admin.projects.*') ? 'active-focus' : '' }}">
                 <i class="ri-heart-pulse-line"></i>
                 <span class="link_names">Projects & Relief</span>
             </a>
         </li>
+
         <li>
-            <a href="{{ route('admin.donors.index') }}" class="{{ request()->routeIs('admin.donors.*') ? 'active-focus' : '' }}">
+            <a href="{{ route('admin.activities.index') }}"
+                class="{{ request()->routeIs('admin.activities.*') ? 'active-focus' : '' }}">
+                <i class="ri-calendar-event-line"></i>
+                <span class="link_names">Club Activities</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('admin.albums.index') }}"
+                class="{{ request()->routeIs('admin.albums.*', 'admin.gallery-images.*') ? 'active-focus' : '' }}">
+                <i class="ri-gallery-line"></i>
+                <span class="link_names">Album & Gallery</span>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('admin.donors.index') }}"
+                class="{{ request()->routeIs('admin.donors.*') ? 'active-focus' : '' }}">
                 <i class="ri-user-heart-line"></i>
                 <span class="link_names">Donors Directory</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.donations.index') }}" class="{{ request()->routeIs('admin.donations.*') ? 'active-focus' : '' }}">
+            <a href="{{ route('admin.donations.index') }}"
+                class="{{ request()->routeIs('admin.donations.*') ? 'active-focus' : '' }}">
                 <i class="ri-hand-coin-line"></i>
                 <span class="link_names">Donations & Funds</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.albums.index') }}" class="{{ request()->routeIs('admin.albums.*', 'admin.gallery-images.*') ? 'active-focus' : '' }}">
-                <i class="ri-gallery-line"></i>
-                <span class="link_names">Media & Gallery</span>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('admin.contacts.index') }}" class="{{ request()->routeIs('admin.contacts.*') ? 'active-focus' : '' }}">
+            <a href="{{ route('admin.contacts.index') }}"
+                class="{{ request()->routeIs('admin.contacts.*') ? 'active-focus' : '' }}">
                 <i class="ri-mail-line"></i>
                 <span class="link_names">Contact Inquiries</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.volunteers.index') }}" class="{{ request()->routeIs('admin.volunteers.*') ? 'active-focus' : '' }}">
+            <a href="{{ route('admin.volunteers.index') }}"
+                class="{{ request()->routeIs('admin.volunteers.*') ? 'active-focus' : '' }}">
                 <i class="ri-user-smile-line"></i>
                 <span class="link_names">Volunteer Network</span>
             </a>
@@ -76,25 +95,29 @@
             <span class="link_names">Finance & HR</span>
         </li>
         <li>
-            <a href="{{ route('admin.expenses.index') }}" class="{{ request()->routeIs('admin.expenses.*') ? 'active-focus' : '' }}">
+            <a href="{{ route('admin.expenses.index') }}"
+                class="{{ request()->routeIs('admin.expenses.*') ? 'active-focus' : '' }}">
                 <i class="ri-money-dollar-circle-line"></i>
                 <span class="link_names">Expenses & Vouchers</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.employees.index') }}" class="{{ request()->routeIs('admin.employees.*') ? 'active-focus' : '' }}">
+            <a href="{{ route('admin.employees.index') }}"
+                class="{{ request()->routeIs('admin.employees.*') ? 'active-focus' : '' }}">
                 <i class="ri-team-line"></i>
                 <span class="link_names">Staff & Employees</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.salaries.index') }}" class="{{ request()->routeIs('admin.salaries.*') ? 'active-focus' : '' }}">
+            <a href="{{ route('admin.salaries.index') }}"
+                class="{{ request()->routeIs('admin.salaries.*') ? 'active-focus' : '' }}">
                 <i class="ri-wallet-3-line"></i>
                 <span class="link_names">Salary & Payroll</span>
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.reports.index') }}" class="{{ request()->routeIs('admin.reports.*') ? 'active-focus' : '' }}">
+            <a href="{{ route('admin.reports.index') }}"
+                class="{{ request()->routeIs('admin.reports.*') ? 'active-focus' : '' }}">
                 <i class="ri-file-chart-line"></i>
                 <span class="link_names">Financial Reports</span>
             </a>

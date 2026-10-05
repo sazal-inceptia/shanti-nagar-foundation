@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContactMessageRequest;
 use App\Http\Requests\StorePublicDonationRequest;
 use App\Http\Requests\StoreVolunteerRequest;
+use App\Models\Activity;
 use App\Models\Album;
 use App\Models\ContactMessage;
 use App\Models\Donation;
@@ -117,11 +118,10 @@ class HomeController extends Controller
         // Section 4: Upcoming Field Activities & Humanitarian Drives
         // ---------------------------------------------------------------------
         $today = now()->toDateString();
-        $upcomingActivities = Project::where('is_published', true)
-            ->whereIn('status', ['planned', 'in_progress'])
-            ->with('projectType')
-            ->orderByRaw('CASE WHEN start_date >= ? THEN 0 ELSE 1 END', [$today])
-            ->orderBy('start_date', 'asc')
+        $upcomingActivities = Activity::where('is_published', true)
+            ->orderByRaw('CASE WHEN event_date >= ? THEN 0 ELSE 1 END', [$today])
+            ->orderBy('event_date', 'asc')
+            ->orderBy('id', 'desc')
             ->take(3)
             ->get();
 
@@ -406,35 +406,36 @@ class HomeController extends Controller
         return view('frontend.donation-details', compact('project', 'recentProjects', 'recentDonors', 'projectTypes', 'galleryImages'));
     }
 
-    public function events(): View
+    public function activities(): View
     {
         // ---------------------------------------------------------------------
         // Section 1: Upcoming & Planned Activities (Prioritizing Upcoming Dates)
         // ---------------------------------------------------------------------
         $today = now()->toDateString();
-        $activities = Project::where('is_published', true)
-            ->with('projectType')
-            ->orderByRaw('CASE WHEN start_date >= ? THEN 0 ELSE 1 END', [$today])
-            ->orderBy('start_date', 'asc')
+        $activities = Activity::where('is_published', true)
+            ->orderByRaw('CASE WHEN event_date >= ? THEN 0 ELSE 1 END', [$today])
+            ->orderBy('event_date', 'asc')
+            ->orderBy('id', 'desc')
             ->paginate(6);
 
-        return view('frontend.events', compact('activities'));
+        return view('frontend.activities', compact('activities'));
     }
 
-    public function eventDetails(?string $slug = null): View
+    public function activityDetails(?string $slug = null): View
     {
         // ---------------------------------------------------------------------
-        // Section 1: Target Activity Details & Gallery Images
+        // Section 1: Target Activity Details
         // ---------------------------------------------------------------------
         $activity = null;
         if ($slug) {
-            $activity = Project::where('slug', $slug)
-                ->with(['projectType', 'images'])
+            $activity = Activity::where('slug', $slug)
+                ->where('is_published', true)
                 ->first();
         }
         if (! $activity) {
-            $activity = Project::with(['projectType', 'images'])
-                ->where('is_published', true)
+            $activity = Activity::where('is_published', true)
+                ->orderByRaw('CASE WHEN event_date >= ? THEN 0 ELSE 1 END', [now()->toDateString()])
+                ->orderBy('event_date', 'asc')
                 ->first();
         }
 
@@ -446,18 +447,16 @@ class HomeController extends Controller
         // Section 2: Other Upcoming Initiatives (Prioritizing Upcoming Dates)
         // ---------------------------------------------------------------------
         $today = now()->toDateString();
-        $upcomingActivities = Project::where('id', '!=', $activity->id)
+        $upcomingActivities = Activity::where('id', '!=', $activity->id)
             ->where('is_published', true)
-            ->with('projectType')
-            ->orderByRaw('CASE WHEN start_date >= ? THEN 0 ELSE 1 END', [$today])
-            ->orderBy('start_date', 'asc')
+            ->orderByRaw('CASE WHEN event_date >= ? THEN 0 ELSE 1 END', [$today])
+            ->orderBy('event_date', 'asc')
             ->take(3)
             ->get();
 
         if ($upcomingActivities->count() < 3) {
-            $upcomingActivities = Project::where('id', '!=', $activity->id)
+            $upcomingActivities = Activity::where('id', '!=', $activity->id)
                 ->where('is_published', true)
-                ->with('projectType')
                 ->latest('created_at')
                 ->take(3)
                 ->get();
@@ -475,7 +474,7 @@ class HomeController extends Controller
             $recentVolunteers = Volunteer::latest()->take(6)->get();
         }
 
-        return view('frontend.event-details', compact('activity', 'upcomingActivities', 'recentVolunteers'));
+        return view('frontend.activity-details', compact('activity', 'upcomingActivities', 'recentVolunteers'));
     }
 
     public function contact(): View

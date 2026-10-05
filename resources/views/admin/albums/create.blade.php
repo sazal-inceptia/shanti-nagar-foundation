@@ -97,12 +97,14 @@
                         </div>
                         <div class="card-body p-4">
                             <div class="mb-3">
-                                <label class="form-label custom-label">Album Cover Image</label>
-                                <input type="file" name="cover_image" class="form-control custom-input" accept="image/*" onchange="previewCover(event)">
-                                <div class="text-muted mt-1" style="font-size: 11.5px;">Recommended resolution: 800x600 px (Max: 5MB)</div>
-                                <div class="mt-3 text-center border rounded p-2 bg-light" style="min-height: 140px; display: flex; align-items: center; justify-content: center;">
-                                    <img id="coverPreview" src="{{ asset('assets/images/gallery/portfolio-7.jpg') }}" alt="Preview" style="max-width: 100%; max-height: 180px; object-fit: cover; border-radius: 6px;">
-                                </div>
+                                @include('admin.includes.image-uploader', [
+                                    'name' => 'cover_image',
+                                    'label' => 'Upload Cover Photo',
+                                    'modalTitle' => 'Upload Album Cover Photo',
+                                    'helpText' => 'JPG, PNG, WebP up to 5MB (800×600px recommended)',
+                                    'shape' => 'rectangle',
+                                    'height' => '170px'
+                                ])
                             </div>
 
                             <hr>
@@ -112,13 +114,17 @@
                                 <label class="form-check-label fw-bold ms-2" for="is_active">Publish on Website</label>
                             </div>
 
-                            <div class="d-grid gap-2 mt-4">
-                                <button type="submit" class="btn btn-primary" style="font-weight: 600; padding: 10px;">
-                                    <i class="ri-save-line me-1"></i> Save & Continue to Photos
-                                </button>
-                                <a href="{{ route('admin.albums.index') }}" class="btn btn-outline-secondary">
-                                    Cancel
-                                </a>
+                            <div class="row g-2 mt-3">
+                                <div class="col-6">
+                                    <button type="submit" class="btn submit-button w-100" style="background-color: #005daa; color: #fff; border-radius: 6px; font-weight: 600; height: 38px;">
+                                        <i class="ri-check-line me-1"></i> Save Album
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <a href="{{ route('admin.albums.index') }}" class="btn leave-button w-100" style="background-color: #f1f5f9; color: #334155; border-radius: 6px; font-weight: 600; height: 38px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">
+                                        Cancel
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

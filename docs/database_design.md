@@ -273,6 +273,10 @@ erDiagram
 * Gallery photographs categorized under albums or standalone general field moments.
 * **Fields:** `id`, `album_id` (nullable FK -> `albums.id`), `title`, `title_bn`, `caption`, `caption_bn`, `image_path`, `is_featured`, `is_active`, `sort_order`, `created_at`, `updated_at`.
 
+### 16. `activities`
+* Rotary Club field initiatives, community drives, medical camps, seminars, and distribution campaigns.
+* **Fields:** `id`, `title`, `title_bn`, `slug` (unique, auto-generated from title), `event_date`, `event_time`, `location`, `location_bn`, `short_description`, `short_description_bn`, `description`, `description_bn`, `featured_image`, `status` (`upcoming`, `ongoing`, `completed`, `cancelled`), `is_featured`, `is_published`, `sort_order`, `created_at`, `updated_at`, `deleted_at`.
+
 ---
 
 ## 3. Eloquent Model Relationships Code Reference
@@ -306,6 +310,11 @@ erDiagram
 * `Project::getLocalizedShortDescriptionAttribute()`: Returns `short_description_bn` or falls back to English.
 * `Project::getLocalizedDescriptionAttribute()`: Returns `description_bn` or falls back to English.
 * `Project::getLocalizedLocationAttribute()`: Returns `location_bn` or falls back to English.
+* `Activity::getLocalizedTitleAttribute()`: Returns `title_bn` or falls back to `title`.
+* `Activity::getLocalizedShortDescriptionAttribute()`: Returns `short_description_bn` or falls back to English.
+* `Activity::getLocalizedDescriptionAttribute()`: Returns `description_bn` or falls back to English.
+* `Activity::getLocalizedLocationAttribute()`: Returns `location_bn` or falls back to English.
+* `Activity::getFeaturedImageUrlAttribute()`: Resolves featured image URL.
 * `ProjectType::getLocalizedNameAttribute()`: Returns `name_bn` or falls back to English.
 * `ProjectType::getLocalizedDescriptionAttribute()`: Returns `description_bn` or falls back to English.
 * `Employee::getLocalizedNameAttribute()`: Returns `name_bn` or falls back to English.

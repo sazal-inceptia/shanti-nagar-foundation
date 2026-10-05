@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ContactMessageSeeder::class,
             VolunteerSeeder::class,
             GallerySeeder::class,
+            ActivitySeeder::class,
             SettingSeeder::class,
         ]);
     }

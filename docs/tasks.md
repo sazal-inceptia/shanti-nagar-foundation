@@ -85,10 +85,17 @@
   - [x] Admin panel layout & architecture (Bootstrap 5, RemixIcon, SCSS, DataTables, Select2)
   - [x] Dashboard KPI Overview (Total Donations, Total Expenses, Projects Completed, Net Balance)
   - [x] Layered Architecture: `app/Http/Controllers/Admin/DashboardController.php`, `app/Services/DashboardService.php`
-- [x] **Project & Activity Management (Req #2 & #5)**
+- [x] **Project Management (Req #2 & #5)**
   - [x] Project CRUD (Create, Edit, Status update, Target budget tracker)
+  - [x] Automatic unique slug generation (`booted()` saving lifecycle) without requiring manual input
   - [x] Multi-image uploader for Project Documentation & Gallery
   - [x] Layered Architecture: `app/Http/Controllers/Admin/ProjectController.php`, `app/Services/ProjectService.php`, `app/Http/Requests/Admin/StoreProjectRequest.php`, `app/Http/Requests/Admin/UpdateProjectRequest.php`
+- [x] **Dedicated Club Activities Module**
+  - [x] Dedicated `activities` database table with bilingual attributes (`title`, `title_bn`, `location`, `location_bn`, `event_date`, `event_time`, `short_description`, `description`, `featured_image`, `status`, `is_featured`, `is_published`)
+  - [x] Dedicated `Activity` model with auto unique slug generation, scopes (`scopeUpcoming`, `scopeCompleted`, `scopePublished`, `scopeFeatured`), and bilingual accessors
+  - [x] Admin Activities CRUD (`admin/activities/index`, `create`, `edit`, `show`) with Yajra DataTables, instant published toggle, live filter, and preview
+  - [x] Frontend routes `/activities` and `/activities/{slug}` matching exact event design, with 301 redirects for legacy `/events` and `/event-details/{slug}`
+  - [x] Seeded authentic field initiatives in `ActivitySeeder`
 - [x] **Donor & Donation Management (Req #1)**
   - [x] Donor list, profile view & lifetime donation history with Yajra DataTables
   - [x] Unified interactive image uploader modal with cropper and removal support on Donor create/edit views

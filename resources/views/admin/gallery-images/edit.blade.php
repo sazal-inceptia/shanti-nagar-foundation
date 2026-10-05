@@ -81,12 +81,16 @@
                         </div>
                         <div class="card-body p-4">
                             <div class="mb-3">
-                                <label class="form-label custom-label">Current Photo</label>
-                                <div class="text-center border rounded p-2 bg-light mb-3" style="min-height: 140px; display: flex; align-items: center; justify-content: center;">
-                                    <img id="imagePreview" src="{{ $galleryImage->image_url }}" onerror="this.src='{{ asset('assets/images/gallery/portfolio-7.jpg') }}'" alt="Preview" style="max-width: 100%; max-height: 180px; object-fit: cover; border-radius: 6px;">
-                                </div>
-                                <label class="form-label custom-label">Replace Image (Optional)</label>
-                                <input type="file" name="image" class="form-control custom-input" accept="image/*" onchange="previewSingleImage(event)">
+                                @include('admin.includes.image-uploader', [
+                                    'name' => 'image',
+                                    'label' => 'Upload Photo',
+                                    'modalTitle' => 'Upload Gallery Image',
+                                    'helpText' => 'JPG, PNG, WebP up to 10MB',
+                                    'shape' => 'rectangle',
+                                    'height' => '170px',
+                                    'currentImage' => $galleryImage->image_path ? asset($galleryImage->image_path) : null,
+                                    'currentName' => $galleryImage->title ?? 'Gallery Photo'
+                                ])
                             </div>
 
                             <hr>
@@ -101,13 +105,17 @@
                                 <label class="form-check-label fw-bold ms-2" for="is_featured">Featured Photo</label>
                             </div>
 
-                            <div class="d-grid gap-2 mt-4">
-                                <button type="submit" class="btn btn-primary" style="font-weight: 600; padding: 10px;">
-                                    <i class="ri-check-line me-1"></i> Update Photo
-                                </button>
-                                <a href="{{ route('admin.gallery-images.index') }}" class="btn btn-outline-secondary">
-                                    Cancel
-                                </a>
+                            <div class="row g-2 mt-4">
+                                <div class="col-6">
+                                    <button type="submit" class="btn submit-button w-100" style="background-color: #005daa; color: #fff; border-radius: 6px; font-weight: 600; height: 38px;">
+                                        <i class="ri-check-line me-1"></i> Update
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <a href="{{ route('admin.gallery-images.index') }}" class="btn leave-button w-100" style="background-color: #f1f5f9; color: #334155; border-radius: 6px; font-weight: 600; height: 38px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">
+                                        Cancel
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

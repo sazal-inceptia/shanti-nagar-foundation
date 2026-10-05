@@ -7,10 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Project extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected static function booted(): void
+    {
+        static::saving(function (Project $project) {
+            if (empty($project->slug) || ($project->isDirty('name') && ! $project->isDirty('slug'))) {
+                $baseSlug = Str::slug($project->name);
+                $slug = $baseSlug ?: 'project';
+                $counter = 1;
+                while (static::where('slug', $slug)->where('id', '!=', $project->id ?? 0)->exists()) {
+                    $slug = $baseSlug.'-'.$counter;
+                    $counter++;
+                }
+                $project->slug = $slug;
+            }
+        });
+    }
 
     protected $fillable = [
         'name',

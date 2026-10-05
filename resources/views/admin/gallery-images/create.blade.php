@@ -44,20 +44,19 @@
 
                                 {{-- File Upload Input --}}
                                 <div class="col-12">
-                                    <label class="form-label custom-label">Select Photo(s) <span class="text-danger">*</span></label>
-                                    <input type="file" name="images[]" id="images_input" class="form-control custom-input @error('images') is-invalid @enderror" multiple required accept="image/*" onchange="previewMultipleImages(event)">
-                                    <div class="text-muted mt-1" style="font-size: 11.5px;">You can select single or multiple files. Supported formats: JPG, PNG, WEBP (Max 10MB each).</div>
+                                    @include('admin.includes.multi-image-uploader', [
+                                        'name'       => 'images[]',
+                                        'instanceId' => 'gallery_create_images',
+                                        'label'      => 'Upload Photos',
+                                        'modalTitle' => 'Select Gallery Photographs',
+                                        'helpText'   => 'PNG, JPG, WebP up to 10MB each — select multiple',
+                                    ])
                                     @error('images')
                                         <div class="text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
                                     @enderror
                                     @error('images.*')
                                         <div class="text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
                                     @enderror
-                                </div>
-
-                                {{-- Preview Container --}}
-                                <div class="col-12">
-                                    <div id="imagePreviewContainer" class="row g-2 mt-2 p-2 border rounded bg-light" style="display: none; max-height: 280px; overflow-y: auto;"></div>
                                 </div>
 
                                 <hr class="my-2">
@@ -105,13 +104,17 @@
                                 <label class="form-check-label fw-bold ms-2" for="is_featured">Featured Photo</label>
                             </div>
 
-                            <div class="d-grid gap-2 mt-4">
-                                <button type="submit" class="btn btn-primary" style="font-weight: 600; padding: 10px;">
-                                    <i class="ri-upload-cloud-2-line me-1"></i> Upload & Save
-                                </button>
-                                <a href="{{ route('admin.gallery-images.index') }}" class="btn btn-outline-secondary">
-                                    Cancel
-                                </a>
+                            <div class="row g-2 mt-4">
+                                <div class="col-6">
+                                    <button type="submit" class="btn submit-button w-100" style="background-color: #005daa; color: #fff; border-radius: 6px; font-weight: 600; height: 38px;">
+                                        <i class="ri-check-line me-1"></i> Upload
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <a href="{{ route('admin.gallery-images.index') }}" class="btn leave-button w-100" style="background-color: #f1f5f9; color: #334155; border-radius: 6px; font-weight: 600; height: 38px; display: inline-flex; align-items: center; justify-content: center; text-decoration: none;">
+                                        Cancel
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -120,31 +123,3 @@
         </form>
     </div>
 @endsection
-
-@push('custom-script')
-<script>
-    function previewMultipleImages(event) {
-        var container = document.getElementById('imagePreviewContainer');
-        container.innerHTML = '';
-        var files = event.target.files;
-
-        if (files.length > 0) {
-            container.style.display = 'flex';
-            Array.from(files).forEach(function(file) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var col = document.createElement('div');
-                    col.className = 'col-3 text-center';
-                    col.innerHTML = '<div style="height: 70px; border-radius: 4px; overflow: hidden; border: 1px solid #cbd5e1; background: #fff;">' +
-                        '<img src="' + e.target.result + '" style="width: 100%; height: 100%; object-fit: cover;">' +
-                        '</div>';
-                    container.appendChild(col);
-                };
-                reader.readAsDataURL(file);
-            });
-        } else {
-            container.style.display = 'none';
-        }
-    }
-</script>
-@endpush

@@ -54,18 +54,8 @@
                                     @enderror
                                 </div>
 
-                                {{-- Slug --}}
-                                <div class="col-md-4 col-12">
-                                    <label for="slug" class="form-label custom-label">Slug (URL)</label>
-                                    <input type="text" class="form-control custom-input @error('slug') is-invalid @enderror"
-                                        name="slug" id="slug" value="{{ old('slug', $project->slug) }}">
-                                    @error('slug')
-                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
                                 {{-- Project Type & Status --}}
-                                <div class="col-md-4 col-12">
+                                <div class="col-md-6 col-12">
                                     <label for="project_type_id" class="form-label custom-label">Project Type</label>
                                     <select class="form-select custom-input @error('project_type_id') is-invalid @enderror"
                                         name="project_type_id" id="project_type_id">
@@ -81,7 +71,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-4 col-12">
+                                <div class="col-md-6 col-12">
                                     <label for="status" class="form-label custom-label">Campaign Status <span
                                             class="text-danger">*</span></label>
                                     <select class="form-select custom-input @error('status') is-invalid @enderror"
@@ -306,9 +296,19 @@
 @endsection
 
 @push('custom-script')
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script>
         $(document).ready(function () {
-            // Edit form scripts
+            if (document.querySelector('#description')) {
+                ClassicEditor.create(document.querySelector('#description'), {
+                    toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo']
+                }).catch(error => console.error(error));
+            }
+            if (document.querySelector('#description_bn')) {
+                ClassicEditor.create(document.querySelector('#description_bn'), {
+                    toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo']
+                }).catch(error => console.error(error));
+            }
         });
     </script>
 @endpush

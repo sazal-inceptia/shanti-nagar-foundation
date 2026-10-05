@@ -142,6 +142,13 @@ class AlbumController extends Controller
         $validated['is_active'] = $request->has('is_active');
         $validated['sort_order'] = $validated['sort_order'] ?? 0;
 
+        if ($request->input('remove_cover_image') === '1' && $album->cover_image) {
+            if (! str_starts_with($album->cover_image, 'assets/') && Storage::disk('public')->exists($album->cover_image)) {
+                Storage::disk('public')->delete($album->cover_image);
+            }
+            $validated['cover_image'] = null;
+        }
+
         if ($request->hasFile('cover_image')) {
             if ($album->cover_image && ! str_starts_with($album->cover_image, 'assets/') && Storage::disk('public')->exists($album->cover_image)) {
                 Storage::disk('public')->delete($album->cover_image);

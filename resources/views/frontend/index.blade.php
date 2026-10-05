@@ -491,7 +491,7 @@
                                     </div>
                                     <div class="text">
                                         <p>{{ __('Join our on-ground distribution camps and verification teams as a volunteer or observer across Dhaka and surrounding districts.') }}</p>
-                                        <a href="{{ route('events') }}" class="theme-btn btn-one">{{ __('All Activities') }}</a>
+                                        <a href="{{ route('activities') }}" class="theme-btn btn-one">{{ __('All Activities') }}</a>
                                     </div>
                                     <div class="sponsors-inner">
                                         <h3>{{ __('Coordination Desk:') }}</h3>
@@ -505,26 +505,24 @@
                             <div class="right-column">
                                 @foreach($upcomingActivities as $act)
                                     @php
-                                        $actDate = $act->start_date ? \Carbon\Carbon::parse($act->start_date) : now();
+                                        $actDate = $act->event_date ? \Carbon\Carbon::parse($act->event_date) : now();
                                     @endphp
                                     <div class="events-block-one wow fadeInRight animated" data-wow-delay="00ms" data-wow-duration="1500ms">
                                         <div class="inner-box">
                                             <div class="shape event-shape-20"></div>
                                             <figure class="image-box">
-                                                @if($act->featured_image)
-                                                    <img src="{{ asset($act->featured_image) }}" alt="{{ $act->localized_name }}">
-                                                @endif
+                                                <img src="{{ $act->featured_image_url }}" alt="{{ $act->localized_title }}">
                                                 <h3>{{ localized_number($actDate->format('d')) }}<span>{{ is_bengali() ? $actDate->translatedFormat('M') : $actDate->format('M') }}</span></h3>
                                             </figure>
                                             <div class="inner">
                                                 <ul class="info clearfix">
-                                                    <li><i class="far fa-clock"></i>{{ __('10:00 AM') }}</li>
+                                                    <li><i class="far fa-clock"></i>{{ $act->event_time ?: __('10:00 AM') }}</li>
                                                     @if($act->location)
                                                         <li><i class="far fa-map"></i>{{ Str::limit($act->localized_location ?: $act->location, 16) }}</li>
                                                     @endif
                                                 </ul>
-                                                <h3><a href="{{ route('event.details', $act->slug) }}">{{ Str::limit($act->localized_name, 45) }}</a></h3>
-                                                <div class="links"><a href="{{ route('event.details', $act->slug) }}">{{ __('Join & View Details') }}</a></div>
+                                                <h3><a href="{{ route('activity.details', $act->slug) }}">{{ Str::limit($act->localized_title, 45) }}</a></h3>
+                                                <div class="links"><a href="{{ route('activity.details', $act->slug) }}">{{ __('Join & View Details') }}</a></div>
                                             </div>
                                         </div>
                                     </div>

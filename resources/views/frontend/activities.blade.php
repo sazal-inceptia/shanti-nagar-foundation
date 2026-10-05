@@ -27,8 +27,7 @@
             <div class="row clearfix">
                 @forelse($activities as $activity)
                     @php
-                        $eventDate = $activity->start_date ? \Carbon\Carbon::parse($activity->start_date) : now();
-                        $typeName = $activity->projectType?->localized_name;
+                        $eventDate = $activity->event_date ? \Carbon\Carbon::parse($activity->event_date) : now();
                     @endphp
                     <div class="col-lg-4 col-md-6 col-sm-12 events-block">
                         <div class="events-block-two">
@@ -36,24 +35,21 @@
                                 <div class="post-date">
                                     <h3>{{ localized_number($eventDate->format('d')) }}<span>{{ is_bengali() ? $eventDate->translatedFormat('M') : $eventDate->format('M') }}</span></h3>
                                 </div>
-                                <figure class="image-box"><img src="{{ asset($activity->featured_image) }}" alt="{{ $activity->localized_name }}"></figure>
+                                <figure class="image-box"><img src="{{ $activity->featured_image_url }}" alt="{{ $activity->localized_title }}"></figure>
                                 <div class="content-box">
-                                    @if($typeName)
-                                        <div class="category"><a href="{{ route('event.details', $activity->slug) }}"># {{ $typeName }}</a></div>
-                                    @endif
                                     <ul class="info clearfix">
-                                        <li><i class="far fa-clock"></i>{{ __('10:00 AM') }}</li>
-                                        <li><i class="far fa-map"></i>{{ Str::limit($activity->localized_location ?: __('Dhaka, Bangladesh'), 16) }}</li>
+                                        <li><i class="far fa-clock"></i>{{ $activity->event_time ?: __('10:00 AM') }}</li>
+                                        <li><i class="far fa-map"></i>{{ Str::limit($activity->localized_location ?: __('Dhaka, Bangladesh'), 35) }}</li>
                                     </ul>
-                                    <h3><a href="{{ route('event.details', $activity->slug) }}">{{ $activity->localized_name }}</a></h3>
-                                    <div class="links"><a href="{{ route('event.details', $activity->slug) }}">{{ __('View Details') }}</a></div>
+                                    <h3><a href="{{ route('activity.details', $activity->slug) }}">{{ $activity->localized_title }}</a></h3>
+                                    <div class="links"><a href="{{ route('activity.details', $activity->slug) }}">{{ __('View Details') }}</a></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @empty
                     <div class="col-12 text-center py-5">
-                        <p class="text-muted">{{ __('No projects found in this category.') }}</p>
+                        <p class="text-muted">{{ __('No activities scheduled at this moment.') }}</p>
                     </div>
                 @endforelse
             </div>
