@@ -12,7 +12,7 @@
                     <div class="card-header table-header d-flex justify-content-between align-items-center flex-wrap gap-2 py-3" style="background: #ffffff; border-bottom: 1px solid #f1f5f9;">
                         <div class="title-with-breadcrumb">
                             <div class="d-flex align-items-center gap-2">
-                                <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background: rgba(0, 93, 170, 0.1); color: #f65024;">
+                                <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background: rgba(0, 93, 170, 0.1); color: #005daa;">
                                     <i class="ri-printer-line" style="font-size: 20px;"></i>
                                 </div>
                                 <div>
@@ -37,7 +37,7 @@
                                 <i class="ri-download-2-line"></i> Export CSV
                             </a>
                             <button type="button" onclick="window.print();" class="btn btn-sm d-inline-flex align-items-center gap-1 px-3 py-2 text-white"
-                                style="background: linear-gradient(135deg, #f65024 0%, #ea580c 100%); border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 4px 12px rgba(0, 93, 170, 0.25); border: none;">
+                                style="background: linear-gradient(135deg, #005daa 0%, #004785 100%); border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 4px 12px rgba(0, 93, 170, 0.25); border: none;">
                                 <i class="ri-printer-line"></i> Print Statement
                             </button>
                         </div>

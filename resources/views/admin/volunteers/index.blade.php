@@ -215,7 +215,7 @@
                 order: [[5, 'desc']],
                 language: {
                     search: "_INPUT_",
-                    searchPlaceholder: "Search volunteer name, email, phone...",
+                    searchPlaceholder: "Search...",
                     paginate: {
                         next: '<i class="ri-arrow-right-s-line"></i>',
                         previous: '<i class="ri-arrow-left-s-line"></i>'

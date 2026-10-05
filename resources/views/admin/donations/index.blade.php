@@ -178,7 +178,7 @@
                 order: [[1, 'desc']],
                 language: {
                     search: "_INPUT_",
-                    searchPlaceholder: "Search receipt #, donor, amount...",
+                    searchPlaceholder: "Search...",
                     processing: '<div class="spinner-border spinner-border-sm text-primary" role="status"></div> Loading donations...'
                 }
             });

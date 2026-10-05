@@ -169,7 +169,7 @@
                 order: [[2, 'asc']],
                 language: {
                     search: "_INPUT_",
-                    searchPlaceholder: "Search projects...",
+                    searchPlaceholder: "Search...",
                     processing: '<div class="spinner-border spinner-border-sm text-primary" role="status"></div> Loading projects...'
                 }
             });

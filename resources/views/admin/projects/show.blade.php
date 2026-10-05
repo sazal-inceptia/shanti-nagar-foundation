@@ -49,7 +49,7 @@
                                 @php
                                     $badgeStyle = match ($project->status) {
                                         'completed' => 'background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0;',
-                                        'in_progress' => 'background-color: #fff3ee; color: #f65024; border: 1px solid rgba(246, 80, 36, 0.3);',
+                                        'in_progress' => 'background-color: #e8f1f8; color: #005daa; border: 1px solid rgba(0, 93, 170, 0.3);',
                                         'planned' => 'background-color: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe;',
                                         'cancelled' => 'background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca;',
                                         default => 'background-color: #f1f5f9; color: #475569; border: 1px solid #cbd5e1;',

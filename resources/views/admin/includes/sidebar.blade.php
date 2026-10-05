@@ -105,7 +105,7 @@
         <div class="profile">
             <div class="profile_details">
                 <div class="profile-avatar d-flex align-items-center justify-content-center"
-                    style="width: 36px; height: 36px; border-radius: 8px; background: #fff3ee; color: #f65024; font-weight: 700; font-size: 13px;">
+                    style="width: 36px; height: 36px; border-radius: 8px; background: #e8f1f8; color: #005daa; font-weight: 700; font-size: 13px;">
                     {{ strtoupper(substr(Auth::user()?->name ?? 'A', 0, 2)) }}
                 </div>
                 <div class="name_job ms-2">

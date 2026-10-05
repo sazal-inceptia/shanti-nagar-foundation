@@ -104,7 +104,7 @@
         {{-- Modal Footer --}}
         <div class="help-modal-footer py-2 px-3 text-center border-top">
             {{ site_setting('org_name', 'Rotary Club of Shantinagar Dhaka') }} &bull; {{ __('Developed by') }} <strong
-                style="color: var(--theme-secondary, #f65024);">Inceptia</strong>
+                style="color: var(--theme-primary, #005daa);">Inceptia</strong>
         </div>
     </div>
 </div>
@@ -171,8 +171,8 @@
     }
 
     .floating-help-tab.is-active {
-        background-color: var(--theme-secondary, #f65024);
-        box-shadow: -4px 0 20px rgba(246, 80, 36, 0.45);
+        background-color: var(--theme-primary-hover, #004c8c);
+        box-shadow: -4px 0 20px rgba(0, 93, 170, 0.45);
     }
 
     /* Vertical Text */
@@ -327,7 +327,7 @@
     }
 
     .help-modal-close-btn:hover {
-        background: var(--theme-secondary, #f65024);
+        background: var(--theme-primary, #005daa);
         transform: rotate(90deg);
     }
 
@@ -370,9 +370,9 @@
     }
 
     .help-modal-submit-btn:hover {
-        background: var(--theme-secondary, #f65024);
+        background: var(--theme-primary-hover, #004c8c);
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(246, 80, 36, 0.35);
+        box-shadow: 0 4px 12px rgba(0, 93, 170, 0.35);
     }
 
     .help-modal-hotline {

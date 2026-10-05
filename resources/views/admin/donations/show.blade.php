@@ -55,7 +55,7 @@
                                 </div>
                             </div>
                             <div class="text-end flex-shrink-0">
-                                <span class="badge" style="background-color: #fff3ee; color: #f65024; border: 1px solid rgba(0, 93, 170, 0.35); font-size: 13px; padding: 6px 14px; border-radius: 6px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
+                                <span class="badge" style="background-color: #e8f1f8; color: #005daa; border: 1px solid rgba(0, 93, 170, 0.35); font-size: 13px; padding: 6px 14px; border-radius: 6px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;">
                                     OFFICIAL MONEY RECEIPT
                                 </span>
                                 <div class="mt-2 text-muted" style="font-size: 12.5px;">

@@ -48,7 +48,7 @@ class EmployeeController extends Controller
 
                         $initial = strtoupper(substr($row->name, 0, 1));
 
-                        return '<div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold" style="width: 40px; height: 40px; background-color: #f65024; font-size: 14px;">'.$initial.'</div>';
+                        return '<div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold" style="width: 40px; height: 40px; background-color: #005daa; font-size: 14px;">'.$initial.'</div>';
                     })
                     ->addColumn('employee_info', function ($row) {
                         $showUrl = route('admin.employees.show', $row->id);

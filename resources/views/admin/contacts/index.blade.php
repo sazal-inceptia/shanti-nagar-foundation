@@ -72,7 +72,7 @@
             <div class="modal-content" style="border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(11, 15, 23, 0.1);">
                 <div class="modal-header" style="background-color: #f8fafc; border-bottom: 1px solid #e2e8f0; padding: 16px 22px;">
                     <div class="d-flex align-items-center gap-2">
-                        <div class="d-flex align-items-center justify-content-center" style="width: 34px; height: 34px; border-radius: 8px; background-color: #fff3ee; color: #f65024; font-size: 18px;">
+                        <div class="d-flex align-items-center justify-content-center" style="width: 34px; height: 34px; border-radius: 8px; background-color: #e8f1f8; color: #005daa; font-size: 18px;">
                             <i class="ri-mail-open-line"></i>
                         </div>
                         <div>
@@ -190,7 +190,7 @@
                 order: [[5, 'desc']],
                 language: {
                     search: "_INPUT_",
-                    searchPlaceholder: "Search sender, email, subject...",
+                    searchPlaceholder: "Search...",
                     paginate: {
                         next: '<i class="ri-arrow-right-s-line"></i>',
                         previous: '<i class="ri-arrow-left-s-line"></i>'

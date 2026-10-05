@@ -181,8 +181,8 @@
     }
 
     #toast-container>.toast-warning {
-        border-left: 4.5px solid #f65024 !important;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f65024'%3E%3Cpath fill-rule='evenodd' d='M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z' clip-rule='evenodd'/%3E%3C/svg%3E") !important;
+        border-left: 4.5px solid #f59e0b !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f59e0b'%3E%3Cpath fill-rule='evenodd' d='M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z' clip-rule='evenodd'/%3E%3C/svg%3E") !important;
         background-size: 24px 24px !important;
         background-position: 16px 16px !important;
         background-repeat: no-repeat !important;
@@ -257,7 +257,7 @@
     }
 
     #toast-container>.toast-warning .toast-progress {
-        background: linear-gradient(90deg, #f65024, #ea580c) !important;
+        background: linear-gradient(90deg, #f59e0b, #d97706) !important;
     }
 
     #toast-container>.toast-info .toast-progress {

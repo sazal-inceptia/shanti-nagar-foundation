@@ -30,6 +30,6 @@
 ---
 
 ## 3. UI/UX & Asset Guidelines
-- **Color Palette:** Warm Orange (`#f65024` / `#ea580c`), Soft Emerald (`#03c0a8` / `#10b981`), Neutral Charcoal (`#232323`), Off-White background.
+- **Color Palette:** Rotary Royal Blue (`#005daa`), Rotary Royal Gold (`#ffb81c`), Deep Navy (`#003366`), Soft Emerald (`#10b981`), Off-White background.
 - **Typography:** Outfit / Quicksand for headings, Inter / Open Sans for body.
 - **Bangladesh NGO Tone:** Respectful, transparent, community-centric, avoiding foreign corporate jargon.

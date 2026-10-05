@@ -32,7 +32,7 @@
                                 <div class="col-md-7 col-12">
                                     <div class="d-flex justify-content-between align-items-center mb-1">
                                         <label for="donor_id" class="form-label custom-label mb-0">Select Existing Donor</label>
-                                        <button type="button" id="toggleNewDonorBtn" class="btn btn-link p-0 text-decoration-none" style="font-size: 12px; color: #f65024; font-weight: 600;">
+                                        <button type="button" id="toggleNewDonorBtn" class="btn btn-link p-0 text-decoration-none" style="font-size: 12px; color: #005daa; font-weight: 600;">
                                             + Or Add New Donor
                                         </button>
                                     </div>
@@ -61,9 +61,9 @@
 
                                 {{-- Quick New Donor Row (Collapsible) --}}
                                 <div class="col-12" id="newDonorContainer" style="{{ old('new_donor_name') ? '' : 'display: none;' }}">
-                                    <div class="p-3 rounded border" style="background: #fff8f6; border-color: rgba(246, 80, 36, 0.2) !important;">
+                                    <div class="p-3 rounded border" style="background: #f0f7fc; border-color: rgba(0, 93, 170, 0.2) !important;">
                                         <div class="d-flex justify-content-between align-items-center mb-2">
-                                            <span class="fw-bold" style="font-size: 13px; color: #f65024;">
+                                            <span class="fw-bold" style="font-size: 13px; color: #005daa;">
                                                 <i class="ri-user-add-line me-1"></i> Quick Register New Donor
                                             </span>
                                             <button type="button" id="closeNewDonorBtn" class="btn btn-sm btn-link text-muted p-0" style="font-size: 11.5px;">Close</button>

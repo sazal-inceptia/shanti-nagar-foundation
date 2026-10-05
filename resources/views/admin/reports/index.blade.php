@@ -12,7 +12,7 @@
                     <div class="card-header table-header d-flex justify-content-between align-items-center flex-wrap gap-3 py-3" style="background: #ffffff; border-bottom: 1px solid #f1f5f9;">
                         <div class="title-with-breadcrumb">
                             <div class="d-flex align-items-center gap-2">
-                                <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background: rgba(0, 93, 170, 0.1); color: #f65024;">
+                                <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 38px; height: 38px; background: rgba(0, 93, 170, 0.1); color: #005daa;">
                                     <i class="ri-file-chart-line" style="font-size: 20px;"></i>
                                 </div>
                                 <div>
@@ -32,7 +32,7 @@
                                 <i class="ri-download-2-line" style="font-size: 15px;"></i> Export CSV Ledger
                             </a>
                             <a href="{{ route('admin.reports.statement', request()->query()) }}" target="_blank" class="btn btn-sm d-inline-flex align-items-center gap-1 px-3 py-2 text-white"
-                                style="background: linear-gradient(135deg, #f65024 0%, #ea580c 100%); border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 4px 12px rgba(0, 93, 170, 0.25); border: none; transition: all 0.2s ease;">
+                                style="background: linear-gradient(135deg, #005daa 0%, #004785 100%); border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 4px 12px rgba(0, 93, 170, 0.25); border: none; transition: all 0.2s ease;">
                                 <i class="ri-printer-line" style="font-size: 15px;"></i> Print Audit Statement
                             </a>
                         </div>
@@ -351,7 +351,7 @@
                                                         <div class="d-flex align-items-center gap-2">
                                                             <div class="progress flex-grow-1" style="height: 8px; border-radius: 6px; background-color: #e2e8f0;">
                                                                 <div class="progress-bar" role="progressbar"
-                                                                    style="width: {{ min(100, $pb['raised_percent']) }}%; background: linear-gradient(90deg, #f65024 0%, #ea580c 100%); border-radius: 6px;"
+                                                                    style="width: {{ min(100, $pb['raised_percent']) }}%; background: linear-gradient(90deg, #005daa 0%, #0284c7 100%); border-radius: 6px;"
                                                                     aria-valuenow="{{ $pb['raised_percent'] }}" aria-valuemin="0" aria-valuemax="100"></div>
                                                             </div>
                                                             <span class="text-dark fw-bold font-monospace" style="font-size: 11.5px; min-width: 40px; text-align: right;">{{ $pb['raised_percent'] }}%</span>
@@ -491,7 +491,7 @@
                                                 <tbody>
                                                     @php
                                                         $totalCatAmount = $categoryBreakdown->sum('total_amount');
-                                                        $categoryColors = ['#f65024', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#64748b'];
+                                                        $categoryColors = ['#005daa', '#0284c7', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#64748b'];
                                                     @endphp
                                                     @forelse($categoryBreakdown as $cIdx => $cat)
                                                         @php
@@ -560,7 +560,7 @@
         }
         .report-nav-pills .nav-link.active {
             color: #ffffff !important;
-            background: linear-gradient(135deg, #f65024 0%, #ea580c 100%) !important;
+            background: linear-gradient(135deg, #005daa 0%, #004785 100%) !important;
             box-shadow: 0 4px 10px rgba(0, 93, 170, 0.35);
         }
         .report-nav-pills .nav-link:hover:not(.active) {
@@ -568,7 +568,7 @@
             background-color: rgba(255, 255, 255, 0.9);
         }
         .table-title-link:hover {
-            color: #f65024 !important;
+            color: #005daa !important;
             text-decoration: underline !important;
         }
     </style>
@@ -594,7 +594,7 @@
                     order: [[1, 'desc']],
                     language: {
                         search: "_INPUT_",
-                        searchPlaceholder: "Search transaction ref, title, project...",
+                        searchPlaceholder: "Search...",
                         paginate: {
                             next: '<i class="ri-arrow-right-s-line"></i>',
                             previous: '<i class="ri-arrow-left-s-line"></i>'
@@ -611,7 +611,7 @@
                     order: [[2, 'desc']],
                     language: {
                         search: "_INPUT_",
-                        searchPlaceholder: "Search project cause, category...",
+                        searchPlaceholder: "Search...",
                         paginate: {
                             next: '<i class="ri-arrow-right-s-line"></i>',
                             previous: '<i class="ri-arrow-left-s-line"></i>'
@@ -700,7 +700,7 @@
             if (donutCanvas && catData.length > 0) {
                 var catLabels = catData.map(function(item) { return item.expense_category; });
                 var catAmounts = catData.map(function(item) { return parseFloat(item.total_amount); });
-                var colors = ['#f65024', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#64748b'];
+                var colors = ['#005daa', '#0284c7', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#64748b'];
 
                 donutChart = new Chart(donutCanvas, {
                     type: 'doughnut',

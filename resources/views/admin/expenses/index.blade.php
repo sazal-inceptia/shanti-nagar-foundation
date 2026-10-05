@@ -178,7 +178,7 @@
                 order: [[1, 'desc']],
                 language: {
                     search: "_INPUT_",
-                    searchPlaceholder: "Search voucher #, title, vendor...",
+                    searchPlaceholder: "Search...",
                     processing: '<div class="spinner-border spinner-border-sm text-primary" role="status"></div> Loading expenses...'
                 }
             });

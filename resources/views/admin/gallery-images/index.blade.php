@@ -169,7 +169,7 @@
                 order: [[0, 'desc']],
                 language: {
                     search: "_INPUT_",
-                    searchPlaceholder: "Search photos...",
+                    searchPlaceholder: "Search...",
                     processing: '<div class="spinner-border spinner-border-sm text-primary" role="status"></div> Loading photos...'
                 }
             });

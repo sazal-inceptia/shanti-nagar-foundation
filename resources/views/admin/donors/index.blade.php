@@ -150,7 +150,7 @@
                 order: [[1, 'asc']],
                 language: {
                     search: "_INPUT_",
-                    searchPlaceholder: "Search donor name, phone, email...",
+                    searchPlaceholder: "Search...",
                     processing: '<div class="spinner-border spinner-border-sm text-primary" role="status"></div> Loading donors...'
                 }
             });
