@@ -79,7 +79,7 @@ test('localized helper functions work accurately', function () {
 });
 
 test('frontend views render localized strings when in bn session', function () {
-    $response = $this->withSession(['locale' => 'bn'])->get(route('donations'));
+    $response = $this->withSession(['locale' => 'bn'])->get(route('projects'));
     $response->assertStatus(200);
     $response->assertSee('প্রকল্প ও উদ্যোগ');
     $response->assertSee('হোম');

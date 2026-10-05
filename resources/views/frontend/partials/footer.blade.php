@@ -38,7 +38,7 @@
                         <div class="widget-content">
                             <ul class="links-list clearfix">
                                 <li><a href="{{ route('about') }}">{{ __('About Us') }}</a></li>
-                                <li><a href="{{ route('donations') }}">{{ __('Projects & Causes') }}</a></li>
+                                <li><a href="{{ route('projects') }}">{{ __('Projects & Causes') }}</a></li>
                                 <li><a href="{{ route('activities') }}">{{ __('Activities') }}</a></li>
                                 <li><a href="{{ route('gallery') }}">{{ __('Gallery') }}</a></li>
                                 <li><a href="{{ route('volunteer') }}">{{ __('Volunteer Registration') }}</a></li>
@@ -56,11 +56,11 @@
                         </div>
                         <div class="widget-content">
                             <ul class="links-list clearfix">
-                                <li><a href="{{ route('donations') }}">{{ __('Healthcare & Hospital Gear') }}</a></li>
-                                <li><a href="{{ route('donations') }}">{{ __('Orphan Kits & Education') }}</a></li>
-                                <li><a href="{{ route('donations') }}">{{ __('Arsenic-Free Deep Tube-Wells') }}</a></li>
-                                <li><a href="{{ route('donations') }}">{{ __('Emergency Seasonal Food Relief') }}</a></li>
-                                <li><a href="{{ route('donations') }}">{{ __('Zakat & Sadaqah Fund') }}</a></li>
+                                <li><a href="{{ route('projects') }}">{{ __('Healthcare & Hospital Gear') }}</a></li>
+                                <li><a href="{{ route('projects') }}">{{ __('Orphan Kits & Education') }}</a></li>
+                                <li><a href="{{ route('projects') }}">{{ __('Arsenic-Free Deep Tube-Wells') }}</a></li>
+                                <li><a href="{{ route('projects') }}">{{ __('Emergency Seasonal Food Relief') }}</a></li>
+                                <li><a href="{{ route('projects') }}">{{ __('Zakat & Sadaqah Fund') }}</a></li>
                                 <li><a href="{{ route('donate') }}">{{ __('Direct bKash / Bank Donation') }}</a></li>
                             </ul>
                         </div>

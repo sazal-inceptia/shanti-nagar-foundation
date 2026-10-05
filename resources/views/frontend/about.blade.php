@@ -485,7 +485,7 @@
                                 <i class="icon-donation"></i>
                             </div>
                             <h3>{{ __('Hospital Aid') }}</h3>
-                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
+                            <a href="{{ route('projects') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
                         </div>
                     </div>
                     <div class="single-item">
@@ -495,7 +495,7 @@
                                 <i class="icon-charity"></i>
                             </div>
                             <h3>{{ __('Deep Tube-Wells') }}</h3>
-                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
+                            <a href="{{ route('projects') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
                         </div>
                     </div>
                     <div class="single-item">
@@ -505,7 +505,7 @@
                                 <i class="icon-home"></i>
                             </div>
                             <h3>{{ __('Orphan Welfare') }}</h3>
-                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
+                            <a href="{{ route('projects') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
                         </div>
                     </div>
                     <div class="single-item">
@@ -515,7 +515,7 @@
                                 <i class="icon-donation-1"></i>
                             </div>
                             <h3>{{ __('Food & Winter Relief') }}</h3>
-                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
+                            <a href="{{ route('projects') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
                         </div>
                     </div>
                     <div class="single-item">
@@ -525,7 +525,7 @@
                                 <i class="icon-fair-trade"></i>
                             </div>
                             <h3>{{ __('Zakat & Sadaqah') }}</h3>
-                            <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
+                            <a href="{{ route('projects') }}"><i class="far fa-angle-right"></i>{{ __('View Causes') }}</a>
                         </div>
                     </div>
                 </div>
@@ -560,7 +560,7 @@
                             </div>
                             <div class="text">
                                 <p>{{ __('Every single Taka received is deployed directly to verified ground missions, accompanied by itemized vendor receipts and money receipts.') }}</p>
-                                <a href="{{ route('donations') }}" class="theme-btn btn-one">{{ __('Explore Active Relief') }}</a>
+                                <a href="{{ route('projects') }}" class="theme-btn btn-one">{{ __('Explore Active Relief') }}</a>
                             </div>
                         </div>
                     </div>
@@ -579,7 +579,7 @@
                                         <h2>{{ localized_number($utilizationRatio) }}%</h2>
                                         <h3>{{ __('Fund Deployment Ratio') }}</h3>
                                         <p>{{ __('Donations directly translated into active field relief, equipment, and community welfare.') }}</p>
-                                        <a href="{{ route('donations') }}"><i class="far fa-angle-right"></i>{{ __('View Active Causes') }}</a>
+                                        <a href="{{ route('projects') }}"><i class="far fa-angle-right"></i>{{ __('View Active Causes') }}</a>
                                     </div>
                                 </div>
                                 <div class="single-progress-box">

@@ -275,7 +275,7 @@ class HomeController extends Controller
         ));
     }
 
-    public function donations(): View
+    public function projects(): View
     {
         // ---------------------------------------------------------------------
         // Section 1: Filtered Projects Grid (Paginated with Category Filter)
@@ -336,10 +336,10 @@ class HomeController extends Controller
 
         $totalCausesCount = Project::where('is_published', true)->count();
 
-        return view('frontend.donations', compact('projects', 'projectTypes', 'sponsoredProjects', 'selectedType', 'totalCausesCount'));
+        return view('frontend.projects', compact('projects', 'projectTypes', 'sponsoredProjects', 'selectedType', 'totalCausesCount'));
     }
 
-    public function donationDetails(?string $slug = null): View
+    public function projectDetails(?string $slug = null): View
     {
         // ---------------------------------------------------------------------
         // Section 1: Target Project Details with Images & Completed Donors
@@ -403,7 +403,7 @@ class HomeController extends Controller
 
         $galleryImages = ProjectImage::latest()->take(6)->get();
 
-        return view('frontend.donation-details', compact('project', 'recentProjects', 'recentDonors', 'projectTypes', 'galleryImages'));
+        return view('frontend.project-details', compact('project', 'recentProjects', 'recentDonors', 'projectTypes', 'galleryImages'));
     }
 
     public function activities(): View

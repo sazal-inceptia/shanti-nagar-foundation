@@ -13,7 +13,7 @@
                 </div>
                 <ul class="bread-crumb clearfix">
                     <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
-                    <li>{{ __('Projects & Causes') }}</li>
+                    <li><a href="{{ route('projects') }}">{{ __('Projects') }}</a></li>
                     <li>{{ __('Active Relief Causes') }}</li>
                 </ul>
             </div>
@@ -42,7 +42,7 @@
                             <div class="inner-box">
                                 <div class="image-box">
                                     <figure class="image">
-                                        <a href="{{ route('donation.details', $sProject->slug) }}">
+                                        <a href="{{ route('project.details', $sProject->slug) }}">
                                             <img src="{{ asset($sProject->featured_image) }}" alt="{{ $sProject->localized_name }}">
                                         </a>
                                     </figure>
@@ -51,9 +51,9 @@
                                     <div class="text">
                                         <div class="category">
                                             <a
-                                                href="{{ route('donations', ['type' => $sProject->projectType?->slug]) }}">{{ $sProject->projectType?->localized_name ?? __('Signature Project') }}</a>
+                                                href="{{ route('projects', ['type' => $sProject->projectType?->slug]) }}">{{ $sProject->projectType?->localized_name ?? __('Signature Project') }}</a>
                                         </div>
-                                        <h3><a href="{{ route('donation.details', $sProject->slug) }}">{{ $sProject->localized_name }}</a>
+                                        <h3><a href="{{ route('project.details', $sProject->slug) }}">{{ $sProject->localized_name }}</a>
                                         </h3>
                                         <p>{{ Str::limit($sProject->localized_short_description ?: $sProject->localized_description, 170) }}</p>
                                     </div>
@@ -119,7 +119,7 @@
                     @endphp
                     <ul class="filter-tabs filter-btns clearfix">
                         <li class="{{ empty($currentType) || $currentType === 'all' ? 'active ' : '' }}filter">
-                            <a href="{{ route('donations') }}">{{ __('All Causes') }}
+                            <a href="{{ route('projects') }}">{{ __('All Causes') }}
                                 ({{ localized_number($totalCausesCount ?? \App\Models\Project::where('is_published', true)->count()) }})</a>
                         </li>
                         @foreach($projectTypes as $pType)
@@ -128,7 +128,7 @@
                                 $isActive = ($currentType === $pType->slug);
                             @endphp
                             <li class="{{ $isActive ? 'active ' : '' }}filter">
-                                <a href="{{ route('donations', ['type' => $pType->slug]) }}">{{ $pType->localized_name }}
+                                <a href="{{ route('projects', ['type' => $pType->slug]) }}">{{ $pType->localized_name }}
                                     ({{ localized_number($typeCount) }})</a>
                             </li>
                         @endforeach
@@ -149,17 +149,17 @@
                                 <div class="inner-box">
                                     <div class="image-box">
                                         <figure class="image">
-                                            <a href="{{ route('donation.details', $project->slug) }}">
+                                            <a href="{{ route('project.details', $project->slug) }}">
                                                 <img src="{{ asset($project->featured_image) }}" alt="{{ $project->localized_name }}">
                                             </a>
                                         </figure>
                                         <div class="text">
                                             <div class="category">
                                                 <a
-                                                    href="{{ route('donations', ['type' => $project->projectType?->slug]) }}">{{ $project->projectType?->localized_name ?? __('Relief Programs') }}</a>
+                                                    href="{{ route('projects', ['type' => $project->projectType?->slug]) }}">{{ $project->projectType?->localized_name ?? __('Relief Programs') }}</a>
                                             </div>
                                             <h3><a
-                                                    href="{{ route('donation.details', $project->slug) }}">{{ $project->localized_name }}</a>
+                                                    href="{{ route('project.details', $project->slug) }}">{{ $project->localized_name }}</a>
                                             </h3>
                                         </div>
                                     </div>

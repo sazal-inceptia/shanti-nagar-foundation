@@ -26,8 +26,9 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
-Route::get('/donations', [HomeController::class, 'donations'])->name('donations');
-Route::get('/donation-details/{slug?}', [HomeController::class, 'donationDetails'])->name('donation.details');
+Route::get('/projects', [HomeController::class, 'projects'])->name('projects');
+Route::get('/projects/{slug?}', [HomeController::class, 'projectDetails'])->name('project.details');
+Route::get('/project/{slug}', [HomeController::class, 'projectDetails']);
 
 // Club Activities & Field Programs
 Route::get('/activities', [HomeController::class, 'activities'])->name('activities');

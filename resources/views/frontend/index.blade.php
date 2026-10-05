@@ -18,7 +18,7 @@
                                 <h2>{{ __('Across Bangladesh') }}</h2>
                                 <p>{{ __('Delivering medical equipment, orphan kits, safe water & emergency food relief with 100% transparency and zero intermediaries.') }}</p>
                                 <div class="btn-box">
-                                    <a href="{{ route('donations') }}" class="banner-btn">{{ __('Explore Causes') }}</a>
+                                    <a href="{{ route('projects') }}" class="banner-btn">{{ __('Explore Causes') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                                 <h2>{{ __('Hospital Equipment') }}</h2>
                                 <p>{{ __('Providing hospital fans, wheelchairs, emergency oxygen & medical aid for underprivileged patients at government and community clinics.') }}</p>
                                 <div class="btn-box">
-                                    <a href="{{ route('donations') }}" class="banner-btn">{{ __('Support Healthcare') }}</a>
+                                    <a href="{{ route('projects') }}" class="banner-btn">{{ __('Support Healthcare') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                                 <h2>{{ __('Pure Water for All') }}</h2>
                                 <p>{{ __('Installing arsenic-free deep tube-wells and water filtration plants for coastal and remote rural communities in Bangladesh.') }}</p>
                                 <div class="btn-box">
-                                    <a href="{{ route('donations') }}" class="banner-btn">{{ __('View Projects') }}</a>
+                                    <a href="{{ route('projects') }}" class="banner-btn">{{ __('View Projects') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                                 <li>{{ __('Direct updates and field photographs') }}</li>
                                 <li>{{ __('Real-time community impact tracking') }}</li>
                             </ul>
-                            <a href="{{ route('donations') }}">{{ __('Explore All Causes') }}</a>
+                            <a href="{{ route('projects') }}">{{ __('Explore All Causes') }}</a>
                         </div>
                     </div>
                 </div>
@@ -181,7 +181,7 @@
                                             <h5>{{ localized_number($uPercent) }}%</h5>
                                         </div>
                                         <div class="btn-box">
-                                            <a href="{{ route('donation.details', $urgentProject->slug) }}" class="donate-box-btn">{{ __('Donate Now') }}</a>
+                                            <a href="{{ route('project.details', $urgentProject->slug) }}" class="donate-box-btn">{{ __('Donate Now') }}</a>
                                         </div>
                                     </div>
                                     <ul class="info-box clearfix">
@@ -274,7 +274,7 @@
                                                                         <span class="badge" style="{{ $project->projectType->badge_style }} font-size: 10.5px; padding: 2px 6px; border-radius: 4px;">{{ $project->projectType->localized_name }}</span>
                                                                     @endif
                                                                 </div>
-                                                                <h3><a href="{{ route('donation.details', $project->slug) }}">{{ Str::limit($project->localized_name, 40) }}</a></h3>
+                                                                <h3><a href="{{ route('project.details', $project->slug) }}">{{ Str::limit($project->localized_name, 40) }}</a></h3>
                                                             </div>
                                                             <ul class="info-box clearfix">
                                                                 <li>
@@ -339,7 +339,7 @@
                                                                                 <span class="badge" style="{{ $project->projectType->badge_style }} font-size: 10.5px; padding: 2px 6px; border-radius: 4px;">{{ $project->projectType->localized_name }}</span>
                                                                             @endif
                                                                         </div>
-                                                                        <h3><a href="{{ route('donation.details', $project->slug) }}">{{ Str::limit($project->localized_name, 40) }}</a></h3>
+                                                                        <h3><a href="{{ route('project.details', $project->slug) }}">{{ Str::limit($project->localized_name, 40) }}</a></h3>
                                                                         <p>{{ Str::limit($project->localized_short_description ?: $project->localized_description, 75) }}</p>
                                                                     </div>
                                                                     <ul class="info-box clearfix">

@@ -35,7 +35,7 @@ test('public users can view dynamic project details by slug', function () {
         'status' => 'completed',
     ]);
 
-    $response = $this->get(route('donation.details', $project->slug));
+    $response = $this->get(route('project.details', $project->slug));
 
     $response->assertStatus(200);
     $response->assertSee('Winter Relief Drive in Kurigram');
@@ -107,10 +107,10 @@ test('public donations, events, and gallery pages render dynamically', function 
         'sort_order' => 1,
     ]);
 
-    $donationsResponse = $this->get(route('donations'));
-    $donationsResponse->assertStatus(200);
-    $donationsResponse->assertSee('Safe Drinking Water Tube-Wells in Sunamganj');
-    $donationsResponse->assertSee('৳');
+    $projectsResponse = $this->get(route('projects'));
+    $projectsResponse->assertStatus(200);
+    $projectsResponse->assertSee('Safe Drinking Water Tube-Wells in Sunamganj');
+    $projectsResponse->assertSee('৳');
 
     $activitiesResponse = $this->get(route('activities'));
     $activitiesResponse->assertStatus(200);
@@ -120,7 +120,7 @@ test('public donations, events, and gallery pages render dynamically', function 
     $galleryResponse->assertSee('Activity & Field Photo Albums');
 });
 
-test('public donations page filters projects dynamically by project type', function () {
+test('public projects page filters projects dynamically by project type', function () {
     $type = ProjectType::create([
         'name' => 'Continuous Project',
         'slug' => 'continuous-project-test',
@@ -142,13 +142,13 @@ test('public donations page filters projects dynamically by project type', funct
         'is_published' => true,
     ]);
 
-    $response = $this->get(route('donations', ['type' => 'continuous-project-test']));
+    $response = $this->get(route('projects', ['type' => 'continuous-project-test']));
     $response->assertStatus(200);
     $response->assertSee('Free Community Dialysis Support Test');
     $response->assertSee('Continuous Project');
 });
 
-test('public donations page renders sponsored projects carousel and gallery-style filter buttons', function () {
+test('public projects page renders sponsored projects carousel and gallery-style filter buttons', function () {
     $sigType = ProjectType::firstOrCreate(
         ['slug' => 'signature-project'],
         [
@@ -170,7 +170,7 @@ test('public donations page renders sponsored projects carousel and gallery-styl
         'is_published' => true,
     ]);
 
-    $response = $this->get(route('donations'));
+    $response = $this->get(route('projects'));
     $response->assertStatus(200);
     $response->assertSee('Sponsored');
     $response->assertSee('Flagship Orphanage Facility Sponsorship');

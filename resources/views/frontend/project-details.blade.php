@@ -30,7 +30,7 @@
                 </div>
                 <ul class="bread-crumb clearfix">
                     <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
-                    <li><a href="{{ route('donations') }}">{{ __('Projects & Causes') }}</a></li>
+                    <li><a href="{{ route('projects') }}">{{ __('Projects') }}</a></li>
                     <li>{{ Str::limit($project->localized_name, 35) }}</li>
                 </ul>
             </div>
@@ -311,7 +311,7 @@
                                         <ul class="category-list clearfix">
                                             @foreach($recentProjects as $rp)
                                                 <li>
-                                                    <a href="{{ route('donation.details', $rp->slug) }}">
+                                                    <a href="{{ route('project.details', $rp->slug) }}">
                                                         {{ Str::limit($rp->localized_name, 22) }}
                                                         <span>৳{{ localized_number($rp->estimated_cost > 0 ? $rp->estimated_cost : 100000) }}</span>
                                                     </a>
@@ -332,7 +332,7 @@
                                         <ul class="category-list clearfix">
                                             @foreach($projectTypes as $type)
                                                 <li>
-                                                    <a href="{{ route('donations', ['type' => $type->slug]) }}">
+                                                    <a href="{{ route('projects', ['type' => $type->slug]) }}">
                                                         {{ $type->localized_name }}
                                                         <span>{{ localized_number($type->projects_count) }}</span>
                                                     </a>

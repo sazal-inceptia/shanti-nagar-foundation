@@ -37,8 +37,8 @@
                                         href="{{ route('home') }}">{{ __('Home') }}</a></li>
                                 <li class="{{ request()->is('about*') ? 'current' : '' }}"><a
                                         href="{{ route('about') }}">{{ __('About Us') }}</a></li>
-                                <li class="{{ request()->is('donation*') ? 'current' : '' }}"><a
-                                        href="{{ route('donations') }}">{{ __('Projects & Causes') }}</a></li>
+                                <li class="{{ request()->is('project*') || request()->is('donation*') ? 'current' : '' }}"><a
+                                        href="{{ route('projects') }}">{{ __('Projects & Causes') }}</a></li>
                                 <li class="{{ request()->is('activit*') || request()->is('event*') ? 'current' : '' }}"><a
                                         href="{{ route('activities') }}">{{ __('Activities') }}</a></li>
                                 <li class="{{ request()->is('gallery*') ? 'current' : '' }}"><a

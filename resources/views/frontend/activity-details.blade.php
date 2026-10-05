@@ -61,30 +61,24 @@
                 </div>
                 <div class="tabs-content">
                     <div class="tab active-tab" id="tab-1">
-                        <div class="overview-inner">
-                            <div class="content-one">
+                        <div class="overview-inner clearfix" style="display: flow-root;">
+                            <div class="content-one clearfix" style="display: flow-root;">
                                 <h3>{{ __('Campaign Overview') }}</h3>
                                 @if($activity->short_description)
                                     <p class="lead fw-semibold text-dark mb-3">{{ $activity->localized_short_description }}</p>
                                 @endif
-                                <div class="event-desc-text ck-content">
+                                <div class="event-desc-text ck-content clearfix" style="display: flow-root;">
                                     @if($activity->localized_description)
                                         {!! $activity->localized_description !!}
                                     @else
                                         <p>{{ __('Rotary Club of Shantinagar Dhaka is dedicated to delivering transparent humanitarian relief, healthcare support, and social empowerment across Bangladesh. Every contribution directly funds verified on-the-ground initiatives without intermediaries.') }}</p>
                                     @endif
                                 </div>
-                                <p class="mt-3">{{ __('Under this initiative, our local committee coordinates direct procurement and distribution to ensure 100% transparency and accurate beneficiary reach without intermediaries.') }}</p>
+                                <div class="clearfix" style="clear: both;"></div>
+                                <p class="mt-3" style="clear: both;">{{ __('Under this initiative, our local committee coordinates direct procurement and distribution to ensure 100% transparency and accurate beneficiary reach without intermediaries.') }}</p>
                             </div>
 
-                            <div class="lower-box clearfix mt-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
-                                <div class="btn-box">
-                                    <a href="#tab-3" class="theme-btn btn-one" onclick="if(window.jQuery){ $('.tab-btns li[data-tab=\'#tab-3\']').trigger('click'); }">{{ __('Join as Volunteer') }}</a>
-                                </div>
-                                <div>
-                                    <a href="{{ route('donations') }}" class="theme-btn btn-one btn-support-cause">{{ __('Support Our Causes') }}</a>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                     
@@ -202,11 +196,12 @@
                 </div>
             </div>
 
-            <!-- Related / Upcoming Activities -->
+            <!-- Related / Upcoming Activities Section -->
             @if(isset($upcomingActivities) && $upcomingActivities->count() > 0)
-                <div class="related-events mt-60 pt-4 border-top">
-                    <div class="title mb-4">
-                        <h3>{{ __('Other Upcoming Initiatives') }}</h3>
+                <div class="related-events mt-60 pt-5 border-top clearfix" style="clear: both;">
+                    <div class="sec-title centred mb-40">
+                        <span class="top-text">{{ __('Community Drives') }}</span>
+                        <h2>{{ __('Other Upcoming Initiatives') }}</h2>
                     </div>
                     <div class="row clearfix">
                         @foreach($upcomingActivities as $upcoming)
@@ -223,7 +218,7 @@
                                         <div class="content-box">
                                             <ul class="info clearfix">
                                                 <li><i class="far fa-clock"></i>{{ $upcoming->event_time ?: __('10:00 AM') }}</li>
-                                                <li><i class="far fa-map"></i>{{ Str::limit($upcoming->localized_location ?: __('Dhaka, Bangladesh'), 20) }}</li>
+                                                <li><i class="far fa-map"></i>{{ Str::limit($upcoming->localized_location ?: __('Dhaka, Bangladesh'), 35) }}</li>
                                             </ul>
                                             <h3><a href="{{ route('activity.details', $upcoming->slug) }}">{{ $upcoming->localized_title }}</a></h3>
                                             <div class="links"><a href="{{ route('activity.details', $upcoming->slug) }}">{{ __('View Details') }}</a></div>
