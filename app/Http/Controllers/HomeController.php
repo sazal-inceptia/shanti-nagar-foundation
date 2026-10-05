@@ -409,14 +409,12 @@ class HomeController extends Controller
     public function activities(): View
     {
         // ---------------------------------------------------------------------
-        // Section 1: Upcoming & Planned Activities (Prioritizing Upcoming Dates)
+        // Section 1: All Published Activities (Latest First)
         // ---------------------------------------------------------------------
-        $today = now()->toDateString();
         $activities = Activity::where('is_published', true)
-            ->orderByRaw('CASE WHEN event_date >= ? THEN 0 ELSE 1 END', [$today])
-            ->orderBy('event_date', 'asc')
-            ->orderBy('id', 'desc')
-            ->paginate(6);
+            ->latest('event_date')
+            ->latest('id')
+            ->paginate(9);
 
         return view('frontend.activities', compact('activities'));
     }
@@ -434,8 +432,8 @@ class HomeController extends Controller
         }
         if (! $activity) {
             $activity = Activity::where('is_published', true)
-                ->orderByRaw('CASE WHEN event_date >= ? THEN 0 ELSE 1 END', [now()->toDateString()])
-                ->orderBy('event_date', 'asc')
+                ->latest('event_date')
+                ->latest('id')
                 ->first();
         }
 
@@ -444,23 +442,14 @@ class HomeController extends Controller
         }
 
         // ---------------------------------------------------------------------
-        // Section 2: Other Upcoming Initiatives (Prioritizing Upcoming Dates)
+        // Section 2: Other Initiatives (Latest First)
         // ---------------------------------------------------------------------
-        $today = now()->toDateString();
         $upcomingActivities = Activity::where('id', '!=', $activity->id)
             ->where('is_published', true)
-            ->orderByRaw('CASE WHEN event_date >= ? THEN 0 ELSE 1 END', [$today])
-            ->orderBy('event_date', 'asc')
+            ->latest('event_date')
+            ->latest('id')
             ->take(3)
             ->get();
-
-        if ($upcomingActivities->count() < 3) {
-            $upcomingActivities = Activity::where('id', '!=', $activity->id)
-                ->where('is_published', true)
-                ->latest('created_at')
-                ->take(3)
-                ->get();
-        }
 
         // ---------------------------------------------------------------------
         // Section 3: Field Coordination Volunteers

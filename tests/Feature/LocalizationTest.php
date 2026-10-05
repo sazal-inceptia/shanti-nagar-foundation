@@ -97,18 +97,14 @@ test('frontend views render localized strings when in bn session', function () {
     $galleryResponse->assertSee('ফটো গ্যালারি ও কার্যক্রম অ্যালবাম');
     $galleryResponse->assertSee('কার্যক্রম ও মাঠপর্যায়ের ফটো অ্যালবামসমূহ');
 
-    $volunteerResponse = $this->withSession(['locale' => 'bn'])->get(route('volunteer'));
-    $volunteerResponse->assertStatus(200);
-    $volunteerResponse->assertSee('স্বেচ্ছাসেবক হোন');
-    $volunteerResponse->assertSee('আপনার পূর্ণ নাম');
+    $aboutResponse = $this->withSession(['locale' => 'bn'])->get(route('about'));
+    $aboutResponse->assertStatus(200);
+    $aboutResponse->assertSee('আমাদের সম্পর্কে');
+    $aboutResponse->assertSee('ক্লাব নেতৃত্ব');
+    $aboutResponse->assertSee('পরিচালক পর্ষদ');
+    $aboutResponse->assertSee('মাঠপর্যায়ের কর্মকর্তা');
 
-    $faqResponse = $this->withSession(['locale' => 'bn'])->get(route('faq'));
-    $faqResponse->assertStatus(200);
-    $faqResponse->assertSee('সাধারণ জিজ্ঞাসা (FAQ)');
-    $faqResponse->assertSee('কীভাবে অনুদান প্রদান করব');
-
-    $donateResponse = $this->withSession(['locale' => 'bn'])->get(route('donate'));
-    $donateResponse->assertStatus(200);
-    $donateResponse->assertSee('আমাদের মানবিক কার্যক্রমে অংশ নিন');
-    $donateResponse->assertSee('অনুদান সম্পন্ন করুন');
+    $activitiesResponse = $this->withSession(['locale' => 'bn'])->get(route('activities'));
+    $activitiesResponse->assertStatus(200);
+    $activitiesResponse->assertSee('আসন্ন কার্যক্রম ও ইভেন্টসমূহ');
 });
