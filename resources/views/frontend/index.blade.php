@@ -274,7 +274,7 @@
                                                                         <span class="badge" style="{{ $project->projectType->badge_style }} font-size: 10.5px; padding: 2px 6px; border-radius: 4px;">{{ $project->projectType->localized_name }}</span>
                                                                     @endif
                                                                 </div>
-                                                                <h3><a href="{{ route('project.details', $project->slug) }}">{{ Str::limit($project->localized_name, 40) }}</a></h3>
+                                                                <h3><a href="{{ route('project.details', $project->slug) }}">{{ Str::limit($project->localized_name, 55) }}</a></h3>
                                                             </div>
                                                             <ul class="info-box clearfix">
                                                                 <li>
@@ -339,8 +339,7 @@
                                                                                 <span class="badge" style="{{ $project->projectType->badge_style }} font-size: 10.5px; padding: 2px 6px; border-radius: 4px;">{{ $project->projectType->localized_name }}</span>
                                                                             @endif
                                                                         </div>
-                                                                        <h3><a href="{{ route('project.details', $project->slug) }}">{{ Str::limit($project->localized_name, 40) }}</a></h3>
-                                                                        <p>{{ Str::limit($project->localized_short_description ?: $project->localized_description, 75) }}</p>
+                                                                        <h3><a href="{{ route('project.details', $project->slug) }}">{{ Str::limit($project->localized_name, 55) }}</a></h3>
                                                                     </div>
                                                                     <ul class="info-box clearfix">
                                                                         <li>
