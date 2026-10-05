@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\ContactMessage;
+use App\Models\Donation;
+use App\Models\Donor;
 use App\Models\Project;
 use App\Models\User;
 use App\Models\Volunteer;
@@ -113,6 +115,29 @@ test('guest can submit public donation pledge', function () {
         'payment_method' => 'bkash',
         'status' => 'pending',
     ]);
+});
+
+test('guest can view printable official donation receipt', function () {
+    $donor = Donor::firstOrCreate(
+        ['email' => 'receipt.donor@gmail.com'],
+        ['name' => 'Receipt Donor', 'phone' => '+880 1711-223344']
+    );
+
+    $donation = Donation::create([
+        'receipt_number' => 'REC-2026-9999',
+        'donor_id' => $donor->id,
+        'amount' => 7500,
+        'donation_date' => now(),
+        'payment_method' => 'bkash',
+        'transaction_id' => 'TRX9999',
+        'status' => 'completed',
+    ]);
+
+    $response = $this->get(route('donation.receipt', $donation->receipt_number));
+    $response->assertStatus(200);
+    $response->assertSee('REC-2026-9999');
+    $response->assertSee('Receipt Donor');
+    $response->assertSee('Official Donation Money Receipt');
 });
 
 test('authenticated admin can view contact messages index', function () {

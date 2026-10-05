@@ -625,10 +625,22 @@ class HomeController extends Controller
 
         $formattedAmount = localized_number((float) $donation->amount);
 
-        return redirect()->back()->with('success', __('Thank you for your generous contribution of ৳ :amount! Your donation pledge (Receipt #:receipt) has been recorded. Our accounts team will verify your transaction.', [
+        return redirect()->route('donation.receipt', $receiptNumber)->with('success', __('Thank you for your generous contribution of ৳ :amount! Your donation pledge (Receipt #:receipt) has been recorded. Our accounts team will verify your transaction.', [
             'amount' => $formattedAmount,
             'receipt' => $receiptNumber,
         ]));
+    }
+
+    /**
+     * Display printable official donation money receipt.
+     */
+    public function donationReceipt(string $receipt_number): View
+    {
+        $donation = Donation::where('receipt_number', $receipt_number)
+            ->with(['donor', 'project'])
+            ->firstOrFail();
+
+        return view('frontend.receipt', compact('donation'));
     }
 
     /**

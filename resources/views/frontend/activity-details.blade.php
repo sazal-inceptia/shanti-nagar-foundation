@@ -12,7 +12,7 @@
 
 <!-- Page Title -->
 <section class="page-title"
-    style="background-image: url('{{ $activity->featured_image ? asset($activity->featured_image) : asset('assets/images/background/6.jpg') }}');">
+    style="background-image: url('{{ $activity->featured_image ? asset($activity->featured_image) : asset('assets/images/background/activities-hero-bg.jpg') }}');">
     <div class="auto-container">
         <div class="content-box">
             <div class="title">

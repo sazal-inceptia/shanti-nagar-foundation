@@ -44,6 +44,7 @@ Route::get('/faq', [HomeController::class, 'faq'])->name('faq');
 
 Route::get('/donate', [HomeController::class, 'donate'])->name('donate');
 Route::post('/donate', [HomeController::class, 'submitDonate'])->name('donate.submit');
+Route::get('/donations/receipt/{receipt_number}', [HomeController::class, 'donationReceipt'])->name('donation.receipt');
 
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/gallery/album/{slug}', [HomeController::class, 'albumDetails'])->name('gallery.album');

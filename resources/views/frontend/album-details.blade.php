@@ -6,7 +6,7 @@
 
     <!-- Page Title -->
     <section class="page-title"
-        style="background-image: url('{{ $album->cover_image ? asset($album->cover_image) : asset('assets/images/background/5.jpg') }}');">
+        style="background-image: url('{{ $album->cover_image ? asset($album->cover_image) : asset('assets/images/background/gallery-hero-bg.jpg') }}');">
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">

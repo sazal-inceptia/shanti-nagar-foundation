@@ -15,7 +15,7 @@
 
     <!-- Page Title -->
     <section class="page-title donation-title"
-        style="background-image: url('{{ $project->featured_image ? asset($project->featured_image) : asset('assets/images/background/7.jpg') }}');">
+        style="background-image: url('{{ $project->featured_image ? asset($project->featured_image) : asset('assets/images/background/projects-hero-bg.jpg') }}');">
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">

@@ -5,7 +5,7 @@
 @section('content')
 
     <!-- Page Title -->
-    <section class="page-title" style="background-image: url('{{ asset('assets/images/background/3.jpg') }}');">
+    <section class="page-title" style="background-image: url('{{ asset('assets/images/background/contact-hero-bg.jpg') }}');">
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">
