@@ -44,8 +44,18 @@
     <!-- Toastr Flash Notification CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <!-- Theme-Aligned CKEditor Rich Content Styling -->
+    <!-- Global Layout Alignment -->
     <style>
+        .snf-header .auto-container,
+        .main-header .auto-container,
+        .auto-container {
+            max-width: 1360px !important;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
         .ck-content,
         .project-desc,
         .event-desc-text,
@@ -562,7 +572,8 @@
                                             <select class="ignore form-select project-select" name="project_id"
                                                 id="popup-project-select">
                                                 <option value="">
-                                                    {{ __('General Humanitarian Fund (Where Most Needed)') }}</option>
+                                                    {{ __('General Humanitarian Fund (Where Most Needed)') }}
+                                                </option>
                                                 @if(isset($siteProjects))
                                                     @foreach($siteProjects as $prj)
                                                         <option value="{{ $prj->id }}">{{ $prj->localized_name }}</option>

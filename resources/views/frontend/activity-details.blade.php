@@ -11,7 +11,8 @@
 @endphp
 
 <!-- Page Title -->
-<section class="page-title" style="background-image: url({{ asset('assets/images/background/12.jpg') }});">
+<section class="page-title"
+    style="background-image: url('{{ $activity->featured_image ? asset($activity->featured_image) : asset('assets/images/background/6.jpg') }}');">
     <div class="auto-container">
         <div class="content-box">
             <div class="title">
@@ -20,7 +21,7 @@
             <ul class="bread-crumb clearfix">
                 <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
                 <li><a href="{{ route('activities') }}">{{ __('Activities') }}</a></li>
-                <li>{{ Str::limit($activity->localized_title, 28) }}</li>
+                <li>{{ Str::limit($activity->localized_title, 35) }}</li>
             </ul>
         </div>
     </div>

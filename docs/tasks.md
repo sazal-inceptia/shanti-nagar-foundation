@@ -66,7 +66,9 @@
   - [x] Connect `gallery.blade.php` directly to `ProjectImage` with eager-loaded queries, precomputed category counts, dynamic category isotope filtering, pagination, and lightbox popups
   - [x] Connect `contact.blade.php` with direct hotline/email integration, feedback submission, and 100% bilingual English/Bangla localization
   - [x] Update `volunteer.blade.php` and `faq.blade.php` with authentic Bangladeshi boy volunteer/student imagery (`volunteer-boy.png` and `faq-boy.png`)
-  - [x] **Dynamic Project Details & Live Counters**
+  - [x] **Hero Sections & Page Titles Design Upgrade**
+  - [x] Clean, authentic styling for `.page-title` using theme primary (`#005daa`) linear-gradient and secondary (`#f7a81b` / `#ffb81c`) accents, centered hierarchy, and breadcrumb layout without AI slop across all pages
+- [x] **Dynamic Project Details & Live Counters**
   - [x] Connect `/donation-details/{slug}` with full dynamic project data, target funding progress, photos, and direct pledge form
   - [x] Connect `/event-details/{slug}` with dynamic activity overview, field team details, and volunteer registration
   - [x] Refactor all frontend blade templates to strictly eliminate inline styles and migrate all layout, component, and typography styling to `public/assets/css/style.css`
@@ -76,6 +78,7 @@
   - [x] Transform "Verified Contributors" into a textured section inspired by the About section background (13.jpg), with minimalist white donor cards and 3-item carousel navigation
 - [x] **SEO & Metadata Polish**
   - [x] Add dynamic meta titles, descriptions & OpenGraph tags for individual project pages and main layout
+  - [x] Create bespoke, page-aligned Hero / Banner sections with unique background imagery, themed mood gradients, localized badges, mission headlines, lead text, trust meta pills, and breadcrumbs across all individual frontend pages (`about`, `projects`, `project-details`, `activities`, `activity-details`, `gallery`, `album-details`, `volunteer`, `contact`, `faq`, `donate`)
 
 ---
 

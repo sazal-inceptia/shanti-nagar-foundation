@@ -1,22 +1,24 @@
 @extends('frontend.layouts.app')
 
+@section('title', __('Contact Us') . ' — ' . site_setting('org_name', 'Rotary Club of Shantinagar Dhaka'))
+
 @section('content')
 
-<!-- Page Title -->
-        <section class="page-title" style="background-image: url({{ asset('assets/images/background/12.jpg') }});">
-            <div class="auto-container">
-                <div class="content-box">
-                    <div class="title">
-                        <h1>{{ __('Contact Us') }}</h1>
-                    </div>
-                    <ul class="bread-crumb clearfix">
-                        <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
-                        <li>{{ __('Contact') }}</li>
-                    </ul>
+    <!-- Page Title -->
+    <section class="page-title" style="background-image: url('{{ asset('assets/images/background/10.jpg') }}');">
+        <div class="auto-container">
+            <div class="content-box">
+                <div class="title">
+                    <h1>{{ __('Contact Us') }}</h1>
                 </div>
+                <ul class="bread-crumb clearfix">
+                    <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
+                    <li>{{ __('Contact Us') }}</li>
+                </ul>
             </div>
-        </section>
-        <!-- End Page Title -->
+        </div>
+    </section>
+    <!-- End Page Title -->
 
 
         <!-- contact-section -->

@@ -1011,11 +1011,11 @@
 }
 
 .page-title:before {
-	background-color: var(--theme-primary, #005daa);
+	background: linear-gradient(135deg, rgba(0, 93, 170, 0.88) 0%, rgba(2, 28, 62, 0.86) 100%);
 }
 
 .page-title .bread-crumb li a:hover {
-	color: var(--theme-primary, #005daa);
+	color: var(--theme-secondary, #f7a81b);
 }
 
 .content_block_6 .content-box .inner-box .author-box .icon-box {

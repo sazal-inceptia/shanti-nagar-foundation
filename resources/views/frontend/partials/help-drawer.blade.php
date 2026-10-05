@@ -3,10 +3,7 @@
     {{-- 1. Vertical Floating Tab Button on Right Side (Vertically Centered) --}}
     <button type="button" id="floatingHelpBtn" class="floating-help-tab" aria-label="Open Quick Help Modal"
         onclick="toggleHelpModal()">
-
-        {{-- Vertical Text Label --}}
         <span class="tab-vertical-text">{{ __('Need Help?') }}</span>
-
     </button>
 
     {{-- 2. Dark Blurred Backdrop Overlay --}}
@@ -56,7 +53,8 @@
                             <i class="fas fa-user"></i>
                         </span>
                         <input type="text" id="help_name" name="name" class="form-control border-start-0"
-                            placeholder="{{ __('Enter your full name') }}" required style="font-size: 13.5px; height: 42px;">
+                            placeholder="{{ __('Enter your full name') }}" required
+                            style="font-size: 13.5px; height: 42px;">
                     </div>
                 </div>
 
@@ -93,7 +91,8 @@
 
             {{-- Direct Hotline Call Box --}}
             <div class="help-modal-hotline mt-3 p-2 text-center">
-                <span class="text-muted me-2" style="font-size: 11.5px; font-weight: 600; text-transform: uppercase;">{{ __('Or Call Directly:') }}</span>
+                <span class="text-muted me-2"
+                    style="font-size: 11.5px; font-weight: 600; text-transform: uppercase;">{{ __('Or Call Directly:') }}</span>
                 <a href="tel:{{ preg_replace('/[^0-9+]/', '', site_setting('hotline', '+8801711000000')) }}"
                     class="fw-bold text-decoration-none" style="color: var(--theme-primary, #005daa); font-size: 14px;">
                     <i class="fas fa-phone me-1"></i> {{ site_setting('hotline', '+880 1711-000000') }}
@@ -110,52 +109,98 @@
 </div>
 
 <style>
-    /* ==========================================================================
-       Floating Vertical Help Tab (Right Side, Vertically Middle)
-       ========================================================================== */
+    /* =========================================================
+       PREMIUM FLOATING HELP TAB & INFINITE ANIMATIONS
+       ========================================================= */
     .floating-help-tab {
         position: fixed;
         right: 0;
         top: 50%;
         transform: translateY(-50%);
         z-index: 99998;
-        background-color: var(--theme-primary, #005daa);
+        width: auto;
+        background: linear-gradient(135deg, rgba(0, 93, 170, 0.95) 0%, rgba(0, 50, 105, 0.95) 100%);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         color: #ffffff;
-        border: 1.5px solid rgba(255, 255, 255, 0.25);
+        border: 1.5px solid rgba(255, 255, 255, 0.4);
         border-right: none;
         border-radius: 14px 0 0 14px;
-        padding: 12px 9px 12px 11px;
+        padding: 13px 10px 13px 11px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 9px;
         cursor: pointer;
-        box-shadow: -4px 0 20px rgba(0, 93, 170, 0.35);
-        transition: all 0.25s ease;
         outline: none;
         user-select: none;
+        overflow: hidden;
+        box-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.6), -6px 0 22px rgba(0, 93, 170, 0.4);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, background 0.3s ease;
     }
 
-    .floating-help-tab:hover {
-        background-color: var(--theme-secondary);
+    /* 1. Continuous Infinite Vertical Glass Shimmer Beam */
+    .floating-help-tab::before {
+        content: "";
+        position: absolute;
+        top: -120px;
+        left: -50%;
+        width: 200%;
+        height: 65px;
+        background: linear-gradient(180deg,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.35) 30%,
+                rgba(255, 255, 255, 0.95) 50%,
+                rgba(255, 255, 255, 0.35) 70%,
+                rgba(255, 255, 255, 0) 100%);
+        transform: rotate(-25deg);
+        animation: helpVerticalShimmer 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        pointer-events: none;
+        z-index: 1;
     }
 
-    .floating-help-tab:hover .tab-vertical-text {
-        color: var(--theme-primary);
+    @keyframes helpVerticalShimmer {
+        0% {
+            top: -120px;
+            opacity: 0;
+        }
+
+        8% {
+            opacity: 1;
+        }
+
+        48% {
+            top: 140%;
+            opacity: 1;
+        }
+
+        50%,
+        100% {
+            top: 140%;
+            opacity: 0;
+        }
     }
 
+    /* Ensure child contents stay on top of the shimmer beam */
+    .floating-help-tab>* {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Tab Icon Circle */
     .floating-help-tab .tab-icon-circle {
-        width: 30px;
-        height: 30px;
+        width: 28px;
+        height: 28px;
         background: rgba(255, 255, 255, 0.2);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 14px;
+        font-size: 13px;
         color: #ffffff;
         flex-shrink: 0;
+        transition: transform 0.25s ease, background 0.25s ease;
     }
 
     .floating-help-tab .icon-close {
@@ -171,8 +216,8 @@
     }
 
     .floating-help-tab.is-active {
-        background-color: var(--theme-primary-hover, #004c8c);
-        box-shadow: -4px 0 20px rgba(0, 93, 170, 0.45);
+        background: linear-gradient(135deg, var(--theme-primary-hover, #004c8c) 0%, #002b52 100%);
+        box-shadow: -6px 0 26px rgba(0, 93, 170, 0.55);
     }
 
     /* Vertical Text */
@@ -184,46 +229,32 @@
         letter-spacing: 0.06em;
         white-space: nowrap;
         color: #ffffff;
-        padding: 3px 0;
+        padding: 2px 0;
         font-family: inherit;
+        transition: color 0.25s ease;
     }
 
-    /* Live Pulse Dot */
-    .floating-help-tab .tab-live-indicator {
-        position: relative;
-        width: 12px;
-        height: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
+
+    /* Hover State */
+    .floating-help-tab:hover {
+        background: linear-gradient(135deg, var(--theme-secondary, #f7a81b) 0%, #e0940d 100%);
+        box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.7), -10px 0 36px rgba(247, 168, 27, 0.55);
+        border-color: rgba(255, 255, 255, 0.65);
     }
 
-    .floating-help-tab .live-dot-core {
-        width: 7px;
-        height: 7px;
-        background-color: #ffffff;
-        border-radius: 50%;
+    .floating-help-tab:hover .tab-vertical-text,
+    .floating-help-tab:hover .tab-icon-circle {
+        color: var(--theme-primary, #005daa);
     }
 
-    .floating-help-tab .live-dot-ring {
-        position: absolute;
-        inset: 0;
-        border-radius: 50%;
-        border: 1.5px solid #ffffff;
-        animation: helpLiveDotPulse 2s infinite;
+    .floating-help-tab:hover .tab-icon-circle {
+        background: #ffffff;
     }
 
-    @keyframes helpLiveDotPulse {
-        0% {
-            transform: scale(0.8);
-            opacity: 1;
-        }
-
-        100% {
-            transform: scale(2.2);
-            opacity: 0;
-        }
+    /* Active / Click State */
+    .floating-help-tab:active {
+        transform: translateY(-50%) translateX(-3px) scale(0.97);
+        transition-duration: 0.1s;
     }
 
     /* ==========================================================================

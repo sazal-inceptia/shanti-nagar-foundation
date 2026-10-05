@@ -15,17 +15,10 @@
 
     <!-- Page Title -->
     <section class="page-title donation-title"
-        style="background-image: url({{ asset('assets/images/background/12.jpg') }});">
+        style="background-image: url('{{ $project->featured_image ? asset($project->featured_image) : asset('assets/images/background/7.jpg') }}');">
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">
-                    <div class="d-flex align-items-center justify-content-center gap-2 mb-2 flex-wrap">
-                        @if($project->projectType)
-                            <span class="badge" style="{{ $project->projectType->badge_style }} font-size: 12px; padding: 4px 10px; border-radius: 4px;">
-                                {{ $project->projectType->localized_name }}
-                            </span>
-                        @endif
-                    </div>
                     <h1>{{ $project->localized_name }}</h1>
                 </div>
                 <ul class="bread-crumb clearfix">

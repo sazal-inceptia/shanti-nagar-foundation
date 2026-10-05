@@ -1,10 +1,28 @@
 @extends('frontend.layouts.app')
 
+@section('title', __('Direct Donation Portal') . ' — ' . site_setting('org_name', 'Rotary Club of Shantinagar Dhaka'))
+
 @section('content')
 
-<!-- donation-page-section -->
-<section class="donation-page-section sec-pad">
-    <div class="outer-container">
+    <!-- Page Title -->
+    <section class="page-title" style="background-image: url('{{ asset('assets/images/background/4.jpg') }}');">
+        <div class="auto-container">
+            <div class="content-box">
+                <div class="title">
+                    <h1>{{ __('Direct Donation Portal') }}</h1>
+                </div>
+                <ul class="bread-crumb clearfix">
+                    <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
+                    <li>{{ __('Direct Donation') }}</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- End Page Title -->
+
+    <!-- donation-page-section -->
+    <section class="donation-page-section sec-pad">
+    <div class="auto-container">
         <div class="donate-content">
             <div class="sec-title centred">
                 <span class="top-text">{{ __('Support Our Humanity Causes') }}</span>
