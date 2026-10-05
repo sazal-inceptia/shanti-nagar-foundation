@@ -27,42 +27,37 @@
             <div class="best-president-card">
                 <!-- Atmospheric Ghost Background -->
                 <div class="card-bg-ghost"
-                    style="background-image: url('{{ $bestPresident?->photo_url ?: asset('assets/images/team/team-9.jpg') }}');">
+                    style="background-image: url('{{ $bestPresident?->photo_url ?: asset('assets/images/team/mahbub.jpg') }}');">
                 </div>
                 <div class="card-bg-overlay"></div>
 
                 <div class="row align-items-center clearfix content-wrap">
                     <div class="col-lg-7 col-md-12 col-sm-12 content-col">
-                        <span class="tribute-badge"><i class="fas fa-crown"></i>
-                            {{ $bestPresident?->badge_title ? __($bestPresident->badge_title) : __('Honorary Tribute • Lifetime Patron') }}</span>
-                        <h2>{{ $bestPresident?->localized_name ?? __('Alhaj Mohammad Nurul Islam') }}</h2>
-                        <span
-                            class="leader-title">{{ $bestPresident?->designation?->localized_name ?? __('Best President Ever & Lifetime Patron') }}</span>
+                        <span class="spotlight-subtitle">{{ $bestPresident?->designation?->localized_name ?? __('Charter President & Chief Adviser') }}</span>
+                        <h2>{{ $bestPresident?->localized_name ?? __('Rtn. Chowdhury Md. Hamid Al Mahbub PHF') }}</h2>
+                        
                         <div class="quote-box">
                             <i class="fas fa-quote-right quote-watermark"></i>
-                            “{{ $bestPresident?->localized_speech ?: __('A true humanitarian mission is not measured by the size of donations, but by the purity of transparency and the dignity restored to every vulnerable life we touch.') }}”
+                            “{{ trim($bestPresident?->localized_speech ?: __('Rotary is not just an organization; it is a global brotherhood dedicated to selfless humanitarian service. Our mission at Rotary Club of Shantinagar Dhaka is to bring sustainable change, dignity, and empowerment to every marginalized family we touch.'), '"“”') }}”
                         </div>
+                        
                         <p class="bio-desc">
-                            {{ $bestPresident?->localized_bio ?: __('Recognized as the foundational cornerstone and most beloved leader of Rotary Club of Shantinagar Dhaka. Under his visionary stewardship, our grassroots relief initiatives reached over 50,000 underprivileged families with 100% itemized audit transparency and direct field procurement.') }}
+                            {{ $bestPresident?->localized_bio ?: __('Charter President (2017-2018), Major Donor & Paul Harris Fellow (PHF). The pioneering founder and visionary behind our club’s humanitarian relief and grassroots community development programs across Bangladesh.') }}
                         </p>
+
                         <div class="president-signature-wrap">
-                            <span
-                                class="president-sign">{{ $bestPresident?->localized_name ?? __('Alhaj Mohammad Nurul Islam') }}</span>
+                            <span class="president-sign">{{ $bestPresident?->localized_name ?? __('Rtn. Chowdhury Md. Hamid Al Mahbub PHF') }}</span>
                             <span class="sign-title"><i class="fas fa-check-circle me-1"></i>
-                                {{ $bestPresident?->signature_title ? __($bestPresident->signature_title) : __('Founding Pillar • Lifetime Patron') }}</span>
+                                {{ $bestPresident?->signature_title ? __($bestPresident->signature_title) : __('Charter President • Chief Adviser') }}</span>
                         </div>
                     </div>
+
                     <div class="col-lg-5 col-md-12 col-sm-12 image-col mt-4 mt-lg-0">
                         <div class="image-wrapper">
                             <div class="img-frame">
                                 <img class="main-portrait"
-                                    src="{{ $bestPresident?->photo_url ?: asset('assets/images/team/team-9.jpg') }}"
-                                    alt="{{ $bestPresident?->localized_name ?? __('Best President Ever') }}">
-                                <div class="crown-badge" title="{{ __('Best President Ever') }}"><i
-                                        class="fas fa-crown"></i></div>
-                                <div class="frame-plaque"><i class="fas fa-award me-1"></i>
-                                    {{ __('Lifetime Presidential Honor') }}
-                                </div>
+                                    src="{{ $bestPresident?->photo_url ?: asset('assets/images/team/mahbub.jpg') }}"
+                                    alt="{{ $bestPresident?->localized_name ?? __('Charter President') }}">
                             </div>
                         </div>
                     </div>
@@ -95,10 +90,10 @@
                             <span class="role-badge"><i class="fas fa-user-tie me-1"></i>
                                 {{ $president?->badge_title ? __($president->badge_title) : __('President') }}</span>
                             <div class="avatar-box">
-                                <img src="{{ $president?->photo_url ?: asset('assets/images/team/team-5.jpg') }}"
+                                <img src="{{ $president?->photo_url ?: asset('assets/images/team/arifulhaque.jpg') }}"
                                     alt="{{ $president?->localized_name ?? __('President') }}">
                             </div>
-                            <h3>{{ $president?->localized_name ?? __('Advocate Mahfuzur Rahman') }}</h3>
+                            <h3>{{ $president?->localized_name ?? __('Rtn. Md. Ariful Hoque PHF') }}</h3>
                             <span
                                 class="designation-text">{{ $president?->designation?->localized_name ?? __('President') }}</span>
                             <div class="location-info">
@@ -108,7 +103,7 @@
                             <ul class="contact-links">
                                 <li><a href="tel:{{ $president?->phone ?: '+8801711223344' }}"
                                         title="{{ __('Call President') }}"><i class="fas fa-phone"></i></a></li>
-                                <li><a href="mailto:{{ $president?->email ?: 'president@shantinagarfoundation.org' }}"
+                                <li><a href="mailto:{{ $president?->email ?: 'president@rotaryshantinagardhaka.org' }}"
                                         title="{{ __('Email President') }}"><i class="fas fa-envelope"></i></a></li>
                                 @if($president?->facebook_url)
                                     <li><a href="{{ $president->facebook_url }}" target="_blank" title="Facebook"><i
@@ -131,7 +126,7 @@
                                 </blockquote>
                                 <div class="speech-footer">
                                     <span
-                                        class="leader-sign">{{ $president?->signature_text ?: ($president?->localized_name ?? __('Advocate Mahfuzur Rahman')) }}</span>
+                                        class="leader-sign">{{ $president?->signature_text ?: ($president?->localized_name ?? __('Rtn. Md. Ariful Hoque PHF')) }}</span>
                                     <span
                                         class="sign-sub">{{ $president?->signature_title ? __($president->signature_title) : __('President • Rotary Club of Shantinagar Dhaka') }}</span>
                                 </div>
@@ -154,7 +149,7 @@
                                 </blockquote>
                                 <div class="speech-footer">
                                     <span
-                                        class="leader-sign">{{ $secretary?->signature_text ?: ($secretary?->localized_name ?? __('Dr. Tariqul Islam')) }}</span>
+                                        class="leader-sign">{{ $secretary?->signature_text ?: ($secretary?->localized_name ?? __('Rtn. Md. Abdus Samad Al Azad PHF')) }}</span>
                                     <span
                                         class="sign-sub">{{ $secretary?->signature_title ? __($secretary->signature_title) : __('General Secretary • Rotary Club of Shantinagar Dhaka') }}</span>
                                 </div>
@@ -164,10 +159,10 @@
                             <span class="role-badge"><i class="fas fa-clipboard-check me-1"></i>
                                 {{ $secretary?->badge_title ? __($secretary->badge_title) : __('General Secretary') }}</span>
                             <div class="avatar-box">
-                                <img src="{{ $secretary?->photo_url ?: asset('assets/images/team/team-6.jpg') }}"
+                                <img src="{{ $secretary?->photo_url ?: asset('assets/images/team/samad.jpg') }}"
                                     alt="{{ $secretary?->localized_name ?? __('General Secretary') }}">
                             </div>
-                            <h3>{{ $secretary?->localized_name ?? __('Dr. Tariqul Islam') }}</h3>
+                            <h3>{{ $secretary?->localized_name ?? __('Rtn. Md. Abdus Samad Al Azad PHF') }}</h3>
                             <span
                                 class="designation-text">{{ $secretary?->designation?->localized_name ?? __('General Secretary') }}</span>
                             <div class="location-info">
@@ -177,7 +172,7 @@
                             <ul class="contact-links">
                                 <li><a href="tel:{{ $secretary?->phone ?: '+8801811334455' }}"
                                         title="{{ __('Call Secretary') }}"><i class="fas fa-phone"></i></a></li>
-                                <li><a href="mailto:{{ $secretary?->email ?: 'secretary@shantinagarfoundation.org' }}"
+                                <li><a href="mailto:{{ $secretary?->email ?: 'secretary@rotaryshantinagardhaka.org' }}"
                                         title="{{ __('Email Secretary') }}"><i class="fas fa-envelope"></i></a></li>
                                 @if($secretary?->facebook_url)
                                     <li><a href="{{ $secretary->facebook_url }}" target="_blank" title="Facebook"><i
@@ -199,10 +194,10 @@
                             <span class="role-badge"><i class="fas fa-coins me-1"></i>
                                 {{ $treasurer?->badge_title ? __($treasurer->badge_title) : __('Treasurer') }}</span>
                             <div class="avatar-box">
-                                <img src="{{ $treasurer?->photo_url ?: asset('assets/images/team/team-7.jpg') }}"
+                                <img src="{{ $treasurer?->photo_url ?: asset('assets/images/team/tasmina.jpg') }}"
                                     alt="{{ $treasurer?->localized_name ?? __('Treasurer') }}">
                             </div>
-                            <h3>{{ $treasurer?->localized_name ?? __('Engr. Shahabuddin Ahmed') }}</h3>
+                            <h3>{{ $treasurer?->localized_name ?? __('Rtn. Tasmina Hossain Luna') }}</h3>
                             <span
                                 class="designation-text">{{ $treasurer?->designation?->localized_name ?? __('Treasurer') }}</span>
                             <div class="location-info">
@@ -212,7 +207,7 @@
                             <ul class="contact-links">
                                 <li><a href="tel:{{ $treasurer?->phone ?: '+8801911445566' }}"
                                         title="{{ __('Call Treasurer') }}"><i class="fas fa-phone"></i></a></li>
-                                <li><a href="mailto:{{ $treasurer?->email ?: 'treasurer@shantinagarfoundation.org' }}"
+                                <li><a href="mailto:{{ $treasurer?->email ?: 'treasurer@rotaryshantinagardhaka.org' }}"
                                         title="{{ __('Email Treasurer') }}"><i class="fas fa-envelope"></i></a></li>
                                 @if($treasurer?->facebook_url)
                                     <li><a href="{{ $treasurer->facebook_url }}" target="_blank" title="Facebook"><i
@@ -264,36 +259,68 @@
                 @php
                     $rawBod = (isset($bodMembers) && $bodMembers->count() > 0) ? $bodMembers : [
                         (object) [
-                            'name' => 'Mohammad Anwarul Kabir',
-                            'name_bn' => 'মোহাম্মদ আনোয়ারুল কবির',
-                            'designation' => 'Director (Relief Operations)',
-                            'photo_url' => asset('assets/images/team/team-8.jpg'),
+                            'name' => 'Rtn. Syeda Salma Jafreen',
+                            'name_bn' => 'রোটা. সৈয়দা সালমা জাফরিন',
+                            'designation' => 'Joint Secretary',
+                            'photo_url' => asset('assets/images/team/salma.jpg'),
                             'phone' => '+8801715556677',
-                            'email' => 'anwar.bod@shantinagarfoundation.org'
+                            'email' => 'salma.jafreen@rcdhakaelite.org'
                         ],
                         (object) [
-                            'name' => 'Begum Rashida Akhtar',
-                            'name_bn' => 'বেগম রাশিদা আক্তার',
-                            'designation' => 'Director (Social Welfare & Orphan Care)',
-                            'photo_url' => asset('assets/images/team/team-2.jpg'),
+                            'name' => 'Rtn. Archt. Faruk Ahmed',
+                            'name_bn' => 'রোটা. আর্কিটেক্ট ফারুক আহমেদ',
+                            'designation' => 'Club Trainer',
+                            'photo_url' => asset('assets/images/team/faruk_ahmed.png'),
                             'phone' => '+8801817778899',
-                            'email' => 'rashida.bod@shantinagarfoundation.org'
+                            'email' => 'faruk.ahmed@rcdhakaelite.org'
                         ],
                         (object) [
-                            'name' => 'Dr. Masudur Rahman',
-                            'name_bn' => 'ডা: মাসুদুর রহমান',
-                            'designation' => 'Director (Medical Aid & Healthcare)',
-                            'photo_url' => asset('assets/images/team/team-3.jpg'),
+                            'name' => 'Rtn. Sharmin Akter',
+                            'name_bn' => 'রোটা. শারমিন আক্তার',
+                            'designation' => 'Director - Club Administration',
+                            'photo_url' => asset('assets/images/team/sharmin_akter.jpg'),
                             'phone' => '+8801918889900',
-                            'email' => 'masud.bod@shantinagarfoundation.org'
+                            'email' => 'sharmin.akter@rcdhakaelite.org'
                         ],
                         (object) [
-                            'name' => 'Farhana Yasmin',
-                            'name_bn' => 'ফারহানা ইয়াসমিন',
-                            'designation' => 'Director (Women Empowerment & Education)',
-                            'photo_url' => asset('assets/images/team/team-4.jpg'),
+                            'name' => 'Rtn. Dr. M. Saifur Rahman',
+                            'name_bn' => 'রোটা. ড. এম. সাইফুর রহমান',
+                            'designation' => 'Director - Membership',
+                            'photo_url' => asset('assets/images/team/saifur_rahman.png'),
                             'phone' => '+8801519990011',
-                            'email' => 'farhana.bod@shantinagarfoundation.org'
+                            'email' => 'saifur.rahman@rcdhakaelite.org'
+                        ],
+                        (object) [
+                            'name' => 'Rtn. Rabiul Hasan Joyti',
+                            'name_bn' => 'রোটা. রবিউল হাসান জ্যোতি',
+                            'designation' => 'Director - Public Relations',
+                            'photo_url' => asset('assets/images/team/robiul_joyti.jpg'),
+                            'phone' => '+8801711223344',
+                            'email' => 'robiul.joyti@rcdhakaelite.org'
+                        ],
+                        (object) [
+                            'name' => 'Rtn. Shah Alam',
+                            'name_bn' => 'রোটা. শাহ আলম',
+                            'designation' => 'Director - Service Projects',
+                            'photo_url' => asset('assets/images/team/shah_alam.jpg'),
+                            'phone' => '+8801811223344',
+                            'email' => 'shah.alam@rcdhakaelite.org'
+                        ],
+                        (object) [
+                            'name' => 'Rtn. Sinha Abu Khalid PHF',
+                            'name_bn' => 'রোটা. সিনহা আবু খালিদ পিএইচএফ',
+                            'designation' => 'Director - The Rotary Foundation (TRF)',
+                            'photo_url' => asset('assets/images/team/abu_khalid.jpg'),
+                            'phone' => '+8801911223344',
+                            'email' => 'abu.khalid@rcdhakaelite.org'
+                        ],
+                        (object) [
+                            'name' => 'Rtn. Mohammad Mahmudul Hasan',
+                            'name_bn' => 'রোটা. মোহাম্মদ মাহমুদুল হাসান',
+                            'designation' => 'Sergeant at Arms',
+                            'photo_url' => asset('assets/images/team/mahmudul_hasan.png'),
+                            'phone' => '+8801611223344',
+                            'email' => 'mahmudul.hasan@rcdhakaelite.org'
                         ],
                     ];
                     $bodCollection = collect($rawBod);
@@ -351,40 +378,40 @@
     @php
         $rawOthers = (isset($otherMembers) && $otherMembers->count() > 0) ? $otherMembers : [
             (object) [
-                'name' => 'Rafiqul Islam',
-                'name_bn' => 'রফিকুল ইসলাম',
+                'name' => 'Rtn. Md. Saifullah Russel',
+                'name_bn' => 'রোটা. মো. সাইফুল্লাহ রাসেল',
                 'designation' => 'Field Project Coordinator',
-                'present_address' => 'Shanti Nagar, Dhaka',
-                'photo_url' => asset('assets/images/team/team-1.jpg'),
+                'present_address' => 'Dhaka, Bangladesh',
+                'photo_url' => asset('assets/images/team/saifullah_russel.jpg'),
                 'phone' => '+8801712998877',
-                'email' => 'rafiq.field@shantinagarfoundation.org'
+                'email' => 'saifullah.russel@rcdhakaelite.org'
             ],
             (object) [
-                'name' => 'Fatema Begum',
-                'name_bn' => 'ফাতেমা বেগম',
+                'name' => 'Rtn. Wahiba Akhter',
+                'name_bn' => 'রোটা. ওয়াহিবা আক্তার',
                 'designation' => 'Accounts & Documentation Officer',
-                'present_address' => 'Malibagh, Dhaka',
-                'photo_url' => asset('assets/images/team/team-2.jpg'),
+                'present_address' => 'Dhaka, Bangladesh',
+                'photo_url' => asset('assets/images/team/wahiba_akhter.jpg'),
                 'phone' => '+8801815667788',
-                'email' => 'fatema.acc@shantinagarfoundation.org'
+                'email' => 'wahiba.akhter@rcdhakaelite.org'
             ],
             (object) [
-                'name' => 'Kamrul Hasan',
-                'name_bn' => 'কামরুল হাসান',
+                'name' => 'Rtn. Sankar Chandra Das',
+                'name_bn' => 'রোটা. শংকর চন্দ্র দাস',
                 'designation' => 'Volunteer Supervisor & Logistics Support',
-                'present_address' => 'Shanti Nagar, Dhaka',
-                'photo_url' => asset('assets/images/team/team-3.jpg'),
+                'present_address' => 'Dhaka, Bangladesh',
+                'photo_url' => asset('assets/images/team/sankar_das.jpg'),
                 'phone' => '+8801914332211',
-                'email' => 'kamrul.volunteer@shantinagarfoundation.org'
+                'email' => 'sankar.das@rcdhakaelite.org'
             ],
             (object) [
-                'name' => 'Abdul Kader',
-                'name_bn' => 'আব্দুল কাদের',
-                'designation' => 'Office Caretaker & Logistics Assistant',
-                'present_address' => 'Staff Quarters, Dhaka',
-                'photo_url' => asset('assets/images/team/team-4.jpg'),
+                'name' => 'Rtn. Hamidul Haque',
+                'name_bn' => 'রোটা. হামিদুল হক',
+                'designation' => 'Operations & Logistics Assistant',
+                'present_address' => 'Dhaka, Bangladesh',
+                'photo_url' => asset('assets/images/team/hamidul_haque.jpg'),
                 'phone' => '+8801611009988',
-                'email' => 'kader.support@shantinagarfoundation.org'
+                'email' => 'hamidul.haque@rcdhakaelite.org'
             ],
         ];
         $otherCollection = collect($rawOthers);
@@ -408,7 +435,7 @@
                     <div class="team-block-one">
                         <div class="inner-box">
                             <figure class="image-box">
-                                <img src="{{ is_object($om) && isset($om->photo_url) ? $om->photo_url : asset('assets/images/team/team-1.jpg') }}"
+                                <img src="{{ is_object($om) && isset($om->photo_url) ? $om->photo_url : asset('assets/images/team/saifullah_russel.jpg') }}"
                                     alt="{{ $omName }}">
                             </figure>
                             <div class="content-box">
@@ -417,7 +444,7 @@
                                     <h3>{{ $omName }}</h3>
                                 </div>
                                 <figure class="thumb-box"><img
-                                        src="{{ is_object($om) && isset($om->photo_url) ? $om->photo_url : asset('assets/images/team/team-1.jpg') }}"
+                                        src="{{ is_object($om) && isset($om->photo_url) ? $om->photo_url : asset('assets/images/team/saifullah_russel.jpg') }}"
                                         alt="{{ $omName }}"></figure>
                                 <div class="text">
                                     <p>{{ $om->present_address ? Str::limit($om->present_address, 30) : __('Dhaka, Bangladesh') }}
@@ -709,28 +736,28 @@
                 @php
                     $allLeaders = [
                         [
-                            'name' => 'Rtn. M. A. Rahman',
-                            'name_bn' => 'রোটারিয়ান এম. এ. রহমান',
+                            'name' => 'Rtn. Chowdhury Md. Hamid Al Mahbub',
+                            'name_bn' => 'রোটা: চৌধুরী মো: হামিদ আল মাহবুব',
                             'tenure' => '2017 – 2018',
                             'year_badge' => '2017-18',
                             'role' => 'Founding Charter President',
                             'role_bn' => 'প্রতিষ্ঠাতা চার্টার সভাপতি',
-                            'photo' => asset('assets/images/team/team-8.jpg'),
+                            'photo' => asset('assets/images/team/charter_mahbub.jpg'),
                             'badge_icon' => 'fas fa-crown',
                             'badge_text' => 'Charter',
                             'phf' => 'Major Donor',
-                            'theme' => 'Making a Difference',
-                            'focus' => 'Club Charter & Constitution',
-                            'focus_bn' => 'ক্লাব চার্টার ও সংবিধান প্রণয়ন',
+                            'theme' => 'Rotary: Making a Difference',
+                            'focus' => 'Club Inception & District Charter',
+                            'focus_bn' => 'ক্লাব প্রতিষ্ঠা ও জেলা চার্টার লাভ',
                         ],
                         [
-                            'name' => 'Rtn. Sajid Karim',
-                            'name_bn' => 'রোটারিয়ান সাজিদ করিম',
+                            'name' => 'Rtn. A. K. M. Mizanur Rahman',
+                            'name_bn' => 'রোটা: এ. কে. এম. মিজানুর রহমান',
                             'tenure' => '2018 – 2019',
                             'year_badge' => '2018-19',
                             'role' => 'Past President',
                             'role_bn' => 'সাবেক সভাপতি',
-                            'photo' => asset('assets/images/team/team-1.jpg'),
+                            'photo' => asset('assets/images/team/mizanur.jpg'),
                             'badge_icon' => 'fas fa-medal',
                             'badge_text' => 'PHF',
                             'theme' => 'Be the Inspiration',
@@ -738,13 +765,13 @@
                             'focus_bn' => 'গভীর নলকূপ ও নিরাপদ পানি',
                         ],
                         [
-                            'name' => 'Rtn. Mahmud Ullah',
-                            'name_bn' => 'রোটারিয়ান মাহমুদ উল্লাহ',
+                            'name' => 'Rtn. Golam Kibria',
+                            'name_bn' => 'রোটা: গোলাম কিবরিয়া',
                             'tenure' => '2019 – 2020',
                             'year_badge' => '2019-20',
                             'role' => 'Past President',
                             'role_bn' => 'সাবেক সভাপতি',
-                            'photo' => asset('assets/images/team/team-3.jpg'),
+                            'photo' => asset('assets/images/team/kibria.jpg'),
                             'badge_icon' => 'fas fa-award',
                             'badge_text' => 'Major Donor',
                             'theme' => 'Rotary Connects the World',
@@ -752,13 +779,13 @@
                             'focus_bn' => 'হাসপাতাল চিকিৎসা সহায়তা',
                         ],
                         [
-                            'name' => 'Rtn. Dr. Rafiqul Alam',
-                            'name_bn' => 'রোটারিয়ান ড. রফিকুল আলম',
+                            'name' => 'Rtn. Saifuddin Mohammad Khaled',
+                            'name_bn' => 'রোটা: সাইফুদ্দিন মোহাম্মদ খালেদ',
                             'tenure' => '2020 – 2021',
                             'year_badge' => '2020-21',
                             'role' => 'Past President',
                             'role_bn' => 'সাবেক সভাপতি',
-                            'photo' => asset('assets/images/team/team-5.jpg'),
+                            'photo' => asset('assets/images/team/khaled_pp.jpg'),
                             'badge_icon' => 'fas fa-medal',
                             'badge_text' => 'PHF',
                             'theme' => 'Rotary Opens Opportunities',
@@ -766,13 +793,13 @@
                             'focus_bn' => 'অক্সিজেন সিলিন্ডার ব্যাংক',
                         ],
                         [
-                            'name' => 'Rtn. Farhana Chowdhury',
-                            'name_bn' => 'রোটারিয়ান ফারহানা চৌধুরী',
+                            'name' => 'Rtn. AKM Ali Ahad Khan',
+                            'name_bn' => 'রোটা: এ কে এম আলী আহাদ খান',
                             'tenure' => '2021 – 2022',
                             'year_badge' => '2021-22',
                             'role' => 'Past President',
                             'role_bn' => 'সাবেক সভাপতি',
-                            'photo' => asset('assets/images/team/team-2.jpg'),
+                            'photo' => asset('assets/images/team/ahad_pp.jpeg'),
                             'badge_icon' => 'fas fa-medal',
                             'badge_text' => 'PHF',
                             'theme' => 'Serve to Change Lives',
@@ -780,13 +807,13 @@
                             'focus_bn' => 'মাতৃস্বাস্থ্য ও নারী কল্যাণ',
                         ],
                         [
-                            'name' => 'Rtn. Mosharraf Hossain',
-                            'name_bn' => 'রোটারিয়ান মোশাররফ হোসেন',
+                            'name' => 'Rtn. Mohammad Abu Sufian',
+                            'name_bn' => 'রোটা: মোহাম্মদ আবু সুফিয়ান',
                             'tenure' => '2022 – 2023',
                             'year_badge' => '2022-23',
                             'role' => 'Past President',
                             'role_bn' => 'সাবেক সভাপতি',
-                            'photo' => asset('assets/images/team/team-7.jpg'),
+                            'photo' => asset('assets/images/team/sufian.jpg'),
                             'badge_icon' => 'fas fa-medal',
                             'badge_text' => 'PHF',
                             'theme' => 'Imagine Rotary',
@@ -794,13 +821,13 @@
                             'focus_bn' => 'এতিম শিশু ও শীতবস্ত্র সহায়তা',
                         ],
                         [
-                            'name' => 'Rtn. Anisur Rahman',
-                            'name_bn' => 'রোটারিয়ান আনিসুর রহমান',
+                            'name' => 'Rtn. Md. Firoz Khan',
+                            'name_bn' => 'রোটা: মো: ফিরোজ খান',
                             'tenure' => '2023 – 2024',
                             'year_badge' => '2023-24',
                             'role' => 'Immediate Past President',
                             'role_bn' => 'ইমিডিয়েট পাস্ট প্রেসিডেন্ট',
-                            'photo' => asset('assets/images/team/team-6.jpg'),
+                            'photo' => asset('assets/images/team/firoz_khan.jpg'),
                             'badge_icon' => 'fas fa-check-double',
                             'badge_text' => 'Major Donor',
                             'theme' => 'Create Hope in the World',

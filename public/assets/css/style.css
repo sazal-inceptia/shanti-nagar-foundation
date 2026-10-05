@@ -16334,7 +16334,7 @@
  /* 0) Best President Ever Highlight */
  .best-president-section {
    position: relative;
-   padding: 95px 0 80px 0;
+   padding: 60px 0 50px 0;
    background-color: #f7f9fc;
    background-image: url('../images/background/13.jpg');
    background-position: right center;
@@ -16345,16 +16345,16 @@
  .best-president-card {
    position: relative;
    background: #ffffff;
-   border: 2px solid #e2e8f0;
-   border-radius: 24px;
-   padding: 45px 40px;
-   box-shadow: 0 12px 35px rgba(0, 51, 102, 0.07);
+   border: 1px solid #e2e8f0;
+   border-radius: 20px;
+   padding: 40px 40px;
+   box-shadow: 0 10px 30px rgba(0, 51, 102, 0.06);
    overflow: hidden;
-   transition: all 500ms cubic-bezier(0.25, 1, 0.5, 1);
+   transition: all 400ms ease;
    z-index: 1;
  }
 
- /* 1. Ghost Background Image Layer (User's Idea) */
+ /* 1. Ghost Background Image Layer */
  .best-president-card .card-bg-ghost {
    position: absolute;
    top: 0;
@@ -16365,9 +16365,9 @@
    background-position: center center;
    background-repeat: no-repeat;
    opacity: 0;
-   transform: scale(1.08);
+   transform: scale(1.05);
    filter: blur(2px) grayscale(30%);
-   transition: opacity 600ms ease, transform 700ms cubic-bezier(0.25, 1, 0.5, 1);
+   transition: opacity 500ms ease, transform 600ms ease;
    z-index: 1;
    pointer-events: none;
  }
@@ -16379,9 +16379,9 @@
    left: 0;
    width: 100%;
    height: 100%;
-   background: linear-gradient(135deg, rgba(7, 16, 31, 0.94) 0%, rgba(4, 9, 20, 0.97) 100%);
+   background: linear-gradient(135deg, rgba(7, 16, 31, 0.95) 0%, rgba(4, 9, 20, 0.98) 100%);
    opacity: 0;
-   transition: opacity 500ms ease;
+   transition: opacity 400ms ease;
    z-index: 2;
    pointer-events: none;
  }
@@ -16393,13 +16393,13 @@
 
  /* Card Hover State */
  .best-president-card:hover {
-   transform: translateY(-6px);
+   transform: translateY(-4px);
    border-color: rgba(255, 184, 28, 0.4);
-   box-shadow: 0 25px 55px rgba(0, 20, 50, 0.35), 0 0 35px rgba(255, 184, 28, 0.15);
+   box-shadow: 0 20px 45px rgba(0, 20, 50, 0.3), 0 0 30px rgba(255, 184, 28, 0.15);
  }
 
  .best-president-card:hover .card-bg-ghost {
-   opacity: 0.16;
+   opacity: 0.15;
    transform: scale(1);
  }
 
@@ -16407,109 +16407,84 @@
    opacity: 1;
  }
 
- /* Shiny Gold Text on Hover */
+ /* Subtitle */
+ .best-president-card .spotlight-subtitle {
+   display: inline-block;
+   color: #005daa;
+   font-size: 14px;
+   font-weight: 700;
+   text-transform: uppercase;
+   letter-spacing: 1px;
+   margin-bottom: 6px;
+   transition: color 350ms ease;
+ }
+
+ .best-president-card:hover .spotlight-subtitle {
+   color: #ffb81c;
+ }
+
+ /* Heading */
  .best-president-card h2 {
-   font-size: 34px;
+   font-size: 32px;
    font-weight: 800;
-   color: #003366;
-   line-height: 42px;
-   margin-bottom: 8px;
+   color: #002c5e;
+   line-height: 40px;
+   margin-bottom: 16px;
+   letter-spacing: -0.4px;
    transition: all 400ms ease;
  }
 
  .best-president-card:hover h2 {
-   background: linear-gradient(135deg, #fff7d6 0%, #ffb81c 50%, #f59e0b 100%);
+   background: linear-gradient(135deg, #ffffff 0%, #ffb81c 60%, #f59e0b 100%);
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
  }
 
- .best-president-card .leader-title {
-   display: inline-block;
-   color: #005daa;
-   font-size: 17px;
-   font-weight: 700;
-   margin-bottom: 20px;
-   transition: color 400ms ease;
- }
-
- .best-president-card:hover .leader-title {
-   color: #ffc745;
- }
-
- .best-president-card .tribute-badge {
-   display: inline-flex;
-   align-items: center;
-   gap: 8px;
-   background-color: #003366;
-   color: #ffb81c;
-   font-size: 13px;
-   font-weight: 800;
-   letter-spacing: 0.5px;
-   text-transform: uppercase;
-   padding: 6px 18px;
-   border-radius: 30px;
-   margin-bottom: 20px;
-   border: 1px solid transparent;
-   transition: all 350ms ease;
- }
-
- .best-president-card:hover .tribute-badge {
-   background: rgba(255, 184, 28, 0.15);
-   border-color: rgba(255, 184, 28, 0.5);
-   box-shadow: 0 0 15px rgba(255, 184, 28, 0.2);
- }
-
- .best-president-card .tribute-badge i {
-   color: #ffb81c;
-   font-size: 14px;
- }
-
- /* Quote Box Hover Shift */
+ /* Quote Box */
  .best-president-card .quote-box {
    position: relative;
    background-color: #f8fafc;
-   border-left: 4px solid #ffb81c;
-   border-radius: 0 14px 14px 0;
-   padding: 20px 24px 20px 24px;
-   margin-bottom: 22px;
+   border-left: 3px solid #ffb81c;
+   border-radius: 0 12px 12px 0;
+   padding: 18px 22px;
+   margin-bottom: 16px;
    font-style: italic;
    color: #334155;
-   font-size: 15.5px;
-   line-height: 26px;
+   font-size: 15px;
+   line-height: 25px;
    overflow: hidden;
-   transition: all 450ms ease;
+   transition: all 400ms ease;
  }
 
  .best-president-card .quote-box .quote-watermark {
    position: absolute;
-   right: 15px;
-   top: 10px;
-   font-size: 46px;
+   right: 14px;
+   top: 8px;
+   font-size: 42px;
    color: #ffb81c;
    opacity: 0.12;
    pointer-events: none;
-   transition: all 450ms ease;
+   transition: all 400ms ease;
  }
 
  .best-president-card:hover .quote-box {
-   background-color: rgba(255, 255, 255, 0.06);
+   background-color: rgba(255, 255, 255, 0.07);
    border-left-color: #ffb81c;
-   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
    color: #fef3c7;
  }
 
  .best-president-card:hover .quote-box .quote-watermark {
    opacity: 0.35;
-   transform: translateY(-2px) scale(1.08);
-   filter: drop-shadow(0 0 10px rgba(255, 184, 28, 0.5));
+   transform: translateY(-2px) scale(1.05);
  }
 
  .best-president-card .bio-desc {
    color: #475569;
    font-size: 14.5px;
-   line-height: 25px;
-   margin-bottom: 22px;
-   transition: color 400ms ease;
+   line-height: 24px;
+   margin-bottom: 18px;
+   transition: color 350ms ease;
  }
 
  .best-president-card:hover .bio-desc {
@@ -16522,8 +16497,8 @@
    flex-direction: column;
    gap: 2px;
    border-top: 1px dashed #e2e8f0;
-   padding-top: 16px;
-   transition: border-color 400ms ease;
+   padding-top: 14px;
+   transition: border-color 350ms ease;
  }
 
  .best-president-card:hover .president-signature-wrap {
@@ -16536,7 +16511,7 @@
    font-weight: 700;
    color: #002c5e;
    display: inline-block;
-   transition: color 400ms ease, transform 400ms ease;
+   transition: color 350ms ease, transform 350ms ease;
  }
 
  .best-president-card:hover .president-sign {
@@ -16550,12 +16525,12 @@
    font-weight: 600;
    display: inline-flex;
    align-items: center;
-   transition: color 400ms ease;
+   transition: color 350ms ease;
  }
 
  .best-president-card .sign-title i {
    color: #005daa;
-   transition: color 400ms ease;
+   transition: color 350ms ease;
  }
 
  .best-president-card:hover .sign-title {
@@ -16566,96 +16541,44 @@
    color: #ffb81c;
  }
 
- /* Photo Frame with Golden Spotlight Glow */
+ /* Photo Frame */
  .best-president-card .image-wrapper {
    position: relative;
-   text-align: center;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
  }
 
  .best-president-card .image-wrapper .img-frame {
    position: relative;
-   display: inline-block;
+   width: 100%;
+   max-width: 400px;
    border-radius: 18px;
    overflow: hidden;
    border: 4px solid #ffffff;
-   box-shadow: 0 12px 30px rgba(0, 56, 122, 0.15);
-   transition: all 500ms cubic-bezier(0.25, 1, 0.5, 1);
+   box-shadow: 0 12px 35px rgba(0, 44, 94, 0.14);
+   background: #ffffff;
+   transition: all 450ms ease;
  }
 
  .best-president-card .image-wrapper img.main-portrait {
    width: 100%;
-   max-width: 380px;
-   height: auto;
-   border-radius: 14px;
+   height: 400px;
    display: block;
    object-fit: cover;
-   transition: filter 500ms ease, transform 500ms ease;
+   object-position: top center;
+   transition: filter 450ms ease, transform 450ms ease;
  }
 
  .best-president-card:hover .image-wrapper .img-frame {
    border-color: #ffb81c;
    box-shadow: 0 0 35px rgba(255, 184, 28, 0.35), 0 15px 35px rgba(0, 0, 0, 0.5);
-   transform: scale(1.03);
+   transform: scale(1.02);
  }
 
  .best-president-card:hover .image-wrapper img.main-portrait {
    filter: contrast(105%) brightness(102%);
-   transform: scale(1.04);
- }
-
- .best-president-card .image-wrapper .frame-plaque {
-   position: absolute;
-   bottom: 0;
-   left: 0;
-   width: 100%;
-   background: linear-gradient(180deg, rgba(0, 44, 94, 0.85) 0%, rgba(0, 25, 55, 0.95) 100%);
-   color: #ffb81c;
-   font-size: 12px;
-   font-weight: 800;
-   text-transform: uppercase;
-   letter-spacing: 0.8px;
-   padding: 8px 12px;
-   text-align: center;
-   backdrop-filter: blur(8px);
-   -webkit-backdrop-filter: blur(8px);
-   border-top: 1px solid rgba(255, 184, 28, 0.35);
-   transition: all 400ms ease;
- }
-
- .best-president-card:hover .image-wrapper .frame-plaque {
-   background: linear-gradient(180deg, rgba(255, 184, 28, 0.95) 0%, rgba(217, 119, 6, 0.95) 100%);
-   color: #002c5e;
-   border-top-color: #ffffff;
-   box-shadow: 0 -4px 15px rgba(255, 184, 28, 0.4);
-   border-bottom-left-radius: 14px;
-   border-bottom-right-radius: 14px;
- }
-
- .best-president-card .image-wrapper .crown-badge {
-   position: absolute;
-   top: -12px;
-   right: -12px;
-   width: 48px;
-   height: 48px;
-   background-color: #ffb81c;
-   color: #003366;
-   border-radius: 50%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   font-size: 22px;
-   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-   border: 3px solid #ffffff;
-   transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-   z-index: 4;
- }
-
- .best-president-card:hover .image-wrapper .crown-badge {
-   transform: scale(1.18) rotate(15deg);
-   box-shadow: 0 0 25px rgba(255, 184, 28, 0.7);
-   background-color: #ffffff;
-   color: #d97706;
-   border-color: #ffb81c;
  }
 
  /* 1) Executive Leadership (President, Secretary, Treasurer - Stacked One by One) */
