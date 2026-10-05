@@ -102,7 +102,7 @@
                                     @if($project->localized_short_description)
                                         <p class="lead project-lead">{{ $project->localized_short_description }}</p>
                                     @endif
-                                    <div class="project-desc">
+                                    <div class="project-desc ck-content">
                                         @if($project->localized_description)
                                             {!! $project->localized_description !!}
                                         @else

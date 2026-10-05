@@ -359,25 +359,70 @@
     }
 
     /* CKEditor Custom Styling */
-    .ck-editor__editable_inline {
-        min-height: 180px !important;
+    .ck-editor__editable,
+    .ck-editor__editable_inline,
+    .ck.ck-editor__main > .ck-editor__editable,
+    .ck.ck-content {
+        min-height: 200px !important;
         border-bottom-left-radius: 6px !important;
         border-bottom-right-radius: 6px !important;
         font-family: inherit !important;
         font-size: 13.5px !important;
+        cursor: text !important;
     }
-    .ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+    .ck-source-editing-area,
+    .ck-source-editing-area textarea {
+        min-height: 200px !important;
+        font-family: 'Courier New', Courier, monospace !important;
+        font-size: 13px !important;
+    }
+    .ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
         border-color: #cbd5e1 !important;
     }
-    .ck.ck-editor__main>.ck-editor__editable.ck-focused {
+    .ck.ck-editor__main > .ck-editor__editable.ck-focused {
         border-color: #005daa !important;
-        box-shadow: none !important;
+        box-shadow: 0 0 0 1px #005daa !important;
     }
     .ck.ck-toolbar {
         border-top-left-radius: 6px !important;
         border-top-right-radius: 6px !important;
         border-color: #cbd5e1 !important;
         background: #f8fafc !important;
+        padding: 4px 6px !important;
+    }
+    .ck.ck-toolbar__items {
+        gap: 2px !important;
+    }
+    .ck.ck-content blockquote {
+        border-left: 4px solid #005daa !important;
+        padding: 8px 16px !important;
+        background: #f8fafc !important;
+        font-style: italic !important;
+        margin: 12px 0 !important;
+    }
+    .ck.ck-content table {
+        border-collapse: collapse !important;
+        width: 100% !important;
+        margin: 12px 0 !important;
+    }
+    .ck.ck-content table th {
+        background-color: #f1f5f9 !important;
+        font-weight: 600 !important;
+        padding: 8px 12px !important;
+        border: 1px solid #cbd5e1 !important;
+    }
+    .ck.ck-content table td {
+        padding: 8px 12px !important;
+        border: 1px solid #e2e8f0 !important;
+    }
+    .ck.ck-content figure.image img {
+        border-radius: 6px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08) !important;
+    }
+    .ck.ck-balloon-panel,
+    .ck.ck-dropdown__panel,
+    .ck.ck-body-wrapper {
+        z-index: 999999 !important;
     }
 </style>
 

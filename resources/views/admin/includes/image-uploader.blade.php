@@ -44,7 +44,7 @@
             style="height: {{ $height }}; width: {{ $width }}; background-color: #f8fafc;">
             <img src="{{ $currentImage ?? '' }}" alt="Image preview"
                 class="image-preview-thumb w-100 h-100 object-fit-cover"
-                onerror="this.onerror=null;this.src='{{ asset('admin/assets/images/default.jpg') }}';">
+                onerror="this.onerror=null;this.src='{{ asset('assets/images/logo.png') }}';">
 
             <span style="position:absolute;top:8px;left:8px;z-index:3;font-size:11px;font-weight:600;padding:3px 8px;background:rgba(15,23,42,0.82);color:#fff;border-radius:4px;backdrop-filter:blur(4px);display:inline-flex;align-items:center;gap:4px;line-height:1.3;pointer-events:none;">
                 <i class="ri-check-line" style="color:#22c55e;font-size:13px;"></i> Active

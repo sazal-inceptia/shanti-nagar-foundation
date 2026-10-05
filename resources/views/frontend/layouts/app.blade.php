@@ -40,6 +40,302 @@
     <!-- Toastr Flash Notification CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    <!-- Theme-Aligned CKEditor Rich Content Styling -->
+    <style>
+        .ck-content, .project-desc, .event-desc-text, .rich-content {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 16px;
+            line-height: 28px;
+            color: #666666;
+            word-wrap: break-word;
+        }
+
+        /* Headings matching theme Quicksand font & weights */
+        .ck-content h1, .project-desc h1, .event-desc-text h1,
+        .ck-content h2, .project-desc h2, .event-desc-text h2,
+        .ck-content h3, .project-desc h3, .event-desc-text h3,
+        .ck-content h4, .project-desc h4, .event-desc-text h4,
+        .ck-content h5, .project-desc h5, .event-desc-text h5,
+        .ck-content h6, .project-desc h6, .event-desc-text h6 {
+            font-family: 'Quicksand', sans-serif;
+            color: #232323;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-top: 28px;
+            margin-bottom: 14px;
+        }
+        .ck-content h1, .project-desc h1, .event-desc-text h1 { font-size: 32px; line-height: 42px; }
+        .ck-content h2, .project-desc h2, .event-desc-text h2 { font-size: 26px; line-height: 36px; }
+        .ck-content h3, .project-desc h3, .event-desc-text h3 { font-size: 22px; line-height: 32px; }
+        .ck-content h4, .project-desc h4, .event-desc-text h4 { font-size: 19px; line-height: 28px; }
+
+        .ck-content p, .project-desc p, .event-desc-text p {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 16px;
+            line-height: 28px;
+            color: #666666;
+            margin-bottom: 20px;
+        }
+
+        /* Inline Text Elements */
+        .ck-content strong, .project-desc strong, .event-desc-text strong,
+        .ck-content b, .project-desc b, .event-desc-text b {
+            font-weight: 700;
+            color: #232323;
+        }
+        .ck-content em, .project-desc em, .event-desc-text em,
+        .ck-content i, .project-desc i, .event-desc-text i {
+            font-style: italic;
+        }
+        .ck-content u, .project-desc u, .event-desc-text u {
+            text-decoration: underline;
+        }
+        .ck-content s, .project-desc s, .event-desc-text s,
+        .ck-content del, .project-desc del, .event-desc-text del {
+            text-decoration: line-through;
+            color: #a0aec0;
+        }
+        .ck-content mark, .project-desc mark, .event-desc-text mark {
+            background-color: var(--theme-secondary-light, #fff9e6);
+            color: #975a16;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border-bottom: 2px solid var(--theme-secondary, #ffb81c);
+        }
+
+        /* Links matching Rotary Blue & Gold Underline */
+        .ck-content a, .project-desc a, .event-desc-text a {
+            color: var(--theme-primary, #005daa);
+            text-decoration: underline;
+            text-decoration-color: var(--theme-secondary, #ffb81c);
+            text-underline-offset: 4px;
+            font-weight: 600;
+            transition: all 300ms ease;
+        }
+        .ck-content a:hover, .project-desc a:hover, .event-desc-text a:hover {
+            color: var(--theme-primary-hover, #004c8c);
+            text-decoration-color: var(--theme-primary, #005daa);
+        }
+
+        /* Lists matching Theme Structure */
+        .ck-content ul, .project-desc ul, .event-desc-text ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 24px;
+        }
+        .ck-content ul > li, .project-desc ul > li, .event-desc-text ul > li {
+            position: relative;
+            padding-left: 28px;
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 16px;
+            line-height: 26px;
+            color: #666666;
+            margin-bottom: 10px;
+        }
+        .ck-content ul > li:before, .project-desc ul > li:before, .event-desc-text ul > li:before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 10px;
+            width: 7px;
+            height: 7px;
+            background-color: var(--theme-primary, #005daa);
+            border-radius: 50%;
+        }
+        .ck-content ol, .project-desc ol, .event-desc-text ol {
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+        .ck-content ol > li, .project-desc ol > li, .event-desc-text ol > li {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 16px;
+            line-height: 26px;
+            color: #666666;
+            margin-bottom: 10px;
+            padding-left: 6px;
+        }
+
+        /* Blockquote matching Theme Quote Cards */
+        .ck-content blockquote, .project-desc blockquote, .event-desc-text blockquote {
+            position: relative;
+            display: block;
+            background-color: var(--theme-primary-light, #e8f1f8);
+            border-left: 5px solid var(--theme-primary, #005daa);
+            border-radius: 12px;
+            padding: 24px 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0, 93, 170, 0.05);
+        }
+        .ck-content blockquote p, .project-desc blockquote p, .event-desc-text blockquote p {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 17px;
+            line-height: 28px;
+            color: #232323;
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
+        /* Horizontal Divider */
+        .ck-content hr, .project-desc hr, .event-desc-text hr {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--theme-primary-light, #e8f1f8), var(--theme-primary, #005daa), var(--theme-primary-light, #e8f1f8), transparent);
+            margin: 35px 0;
+        }
+
+        /* Theme Image Box & Captions */
+        .ck-content figure.image, .project-desc figure.image, .event-desc-text figure.image {
+            margin: 30px 0;
+            text-align: center;
+            display: table;
+            clear: both;
+            max-width: 100%;
+        }
+        .ck-content figure.image img, .project-desc figure.image img, .event-desc-text figure.image img,
+        .ck-content img, .project-desc img, .event-desc-text img {
+            max-width: 100% !important;
+            height: auto !important;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 93, 170, 0.08);
+            transition: all 300ms ease;
+        }
+        .ck-content figure.image.image-style-side, .project-desc figure.image.image-style-side, .event-desc-text figure.image.image-style-side {
+            float: right;
+            margin-left: 30px;
+            margin-bottom: 20px;
+            max-width: 48%;
+        }
+        .ck-content figure.image.image-style-block, .project-desc figure.image.image-style-block, .event-desc-text figure.image.image-style-block {
+            margin: 30px auto;
+            display: block;
+        }
+        .ck-content figcaption, .project-desc figcaption, .event-desc-text figcaption {
+            font-family: 'Caveat', cursive;
+            font-size: 19px;
+            color: var(--theme-primary, #005daa);
+            font-weight: 600;
+            text-align: center;
+            margin-top: 10px;
+            caption-side: bottom;
+            display: table-caption;
+            line-height: 1.4;
+        }
+
+        /* Tables Styled in Harmony with Theme */
+        .ck-content figure.table, .project-desc figure.table, .event-desc-text figure.table {
+            margin: 30px 0;
+            overflow-x: auto;
+            display: block;
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+        }
+        .ck-content figure.table table, .project-desc figure.table table, .event-desc-text figure.table table {
+            width: 100% !important;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid var(--theme-border, #e2e8f0);
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 93, 170, 0.05);
+        }
+        .ck-content figure.table th, .project-desc figure.table th, .event-desc-text figure.table th {
+            background-color: var(--theme-primary, #005daa);
+            color: #ffffff;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 14px 18px;
+            border: 1px solid var(--theme-primary-hover, #004c8c);
+            text-align: left;
+            letter-spacing: 0.3px;
+        }
+        .ck-content figure.table td, .project-desc figure.table td, .event-desc-text figure.table td {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 15px;
+            color: #555555;
+            padding: 13px 18px;
+            border-bottom: 1px solid #edf2f7;
+            border-right: 1px solid #edf2f7;
+            line-height: 24px;
+        }
+        .ck-content figure.table td:last-child, .project-desc figure.table td:last-child, .event-desc-text figure.table td:last-child {
+            border-right: 0;
+        }
+        .ck-content figure.table tr:last-child td, .project-desc figure.table tr:last-child td, .event-desc-text figure.table tr:last-child td {
+            border-bottom: 0;
+        }
+        .ck-content figure.table tr:nth-child(even), .project-desc figure.table tr:nth-child(even), .event-desc-text figure.table tr:nth-child(even) {
+            background-color: #fafbfd;
+        }
+        .ck-content figure.table tr:hover, .project-desc figure.table tr:hover, .event-desc-text figure.table tr:hover {
+            background-color: var(--theme-primary-light, #e8f1f8);
+        }
+
+        /* Media / Video Embeds */
+        .ck-content figure.media, .project-desc figure.media, .event-desc-text figure.media,
+        .ck-content .media, .project-desc .media, .event-desc-text .media {
+            margin: 32px 0;
+            position: relative;
+            width: 100%;
+            clear: both;
+        }
+        .ck-content figure.media iframe, .project-desc figure.media iframe, .event-desc-text figure.media iframe,
+        .ck-content .media iframe, .project-desc .media iframe, .event-desc-text .media iframe,
+        .ck-content iframe, .project-desc iframe, .event-desc-text iframe {
+            width: 100% !important;
+            aspect-ratio: 16 / 9;
+            min-height: 380px;
+            border: 2px solid var(--theme-primary-light, #e8f1f8);
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0, 93, 170, 0.1);
+        }
+
+        /* Code Blocks */
+        .ck-content pre, .project-desc pre, .event-desc-text pre {
+            background: #141517;
+            color: #f8fafc;
+            padding: 18px 22px;
+            border-radius: 10px;
+            border-left: 4px solid var(--theme-secondary, #ffb81c);
+            overflow-x: auto;
+            font-family: 'Fira Code', Consolas, Monaco, monospace;
+            font-size: 14px;
+            line-height: 24px;
+            margin: 24px 0;
+        }
+        .ck-content code, .project-desc code, .event-desc-text code {
+            background: var(--theme-primary-light, #e8f1f8);
+            color: var(--theme-primary-dark, #003366);
+            padding: 3px 7px;
+            border-radius: 4px;
+            font-family: 'Fira Code', Consolas, Monaco, monospace;
+            font-size: 13.5px;
+            font-weight: 600;
+        }
+        .ck-content pre code, .project-desc pre code, .event-desc-text pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+
+        /* Mobile Layout */
+        @media (max-width: 767px) {
+            .ck-content figure.image.image-style-side, .project-desc figure.image.image-style-side, .event-desc-text figure.image.image-style-side {
+                float: none !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                max-width: 100% !important;
+                display: block !important;
+            }
+            .ck-content figure.media iframe, .project-desc figure.media iframe, .event-desc-text figure.media iframe,
+            .ck-content .media iframe, .project-desc .media iframe, .event-desc-text .media iframe {
+                min-height: 230px !important;
+            }
+        }
+    </style>
+
     @stack('custom-style')
 </head>
 

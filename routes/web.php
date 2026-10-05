@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DonationController;
 use App\Http\Controllers\Admin\DonorController;
+use App\Http\Controllers\Admin\EditorUploadController;
 use App\Http\Controllers\Admin\EmployeeController;
 use App\Http\Controllers\Admin\ExpenseController;
 use App\Http\Controllers\Admin\GalleryImageController;
@@ -122,4 +123,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     // Organization & System Settings
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::put('/settings', [SettingController::class, 'update'])->name('settings.update');
+
+    // Rich Text Editor Media Upload Endpoint
+    Route::post('/editor/upload', [EditorUploadController::class, 'upload'])->name('editor.upload');
 });

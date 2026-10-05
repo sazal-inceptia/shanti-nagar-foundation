@@ -67,7 +67,7 @@
                                 @if($activity->short_description)
                                     <p class="lead fw-semibold text-dark mb-3">{{ $activity->localized_short_description }}</p>
                                 @endif
-                                <div class="event-desc-text">
+                                <div class="event-desc-text ck-content">
                                     @if($activity->localized_description)
                                         {!! $activity->localized_description !!}
                                     @else

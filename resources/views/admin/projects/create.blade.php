@@ -249,19 +249,5 @@
 @endsection
 
 @push('custom-script')
-    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-    <script>
-        $(document).ready(function () {
-            if (document.querySelector('#description')) {
-                ClassicEditor.create(document.querySelector('#description'), {
-                    toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo']
-                }).catch(error => console.error(error));
-            }
-            if (document.querySelector('#description_bn')) {
-                ClassicEditor.create(document.querySelector('#description_bn'), {
-                    toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo']
-                }).catch(error => console.error(error));
-            }
-        });
-    </script>
+    @include('admin.includes.ckeditor-script')
 @endpush
