@@ -245,7 +245,7 @@
 
 
     <!-- 2) Board of Directors (BOD Members - LTR Carousel) -->
-    <section class="team-section centred">
+    <section class="team-section centred sec-pad">
         <div class="pattern-layer" style="background-image: url({{ asset('assets/images/shape/shape-23.png') }});"></div>
         <div class="auto-container">
             <div class="sec-title centred">
@@ -284,7 +284,7 @@
                         ],
                         (object) [
                             'name' => 'Rtn. Dr. M. Saifur Rahman',
-                            'name_bn' => 'রোটা. ড. এম. সাইফুর রহমান',
+                            'name_bn' => 'রোটা. ড. এম. সাইফur রহমান',
                             'designation' => 'Director - Membership',
                             'photo_url' => asset('assets/images/team/saifur_rahman.png'),
                             'phone' => '+8801519990011',
@@ -417,7 +417,8 @@
         $otherCollection = collect($rawOthers);
         $renderOthers = $otherCollection->count() < 6 ? $otherCollection->concat($otherCollection) : $otherCollection;
     @endphp
-    <section class="team-section centred sec-pad">
+    <section class="team-section officers-team-section centred sec-pad">
+        <div class="pattern-layer" style="background-image: url({{ asset('assets/images/shape/shape-12.png') }});"></div>
         <div class="auto-container">
             <div class="sec-title centred">
                 <span class="top-text">{{ __('Foundation Officers & Coordinators') }}</span>
@@ -601,7 +602,7 @@
 
 
     <!-- 4) Feature Section (Mission, Vision, Goal, Community) -->
-    <section class="feature-section centred">
+    <section class="feature-section about-page-features centred">
         <div class="fluid-container">
             <div class="row clearfix">
                 <div class="col-lg-3 col-md-6 col-sm-12 feature-block">
@@ -1008,74 +1009,31 @@
                     });
                 }
 
-                // 2. Step-by-Step Alternating Reveal for Leader Cards
+                // 2. Pure Unit Card Slide Animation (Right to 0 / Left to 0 alternating)
                 const leaderCards = document.querySelectorAll('.leadership-section .leader-speech-card');
                 leaderCards.forEach((card, index) => {
-                    const isRtlSlide = (index % 2 === 0);
-                    const enterX = isRtlSlide ? 90 : -90;
+                    const entersFromRight = (index % 2 === 0);
+                    const initialX = entersFromRight ? 160 : -160;
 
-                    const avatarBox = card.querySelector('.avatar-box');
-                    const roleBadge = card.querySelector('.role-badge');
-                    const leaderInfo = card.querySelectorAll('.leader-profile-col h3, .leader-profile-col .designation-text, .leader-profile-col .location-info, .leader-profile-col .contact-links');
-                    const speechTag = card.querySelector('.speech-tag');
-                    const quoteText = card.querySelector('blockquote');
-                    const speechFooter = card.querySelector('.speech-footer');
-
-                    const tl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: card,
-                            start: "top 85%",
-                            toggleActions: "play reverse play reverse"
+                    gsap.fromTo(card,
+                        {
+                            opacity: 0,
+                            x: initialX,
+                            scale: 0.98
+                        },
+                        {
+                            opacity: 1,
+                            x: 0,
+                            scale: 1,
+                            duration: 0.85,
+                            ease: "power3.out",
+                            scrollTrigger: {
+                                trigger: card,
+                                start: "top 85%",
+                                toggleActions: "play reverse play reverse"
+                            }
                         }
-                    });
-
-                    tl.fromTo(card,
-                        { opacity: 0, x: enterX, y: 30, scale: 0.96 },
-                        { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.75, ease: "power3.out" }
                     );
-
-                    if (avatarBox) {
-                        tl.fromTo(avatarBox,
-                            { opacity: 0, scale: 0.7, rotation: isRtlSlide ? 12 : -12 },
-                            { opacity: 1, scale: 1, rotation: 0, duration: 0.5, ease: "back.out(1.8)" },
-                            "-=0.45"
-                        );
-                    }
-                    if (roleBadge) {
-                        tl.fromTo(roleBadge,
-                            { opacity: 0, y: -15 },
-                            { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" },
-                            "-=0.35"
-                        );
-                    }
-                    if (leaderInfo && leaderInfo.length > 0) {
-                        tl.fromTo(leaderInfo,
-                            { opacity: 0, y: 12 },
-                            { opacity: 1, y: 0, duration: 0.35, stagger: 0.06, ease: "power2.out" },
-                            "-=0.3"
-                        );
-                    }
-                    if (speechTag) {
-                        tl.fromTo(speechTag,
-                            { opacity: 0, x: isRtlSlide ? -20 : 20 },
-                            { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" },
-                            "-=0.35"
-                        );
-                    }
-                    if (quoteText) {
-                        tl.fromTo(quoteText,
-                            { opacity: 0, y: 18 },
-                            { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" },
-                            "-=0.3"
-                        );
-                    }
-                    if (speechFooter) {
-                        tl.fromTo(speechFooter,
-                            { opacity: 0, y: 12 },
-                            { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" },
-                            "-=0.3"
-                        );
-                    }
                 });
 
 
