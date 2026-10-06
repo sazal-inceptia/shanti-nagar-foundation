@@ -128,34 +128,59 @@
                         </div>
                     </div>
 
-                    @if($employee->tenure || $employee->rotary_theme || $employee->focus_area || $employee->badge_title)
+                    @if($employee->tenure || $employee->rotary_theme || $employee->focus_area || $employee->badge_title || $employee->speech || $employee->bio)
                     <div class="border-top p-4" style="background-color: #f1f5f9;">
                         <h6 class="fw-bold text-dark mb-3" style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #475569 !important;">
-                            <i class="ri-medal-line me-1 text-primary"></i> Rotary Legacy &amp; Roll of Honour
+                            <i class="ri-medal-line me-1 text-primary"></i> Rotary Legacy &amp; Presentation
                         </h6>
                         <div class="d-flex flex-column gap-2" style="font-size: 13px;">
+                            @if($employee->is_highlight)
+                            <div class="mb-2">
+                                <span class="badge" style="background-color: #fef3c7; color: #92400e; border: 1px solid #fde68a; font-size: 12px; padding: 4px 8px;">
+                                    <i class="ri-star-fill text-warning me-1"></i> Spotlight Hero Featured
+                                </span>
+                            </div>
+                            @endif
                             @if($employee->badge_title)
                             <div class="d-flex justify-content-between py-1 border-bottom border-light">
-                                <span class="text-muted">Distinction</span>
+                                <span class="text-muted">Distinction / Badge</span>
                                 <span class="badge bg-primary text-white">{{ $employee->badge_title }}</span>
                             </div>
                             @endif
                             @if($employee->tenure)
                             <div class="d-flex justify-content-between py-1 border-bottom border-light">
                                 <span class="text-muted">Tenure Period</span>
-                                <strong class="text-dark">{{ $employee->tenure }} ({{ $employee->year_badge }})</strong>
+                                <strong class="text-dark">{{ $employee->tenure }} {{ $employee->year_badge ? '('.$employee->year_badge.')' : '' }}</strong>
                             </div>
                             @endif
                             @if($employee->rotary_theme)
                             <div class="py-1 border-bottom border-light">
-                                <span class="text-muted d-block">Rotary Theme:</span>
+                                <span class="text-muted d-block">Rotary Theme (EN):</span>
                                 <em class="text-dark font-monospace">"{{ $employee->rotary_theme }}"</em>
+                                @if($employee->rotary_theme_bn)
+                                    <div class="text-muted" style="font-size: 12px;">বাংলা: "{{ $employee->rotary_theme_bn }}"</div>
+                                @endif
                             </div>
                             @endif
                             @if($employee->focus_area)
-                            <div class="py-1">
-                                <span class="text-muted d-block">Milestone Focus:</span>
+                            <div class="py-1 border-bottom border-light">
+                                <span class="text-muted d-block">Milestone Focus (EN):</span>
                                 <span class="text-dark fw-semibold">{{ $employee->focus_area }}</span>
+                                @if($employee->focus_area_bn)
+                                    <div class="text-muted" style="font-size: 12px;">বাংলা: {{ $employee->focus_area_bn }}</div>
+                                @endif
+                            </div>
+                            @endif
+                            @if($employee->speech)
+                            <div class="py-1 border-bottom border-light">
+                                <span class="text-muted d-block">Vision / Quote:</span>
+                                <p class="text-dark mb-0 fst-italic" style="font-size: 12.5px; line-height: 1.4;">"{{ $employee->speech }}"</p>
+                            </div>
+                            @endif
+                            @if($employee->bio)
+                            <div class="py-1">
+                                <span class="text-muted d-block">Biography Summary:</span>
+                                <p class="text-dark mb-0" style="font-size: 12px; line-height: 1.4;">{{ $employee->bio }}</p>
                             </div>
                             @endif
                         </div>

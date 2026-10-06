@@ -262,6 +262,68 @@
                                         <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
                                     @enderror
                                 </div>
+
+                                {{-- Biography (EN & BN) --}}
+                                <div class="col-md-6 col-12">
+                                    <label for="bio" class="form-label custom-label">Biography / Career Summary (English)</label>
+                                    <textarea class="form-control custom-input @error('bio') is-invalid @enderror"
+                                        name="bio" id="bio" rows="2" placeholder="Brief professional background or Rotary service history...">{{ old('bio') }}</textarea>
+                                    @error('bio')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 col-12">
+                                    <label for="bio_bn" class="form-label custom-label">Biography / Career Summary (বাংলা)</label>
+                                    <textarea class="form-control custom-input @error('bio_bn') is-invalid @enderror"
+                                        name="bio_bn" id="bio_bn" rows="2" placeholder="সংক্ষিপ্ত পরিচিতি বা সেবামূলক কাজের বিবরণ...">{{ old('bio_bn') }}</textarea>
+                                    @error('bio_bn')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                {{-- Social Links --}}
+                                <div class="col-md-4 col-12">
+                                    <label for="facebook_url" class="form-label custom-label"><i class="ri-facebook-circle-line me-1 text-primary"></i> Facebook URL</label>
+                                    <input type="url" class="form-control custom-input @error('facebook_url') is-invalid @enderror"
+                                        name="facebook_url" id="facebook_url" value="{{ old('facebook_url') }}" placeholder="https://facebook.com/username">
+                                    @error('facebook_url')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <label for="linkedin_url" class="form-label custom-label"><i class="ri-linkedin-box-line me-1 text-primary"></i> LinkedIn URL</label>
+                                    <input type="url" class="form-control custom-input @error('linkedin_url') is-invalid @enderror"
+                                        name="linkedin_url" id="linkedin_url" value="{{ old('linkedin_url') }}" placeholder="https://linkedin.com/in/username">
+                                    @error('linkedin_url')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-4 col-12">
+                                    <label for="twitter_url" class="form-label custom-label"><i class="ri-twitter-x-line me-1 text-dark"></i> Twitter / X URL</label>
+                                    <input type="url" class="form-control custom-input @error('twitter_url') is-invalid @enderror"
+                                        name="twitter_url" id="twitter_url" value="{{ old('twitter_url') }}" placeholder="https://x.com/username">
+                                    @error('twitter_url')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                {{-- Spotlight Founder Toggle --}}
+                                <div class="col-12">
+                                    <div class="p-3 rounded border" style="background-color: #f8fafc;">
+                                        <div class="form-check form-switch d-flex align-items-center gap-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" name="is_highlight" id="is_highlight" value="1" {{ old('is_highlight') ? 'checked' : '' }} style="cursor: pointer; width: 38px; height: 20px;">
+                                            <label class="form-check-label fw-bold text-dark mb-0" for="is_highlight" style="font-size: 13.5px; cursor: pointer;">
+                                                <i class="ri-star-fill text-warning me-1"></i> Highlight in Spotlight Section (e.g. Best President / Founder)
+                                            </label>
+                                        </div>
+                                        <div class="text-muted mt-1" style="font-size: 12px; margin-left: 46px;">
+                                            If enabled, this member is prominently featured on the About page Spotlight Hero block.
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
