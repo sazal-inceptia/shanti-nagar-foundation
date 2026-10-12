@@ -32,7 +32,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-auto text-center mb-3 mb-md-0">
                         <div style="width: 110px; height: 80px; border-radius: 8px; overflow: hidden; border: 2px solid #cbd5e1; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
-                            <img src="{{ $album->cover_image_url }}" onerror="this.src='{{ asset('assets/images/gallery/portfolio-7.jpg') }}'" alt="{{ $album->title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="{{ $album->cover_image_url }}" onerror="this.src='{{ asset('assets/images/standalone/hero-club-fellowship-portrait.jpeg') }}'" alt="{{ $album->title }}" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                     </div>
                     <div class="col-md">
@@ -115,7 +115,7 @@
                                 <div class="card h-100 border shadow-none" style="border-radius: 8px; overflow: hidden;">
                                     <div style="position: relative; height: 180px; overflow: hidden; background: #f1f5f9;">
                                         <a href="{{ $photo->image_url }}" data-fancybox="album-gallery" data-caption="{{ $photo->localized_title ?? $album->localized_title }}">
-                                            <img src="{{ $photo->image_url }}" onerror="this.src='{{ asset('assets/images/gallery/portfolio-7.jpg') }}'" alt="{{ $photo->title ?? 'Photo' }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
+                                            <img src="{{ $photo->image_url }}" onerror="this.src='{{ asset('assets/images/standalone/hero-club-fellowship-portrait.jpeg') }}'" alt="{{ $photo->title ?? 'Photo' }}" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;">
                                         </a>
                                         <div style="position: absolute; top: 8px; right: 8px; display: flex; gap: 4px;">
                                             <button type="button" class="btn btn-sm btn-danger delete-photo-btn" data-url="{{ route('admin.gallery-images.destroy', $photo->id) }}" data-id="{{ $photo->id }}" style="padding: 3px 8px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Delete Photo">

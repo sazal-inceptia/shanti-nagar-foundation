@@ -136,7 +136,7 @@ class Activity extends Model
             return asset($this->featured_image);
         }
 
-        return asset('assets/images/gallery/portfolio-7.jpg');
+        return asset('assets/images/standalone/hero-club-fellowship-portrait.jpeg');
     }
 
     /**

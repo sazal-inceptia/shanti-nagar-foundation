@@ -45,7 +45,10 @@ class Project extends Model
         'status',
         'location',
         'location_bn',
+        'target_beneficiaries',
+        'target_beneficiaries_bn',
         'featured_image',
+        'video_url',
         'is_published',
     ];
 
@@ -190,5 +193,28 @@ class Project extends Model
     public function getLocalizedLocationAttribute(): ?string
     {
         return (app()->getLocale() === 'bn' && ! empty($this->location_bn)) ? $this->location_bn : $this->location;
+    }
+
+    /**
+     * Get localized target beneficiaries based on active locale.
+     */
+    public function getLocalizedTargetBeneficiariesAttribute(): ?string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->target_beneficiaries_bn)) ? $this->target_beneficiaries_bn : $this->target_beneficiaries;
+    }
+
+    /**
+     * Scope query to a specific Rotary Year (July 1 of start year to June 30 of end year).
+     * Example: $query->rotaryYear(2026) covers 2026-07-01 to 2027-06-30.
+     */
+    public function scopeRotaryYear($query, int $startYear = 2026)
+    {
+        $startDate = sprintf('%d-07-01', $startYear);
+        $endDate = sprintf('%d-06-30', $startYear + 1);
+
+        return $query->where(function ($q) use ($startDate, $endDate) {
+            $q->whereBetween('start_date', [$startDate, $endDate])
+                ->orWhereBetween('completion_date', [$startDate, $endDate]);
+        });
     }
 }

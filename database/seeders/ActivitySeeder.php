@@ -63,7 +63,7 @@ class ActivitySeeder extends Seeder
     </table>
 </figure>
 <figure class="image image-style-side">
-    <img src="/assets/images/gallery/portfolio-9.jpg" alt="Winter Relief Distribution">
+    <img src="/assets/images/gallery-albums/community-service-and-relief/mother-cradling-newborn.jpeg" alt="Winter Relief Distribution">
     <figcaption>Rotary Club volunteers packaging warm winter relief supplies at central hub.</figcaption>
 </figure>
 <p>All logistical and transportation expenses are borne by the Club. Every single contribution from our donors directly purchases verified relief materials without administrative deductions.</p>',
@@ -107,11 +107,11 @@ class ActivitySeeder extends Seeder
     </table>
 </figure>
 <figure class="image image-style-side">
-    <img src="/assets/images/gallery/portfolio-9.jpg" alt="শীতবস্ত্র বিতরণ প্রস্তুতি">
+    <img src="/assets/images/gallery-albums/community-service-and-relief/mother-cradling-newborn.jpeg" alt="শীতবস্ত্র বিতরণ প্রস্তুতি">
     <figcaption>রোটারি ক্লাব সেন্টারে শীতবস্ত্র প্যাকেজিং ও তালিকা চূড়ান্তকরণ মুহূর্ত।</figcaption>
 </figure>
 <p>এই কর্মসূচির শতভাগ অনুদান সরাসরি শীতবস্ত্র ক্রয়ে ব্যয় করা হয়। কোনো প্রকার মধ্যস্বত্বভোগী ছাড়াই স্বচ্ছতার সাথে এই মানবিক সহায়তা নিশ্চিত করা হচ্ছে।</p>',
-                'featured_image' => 'assets/images/events/events-5.jpg',
+                'featured_image' => 'assets/images/projects/covers/winter-clothes-blanket.jpeg',
                 'status' => 'upcoming',
                 'is_featured' => true,
                 'is_published' => true,
@@ -163,7 +163,7 @@ class ActivitySeeder extends Seeder
     </table>
 </figure>
 <figure class="image image-style-side">
-    <img src="/assets/images/gallery/portfolio-10.jpg" alt="Eye Examination Camp">
+    <img src="/assets/images/gallery-albums/health-and-medical-aid/medical-delegation-angled-group.jpeg" alt="Eye Examination Camp">
     <figcaption>Specialist ophthalmologist examining low-income elderly patients at Shantinagar clinic.</figcaption>
 </figure>
 <p>Post-surgery medications, transportation, and follow-up reviews are 100% sponsored by Rotary Club of Shantinagar Dhaka.</p>',
@@ -203,11 +203,11 @@ class ActivitySeeder extends Seeder
     </table>
 </figure>
 <figure class="image image-style-side">
-    <img src="/assets/images/gallery/portfolio-10.jpg" alt="চক্ষু পরীক্ষা ক্যাম্প">
+    <img src="/assets/images/gallery-albums/health-and-medical-aid/medical-delegation-angled-group.jpeg" alt="চক্ষু পরীক্ষা ক্যাম্প">
     <figcaption>শান্তিনগর ক্লিনিকে বিশেষজ্ঞ ডাক্তার দ্বারা সুবিধাবঞ্চিত রোগীর দৃষ্টি পরীক্ষা।</figcaption>
 </figure>
 <p>অপারেশন পরবর্তী ওষুধ, ফলোআপ চেকআপ এবং রোগীবান্ধব সার্বিক পরিচর্যা সম্পূর্ণ বিনামূল্যে ক্লাবের অর্থায়নে পরিচালিত হবে।</p>',
-                'featured_image' => 'assets/images/events/events-2.jpg',
+                'featured_image' => 'assets/images/standalone/impact-healthcare-medical-aid.jpeg',
                 'status' => 'upcoming',
                 'is_featured' => true,
                 'is_published' => true,
@@ -235,7 +235,7 @@ class ActivitySeeder extends Seeder
     <p>"Protecting our environment is an investment for generations to come. Every sapling planted today is oxygen and shelter for tomorrow."</p>
 </blockquote>
 <figure class="image image-style-side">
-    <img src="/assets/images/gallery/portfolio-8.jpg" alt="Tree Plantation Drive">
+    <img src="/assets/images/projects/covers/tree-plantation-campaign.jpeg" alt="Tree Plantation Drive">
     <figcaption>Rotaract youth volunteers actively planting saplings at local school boundary.</figcaption>
 </figure>
 <p>Join hands with our youth volunteers to build a greener, cleaner, and healthier Dhaka city.</p>',
@@ -251,11 +251,11 @@ class ActivitySeeder extends Seeder
     <p>"পরিবেশের ভারসাম্য রক্ষায় একটি গাছ রোপণ করা মানে পৃথিবীর ভবিষ্যৎকে এক ধাপ এগিয়ে দেওয়া। আসুন আমরা সবাই অন্তত একটি করে গাছ লাগাই।"</p>
 </blockquote>
 <figure class="image image-style-side">
-    <img src="/assets/images/gallery/portfolio-8.jpg" alt="বৃক্ষরোপণ কার্যক্রম">
+    <img src="/assets/images/projects/covers/tree-plantation-campaign.jpeg" alt="বৃক্ষরোপণ কার্যক্রম">
     <figcaption>স্থানীয় শিক্ষা প্রাঙ্গণে রোটার‌্যাক্ট তরুণদের অংশগ্রহণে বৃক্ষরোপণ উৎসব।</figcaption>
 </figure>
 <p>সবুজ ঢাকা গড়ার এই মহৎ উদ্যোগে যেকোনো নাগরিক ও শিক্ষার্থী স্বেচ্ছাসেবক হিসেবে সরাসরি যুক্ত হতে পারেন।</p>',
-                'featured_image' => 'assets/images/events/events-3.jpg',
+                'featured_image' => 'assets/images/standalone/branding-rotary-international-tree.jpeg',
                 'status' => 'upcoming',
                 'is_featured' => false,
                 'is_published' => true,
@@ -306,7 +306,7 @@ class ActivitySeeder extends Seeder
     </table>
 </figure>
 <figure class="image image-style-side">
-    <img src="/assets/images/gallery/portfolio-11.jpg" alt="Blood Donation Activity">
+    <img src="/assets/images/standalone/hero-club-fellowship-portrait.jpeg" alt="Blood Donation Activity">
     <figcaption>Volunteer donating safe blood during the Rotary Shantinagar blood drive.</figcaption>
 </figure>',
                 'description_bn' => '<p class="lead">থ্যালাসেমিয়া আক্রান্ত নিষ্পাপ শিশুদের নিয়মিত রক্তের সংকট নিরসনে রোটারি ক্লাব অব শান্তিনগর ঢাকার উদ্যোগে সফলভাবে দিনব্যাপী রক্তদান কর্মসূচি সম্পন্ন হয়েছে, যেখানে <strong>১২৪ ব্যাগ নিরাপদ রক্ত</strong> সংগৃহীত হয়েছে।</p>
@@ -344,10 +344,10 @@ class ActivitySeeder extends Seeder
     </table>
 </figure>
 <figure class="image image-style-side">
-    <img src="/assets/images/gallery/portfolio-11.jpg" alt="রক্তদান কর্মসূচি">
+    <img src="/assets/images/standalone/hero-club-fellowship-portrait.jpeg" alt="রক্তদান কর্মসূচি">
     <figcaption>স্বেচ্ছাসেবী রক্তদাতা কর্তৃক আনন্দচিত্তে রক্তদান ও সহমর্মিতা প্রকাশ।</figcaption>
 </figure>',
-                'featured_image' => 'assets/images/events/events-7.jpg',
+                'featured_image' => 'assets/images/projects/covers/free-mask-distribution.jpeg',
                 'status' => 'completed',
                 'is_featured' => false,
                 'is_published' => true,
@@ -375,7 +375,7 @@ class ActivitySeeder extends Seeder
     <p>"Making hospital wards humane and comfortable for low-income patients is an immediate, impactful service."</p>
 </blockquote>
 <figure class="image image-style-side">
-    <img src="/assets/images/gallery/portfolio-7.jpg" alt="Hospital Aid Handover">
+    <img src="/assets/images/gallery-albums/health-and-medical-aid/medical-equipment-hospital-handover.jpeg" alt="Hospital Aid Handover">
     <figcaption>Rotary club leadership inspecting installed electrical facilities in general ward.</figcaption>
 </figure>',
                 'description_bn' => '<p class="lead">সরকারি হাসপাতালের সাধারণ ওয়ার্ডে চিকিৎসাধীন অসহায় রোগীদের তীব্র গরমের কষ্ট লাঘব এবং নির্বিঘ্ন সেবা নিশ্চিত করতে রোটারি ক্লাব অব শান্তিনগর ঢাকা <strong>৫০টি শক্তিশালী সিলিং ফ্যান ও ১০টি হুইলচেয়ার</strong> সরাসরি স্থাপন করছে।</p>
@@ -390,10 +390,10 @@ class ActivitySeeder extends Seeder
     <p>"হাসপাতালে সেবা নিতে আসা দরিদ্র মানুষের কষ্ট সামান্য লাঘব করাও আমাদের ক্লাবের অন্যতম পরম দায়িত্ব।"</p>
 </blockquote>
 <figure class="image image-style-side">
-    <img src="/assets/images/gallery/portfolio-7.jpg" alt="হাসপাতাল সহায়তা হস্তান্তর">
+    <img src="/assets/images/gallery-albums/health-and-medical-aid/medical-equipment-hospital-handover.jpeg" alt="হাসপাতাল সহায়তা হস্তান্তর">
     <figcaption>হাসপাতাল ওয়ার্ডে ফ্যান স্থাপন ও উপকরণ হস্তান্তর পরিদর্শনকালে রোটারিয়ানবৃন্দ।</figcaption>
 </figure>',
-                'featured_image' => 'assets/images/events/events-4.jpg',
+                'featured_image' => 'assets/images/projects/covers/medical-equipment-handover.jpeg',
                 'status' => 'upcoming',
                 'is_featured' => true,
                 'is_published' => true,
@@ -444,7 +444,7 @@ class ActivitySeeder extends Seeder
     </table>
 </figure>
 <figure class="image image-style-side">
-    <img src="/assets/images/gallery/portfolio-12.jpg" alt="Flood Food Relief">
+    <img src="/assets/images/gallery-albums/community-service-and-relief/pushti-nutrition-handover-mother.jpeg" alt="Flood Food Relief">
     <figcaption>Volunteers loading emergency relief boats for marooned char households.</figcaption>
 </figure>',
                 'description_bn' => '<p class="lead">স্মরণকালের ভয়াবহ বন্যায় পানিবন্দী মানুষের চরম মানবিক বিপর্যয়ে রোটারি ক্লাব অব শান্তিনগর ঢাকার ভলান্টিয়ার টিম ইঞ্জিন বোটে করে <strong>১,২০০ পরিবারের মাঝে জরুরি শুকনো খাদ্য, স্যালাইন ও পানি বিশুদ্ধকরণ সামগ্রী</strong> পৌঁছে দিয়েছে।</p>
@@ -482,10 +482,10 @@ class ActivitySeeder extends Seeder
     </table>
 </figure>
 <figure class="image image-style-side">
-    <img src="/assets/images/gallery/portfolio-12.jpg" alt="বন্যা ত্রাণ বিতরণ">
+    <img src="/assets/images/gallery-albums/community-service-and-relief/pushti-nutrition-handover-mother.jpeg" alt="বন্যা ত্রাণ বিতরণ">
     <figcaption>বন্যাদুর্গতদের মাঝে সরাসরি খাদ্য প্যাকেট হস্তান্তরের মুহূর্ত।</figcaption>
 </figure>',
-                'featured_image' => 'assets/images/events/events-8.jpg',
+                'featured_image' => 'assets/images/gallery-albums/community-service-and-relief/pushti-boxes-stack.jpeg',
                 'status' => 'completed',
                 'is_featured' => false,
                 'is_published' => true,

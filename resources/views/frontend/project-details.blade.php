@@ -87,7 +87,7 @@
 
                             <div class="content-one">
                                 <figure class="image-box main-image-box">
-                                    <img src="{{ asset($project->featured_image ?: 'assets/images/case/case-21.jpg') }}"
+                                    <img src="{{ asset($project->featured_image ?: 'assets/images/projects/covers/safe-drinking-water.jpg') }}"
                                         alt="{{ $project->localized_name }}">
                                 </figure>
                                 <div class="text">
@@ -340,7 +340,7 @@
                             <div class="sidebar-widget subscribe-widget centred">
                                 <div class="widget-content">
                                     <div class="upper-content sidebar-help-upper"
-                                        style="background-image: url({{ asset('assets/images/case/case-30.jpg') }});">
+                                        style="background-image: url({{ asset('assets/images/background/1.jpg') }});">
                                         <div class="icon-box"><i class="fas fa-phone"></i></div>
                                         <h3>{{ __('Need Assistance?') }}</h3>
                                         <p>{{ __('Have questions about donations, relief projects, or volunteering? Leave your details below and our team will contact you.') }}

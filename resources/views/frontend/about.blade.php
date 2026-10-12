@@ -27,7 +27,7 @@
             <div class="best-president-card">
                 <!-- Atmospheric Ghost Background -->
                 <div class="card-bg-ghost"
-                    style="background-image: url('{{ $bestPresident?->photo_url ?: asset('assets/images/team/mahbub.jpg') }}');">
+                    style="background-image: url('{{ $bestPresident?->photo_url ?: asset('assets/images/members/charter_mahbub.jpg') }}');">
                 </div>
                 <div class="card-bg-overlay"></div>
 
@@ -56,7 +56,7 @@
                         <div class="image-wrapper">
                             <div class="img-frame">
                                 <img class="main-portrait"
-                                    src="{{ $bestPresident?->photo_url ?: asset('assets/images/team/mahbub.jpg') }}"
+                                    src="{{ $bestPresident?->photo_url ?: asset('assets/images/members/charter_mahbub.jpg') }}"
                                     alt="{{ $bestPresident?->localized_name ?? __('Charter President') }}">
                             </div>
                         </div>
@@ -90,10 +90,10 @@
                             <span class="role-badge"><i class="fas fa-user-tie me-1"></i>
                                 {{ $president?->badge_title ? __($president->badge_title) : __('President') }}</span>
                             <div class="avatar-box">
-                                <img src="{{ $president?->photo_url ?: asset('assets/images/team/arifulhaque.jpg') }}"
+                                <img src="{{ $president?->photo_url ?: asset('assets/images/members/rtn-shah-arifur-rahman.jpg') }}"
                                     alt="{{ $president?->localized_name ?? __('President') }}">
                             </div>
-                            <h3>{{ $president?->localized_name ?? __('Rtn. Md. Ariful Hoque PHF') }}</h3>
+                            <h3>{{ $president?->localized_name ?? __('Rtn. Shah Arifur Rahman') }}</h3>
                             <span
                                 class="designation-text">{{ $president?->designation?->localized_name ?? __('President') }}</span>
                             <div class="location-info">
@@ -159,10 +159,10 @@
                             <span class="role-badge"><i class="fas fa-clipboard-check me-1"></i>
                                 {{ $secretary?->badge_title ? __($secretary->badge_title) : __('General Secretary') }}</span>
                             <div class="avatar-box">
-                                <img src="{{ $secretary?->photo_url ?: asset('assets/images/team/samad.jpg') }}"
+                                <img src="{{ $secretary?->photo_url ?: asset('assets/images/members/rtn-shamim-rahman.jpg') }}"
                                     alt="{{ $secretary?->localized_name ?? __('General Secretary') }}">
                             </div>
-                            <h3>{{ $secretary?->localized_name ?? __('Rtn. Md. Abdus Samad Al Azad PHF') }}</h3>
+                            <h3>{{ $secretary?->localized_name ?? __('Rtn. Md. Shamim Rahman') }}</h3>
                             <span
                                 class="designation-text">{{ $secretary?->designation?->localized_name ?? __('General Secretary') }}</span>
                             <div class="location-info">
@@ -194,10 +194,10 @@
                             <span class="role-badge"><i class="fas fa-coins me-1"></i>
                                 {{ $treasurer?->badge_title ? __($treasurer->badge_title) : __('Treasurer') }}</span>
                             <div class="avatar-box">
-                                <img src="{{ $treasurer?->photo_url ?: asset('assets/images/team/tasmina.jpg') }}"
+                                <img src="{{ $treasurer?->photo_url ?: asset('assets/images/members/rtn-shariful-islam-shovo.jpg') }}"
                                     alt="{{ $treasurer?->localized_name ?? __('Treasurer') }}">
                             </div>
-                            <h3>{{ $treasurer?->localized_name ?? __('Rtn. Tasmina Hossain Luna') }}</h3>
+                            <h3>{{ $treasurer?->localized_name ?? __('Rtn. Md Shariful Islam Shovo') }}</h3>
                             <span
                                 class="designation-text">{{ $treasurer?->designation?->localized_name ?? __('Treasurer') }}</span>
                             <div class="location-info">

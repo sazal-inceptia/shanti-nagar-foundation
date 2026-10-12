@@ -21,7 +21,10 @@ return new class extends Migration
             $table->date('completion_date')->nullable();
             $table->enum('status', ['planned', 'in_progress', 'completed', 'cancelled'])->default('planned');
             $table->string('location')->nullable();
+            $table->string('target_beneficiaries')->nullable();
+            $table->string('target_beneficiaries_bn')->nullable();
             $table->string('featured_image')->nullable();
+            $table->string('video_url')->nullable();
             $table->boolean('is_published')->default(true);
             $table->timestamps();
             $table->softDeletes();

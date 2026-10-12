@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('employee_id', 50)->unique();
+            $table->string('rotary_id', 50)->nullable()->index();
             $table->string('name');
             $table->foreignId('designation_id')->nullable()->constrained('designations')->nullOnDelete();
             $table->string('phone', 30)->nullable();

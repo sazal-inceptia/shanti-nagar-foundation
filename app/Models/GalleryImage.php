@@ -70,7 +70,7 @@ class GalleryImage extends Model
     public function getImageUrlAttribute(): string
     {
         if (empty($this->image_path)) {
-            return asset('assets/images/gallery/portfolio-7.jpg');
+            return asset('assets/images/standalone/hero-club-fellowship-portrait.jpeg');
         }
 
         if (str_starts_with($this->image_path, 'http://') || str_starts_with($this->image_path, 'https://') || str_starts_with($this->image_path, 'assets/')) {

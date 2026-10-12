@@ -84,7 +84,10 @@ erDiagram
         enum status "planned, in_progress, completed, cancelled"
         string location
         string location_bn
+        string target_beneficiaries
+        string target_beneficiaries_bn
         string featured_image
+        string video_url
         boolean is_published
         timestamps created_at_updated_at
         timestamp deleted_at
@@ -137,6 +140,7 @@ erDiagram
     EMPLOYEES {
         bigint id PK
         string employee_id UK
+        string rotary_id "index, nullable"
         string name
         string name_bn
         bigint designation_id FK
@@ -226,7 +230,7 @@ erDiagram
 
 ### 4. `projects`
 * Manages social welfare campaigns, community initiatives, and emergency relief drives.
-* **Fields:** `id`, `name`, `name_bn`, `slug` (unique), `project_type_id` (foreign key -> `project_types.id`, nullable), `short_description`, `short_description_bn`, `description`, `description_bn`, `estimated_cost`, `total_expense`, `start_date`, `completion_date`, `status` (`planned`, `in_progress`, `completed`, `cancelled`), `location`, `location_bn`, `featured_image`, `is_published`, `created_at`, `updated_at`, `deleted_at`.
+* **Fields:** `id`, `name`, `name_bn`, `slug` (unique), `project_type_id` (foreign key -> `project_types.id`, nullable), `short_description`, `short_description_bn`, `description`, `description_bn`, `estimated_cost`, `total_expense`, `start_date`, `completion_date`, `status` (`planned`, `in_progress`, `completed`, `cancelled`), `location`, `location_bn`, `target_beneficiaries`, `target_beneficiaries_bn`, `featured_image`, `video_url`, `is_published`, `created_at`, `updated_at`, `deleted_at`.
 * **Relations:** `belongsTo(ProjectType::class)`, `hasMany(Donation::class)`, `hasMany(Expense::class)`, `hasMany(ProjectImage::class)`.
 
 ### 5. `project_images`
@@ -251,7 +255,7 @@ erDiagram
 
 ### 9. `employees`
 * Foundation operational staff, executive leadership members, governing body directors, and coordinators.
-* **Fields:** `id`, `employee_id` (unique), `name`, `name_bn`, `designation_id` (foreign key -> `designations.id`, nullable), `designation`, `designation_bn`, `phone`, `email`, `nid_number`, `present_address`, `permanent_address`, `joining_date`, `base_salary`, `is_active` (boolean), `is_highlight` (boolean), `photo`, `speech`, `speech_bn`, `speech_tag`, `speech_tag_bn`, `bio`, `bio_bn`, `signature_text`, `signature_text_bn`, `signature_title`, `signature_title_bn`, `badge_title`, `badge_title_bn`, `facebook_url`, `twitter_url`, `linkedin_url`, `order_index`, `created_at`, `updated_at`, `deleted_at`.
+* **Fields:** `id`, `employee_id` (unique), `rotary_id` (nullable, index), `name`, `name_bn`, `designation_id` (foreign key -> `designations.id`, nullable), `designation`, `designation_bn`, `phone`, `email`, `nid_number`, `present_address`, `permanent_address`, `joining_date`, `base_salary`, `is_active` (boolean), `is_highlight` (boolean), `photo`, `speech`, `speech_bn`, `speech_tag`, `speech_tag_bn`, `bio`, `bio_bn`, `signature_text`, `signature_text_bn`, `signature_title`, `signature_title_bn`, `badge_title`, `badge_title_bn`, `tenure`, `year_badge`, `rotary_theme`, `rotary_theme_bn`, `focus_area`, `focus_area_bn`, `facebook_url`, `twitter_url`, `linkedin_url`, `order_index`, `created_at`, `updated_at`, `deleted_at`.
 * **Relations:** `belongsTo(Designation::class)`, `hasMany(Salary::class)`.
 
 ### 10. `salaries`

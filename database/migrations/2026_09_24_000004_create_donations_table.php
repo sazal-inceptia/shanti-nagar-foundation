@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignId('project_id')->nullable()->constrained('projects')->nullOnDelete(); // General or specific project
             $table->decimal('amount', 14, 2);
             $table->string('currency', 10)->default('BDT');
-            $table->string('payment_method', 50)->default('cash'); // bKash, Nagad, Bank, Cash, etc.
+            $table->string('payment_method', 150)->default('cash'); // bKash, Nagad, Bank, Cash, etc.
             $table->string('transaction_id')->nullable();
             $table->date('donation_date');
             $table->string('purpose')->nullable(); // e.g. Zakat, General Fund, Orphan Support, Hospital Fan

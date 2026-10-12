@@ -69,13 +69,11 @@ test('homepage and about page render with dynamic live impact stats and leadersh
 
     $aboutResponse = $this->get(route('about'));
     $aboutResponse->assertStatus(200);
-    $aboutResponse->assertSee('Fund Deployment Ratio');
-    $aboutResponse->assertSee('Direct Procurement Ratio');
-    $aboutResponse->assertSee('Honorary Tribute');
     $aboutResponse->assertSee('Executive Leadership');
     $aboutResponse->assertSee('Board of Directors');
     $aboutResponse->assertSee('Our Mission');
-    $aboutResponse->assertSee('Core Relief Pillars');
+    $aboutResponse->assertSee('Rotary 4-Way Test');
+    $aboutResponse->assertSee('Roll of Honour');
 });
 
 test('public donations, events, and gallery pages render dynamically', function () {

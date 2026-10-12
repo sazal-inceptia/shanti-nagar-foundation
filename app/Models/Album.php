@@ -82,7 +82,7 @@ class Album extends Model
                 return $firstImage->image_url;
             }
 
-            return asset('assets/images/gallery/portfolio-7.jpg');
+            return asset('assets/images/standalone/hero-club-fellowship-portrait.jpeg');
         }
 
         if (str_starts_with($this->cover_image, 'http://') || str_starts_with($this->cover_image, 'https://') || str_starts_with($this->cover_image, 'assets/')) {

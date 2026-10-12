@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->decimal('amount', 14, 2);
             $table->date('expense_date');
-            $table->string('payment_method', 50)->default('cash');
+            $table->string('payment_method', 150)->default('cash');
             $table->string('recipient_or_vendor')->nullable();
             $table->string('receipt_voucher_file')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();

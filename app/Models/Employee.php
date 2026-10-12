@@ -14,6 +14,7 @@ class Employee extends Model
 
     protected $fillable = [
         'employee_id',
+        'rotary_id',
         'name',
         'name_bn',
         'designation_id',
@@ -159,6 +160,9 @@ class Employee extends Model
             if (file_exists(public_path($this->photo))) {
                 return asset($this->photo);
             }
+            if (file_exists(public_path('assets/images/members/unfinalized/'.basename($this->photo)))) {
+                return asset('assets/images/members/unfinalized/'.basename($this->photo));
+            }
             if (file_exists(public_path('storage/'.$this->photo))) {
                 return asset('storage/'.$this->photo);
             }
@@ -169,19 +173,36 @@ class Employee extends Model
             return asset($this->photo);
         }
 
-        $empName = trim($this->name ?: 'Employee');
-        $words = preg_split('/\s+/', $empName);
-        $initials = '';
-        foreach (array_slice($words, 0, 2) as $w) {
-            $initials .= mb_strtoupper(mb_substr($w, 0, 1));
-        }
-        $initials = $initials ?: 'E';
+        return asset('assets/images/members/member-placeholder.jpg');
+    }
 
-        $bgColors = ['005daa', 'ffb81c', '003366', '009bb0', '0284c7'];
-        $color = $bgColors[abs(crc32($empName)) % count($bgColors)];
+    /**
+     * Scope query to current Rotary Year (RY 2026-2027).
+     */
+    public function scopeCurrentYear($query)
+    {
+        return $query->where(function ($q) {
+            $q->where('year_badge', 'like', '%2026–2027%')
+                ->orWhere('tenure', 'like', '%2026–2027%');
+        });
+    }
 
-        $svg = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23{$color}'/><text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Arial,sans-serif' font-size='38' font-weight='bold'>{$initials}</text></svg>";
+    /**
+     * Scope query to a specific Rotary Year.
+     */
+    public function scopeRotaryYear($query, string $year)
+    {
+        return $query->where(function ($q) use ($year) {
+            $q->where('year_badge', 'like', "%{$year}%")
+                ->orWhere('tenure', 'like', "%{$year}%");
+        });
+    }
 
-        return 'data:image/svg+xml;utf8,'.$svg;
+    /**
+     * Scope query to the Board of Directors (18 Members).
+     */
+    public function scopeBoardOfDirectors($query)
+    {
+        return $query->whereBetween('order_index', [1, 18]);
     }
 }

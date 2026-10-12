@@ -230,7 +230,7 @@ class HomeController extends Controller
         $bodMembers = Employee::with('designation')
             ->where('is_active', true)
             ->whereHas('designation', function ($dq) {
-                $dq->where('category', 'Board of Directors');
+                $dq->whereIn('category', ['Board of Directors', 'Executive Leadership']);
             })
             ->whereNotIn('id', array_filter([
                 $bestPresident?->id,
@@ -238,6 +238,7 @@ class HomeController extends Controller
                 $secretary?->id,
                 $treasurer?->id,
             ]))
+            ->whereNull('tenure')
             ->orderBy('order_index', 'asc')
             ->orderBy('id', 'asc')
             ->get();

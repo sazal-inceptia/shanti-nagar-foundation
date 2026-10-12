@@ -185,6 +185,73 @@
 
 ---
 
+### Phase 7: Real Data Extraction, In-Place Schema Updates & Seeder Synchronization (In Progress)
+- [x] **Raw Document & Archive Extraction**
+  - [x] Extracted 38 deduplicated members from membership lists, OCV records, and contributions to `docs/curated-data/rotary_members_list.csv`
+  - [x] Extracted 12 humanitarian projects with exact expenditures, bilingual titles, locations, and video links to `docs/curated-data/rotary_projects_list.csv`
+  - [x] Extracted 83 itemized donations & contributions totaling ৳5,74,500 to `docs/curated-data/donations_and_contributions_list.csv`
+  - [x] Extracted 28 project and event expenses totaling ৳7,82,903 to `docs/curated-data/project_and_event_expenses.csv`
+  - [x] Extracted 83 report images to `docs/curated-data/extracted-project-images/`
+  - [x] Generated comprehensive audit in `docs/curated-data/project_expenses_and_docs_audit.md`
+- [x] **In-Place Database Schema Updates (Pre-production - No New Migrations)**
+  - [x] Updated `database/migrations/2026_09_24_000002_create_projects_table.php`: Added `target_beneficiaries`, `target_beneficiaries_bn`, `video_url`
+  - [x] Updated `database/migrations/2026_09_24_000007_create_employees_table.php`: Added `rotary_id` (nullable, index)
+  - [x] Updated `Project` and `Employee` Eloquent models with fillable and localized accessors
+  - [x] Synchronized `docs/database_design.md` schema documentation
+- [x] **Seeders Synchronization with Authentic Datasets**
+  - [x] Updated `DesignationSeeder` with authentic Rotary designations (Executive triad, Directors, Committee leads, Members)
+  - [x] Corrected and audit-verified `EmployeeSeeder`:
+    - Full Executive Leadership & Founder (Rtn. Hamid Al Mahbub PHF, Rtn. Ariful Hoque PHF, Dr. Shadrul Alam, Samad Al Azad PHF, Tasmina Hossain Luna, Pallab Kardar, Salma Jafreen, Archt. Faruk Ahmed) with their 100% genuine portraits.
+    - Full Board of Directors (Sharmin Akter, Dr. Saifur Rahman, Rabiul Hasan Joyti, Shah Alam, Sinha Abu Khalid PHF, Mahmudul Hasan, Mumtahina Mostafa, AQM Nasir Uddin) with authentic portraits.
+    - Ground Operations & Support Staff (Russell, Wahiba, Sankar, Hamidul) with authentic portraits.
+    - Past Presidents Roll of Honour (Mizanur, Kibria, Khaled, Ali Ahad, Abu Sufian, Firoz Khan) with authentic portraits.
+    - 10 active Rotarians with authentic portraits (Harun, Mesbah, Mofizul, Mohammadullah, Munir, Nasif, Wais Huda, Forkan, Hafizullah, Mahabubor).
+    - 38 registered club members from official 2026-27 attendance & SAD collection sheets; members without individual portraits have `photo => null` so the system dynamically renders official Rotary-branded initial SVG avatars instead of mismatched or placeholder photos.
+  - [x] Updated `ProjectSeeder` with 12 authentic projects, exact spend, covers mapped to `assets/images/projects/covers/`, and galleries mapped to `assets/images/projects/galleries/`
+  - [x] Updated `GallerySeeder` with 5 authentic curated albums in `assets/images/gallery-albums/` and 6 standalone moments in `assets/images/standalone/`
+  - [x] Updated `DonorSeeder` with 34 authentic member & institutional donors
+  - [x] Updated `DonationSeeder` with all itemized verified donations & contributions
+  - [x] Updated `ExpenseSeeder` with 28 verified expenditures with voucher file attachments mapped to `assets/documents/source-docs/`
+- [x] **Organized `public/assets/` Directory Structure**
+  - [x] `public/assets/documents/curated/` (All 5 verified CSV lists & audit reports including updated `rotary_members_list.csv`)
+  - [x] `public/assets/documents/source-docs/` (Original Word docx, Excel sheets, and PDF receipts)
+  - [x] `public/assets/videos/` (3 event videos with clear descriptive names)
+  - [x] `public/assets/images/members/` (37 authentic member portraits named clearly after the Rotarians)
+  - [x] `public/assets/images/projects/covers/` (12 project covers with descriptive filenames)
+  - [x] `public/assets/images/projects/galleries/` (7 project documentation photo folders)
+  - [x] `public/assets/images/projects/reports-extracted/` (83 report photos)
+  - [x] `public/assets/images/gallery-albums/` (5 photo albums with full-resolution images)
+  - [x] `public/assets/images/standalone/` (6 high-res standalone photos)
+- [x] **Post-Extraction Workspace Cleanup**
+  - [x] Removed redundant intermediate staging workspaces: `image-curation/`, `public/assets/images/curated-final/`, `public/assets/images/extracted-project-images/`, `public/assets/images/real-docs/`, and `public/assets/images/real-videos/`
+  - [x] Retained the raw uncurated archive (`public/assets/images/real-images/`) and verified all 64 automated Pest feature tests pass
+
+- [x] **Phase 8: Official Board of Directors (RY 2026-2027), Member Hierarchy & Consolidated HD Media Enhancement**
+  - [x] Verified originality of all images in `public/assets/images/team/` against repository git history (Commit `a5ef8f0587` on Oct 5, 2026 by `gm-zesan`); mapped all 40 club photos to authentic Rotarians from `rotary_members_list.csv`
+  - [x] Remastered and denoised all team images one by one: cropped cardboard and scanned border lines, eliminated noise and JPEG artifacts via OpenCV NLMeans and edge-preserving filtering, whitened backgrounds to pure studio white, and scaled to standardized 500x600 px portrait dimensions
+  - [x] Consolidated all team, BOD, staff, past presidents, and member portraits into a single unified directory: `public/assets/images/members/`
+  - [x] Updated `EmployeeSeeder.php` and database: re-routed all photo paths to `assets/images/members/`, resolved incorrect photo assignments by assigning `member-placeholder.jpg` to attendance members without personal photos, and seeded all verified Rotarians
+  - [x] All 64 Pest feature tests passing with 286 assertions, verified Pint code style, and 0 remaining broken or random photo references
+
+- [x] **Phase 9: Year-Wise Information Archiving (RY 2026–2027 Standard) & BOD Image Segregation**
+  - [x] Segregated 18 BOD portraits (RY 2026–2027) as 100% FINAL in `public/assets/images/members/` alongside `member-placeholder.jpg`
+  - [x] Moved all 44 unfinalized candidate portraits (ground staff, past presidents, general members) to `public/assets/images/members/unfinalized/` awaiting future review
+  - [x] Implemented multi-path photo resolution in `Employee::getPhotoUrlAttribute()` to automatically check `members/`, fallback to `unfinalized/`, or return `member-placeholder.jpg` without template breaks
+  - [x] Archived all current dataset CSVs, markdown audits, and raw source documents into dedicated `RY-2026-2027` year-wise folders in `public/assets/documents/curated/` and `public/assets/documents/source-docs/`
+  - [x] Created staging folders for historical years (`RY-2025-2026`, `RY-2024-2025`, `previous-years`) with ingestion templates ready for user input
+  - [x] Added native Rotary Year query scopes (`scopeCurrentYear()`, `scopeRotaryYear()`, `scopeBoardOfDirectors()`) across `Employee`, `Project`, `Donation`, and `Expense` models
+  - [x] Compiled comprehensive architectural reference in `docs/year_wise_information_archive.md`
+
+- [x] **Phase 10: Purge of Obsolete Template Assets, Duplicates & Empty Folders**
+  - [x] Replaced all template image references in `ActivitySeeder`, `Album`, `GalleryImage`, and `project-details.blade.php` with 100% authentic Rotary media from `projects/covers/`, `gallery-albums/`, and `standalone/`
+  - [x] Deleted 6 obsolete dummy template directories: `public/assets/images/clients/`, `public/assets/images/news/`, `public/assets/images/case/`, `public/assets/images/events/`, `public/assets/images/gallery/`, and redundant raw `public/assets/images/team/`
+  - [x] Eliminated duplicate staging directory: `docs/curated-data/` (consolidated into canonical `public/assets/documents/curated/`)
+  - [x] Removed identical duplicate document and image copies (`source-docs` root copies, `ahad_khan.jpg`, `khaled.jpg`, `mahbub.jpg`, `faq-boy.png`)
+  - [x] Purged all empty folders: `public/images/`, `public/js/`, `public/uploads/editor/`, `scripts/`
+  - [x] Verified zero broken assets, clean Pint formatting, and 100% passing Pest test suite (64/64 tests, 286 assertions)
+
+---
+
 ## 📊 Overall Progress Summary
 - **Phase 1 (Database & Models):** 100% Complete ✅
 - **Phase 2 (Frontend Localization & Dynamic Binding):** 100% Complete ✅
@@ -192,3 +259,8 @@
 - **Phase 4 (Admin Dashboard & Financial Management):** 100% Complete ✅
 - **Phase 5 (Universal Multilingual Support - EN & BN):** 100% Complete ✅
 - **Phase 6 (Photo Albums & Dynamic Gallery Module):** 100% Complete ✅
+- **Phase 7 (Real Data Extraction, Schema & Seeders):** 100% Complete ✅
+- **Phase 8 (Official BOD 2026-27, Officers & HD Media Refinement):** 100% Complete ✅
+- **Phase 9 (Year-Wise Archiving & BOD Image Segregation):** 100% Complete ✅
+- **Phase 10 (Purge of Template Assets, Duplicates & Empty Folders):** 100% Complete ✅
+
