@@ -107,19 +107,36 @@
     <section
         class="case-page-section portfolio-section centred donations-explore-section {{ isset($sponsoredProjects) && $sponsoredProjects->isNotEmpty() ? '' : 'standalone' }}">
         <div class="auto-container">
-            <div class="sec-title centred mb-50">
+            <div class="sec-title centred mb-4">
                 <span class="top-text">{{ __('Transparency & Governance') }}</span>
                 <h2>{{ __('Explore All Causes') }}</h2>
+            </div>
+
+            {{-- Rotary Year Term Filter --}}
+            <div class="d-flex justify-content-center align-items-center gap-2 mb-4 flex-wrap">
+                <span class="fw-bold text-muted small"><i class="fas fa-calendar-alt text-primary me-1"></i>{{ __('Rotary Year:') }}</span>
+                <form method="GET" action="{{ route('projects') }}" id="rotaryYearFilterForm" class="d-inline-flex gap-2">
+                    @if(request('type'))
+                        <input type="hidden" name="type" value="{{ request('type') }}">
+                    @endif
+                    <select name="year" class="form-select form-select-sm shadow-sm" style="border-radius: 20px; font-weight: 600; padding: 6px 16px; border: 1.5px solid #005696; color: #005696; cursor: pointer;" onchange="this.form.submit()">
+                        <option value="2026" {{ request('year', '2026') == '2026' ? 'selected' : '' }}>{{ __('RY 2026–2027 (Current Term)') }}</option>
+                        <option value="2025" {{ request('year') == '2025' ? 'selected' : '' }}>{{ __('RY 2025–2026 (Past Term)') }}</option>
+                        <option value="2024" {{ request('year') == '2024' ? 'selected' : '' }}>{{ __('RY 2024–2025 (Charter Term)') }}</option>
+                        <option value="all" {{ request('year') === 'all' ? 'selected' : '' }}>{{ __('All Rotary Years') }}</option>
+                    </select>
+                </form>
             </div>
 
             <div class="sortable-masonry">
                 <div class="filters">
                     @php
                         $currentType = request('type');
+                        $currentYearParam = request('year') ? ['year' => request('year')] : [];
                     @endphp
                     <ul class="filter-tabs filter-btns clearfix">
                         <li class="{{ empty($currentType) || $currentType === 'all' ? 'active ' : '' }}filter">
-                            <a href="{{ route('projects') }}">{{ __('All Causes') }}
+                            <a href="{{ route('projects', array_merge(['type' => 'all'], $currentYearParam)) }}">{{ __('All Causes') }}
                                 ({{ localized_number($totalCausesCount ?? \App\Models\Project::where('is_published', true)->count()) }})</a>
                         </li>
                         @foreach($projectTypes as $pType)
@@ -128,7 +145,7 @@
                                 $isActive = ($currentType === $pType->slug);
                             @endphp
                             <li class="{{ $isActive ? 'active ' : '' }}filter">
-                                <a href="{{ route('projects', ['type' => $pType->slug]) }}">{{ $pType->localized_name }}
+                                <a href="{{ route('projects', array_merge(['type' => $pType->slug], $currentYearParam)) }}">{{ $pType->localized_name }}
                                     ({{ localized_number($typeCount) }})</a>
                             </li>
                         @endforeach

@@ -174,3 +174,11 @@ test('public projects page renders sponsored projects carousel and gallery-style
     $response->assertSee('Flagship Orphanage Facility Sponsorship');
     $response->assertSee('Signature Project');
 });
+
+test('public users can filter projects by rotary year', function () {
+    $response = $this->get(route('projects', ['year' => '2026']));
+
+    $response->assertStatus(200);
+    $response->assertSee('Rotary Year:');
+    $response->assertSee('RY 2026–2027 (Current Term)');
+});

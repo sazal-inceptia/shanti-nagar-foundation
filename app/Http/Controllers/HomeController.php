@@ -292,9 +292,10 @@ class HomeController extends Controller
     public function projects(): View
     {
         // ---------------------------------------------------------------------
-        // Section 1: Filtered Projects Grid (Paginated with Category Filter)
+        // Section 1: Filtered Projects Grid (Paginated with Category & Year Filter)
         // ---------------------------------------------------------------------
         $selectedType = request('type');
+        $selectedYear = request('year', '2026');
         $query = Project::where('is_published', true)
             ->with([
                 'projectType',
@@ -306,6 +307,10 @@ class HomeController extends Controller
             $query->whereHas('projectType', function ($q) use ($selectedType) {
                 $q->where('slug', $selectedType);
             });
+        }
+
+        if ($selectedYear && $selectedYear !== 'all') {
+            $query->rotaryYear((int) $selectedYear);
         }
 
         $projects = $query->orderBy('created_at', 'desc')->paginate(6)->withQueryString();

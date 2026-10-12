@@ -20,13 +20,15 @@ class ReportController extends Controller
      */
     public function index(Request $request): View
     {
+        $rotaryYear = $request->get('rotary_year', $request->get('year', '2026'));
         $filters = [
             'start_date' => $request->get('start_date'),
             'end_date' => $request->get('end_date'),
             'project_id' => $request->get('project_id'),
+            'rotary_year' => $rotaryYear,
         ];
 
-        $year = (int) $request->get('year', date('Y'));
+        $year = (int) ($rotaryYear !== 'all' ? $rotaryYear : date('Y'));
 
         $summary = $this->reportService->getFinancialSummary($filters);
         $projectBalances = $this->reportService->getProjectBalances();
@@ -52,13 +54,15 @@ class ReportController extends Controller
      */
     public function statement(Request $request): View
     {
+        $rotaryYear = $request->get('rotary_year', $request->get('year', '2026'));
         $filters = [
             'start_date' => $request->get('start_date'),
             'end_date' => $request->get('end_date'),
             'project_id' => $request->get('project_id'),
+            'rotary_year' => $rotaryYear,
         ];
 
-        $year = (int) $request->get('year', date('Y'));
+        $year = (int) ($rotaryYear !== 'all' ? $rotaryYear : date('Y'));
 
         $summary = $this->reportService->getFinancialSummary($filters);
         $projectBalances = $this->reportService->getProjectBalances();

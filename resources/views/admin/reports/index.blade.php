@@ -70,12 +70,13 @@
                             </div>
                             <div class="col-md-2 col-sm-4">
                                 <label class="form-label mb-1 text-muted" style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">
-                                    <i class="ri-calendar-2-line me-1 text-secondary"></i> Fiscal Year
+                                    <i class="ri-calendar-2-line me-1 text-secondary"></i> Rotary Year
                                 </label>
                                 <select name="year" class="form-select form-select-sm bg-white" style="height: 32px; font-size: 13px; border-color: #d1d5db; border-radius: 6px;">
-                                    @for($y = date('Y'); $y >= 2024; $y--)
-                                        <option value="{{ $y }}" {{ $year == $y ? 'selected' : '' }}>{{ $y }}</option>
-                                    @endfor
+                                    <option value="2026" {{ $year == 2026 ? 'selected' : '' }}>RY 2026–2027 (Current)</option>
+                                    <option value="2025" {{ $year == 2025 ? 'selected' : '' }}>RY 2025–2026</option>
+                                    <option value="2024" {{ $year == 2024 ? 'selected' : '' }}>RY 2024–2025</option>
+                                    <option value="all" {{ request('year') === 'all' ? 'selected' : '' }}>All Years</option>
                                 </select>
                             </div>
                             <div class="col-auto d-flex align-items-end gap-1">

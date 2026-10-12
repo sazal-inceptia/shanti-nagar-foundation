@@ -250,6 +250,14 @@
   - [x] Purged all empty folders: `public/images/`, `public/js/`, `public/uploads/editor/`, `scripts/`
   - [x] Verified zero broken assets, clean Pint formatting, and 100% passing Pest test suite (64/64 tests, 286 assertions)
 
+- [x] **Phase 11: Rotary Year Filtering (Options 1, 2 & 3) & End-to-End Route Verification**
+  - [x] Implemented dynamic Rotary Year filter selector on Frontend Projects page (`/projects?year=2026`) preserving category tabs
+  - [x] Added Rotary Year term selector to Admin Dashboard header (`/admin/dashboard?year=2026`) and updated `DashboardService` KPI queries
+  - [x] Integrated Rotary Year term filtering in Financial Reports & Audit Statement (`/admin/reports?year=2026`) and `ReportService` queries
+  - [x] Added automated Pest feature test coverage for year-filtered public projects, admin dashboard, and financial reports
+  - [x] Verified 100% successful HTTP responses across all public routes (`/`, `/about`, `/projects`, `/activities`, `/gallery`, `/contact`, `/volunteer`, `/donate`, `/faq`)
+  - [x] Total 72/72 Pest feature tests passing (304 assertions), Pint code formatted
+
 ---
 
 ## 📊 Overall Progress Summary
@@ -263,4 +271,5 @@
 - **Phase 8 (Official BOD 2026-27, Officers & HD Media Refinement):** 100% Complete ✅
 - **Phase 9 (Year-Wise Archiving & BOD Image Segregation):** 100% Complete ✅
 - **Phase 10 (Purge of Template Assets, Duplicates & Empty Folders):** 100% Complete ✅
+- **Phase 11 (Rotary Year Filters & End-to-End Verification):** 100% Complete ✅
 

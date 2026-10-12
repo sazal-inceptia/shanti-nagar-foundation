@@ -12,20 +12,32 @@ use App\Models\Salary;
 class DashboardService
 {
     /**
-     * Get real-time KPI metrics for the NGO dashboard.
+     * Get real-time KPI metrics for the NGO dashboard (optionally scoped to a Rotary Year).
      */
-    public function getKpiMetrics(): array
+    public function getKpiMetrics(?int $year = null): array
     {
-        $totalDonations = (float) Donation::where('status', 'completed')->sum('amount');
-        $totalExpenses = (float) Expense::sum('amount');
+        $donationsQuery = Donation::where('status', 'completed');
+        $expensesQuery = Expense::query();
+        $projectsQuery = Project::query();
+        $employeesQuery = Employee::where('is_active', true);
+
+        if ($year !== null) {
+            $donationsQuery->rotaryYear($year);
+            $expensesQuery->rotaryYear($year);
+            $projectsQuery->rotaryYear($year);
+            $employeesQuery->rotaryYear((string) $year);
+        }
+
+        $totalDonations = (float) $donationsQuery->sum('amount');
+        $totalExpenses = (float) $expensesQuery->sum('amount');
         $totalSalaries = (float) Salary::where('status', 'paid')->sum('net_paid_amount');
         $totalExpenditure = $totalExpenses + $totalSalaries;
         $netFundBalance = $totalDonations - $totalExpenditure;
 
         $totalDonors = Donor::count();
-        $activeProjects = Project::where('status', 'in_progress')->count();
-        $totalProjects = Project::count();
-        $totalEmployees = Employee::where('is_active', true)->count();
+        $activeProjects = (clone $projectsQuery)->where('status', 'in_progress')->count();
+        $totalProjects = $projectsQuery->count();
+        $totalEmployees = $employeesQuery->count();
 
         return [
             'total_donations' => $totalDonations,
@@ -35,7 +47,7 @@ class DashboardService
             'active_projects' => $activeProjects,
             'total_projects' => $totalProjects,
             'total_employees' => $totalEmployees,
-            'donations_count' => Donation::where('status', 'completed')->count(),
+            'donations_count' => (clone $donationsQuery)->count(),
         ];
     }
 

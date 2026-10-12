@@ -20,8 +20,14 @@ class ReportService
      */
     public function getFinancialSummary(array $filters = []): array
     {
-        $startDate = ! empty($filters['start_date']) ? Carbon::parse($filters['start_date'])->startOfDay() : null;
-        $endDate = ! empty($filters['end_date']) ? Carbon::parse($filters['end_date'])->endOfDay() : null;
+        if (! empty($filters['rotary_year']) && $filters['rotary_year'] !== 'all') {
+            $ry = (int) $filters['rotary_year'];
+            $startDate = Carbon::create($ry, 7, 1)->startOfDay();
+            $endDate = Carbon::create($ry + 1, 6, 30)->endOfDay();
+        } else {
+            $startDate = ! empty($filters['start_date']) ? Carbon::parse($filters['start_date'])->startOfDay() : null;
+            $endDate = ! empty($filters['end_date']) ? Carbon::parse($filters['end_date'])->endOfDay() : null;
+        }
         $projectId = ! empty($filters['project_id']) ? $filters['project_id'] : null;
 
         // 1. Total Inflow (Donations)
@@ -168,8 +174,14 @@ class ReportService
      */
     public function getExpenseCategoryBreakdown(array $filters = []): Collection
     {
-        $startDate = ! empty($filters['start_date']) ? Carbon::parse($filters['start_date'])->startOfDay() : null;
-        $endDate = ! empty($filters['end_date']) ? Carbon::parse($filters['end_date'])->endOfDay() : null;
+        if (! empty($filters['rotary_year']) && $filters['rotary_year'] !== 'all') {
+            $ry = (int) $filters['rotary_year'];
+            $startDate = Carbon::create($ry, 7, 1)->startOfDay();
+            $endDate = Carbon::create($ry + 1, 6, 30)->endOfDay();
+        } else {
+            $startDate = ! empty($filters['start_date']) ? Carbon::parse($filters['start_date'])->startOfDay() : null;
+            $endDate = ! empty($filters['end_date']) ? Carbon::parse($filters['end_date'])->endOfDay() : null;
+        }
 
         $query = Expense::query()
             ->select('expense_category', DB::raw('SUM(amount) as total_amount'), DB::raw('COUNT(*) as total_count'))
@@ -193,8 +205,14 @@ class ReportService
      */
     public function getTransactions(array $filters = []): Collection
     {
-        $startDate = ! empty($filters['start_date']) ? Carbon::parse($filters['start_date'])->startOfDay() : null;
-        $endDate = ! empty($filters['end_date']) ? Carbon::parse($filters['end_date'])->endOfDay() : null;
+        if (! empty($filters['rotary_year']) && $filters['rotary_year'] !== 'all') {
+            $ry = (int) $filters['rotary_year'];
+            $startDate = Carbon::create($ry, 7, 1)->startOfDay();
+            $endDate = Carbon::create($ry + 1, 6, 30)->endOfDay();
+        } else {
+            $startDate = ! empty($filters['start_date']) ? Carbon::parse($filters['start_date'])->startOfDay() : null;
+            $endDate = ! empty($filters['end_date']) ? Carbon::parse($filters['end_date'])->endOfDay() : null;
+        }
         $projectId = ! empty($filters['project_id']) ? $filters['project_id'] : null;
 
         $transactions = collect();

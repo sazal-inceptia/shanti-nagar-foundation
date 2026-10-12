@@ -251,10 +251,16 @@
                 </h4>
                 <p class="dashboard-hero-sub">Financial Overview, Humanitarian Relief Inflow &amp; Expenditure Ledger</p>
             </div>
-            <div class="d-flex align-items-center gap-2">
-                <span class="text-muted d-none d-sm-inline" style="font-size: 12px;">
-                    <i class="ri-calendar-line me-1"></i> {{ date('l, F d, Y') }}
-                </span>
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                <form method="GET" action="{{ route('admin.dashboard') }}" class="d-inline-flex align-items-center gap-1 me-1">
+                    <label class="text-muted fw-semibold d-none d-md-inline" style="font-size: 11.5px;"><i class="ri-calendar-event-line text-primary me-1"></i>Term:</label>
+                    <select name="year" class="form-select form-select-sm shadow-none" style="font-size: 12px; height: 32px; border-radius: 6px; font-weight: 600; padding: 0 10px; border-color: #cbd5e1; color: #005daa; cursor: pointer;" onchange="this.form.submit()">
+                        <option value="2026" {{ ($selectedYear ?? 2026) == 2026 && request('year') !== 'all' ? 'selected' : '' }}>RY 2026–2027 (Current)</option>
+                        <option value="2025" {{ ($selectedYear ?? null) == 2025 ? 'selected' : '' }}>RY 2025–2026</option>
+                        <option value="2024" {{ ($selectedYear ?? null) == 2024 ? 'selected' : '' }}>RY 2024–2025</option>
+                        <option value="all" {{ request('year') === 'all' ? 'selected' : '' }}>All Time History</option>
+                    </select>
+                </form>
                 <a href="{{ route('admin.donations.create') }}" class="btn btn-sm btn-primary d-inline-flex align-items-center gap-1" style="font-size: 12px; height: 32px; padding: 0 12px; border-radius: 6px;">
                     <i class="ri-add-line"></i> Record Donation
                 </a>
