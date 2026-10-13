@@ -15,6 +15,17 @@ return new class extends Migration
             $table->foreignId('project_type_id')->nullable()->constrained('project_types')->nullOnDelete();
             $table->text('short_description')->nullable();
             $table->longText('description')->nullable();
+            $table->longText('background')->nullable();
+            $table->longText('background_bn')->nullable();
+            $table->json('objectives')->nullable();
+            $table->json('objectives_bn')->nullable();
+            $table->json('impact_outcomes')->nullable();
+            $table->json('impact_outcomes_bn')->nullable();
+            $table->json('challenges')->nullable();
+            $table->json('challenges_bn')->nullable();
+            $table->longText('conclusion')->nullable();
+            $table->longText('conclusion_bn')->nullable();
+            $table->json('project_report_meta')->nullable();
             $table->decimal('estimated_cost', 14, 2)->default(0.00);
             $table->decimal('total_expense', 14, 2)->default(0.00);
             $table->date('start_date')->nullable();

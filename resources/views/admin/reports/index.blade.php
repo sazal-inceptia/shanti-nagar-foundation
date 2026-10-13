@@ -150,7 +150,7 @@
                     </div>
                     <h3 class="fw-bold mb-1" style="font-size: 24px; color: #dc2626; letter-spacing: -0.02em;">৳ {{ number_format($summary['total_expenses'], 2) }}</h3>
                     <div class="d-flex align-items-center justify-content-between pt-2 mt-2 border-top" style="font-size: 12px;">
-                        <span class="text-muted"><i class="ri-file-list-3-line me-1 text-danger"></i><strong>{{ $summary['expense_count'] }}</strong> Vouchers</span>
+                        <span class="text-muted"><i class="ri-file-list-3-line me-1 text-danger"></i><strong>{{ $summary['expense_count'] }}</strong> Vouchers @if(!empty($summary['voucher_count']))<span class="badge bg-primary-subtle text-primary border ms-1" style="font-size: 10px;">{{ $summary['voucher_count'] }} Verified</span>@endif</span>
                         <span class="badge" style="background-color: #fef2f2; color: #991b1b; font-size: 11px; font-weight: 600;">Project Debits</span>
                     </div>
                 </div>
@@ -269,9 +269,16 @@
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        <a href="{{ $txn['view_url'] }}" class="fw-bold text-dark text-decoration-none font-monospace table-title-link" style="font-size: 12.5px;">
-                                                            {{ $txn['reference'] }}
-                                                        </a>
+                                                        <div class="d-flex align-items-center gap-1 flex-wrap">
+                                                            <a href="{{ $txn['view_url'] }}" class="fw-bold text-dark text-decoration-none font-monospace table-title-link" style="font-size: 12.5px;">
+                                                                {{ $txn['reference'] }}
+                                                            </a>
+                                                            @if(!empty($txn['voucher_url']))
+                                                                <a href="{{ $txn['voucher_url'] }}" target="_blank" rel="noopener noreferrer" class="badge bg-primary-subtle text-primary border text-decoration-none" style="font-size: 10px; padding: 2px 6px;" title="View Attached Source Document Voucher">
+                                                                    <i class="ri-attachment-2"></i> Voucher
+                                                                </a>
+                                                            @endif
+                                                        </div>
                                                     </td>
                                                     <td>
                                                         <span class="text-dark fw-semibold" style="font-size: 13px;">{{ $txn['title'] }}</span>

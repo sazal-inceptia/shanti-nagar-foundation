@@ -28,6 +28,15 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center gap-2 flex-wrap">
+                            <form method="GET" action="{{ route('admin.reports.statement') }}" class="d-inline-flex align-items-center gap-1">
+                                <label for="statementYearSelect" class="visually-hidden">Fiscal Period:</label>
+                                <select name="year" id="statementYearSelect" onchange="this.form.submit()" class="form-select form-select-sm" style="font-size: 12.5px; height: 32px; border-radius: 8px; border-color: #cbd5e1;">
+                                    <option value="2026" {{ $year == 2026 ? 'selected' : '' }}>RY 2026–2027 (Current Term)</option>
+                                    <option value="2025" {{ $year == 2025 ? 'selected' : '' }}>RY 2025–2026 (Past Term)</option>
+                                    <option value="2024" {{ $year == 2024 ? 'selected' : '' }}>RY 2024–2025</option>
+                                    <option value="all" {{ request('year') === 'all' ? 'selected' : '' }}>All Fiscal Periods</option>
+                                </select>
+                            </form>
                             <a href="{{ route('admin.reports.index') }}" class="btn btn-sm d-inline-flex align-items-center gap-1 px-3 py-2"
                                 style="background-color: #f8fafc; color: #334155; border: 1px solid #cbd5e1; border-radius: 8px; font-weight: 600; font-size: 13px;">
                                 <i class="ri-arrow-left-line"></i> Back to Reports
@@ -91,7 +100,7 @@
                                 <div class="statement-stat-item border-end">
                                     <span class="text-muted d-block mb-1" style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Direct Relief Expenses</span>
                                     <h4 class="fw-bold text-danger mb-0" style="font-size: 17px;">৳ {{ number_format($summary['total_expenses'], 2) }}</h4>
-                                    <span class="text-muted" style="font-size: 11px;">{{ $summary['expense_count'] }} Vouchers</span>
+                                    <span class="text-muted" style="font-size: 11px;">{{ $summary['expense_count'] }} Expenditures ({{ $summary['voucher_count'] }} Verified Vouchers)</span>
                                 </div>
                                 <div class="statement-stat-item border-end">
                                     <span class="text-muted d-block mb-1" style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Staff Salaries &amp; Payroll</span>
@@ -205,6 +214,65 @@
                                 </table>
                             </div>
                         </div>
+
+                        {{-- Section 3: Verified Source Vouchers & Supporting Documentation Trail --}}
+                        @if($auditedVouchers->isNotEmpty())
+                            <div class="mb-3 statement-section">
+                                <h6 class="fw-bold text-dark mb-2 pb-1 border-bottom section-title" style="font-size: 13.5px;">
+                                    3. Verified Source Vouchers &amp; Proof of Expenditure Audit Trail
+                                </h6>
+                                <div class="table-responsive receipt-table-container">
+                                    <table class="table table-bordered mb-0 w-100 printable-table" style="font-size: 11.5px; border-collapse: collapse; border-color: #cbd5e1; width: 100%;">
+                                        <thead>
+                                            <tr style="background-color: #f1f5f9;">
+                                                <th style="width: 35px; text-align: center; color: #334155; font-weight: 700; padding: 6px 4px;">#</th>
+                                                <th style="color: #334155; font-weight: 700; padding: 6px 8px; width: 115px;">Voucher #</th>
+                                                <th style="color: #334155; font-weight: 700; padding: 6px 8px; width: 95px;">Date</th>
+                                                <th style="color: #334155; font-weight: 700; padding: 6px 8px;">Description &amp; Recipient/Vendor</th>
+                                                <th style="color: #334155; font-weight: 700; padding: 6px 8px; width: 150px;">Project / Category</th>
+                                                <th style="color: #334155; font-weight: 700; padding: 6px 8px; width: 110px; text-align: right;">Amount (BDT)</th>
+                                                <th style="color: #334155; font-weight: 700; padding: 6px 8px; width: 150px; text-align: center;">Evidence Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php $totVouchers = 0; @endphp
+                                            @foreach($auditedVouchers as $idx => $vch)
+                                                @php $totVouchers += (float) $vch->amount; @endphp
+                                                <tr>
+                                                    <td class="text-center" style="padding: 5px 4px;">{{ $idx + 1 }}</td>
+                                                    <td style="padding: 5px 8px;" class="font-monospace fw-bold text-dark">{{ $vch->voucher_number }}</td>
+                                                    <td style="padding: 5px 8px;">{{ $vch->expense_date?->format('M d, Y') }}</td>
+                                                    <td style="padding: 5px 8px;">
+                                                        <strong class="text-dark">{{ $vch->title }}</strong>
+                                                        @if($vch->recipient_or_vendor)
+                                                            <div class="text-muted small" style="font-size: 10.5px;">Vendor: {{ $vch->recipient_or_vendor }}</div>
+                                                        @endif
+                                                    </td>
+                                                    <td style="padding: 5px 8px;">
+                                                        <span class="d-block text-dark">{{ $vch->project?->name ?? 'General Admin' }}</span>
+                                                        <span class="badge bg-light text-secondary border small" style="font-size: 9.5px;">{{ $vch->expense_category }}</span>
+                                                    </td>
+                                                    <td style="padding: 5px 8px; text-align: right;" class="fw-semibold text-danger">৳ {{ number_format($vch->amount, 2) }}</td>
+                                                    <td style="padding: 5px 8px; text-align: center;">
+                                                        <span class="badge" style="background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; font-size: 10px; padding: 3px 6px;">
+                                                            <i class="ri-checkbox-circle-fill me-1"></i> Verified on File
+                                                        </span>
+                                                        <div class="small text-muted font-monospace mt-1" style="font-size: 9px;">{{ basename($vch->receipt_voucher_file) }}</div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <tr style="background-color: #f8fafc; font-weight: 700;">
+                                                <td colspan="5" class="text-end" style="padding: 6px 8px;">Total Verified Vouchers:</td>
+                                                <td class="text-end text-danger" style="padding: 6px 8px;">৳ {{ number_format($totVouchers, 2) }}</td>
+                                                <td class="text-center text-success" style="padding: 6px 8px; font-size: 10.5px;">100% Documented</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        @endif
 
                         {{-- Verification Status --}}
                         <div class="d-flex justify-content-between align-items-center mb-4 pb-2 border-bottom statement-verify-row">

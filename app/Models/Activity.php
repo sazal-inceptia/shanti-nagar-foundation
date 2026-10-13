@@ -96,6 +96,17 @@ class Activity extends Model
     }
 
     /**
+     * Scope query to a specific Rotary Year (July 1 to June 30).
+     */
+    public function scopeRotaryYear(Builder $query, int $startYear = 2026): Builder
+    {
+        $startDate = sprintf('%d-07-01', $startYear);
+        $endDate = sprintf('%d-06-30', $startYear + 1);
+
+        return $query->whereBetween('event_date', [$startDate, $endDate]);
+    }
+
+    /**
      * Accessor: Localized title.
      */
     public function getLocalizedTitleAttribute(): string

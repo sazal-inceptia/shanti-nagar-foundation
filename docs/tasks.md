@@ -79,6 +79,14 @@
 - [x] **SEO & Metadata Polish**
   - [x] Add dynamic meta titles, descriptions & OpenGraph tags for individual project pages and main layout
   - [x] Create bespoke, page-aligned Hero / Banner sections with unique background imagery, themed mood gradients, localized badges, mission headlines, lead text, trust meta pills, and breadcrumbs across all individual frontend pages (`about`, `projects`, `project-details`, `activities`, `activity-details`, `gallery`, `album-details`, `volunteer`, `contact`, `faq`, `donate`)
+- [x] **Executive Causes & Projects Filter Dashboard (Modern UI Polish)**
+  - [x] Replaced awkward isolated inline Rotary Year dropdown with an executive, modern Causes Filter & Search Dashboard card
+  - [x] Unified multi-dimensional filtering in a single cohesive row: Text/Keyword/Location search, Cause Category select (`All Categories`, `Signature Projects`, `Monthly Projects`, `General Campaigns` with real-time counters), Rotary Year select (`All`, `RY 2026–2027`, `RY 2025–2026`), Project Status select (`All`, `In Progress`, `Completed`, `Planned`), plus Filter & Reset buttons
+  - [x] Dismissible active filter chips with tag remover and "Clear All" link
+  - [x] Default landing updated to show all causes (`year=all`) so no authentic causes are prematurely hidden
+  - [x] Switched filter submission from auto-trigger to explicit manual "Apply Filter" button interaction
+  - [x] Conducted comprehensive audit of 83 images extracted from DOCX reports; identified and removed 13 duplicate/burst angle/low-res images, promoted master high-res photos in `ProjectSeeder`, leaving exactly 70 unique, high-quality images with 0 missing files
+  - [x] Comprehensive Pest feature test suite coverage across all filtering criteria (75/75 passing tests)
 
 ---
 
@@ -258,6 +266,69 @@
   - [x] Verified 100% successful HTTP responses across all public routes (`/`, `/about`, `/projects`, `/activities`, `/gallery`, `/contact`, `/volunteer`, `/donate`, `/faq`)
   - [x] Total 72/72 Pest feature tests passing (304 assertions), Pint code formatted
 
+- [x] **Phase 12: Ingestion & Extraction of DOCX Archives (RY 2025–2026 & RY 2026–2027)**
+  - [x] Extracted `Project Shantinagar club Jun'26 to Jul'26.docx` (19 embedded photos, ILTS 2026, Award Ceremony 2026, Year Launching Rally at Hatirjheel, Leadership Transition, Cox's Bazar Wudu Facility ৳50,000)
+  - [x] Extracted `Project Shantinagar club Jan'25 to Dec'25.docx` (64 embedded photos, 13 humanitarian projects, 2 audited meeting expense ledgers at Banani Club & Sky City Hotel)
+  - [x] Renamed and organized all 83 extracted images with semantic, SEO-friendly filenames into `public/assets/images/projects/RY-2026-2027/` and `public/assets/images/projects/RY-2025-2026/`
+  - [x] Created curated datasets in `public/assets/documents/curated/RY-2025-2026/`:
+    - `rotary_projects_list_2025_2026.csv` (13 verified humanitarian projects)
+    - `donations_and_sponsors_2025_2026.csv` (9 itemized sponsorships and donation records)
+    - `meeting_and_project_expenses_2025_2026.csv` (15 audited line items)
+    - `projects_and_events_curation_2025_2026.md` (Detailed narrative report with budgets and photo mappings)
+  - [x] Updated RY 2026–2027 datasets:
+    - Added Cox's Bazar Wudu facility donors (৳50,000 total) to `donations_and_contributions_list.csv`
+    - Added 3 new initiatives and updated image covers in `rotary_projects_list.csv`
+    - Created comprehensive narrative in `projects_and_events_curation_2026_2027.md`
+  - [x] Archived raw docx files securely in `public/assets/documents/source-docs/RY-2025-2026/` and `RY-2026-2027/`, keeping `public/assets/` clean
+  - [x] Updated and executed idempotent database seeders (`ProjectSeeder`, `DonationSeeder`, `ExpenseSeeder`):
+    - Seeded all 19 projects (16 active in RY 2025–2026, 4 active in RY 2026–2027)
+    - Linked 82 authentic project images across relational project image galleries
+    - Seeded 106 itemized donations (RY 2026: ৳594,500; RY 2025: ৳297,400)
+    - Seeded 49 audited expenses (RY 2026: ৳505,890; RY 2025: ৳584,626)
+    - Verified all 72 automated Pest feature tests pass and Pint code style matches standards
+
+- [x] **Phase 13: Verbatim Document Text Schema & Project Report Integration**
+  - [x] Created migration `2026_10_13_051429_add_detailed_report_columns_to_projects_table.php` adding 11 dedicated columns to `projects` table:
+    - `background` (longText, nullable) & `background_bn` (longText, nullable)
+    - `objectives` (json, nullable) & `objectives_bn` (json, nullable)
+    - `impact_outcomes` (json, nullable) & `impact_outcomes_bn` (json, nullable)
+    - `challenges` (json, nullable) & `challenges_bn` (json, nullable)
+    - `conclusion` (longText, nullable) & `conclusion_bn` (longText, nullable)
+    - `project_report_meta` (json, nullable for donor lists, sponsorship amounts, and administrative data)
+  - [x] Updated Eloquent model [`Project.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/app/Models/Project.php) with `$fillable`, array casts for JSON columns, and bilingual accessors (`localized_background`, `localized_objectives`, `localized_impact_outcomes`, `localized_challenges`, `localized_conclusion`)
+  - [x] Extracted verbatim text, narratives, Islamic gratitude expressions, project objectives, challenges, conclusions, and donor contribution breakdowns from all source Word documents
+  - [x] Updated and executed [`ProjectSeeder.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/database/seeders/ProjectSeeder.php) with all 19 projects containing verbatim bilingual data
+  - [x] Enhanced [`project-details.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/frontend/project-details.blade.php) to render structured report cards:
+    - Background & Problem Context card
+    - Key Objectives list with checkmarks
+    - Expected Impact & Outcomes list
+    - Implementation Challenges & Problem Solving card
+    - Project Conclusion & Rotary Commitment statement
+    - Recognized Donors & Contributions audit table (Cox's Bazar Wudu Facility, District Conference Bronze Host)
+  - [x] Enhanced Admin Panel for full CRUD support of structured report fields:
+    - Added validation rules in [`StoreProjectRequest.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/app/Http/Requests/Admin/StoreProjectRequest.php) & [`UpdateProjectRequest.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/app/Http/Requests/Admin/UpdateProjectRequest.php)
+    - Added data normalization in [`ProjectService.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/app/Services/ProjectService.php) formatting newline inputs into JSON arrays
+    - Added structured report form card to [`admin/projects/create.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/admin/projects/create.blade.php) and [`admin/projects/edit.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/admin/projects/edit.blade.php)
+    - Added official field report presentation & donor table to [`admin/projects/show.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/admin/projects/show.blade.php)
+  - [x] Synchronized `lang/bn.json` with all report section labels
+  - [x] Updated `docs/database_design.md` and verified all 73 Pest tests pass with 324 assertions
+
+- [x] **Phase 14: Cross-Module Rotary Year Filtering & Admin Financial Voucher Audit (Option 2 & 3)**
+  - [x] **Public Activities & Photo Gallery Year Filters (Option 2):**
+    - Added `scopeRotaryYear` query scope to [`Activity.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/app/Models/Activity.php) and [`Album.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/app/Models/Album.php) models covering July 1 to June 30 fiscal window
+    - Modernized [`activities.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/frontend/activities.blade.php) with custom responsive filter dashboard card, manual "Apply Filter" button, active filter chips, empty state, and scoped CSS
+    - Modernized [`gallery.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/frontend/gallery.blade.php) with custom responsive filter dashboard card, manual "Apply Filter" button, active filter chips, empty state, and scoped CSS
+    - Integrated multi-parameter filtering (Search, Rotary Year, Status) in [`HomeController.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/app/Http/Controllers/HomeController.php) (`activities` and `gallery` methods) with query string pagination preservation
+  - [x] **Admin Financial Reports & Source Voucher Evidence Audit (Option 3):**
+    - Enhanced [`ReportService.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/app/Services/ReportService.php) to pass `voucher_file`, `has_voucher`, and `voucher_url` for expense transaction rows
+    - Added `voucher_count` calculation to `ReportService@getFinancialSummary` and created `getAuditedVouchers` method
+    - Updated [`admin/reports/index.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/admin/reports/index.blade.php): Added direct clickable voucher badges (`Voucher`) in the Ref/Slip # column and verified voucher count badge in KPI card
+    - Updated [`admin/reports/statement.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/admin/reports/statement.blade.php): Added interactive Rotary Year selector in header, verified vouchers count in overview, and added Section 3: "Verified Source Vouchers & Proof of Expenditure Audit Trail"
+    - Enhanced [`ReportController.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/app/Http/Controllers/Admin/ReportController.php): Added Rotary Year filter support and "Voucher Status" column in CSV export
+    - Verified all 8 physical source voucher files exist in `public/assets/documents/source-docs/RY-2026-2027/`
+    - Expanded automated Pest test suite covering activity/gallery filtering and report voucher audit trail (78 tests, 349 assertions, 100% pass)
+    - Cleaned and formatted PHP code with `vendor/bin/pint --dirty --format agent`
+
 ---
 
 ## 📊 Overall Progress Summary
@@ -272,4 +343,7 @@
 - **Phase 9 (Year-Wise Archiving & BOD Image Segregation):** 100% Complete ✅
 - **Phase 10 (Purge of Template Assets, Duplicates & Empty Folders):** 100% Complete ✅
 - **Phase 11 (Rotary Year Filters & End-to-End Verification):** 100% Complete ✅
+- **Phase 12 (DOCX Ingestion & Year-Wise Image Extraction):** 100% Complete ✅
+- **Phase 13 (Verbatim Document Text Schema & Project Reports):** 100% Complete ✅
+- **Phase 14 (Cross-Module Year Filtering & Financial Voucher Audit):** 100% Complete ✅
 

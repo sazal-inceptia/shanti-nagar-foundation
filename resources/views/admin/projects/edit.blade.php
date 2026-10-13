@@ -198,6 +198,109 @@
                                 </div>
                             </div>
                         </div>
+
+                    {{-- Official Field Report & Structured Narrative --}}
+                    <div class="card table-card mb-4">
+                        <div class="card-header table-header">
+                            <div class="table-title">Structured Field Report & Narrative (Official Report)</div>
+                        </div>
+                        <div class="card-body custom-form p-4">
+                            <div class="row g-3">
+                                {{-- Background --}}
+                                <div class="col-12">
+                                    <label for="background" class="form-label custom-label">Project Background & Problem Context (English)</label>
+                                    <textarea class="form-control custom-input @error('background') is-invalid @enderror" 
+                                        name="background" id="background" rows="3" placeholder="Explain the community challenge, origin context, and need for this project...">{{ old('background', $project->background) }}</textarea>
+                                    @error('background')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-12">
+                                    <label for="background_bn" class="form-label custom-label">Project Background (বাংলা / Bangla)</label>
+                                    <textarea class="form-control custom-input @error('background_bn') is-invalid @enderror" 
+                                        name="background_bn" id="background_bn" rows="3" placeholder="প্রকল্পের পটভূমি ও প্রেক্ষাপট বাংলায় লিখুন...">{{ old('background_bn', $project->background_bn) }}</textarea>
+                                    @error('background_bn')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                {{-- Objectives --}}
+                                <div class="col-md-6 col-12">
+                                    <label for="objectives" class="form-label custom-label">Key Objectives (English - One per line)</label>
+                                    <textarea class="form-control custom-input @error('objectives') is-invalid @enderror" 
+                                        name="objectives" id="objectives" rows="4" placeholder="Enter each objective on a new line...">{{ old('objectives', is_array($project->objectives) ? implode("\n", $project->objectives) : $project->objectives) }}</textarea>
+                                    <small class="text-muted d-block mt-1" style="font-size: 11px;">Type one objective per line.</small>
+                                    @error('objectives')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <label for="objectives_bn" class="form-label custom-label">Key Objectives (বাংলা - প্রতি লাইনে একটি)</label>
+                                    <textarea class="form-control custom-input @error('objectives_bn') is-invalid @enderror" 
+                                        name="objectives_bn" id="objectives_bn" rows="4" placeholder="প্রতি লাইনে একটি করে উদ্দেশ্য লিখুন...">{{ old('objectives_bn', is_array($project->objectives_bn) ? implode("\n", $project->objectives_bn) : $project->objectives_bn) }}</textarea>
+                                    <small class="text-muted d-block mt-1" style="font-size: 11px;">প্রতি লাইনে একটি করে উদ্দেশ্য লিখুন।</small>
+                                    @error('objectives_bn')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                {{-- Expected Impact & Outcomes --}}
+                                <div class="col-md-6 col-12">
+                                    <label for="impact_outcomes" class="form-label custom-label">Expected Impact & Outcomes (English - One per line)</label>
+                                    <textarea class="form-control custom-input @error('impact_outcomes') is-invalid @enderror" 
+                                        name="impact_outcomes" id="impact_outcomes" rows="4" placeholder="Enter each outcome/benefit on a new line...">{{ old('impact_outcomes', is_array($project->impact_outcomes) ? implode("\n", $project->impact_outcomes) : $project->impact_outcomes) }}</textarea>
+                                    <small class="text-muted d-block mt-1" style="font-size: 11px;">Type one outcome per line.</small>
+                                    @error('impact_outcomes')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <label for="impact_outcomes_bn" class="form-label custom-label">Expected Impact & Outcomes (বাংলা - প্রতি লাইনে একটি)</label>
+                                    <textarea class="form-control custom-input @error('impact_outcomes_bn') is-invalid @enderror" 
+                                        name="impact_outcomes_bn" id="impact_outcomes_bn" rows="4" placeholder="প্রতি লাইনে একটি করে সুফল/ফলাফল লিখুন...">{{ old('impact_outcomes_bn', is_array($project->impact_outcomes_bn) ? implode("\n", $project->impact_outcomes_bn) : $project->impact_outcomes_bn) }}</textarea>
+                                    <small class="text-muted d-block mt-1" style="font-size: 11px;">প্রতি লাইনে একটি করে সুফল লিখুন।</small>
+                                    @error('impact_outcomes_bn')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                {{-- Challenges --}}
+                                <div class="col-md-6 col-12">
+                                    <label for="challenges" class="form-label custom-label">Implementation Challenges (English - One per line)</label>
+                                    <textarea class="form-control custom-input @error('challenges') is-invalid @enderror" 
+                                        name="challenges" id="challenges" rows="3" placeholder="Enter challenges faced/addressed on a new line...">{{ old('challenges', is_array($project->challenges) ? implode("\n", $project->challenges) : $project->challenges) }}</textarea>
+                                    @error('challenges')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 col-12">
+                                    <label for="challenges_bn" class="form-label custom-label">Implementation Challenges (বাংলা - প্রতি লাইনে একটি)</label>
+                                    <textarea class="form-control custom-input @error('challenges_bn') is-invalid @enderror" 
+                                        name="challenges_bn" id="challenges_bn" rows="3" placeholder="বাস্তবায়ন চ্যালেঞ্জসমূহ প্রতি লাইনে একটি করে লিখুন...">{{ old('challenges_bn', is_array($project->challenges_bn) ? implode("\n", $project->challenges_bn) : $project->challenges_bn) }}</textarea>
+                                    @error('challenges_bn')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                {{-- Conclusion --}}
+                                <div class="col-12">
+                                    <label for="conclusion" class="form-label custom-label">Project Conclusion & Rotary Commitment (English)</label>
+                                    <textarea class="form-control custom-input @error('conclusion') is-invalid @enderror" 
+                                        name="conclusion" id="conclusion" rows="3" placeholder="Closing remarks, official handover statement, or Rotary commitment in English...">{{ old('conclusion', $project->conclusion) }}</textarea>
+                                    @error('conclusion')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-12">
+                                    <label for="conclusion_bn" class="form-label custom-label">Project Conclusion & Rotary Commitment (বাংলা / Bangla)</label>
+                                    <textarea class="form-control custom-input @error('conclusion_bn') is-invalid @enderror" 
+                                        name="conclusion_bn" id="conclusion_bn" rows="3" placeholder="সমাপনী বক্তব্য ও রোটারির অঙ্গীকার বাংলায় লিখুন...">{{ old('conclusion_bn', $project->conclusion_bn) }}</textarea>
+                                    @error('conclusion_bn')
+                                        <div class="error_msg text-danger mt-1" style="font-size: 12px;">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

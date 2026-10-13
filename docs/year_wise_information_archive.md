@@ -70,18 +70,33 @@ The project documentation, curated CSVs, and raw source documents are now cleanl
 ├── public/assets/
 │   ├── documents/
 │   │   ├── curated/
-│   │   │   ├── RY-2026-2027/                     # Web-accessible curated CSVs (2026-27)
-│   │   │   ├── RY-2025-2026/                     # Dedicated folder for previous year
-│   │   │   └── RY-2024-2025/                     # Dedicated folder for previous year
+│   │   │   ├── RY-2026-2027/                     # Web-accessible curated CSVs & Markdown (2026-27)
+│   │   │   │   ├── rotary_projects_list.csv      # 15 active & recent projects
+│   │   │   │   ├── donations_and_contributions_list.csv # 97 itemized donations & SAD funds (incl. Cox's Bazar)
+│   │   │   │   ├── rotary_members_list.csv       # 74 verified club members
+│   │   │   │   ├── project_and_event_expenses.csv
+│   │   │   │   └── projects_and_events_curation_2026_2027.md
+│   │   │   ├── RY-2025-2026/                     # Extracted datasets from Jan'25-Dec'25 docx
+│   │   │   │   ├── rotary_projects_list_2025_2026.csv   # 13 projects (Mask, Pusti Box, Polio, Tree, Winter, etc.)
+│   │   │   │   ├── donations_and_sponsors_2025_2026.csv # 9 sponsor/donor entries (Conference, Pusti Box, etc.)
+│   │   │   │   ├── meeting_and_project_expenses_2025_2026.csv # 15 audited meeting & event expense line items
+│   │   │   │   └── projects_and_events_curation_2025_2026.md
+│   │   │   └── RY-2024-2025/                     # Reserved for historical records
+│   │   ├── extracted/
+│   │   │   ├── RY-2026-2027/                     # Raw extraction markdown & 19 embedded photos
+│   │   │   └── RY-2025-2026/                     # Raw extraction markdown & 64 embedded photos
 │   │   └── source-docs/
-│   │       ├── RY-2026-2027/                     # Original 2026-27 Board PDF, meeting sheets, receipts
-│   │       ├── RY-2024-2025/                     # Jan '25 to Dec '25 project documents
+│   │       ├── RY-2026-2027/                     # Project Shantinagar club Jun'26 to Jul'26.docx, Board PDF, etc.
+│   │       ├── RY-2025-2026/                     # Project Shantinagar club Jan'25 to Dec'25.docx
 │   │       └── previous-years/                   # Future previous-year intake
 │   │
 │   └── images/
-│       └── members/
-│           ├── [17 BOD JPGs + placeholder]       # 100% FINAL 18 BOD Portraits (RY 2026-27)
-│           └── unfinalized/                      # 44 Non-BOD portraits awaiting user final review
+│       ├── members/
+│       │   ├── [17 BOD JPGs + placeholder]       # 100% FINAL 18 BOD Portraits (RY 2026-27)
+│       │   └── unfinalized/                      # 44 Non-BOD portraits awaiting user final review
+│       └── projects/
+│           ├── RY-2026-2027/                     # 19 Semantic photos (ILTS, Awards, Rally, Transition, Wudu)
+│           └── RY-2025-2026/                     # 64 Semantic photos (Mask, Pusti Box, Polio, Tree, Assembly, etc.)
 ```
 
 ---

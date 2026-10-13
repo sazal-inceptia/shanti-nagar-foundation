@@ -180,3 +180,29 @@ test('admin can open edit album view without 404', function () {
     $response->assertStatus(200);
     $response->assertSee('Sample Album for Edit');
 });
+
+test('public gallery page filters albums by rotary year and search', function () {
+    $album1 = Album::create([
+        'title' => 'Flood Relief Medical Camp 2026',
+        'slug' => 'flood-relief-medical-camp-2026',
+        'event_date' => '2026-08-10',
+        'is_active' => true,
+    ]);
+
+    $album2 = Album::create([
+        'title' => 'Winter Blanket Drive 2025',
+        'slug' => 'winter-blanket-drive-2025',
+        'event_date' => '2025-11-20',
+        'is_active' => true,
+    ]);
+
+    $resYear = $this->get(route('gallery', ['year' => '2026']));
+    $resYear->assertStatus(200);
+    $resYear->assertSee('Flood Relief Medical Camp 2026');
+    $resYear->assertDontSee('Winter Blanket Drive 2025');
+
+    $resSearch = $this->get(route('gallery', ['search' => 'Blanket']));
+    $resSearch->assertStatus(200);
+    $resSearch->assertSee('Winter Blanket Drive 2025');
+    $resSearch->assertDontSee('Flood Relief Medical Camp 2026');
+});

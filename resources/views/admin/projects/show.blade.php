@@ -94,6 +94,96 @@
                             </div>
                         </div>
 
+                        {{-- Structured Field Report & Documentation --}}
+                        @if($project->background || !empty($project->objectives) || !empty($project->impact_outcomes) || $project->conclusion || !empty($project->project_report_meta))
+                            <div class="mb-4 p-3 bg-light rounded border">
+                                <h6 class="fw-bold text-primary mb-3" style="font-size: 14px;">
+                                    <i class="ri-file-list-3-line me-1"></i> Official Field Report & Structured Narrative
+                                </h6>
+
+                                @if($project->background)
+                                    <div class="mb-3">
+                                        <span class="fw-bold text-dark d-block mb-1" style="font-size: 13px;">Background & Problem Context:</span>
+                                        <p class="text-secondary mb-0" style="font-size: 13px; line-height: 1.6;">{{ $project->background }}</p>
+                                        @if($project->background_bn)
+                                            <p class="text-muted small mt-1 mb-0" style="font-size: 12px;">(বাংলা: {{ $project->background_bn }})</p>
+                                        @endif
+                                    </div>
+                                @endif
+
+                                @if(!empty($project->objectives) && is_array($project->objectives))
+                                    <div class="mb-3">
+                                        <span class="fw-bold text-dark d-block mb-1" style="font-size: 13px;">Key Objectives:</span>
+                                        <ul class="mb-0 ps-3 text-secondary" style="font-size: 13px;">
+                                            @foreach($project->objectives as $obj)
+                                                <li>{{ $obj }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                @if(!empty($project->impact_outcomes) && is_array($project->impact_outcomes))
+                                    <div class="mb-3">
+                                        <span class="fw-bold text-dark d-block mb-1" style="font-size: 13px;">Expected Impact & Outcomes:</span>
+                                        <ul class="mb-0 ps-3 text-secondary" style="font-size: 13px;">
+                                            @foreach($project->impact_outcomes as $outcome)
+                                                <li>{{ $outcome }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                @if(!empty($project->challenges) && is_array($project->challenges))
+                                    <div class="mb-3">
+                                        <span class="fw-bold text-dark d-block mb-1" style="font-size: 13px;">Implementation Challenges:</span>
+                                        <ul class="mb-0 ps-3 text-secondary" style="font-size: 13px;">
+                                            @foreach($project->challenges as $ch)
+                                                <li>{{ $ch }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                @if($project->conclusion)
+                                    <div class="mb-3">
+                                        <span class="fw-bold text-dark d-block mb-1" style="font-size: 13px;">Project Conclusion:</span>
+                                        <p class="text-secondary fst-italic mb-0" style="font-size: 13px;">"{{ $project->conclusion }}"</p>
+                                        @if($project->conclusion_bn)
+                                            <p class="text-muted small mt-1 mb-0" style="font-size: 12px;">(বাংলা: "{{ $project->conclusion_bn }}")</p>
+                                        @endif
+                                    </div>
+                                @endif
+
+                                @if(!empty($project->project_report_meta['donors']) && is_array($project->project_report_meta['donors']))
+                                    <div class="mt-3 pt-2 border-top">
+                                        <span class="fw-bold text-dark d-block mb-2" style="font-size: 13px;">Direct Project Donors & Contributions:</span>
+                                        <div class="table-responsive">
+                                            <table class="table table-sm table-bordered bg-white mb-0" style="font-size: 12px;">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Donor Name</th>
+                                                        <th>Amount</th>
+                                                        <th>Note</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($project->project_report_meta['donors'] as $idx => $d)
+                                                        <tr>
+                                                            <td>{{ $idx + 1 }}</td>
+                                                            <td class="fw-bold">{{ $d['name'] ?? '' }}</td>
+                                                            <td class="text-success fw-bold">৳ {{ number_format((float)($d['amount'] ?? 0), 2) }}</td>
+                                                            <td class="text-muted">{{ $d['note'] ?? '' }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>
+                        @endif
+
                         {{-- Gallery Photos --}}
                         @if($project->images->isNotEmpty())
                             <div class="mb-4">

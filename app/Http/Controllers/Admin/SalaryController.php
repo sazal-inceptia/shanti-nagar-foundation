@@ -58,7 +58,7 @@ class SalaryController extends Controller
                             $desig = ($desigModel instanceof Designation) ? $desigModel->name : (is_string($desigModel) ? $desigModel : '—');
 
                             return '<div class="d-flex flex-column">
-                                <a href="'.e($empUrl).'" class="fw-semibold text-dark text-decoration-none" style="font-size: 13px;">'.e($row->employee->name).'</a>
+                                <a href="'.e($empUrl).'" class="fw-semibold text-dark text-decoration-none table-title-link" style="font-size: 13px;">'.e($row->employee->name).'</a>
                                 <span class="text-muted" style="font-size: 11px;">'.e($desig).' ('.e($row->employee->employee_id).')</span>
                             </div>';
                         }

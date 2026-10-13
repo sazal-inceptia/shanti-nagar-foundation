@@ -44,12 +44,23 @@ test('admin can create, update, toggle status, and delete a project', function (
         'short_description' => 'Providing clean drinking water.',
         'description' => 'Full detailed plan for clean water pipeline in Sylhet.',
         'status' => 'in_progress',
+        'background' => 'Initial background context.',
+        'objectives' => "Objective 1\nObjective 2",
+        'conclusion' => 'Successful conclusion.',
         'is_published' => true,
     ]);
 
     $storeResponse->assertRedirect(route('admin.projects.index'));
     $project = Project::where('slug', 'clean-water-pipeline-test')->first();
     expect($project)->not->toBeNull();
+    expect($project->background)->toBe('Initial background context.');
+    expect($project->objectives)->toBe(['Objective 1', 'Objective 2']);
+
+    // Check show page
+    $showResponse = $this->actingAs($this->user)->get(route('admin.projects.show', $project->id));
+    $showResponse->assertStatus(200);
+    $showResponse->assertSee('Initial background context.');
+    $showResponse->assertSee('Objective 1');
 
     // 2. Toggle Status
     $toggleResponse = $this->actingAs($this->user)->post(route('admin.projects.toggle-status', $project->id), [

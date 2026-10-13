@@ -50,6 +50,17 @@ class Project extends Model
         'featured_image',
         'video_url',
         'is_published',
+        'background',
+        'background_bn',
+        'objectives',
+        'objectives_bn',
+        'impact_outcomes',
+        'impact_outcomes_bn',
+        'challenges',
+        'challenges_bn',
+        'conclusion',
+        'conclusion_bn',
+        'project_report_meta',
     ];
 
     protected $casts = [
@@ -59,6 +70,13 @@ class Project extends Model
         'start_date' => 'date',
         'completion_date' => 'date',
         'is_published' => 'boolean',
+        'objectives' => 'array',
+        'objectives_bn' => 'array',
+        'impact_outcomes' => 'array',
+        'impact_outcomes_bn' => 'array',
+        'challenges' => 'array',
+        'challenges_bn' => 'array',
+        'project_report_meta' => 'array',
     ];
 
     /**
@@ -201,6 +219,46 @@ class Project extends Model
     public function getLocalizedTargetBeneficiariesAttribute(): ?string
     {
         return (app()->getLocale() === 'bn' && ! empty($this->target_beneficiaries_bn)) ? $this->target_beneficiaries_bn : $this->target_beneficiaries;
+    }
+
+    /**
+     * Get localized project background context based on active locale.
+     */
+    public function getLocalizedBackgroundAttribute(): ?string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->background_bn)) ? $this->background_bn : $this->background;
+    }
+
+    /**
+     * Get localized project objectives based on active locale.
+     */
+    public function getLocalizedObjectivesAttribute(): ?array
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->objectives_bn)) ? $this->objectives_bn : $this->objectives;
+    }
+
+    /**
+     * Get localized impact outcomes based on active locale.
+     */
+    public function getLocalizedImpactOutcomesAttribute(): ?array
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->impact_outcomes_bn)) ? $this->impact_outcomes_bn : $this->impact_outcomes;
+    }
+
+    /**
+     * Get localized project challenges based on active locale.
+     */
+    public function getLocalizedChallengesAttribute(): ?array
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->challenges_bn)) ? $this->challenges_bn : $this->challenges;
+    }
+
+    /**
+     * Get localized project conclusion based on active locale.
+     */
+    public function getLocalizedConclusionAttribute(): ?string
+    {
+        return (app()->getLocale() === 'bn' && ! empty($this->conclusion_bn)) ? $this->conclusion_bn : $this->conclusion;
     }
 
     /**

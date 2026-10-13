@@ -19,6 +19,7 @@ use App\Models\ProjectType;
 use App\Models\Salary;
 use App\Models\Volunteer;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -292,10 +293,13 @@ class HomeController extends Controller
     public function projects(): View
     {
         // ---------------------------------------------------------------------
-        // Section 1: Filtered Projects Grid (Paginated with Category & Year Filter)
+        // Section 1: Filtered Projects Grid (Category, Year, Search, Status)
         // ---------------------------------------------------------------------
-        $selectedType = request('type');
-        $selectedYear = request('year', '2026');
+        $selectedType = request('type', 'all');
+        $selectedYear = request('year', 'all');
+        $selectedStatus = request('status', 'all');
+        $search = trim((string) request('search', ''));
+
         $query = Project::where('is_published', true)
             ->with([
                 'projectType',
@@ -303,27 +307,82 @@ class HomeController extends Controller
                 'expenses',
             ]);
 
+        // 1. Filter by Project Type / Category
         if ($selectedType && $selectedType !== 'all') {
             $query->whereHas('projectType', function ($q) use ($selectedType) {
                 $q->where('slug', $selectedType);
             });
         }
 
+        // 2. Filter by Rotary Year
         if ($selectedYear && $selectedYear !== 'all') {
             $query->rotaryYear((int) $selectedYear);
         }
 
-        $projects = $query->orderBy('created_at', 'desc')->paginate(6)->withQueryString();
+        // 3. Filter by Status
+        if ($selectedStatus && $selectedStatus !== 'all') {
+            $query->where('status', $selectedStatus);
+        }
+
+        // 4. Keyword Search
+        if (! empty($search)) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('name_bn', 'like', "%{$search}%")
+                    ->orWhere('short_description', 'like', "%{$search}%")
+                    ->orWhere('short_description_bn', 'like', "%{$search}%")
+                    ->orWhere('location', 'like', "%{$search}%")
+                    ->orWhere('location_bn', 'like', "%{$search}%");
+            });
+        }
+
+        $projects = $query->orderBy('created_at', 'desc')->paginate(8)->withQueryString();
 
         // ---------------------------------------------------------------------
-        // Section 2: Active Category Tabs with Published Counts
+        // Section 2: Active Category Tabs with Counts Scoped to Active Filters
         // ---------------------------------------------------------------------
         $projectTypes = ProjectType::where('is_active', true)
-            ->withCount(['projects' => function ($q) {
+            ->withCount(['projects' => function ($q) use ($selectedYear, $selectedStatus, $search) {
                 $q->where('is_published', true);
+                if ($selectedYear && $selectedYear !== 'all') {
+                    $q->rotaryYear((int) $selectedYear);
+                }
+                if ($selectedStatus && $selectedStatus !== 'all') {
+                    $q->where('status', $selectedStatus);
+                }
+                if (! empty($search)) {
+                    $q->where(function ($sq) use ($search) {
+                        $sq->where('name', 'like', "%{$search}%")
+                            ->orWhere('name_bn', 'like', "%{$search}%")
+                            ->orWhere('short_description', 'like', "%{$search}%")
+                            ->orWhere('short_description_bn', 'like', "%{$search}%")
+                            ->orWhere('location', 'like', "%{$search}%")
+                            ->orWhere('location_bn', 'like', "%{$search}%");
+                    });
+                }
             }])
             ->orderBy('order_index')
             ->get();
+
+        // Total count across all categories matching current year/status/search
+        $totalCausesQuery = Project::where('is_published', true);
+        if ($selectedYear && $selectedYear !== 'all') {
+            $totalCausesQuery->rotaryYear((int) $selectedYear);
+        }
+        if ($selectedStatus && $selectedStatus !== 'all') {
+            $totalCausesQuery->where('status', $selectedStatus);
+        }
+        if (! empty($search)) {
+            $totalCausesQuery->where(function ($sq) use ($search) {
+                $sq->where('name', 'like', "%{$search}%")
+                    ->orWhere('name_bn', 'like', "%{$search}%")
+                    ->orWhere('short_description', 'like', "%{$search}%")
+                    ->orWhere('short_description_bn', 'like', "%{$search}%")
+                    ->orWhere('location', 'like', "%{$search}%")
+                    ->orWhere('location_bn', 'like', "%{$search}%");
+            });
+        }
+        $totalCausesCount = $totalCausesQuery->count();
 
         // ---------------------------------------------------------------------
         // Section 3: Flagship Sponsored / Signature Initiatives Carousel
@@ -353,9 +412,16 @@ class HomeController extends Controller
                 ->get();
         }
 
-        $totalCausesCount = Project::where('is_published', true)->count();
-
-        return view('frontend.projects', compact('projects', 'projectTypes', 'sponsoredProjects', 'selectedType', 'totalCausesCount'));
+        return view('frontend.projects', compact(
+            'projects',
+            'projectTypes',
+            'sponsoredProjects',
+            'selectedType',
+            'selectedYear',
+            'selectedStatus',
+            'search',
+            'totalCausesCount'
+        ));
     }
 
     public function projectDetails(?string $slug = null): View
@@ -425,17 +491,53 @@ class HomeController extends Controller
         return view('frontend.project-details', compact('project', 'recentProjects', 'recentDonors', 'projectTypes', 'galleryImages'));
     }
 
-    public function activities(): View
+    public function activities(Request $request): View
     {
-        // ---------------------------------------------------------------------
-        // Section 1: All Published Activities (Latest First)
-        // ---------------------------------------------------------------------
-        $activities = Activity::where('is_published', true)
+        $selectedYear = $request->get('year', 'all');
+        $selectedStatus = $request->get('status', 'all');
+        $search = $request->get('search');
+
+        $query = Activity::where('is_published', true);
+
+        // Rotary Year Filter
+        if ($selectedYear !== 'all' && ! empty($selectedYear)) {
+            $query->rotaryYear((int) $selectedYear);
+        }
+
+        // Status Filter
+        if ($selectedStatus === 'upcoming') {
+            $query->upcoming();
+        } elseif ($selectedStatus === 'completed') {
+            $query->completed();
+        }
+
+        // Keyword Search
+        if (! empty($search)) {
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('title_bn', 'like', "%{$search}%")
+                    ->orWhere('location', 'like', "%{$search}%")
+                    ->orWhere('location_bn', 'like', "%{$search}%")
+                    ->orWhere('short_description', 'like', "%{$search}%")
+                    ->orWhere('short_description_bn', 'like', "%{$search}%");
+            });
+        }
+
+        $totalActivitiesCount = Activity::where('is_published', true)->count();
+
+        $activities = $query
             ->latest('event_date')
             ->latest('id')
-            ->paginate(9);
+            ->paginate(9)
+            ->withQueryString();
 
-        return view('frontend.activities', compact('activities'));
+        return view('frontend.activities', compact(
+            'activities',
+            'selectedYear',
+            'selectedStatus',
+            'search',
+            'totalActivitiesCount'
+        ));
     }
 
     public function activityDetails(?string $slug = null): View
@@ -510,11 +612,27 @@ class HomeController extends Controller
         return view('frontend.donate', compact('projects'));
     }
 
-    public function gallery(): View
+    public function gallery(Request $request): View
     {
-        // 1. Active Albums (with active photos count)
-        $albums = Album::active()
-            ->withCount('activeImages')
+        $selectedYear = $request->get('year', 'all');
+        $search = $request->get('search');
+
+        $albumQuery = Album::active()->withCount('activeImages');
+
+        if ($selectedYear !== 'all' && ! empty($selectedYear)) {
+            $albumQuery->rotaryYear((int) $selectedYear);
+        }
+
+        if (! empty($search)) {
+            $albumQuery->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('title_bn', 'like', "%{$search}%")
+                    ->orWhere('description', 'like', "%{$search}%")
+                    ->orWhere('description_bn', 'like', "%{$search}%");
+            });
+        }
+
+        $albums = $albumQuery
             ->orderBy('sort_order', 'asc')
             ->orderBy('event_date', 'desc')
             ->get();
@@ -524,12 +642,20 @@ class HomeController extends Controller
             ->withoutAlbum()
             ->orderBy('sort_order', 'asc')
             ->latest()
-            ->paginate(12, ['*'], 'photos_page');
+            ->paginate(12, ['*'], 'photos_page')
+            ->withQueryString();
 
-        $totalAlbumsCount = $albums->count();
+        $totalAlbumsCount = Album::active()->count();
         $totalPhotosCount = GalleryImage::active()->count();
 
-        return view('frontend.gallery', compact('albums', 'standaloneImages', 'totalAlbumsCount', 'totalPhotosCount'));
+        return view('frontend.gallery', compact(
+            'albums',
+            'standaloneImages',
+            'totalAlbumsCount',
+            'totalPhotosCount',
+            'selectedYear',
+            'search'
+        ));
     }
 
     public function albumDetails(string $slug): View

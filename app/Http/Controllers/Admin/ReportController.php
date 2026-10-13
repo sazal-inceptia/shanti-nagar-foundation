@@ -68,12 +68,14 @@ class ReportController extends Controller
         $projectBalances = $this->reportService->getProjectBalances();
         $monthlyBreakdown = $this->reportService->getMonthlyBreakdown($year);
         $categoryBreakdown = $this->reportService->getExpenseCategoryBreakdown($filters);
+        $auditedVouchers = $this->reportService->getAuditedVouchers($filters);
 
         return view('admin.reports.statement', compact(
             'summary',
             'projectBalances',
             'monthlyBreakdown',
             'categoryBreakdown',
+            'auditedVouchers',
             'filters',
             'year'
         ));
@@ -84,13 +86,20 @@ class ReportController extends Controller
      */
     public function export(Request $request): StreamedResponse
     {
-        $startDate = $request->get('start_date');
-        $endDate = $request->get('end_date');
+        $rotaryYear = $request->get('rotary_year', $request->get('year'));
+        if (! empty($rotaryYear) && $rotaryYear !== 'all') {
+            $ry = (int) $rotaryYear;
+            $startDate = sprintf('%d-07-01', $ry);
+            $endDate = sprintf('%d-06-30', $ry + 1);
+        } else {
+            $startDate = $request->get('start_date');
+            $endDate = $request->get('end_date');
+        }
         $projectId = $request->get('project_id');
 
         $filename = 'shanti-nagar-financial-statement-'.date('Y-m-d').'.csv';
 
-        return response()->streamDownload(function () use ($startDate, $endDate, $projectId) {
+        return response()->streamDownload(function () use ($startDate, $endDate, $projectId, $rotaryYear) {
             $handle = fopen('php://output', 'w');
 
             // BOM for UTF-8 Excel support
@@ -100,7 +109,7 @@ class ReportController extends Controller
             fputcsv($handle, ['ROTARY CLUB OF SHANTINAGAR DHAKA']);
             fputcsv($handle, ['FINANCIAL AUDIT STATEMENT & LEDGER EXPORT']);
             fputcsv($handle, ['Generated Date', date('Y-m-d H:i:s')]);
-            fputcsv($handle, ['Filter Period', ($startDate ?: 'All Time').' to '.($endDate ?: 'Present')]);
+            fputcsv($handle, ['Rotary Year / Period', (! empty($rotaryYear) && $rotaryYear !== 'all' ? "RY {$rotaryYear}–".((int) $rotaryYear + 1) : ($startDate ?: 'All Time').' to '.($endDate ?: 'Present'))]);
             fputcsv($handle, []);
 
             // Inflow (Donations) Table
@@ -134,7 +143,7 @@ class ReportController extends Controller
 
             // Outflow (Expenses) Table
             fputcsv($handle, ['--- OUTFLOW / EXPENDITURES ---']);
-            fputcsv($handle, ['SL', 'Voucher #', 'Date', 'Expense Title', 'Category', 'Project Allocation', 'Payment Method', 'Amount (BDT)']);
+            fputcsv($handle, ['SL', 'Voucher #', 'Date', 'Expense Title', 'Category', 'Project Allocation', 'Payment Method', 'Voucher Status', 'Amount (BDT)']);
 
             $expenses = Expense::with('project')
                 ->when($startDate, fn ($q) => $q->where('expense_date', '>=', $startDate))
@@ -155,10 +164,11 @@ class ReportController extends Controller
                     $exp->expense_category,
                     $exp->project?->name ?? 'Central Admin',
                     strtoupper($exp->payment_method),
+                    $exp->receipt_voucher_file ? 'Verified Receipt Attached' : 'Disbursement Ledger Record',
                     number_format((float) $exp->amount, 2, '.', ''),
                 ]);
             }
-            fputcsv($handle, ['', '', '', '', '', '', 'TOTAL OUTFLOW (BDT):', number_format($totalExpenses, 2, '.', '')]);
+            fputcsv($handle, ['', '', '', '', '', '', '', 'TOTAL OUTFLOW (BDT):', number_format($totalExpenses, 2, '.', '')]);
             fputcsv($handle, []);
 
             // Net Balance

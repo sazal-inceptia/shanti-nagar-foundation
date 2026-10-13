@@ -172,16 +172,19 @@
                                     <div class="donate-inner clearfix">
                                         <div class="pattern-layer-2 urgent-shape-8"></div>
                                         <div class="amount-box">
-                                            <div class="icon-box"><i class="fas fa-hand-holding-heart"></i></div>
+                                            <div class="icon-box"><i class="icon-donation-1"></i></div>
                                             <h5>{{ __('Fund Raised') }}</h5>
-                                            <div class="price">৳{{ localized_number($uRaised) }} <span>/ ৳{{ localized_number($uTarget) }}</span></div>
+                                            <div class="price">৳{{ localized_number($uRaised) }} <span>/
+                                                    ৳{{ localized_number($uTarget) }}</span></div>
                                         </div>
                                         <div class="percentage-box">
-                                            <div class="bar"><span class="fill-bar fill-bar-percent" data-height="{{ $uPercent }}%"></span></div>
-                                            <h5>{{ localized_number($uPercent) }}%</h5>
+                                            <div class="bar">
+                                                <div class="bar-inner count-bar counted" data-percent="{{ $uPercent }}%" style="width: {{ $uPercent }}%;"></div>
+                                            </div>
+                                            <div class="count-text">{{ localized_number($uPercent) }}%</div>
                                         </div>
                                         <div class="btn-box">
-                                            <a href="{{ route('project.details', $urgentProject->slug) }}" class="donate-box-btn">{{ __('Donate Now') }}</a>
+                                            <button type="button" class="donate-box-btn" onclick="if(document.querySelector('#donate-popup select[name=\'project_id\']')){ document.querySelector('#donate-popup select[name=\'project_id\']').value = '{{ $urgentProject->id }}'; if(window.jQuery && $.fn.niceSelect){ $('#donate-popup select[name=\'project_id\']').niceSelect('update'); } }">{{ __('Donate Now') }}</button>
                                         </div>
                                     </div>
                                     <ul class="info-box clearfix">
@@ -254,17 +257,16 @@
                                                     <figure class="image-box"><img src="{{ asset($project->featured_image) }}" alt="{{ $project->localized_name }}"></figure>
                                                     <div class="lower-content">
                                                         <div class="shape" style="background-image: url('{{ asset('assets/images/shape/shape-11.png') }}');"></div>
-                                                        <div class="donate-amount clearfix">
+                                                        <div class="donate-inner clearfix">
+                                                            <div class="pattern-layer-2"></div>
                                                             <div class="amount-box">
-                                                                <div class="icon-box"><i class="fas fa-hand-holding-heart"></i></div>
+                                                                <div class="icon-box"><i class="icon-donation-1"></i></div>
                                                                 <h5>{{ __('Fund Raised') }}</h5>
-                                                                <div class="price">৳{{ localized_number($raised) }} <span>/ ৳{{ localized_number($target) }}</span></div>
+                                                                <div class="price">৳{{ localized_number($raised) }} <span>/
+                                                                        ৳{{ localized_number($target) }}</span></div>
                                                             </div>
-                                                            <div class="percentage-box">
-                                                                <div class="bar">
-                                                                    <div class="bar-inner count-bar" data-percent="{{ $percent }}%"></div>
-                                                                </div>
-                                                                <div class="count-text">{{ localized_number($percent) }}%</div>
+                                                            <div class="btn-box">
+                                                                <button type="button" class="donate-box-btn" onclick="if(document.querySelector('#donate-popup select[name=\'project_id\']')){ document.querySelector('#donate-popup select[name=\'project_id\']').value = '{{ $project->id }}'; if(window.jQuery && $.fn.niceSelect){ $('#donate-popup select[name=\'project_id\']').niceSelect('update'); } }">{{ __('Donate Now') }}</button>
                                                             </div>
                                                         </div>
                                                         <div class="inner">
@@ -319,17 +321,22 @@
                                                             <figure class="image-box"><img src="{{ asset($project->featured_image) }}" alt="{{ $project->localized_name }}"></figure>
                                                             <div class="lower-content">
                                                                 <div class="shape" style="background-image: url('{{ asset('assets/images/shape/shape-11.png') }}');"></div>
-                                                                <div class="donate-amount clearfix">
+                                                                <div class="donate-inner clearfix">
+                                                                    <div class="pattern-layer-2"></div>
                                                                     <div class="amount-box">
-                                                                        <div class="icon-box"><i class="fas fa-hand-holding-heart"></i></div>
+                                                                        <div class="icon-box"><i class="icon-donation-1"></i></div>
                                                                         <h5>{{ __('Fund Raised') }}</h5>
-                                                                        <div class="price">৳{{ localized_number($raised) }} <span>/ ৳{{ localized_number($target) }}</span></div>
+                                                                        <div class="price">৳{{ localized_number($raised) }} <span>/
+                                                                                ৳{{ localized_number($target) }}</span></div>
                                                                     </div>
                                                                     <div class="percentage-box">
                                                                         <div class="bar">
-                                                                            <div class="bar-inner count-bar" data-percent="{{ $percent }}%"></div>
+                                                                            <div class="bar-inner count-bar counted" data-percent="{{ $percent }}%" style="width: {{ $percent }}%;"></div>
                                                                         </div>
                                                                         <div class="count-text">{{ localized_number($percent) }}%</div>
+                                                                    </div>
+                                                                    <div class="btn-box">
+                                                                        <button type="button" class="donate-box-btn" onclick="if(document.querySelector('#donate-popup select[name=\'project_id\']')){ document.querySelector('#donate-popup select[name=\'project_id\']').value = '{{ $project->id }}'; if(window.jQuery && $.fn.niceSelect){ $('#donate-popup select[name=\'project_id\']').niceSelect('update'); } }">{{ __('Donate Now') }}</button>
                                                                     </div>
                                                                 </div>
                                                                 <div class="inner">

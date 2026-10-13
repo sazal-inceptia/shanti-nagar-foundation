@@ -1341,23 +1341,29 @@
     display: none;
   }
 
-  .case-block-three .inner-box .lower-content .donate-inner{
+  .case-block-three .inner-box .lower-content .donate-inner,
+  .case-block-one .inner-box .lower-content .donate-inner{
     display: block;
     padding-right: 20px;
   }
 
-  .case-block-three .inner-box .lower-content .donate-inner .btn-box{
+  .case-block-three .inner-box .lower-content .donate-inner .btn-box,
+  .case-block-one .inner-box .lower-content .donate-inner .btn-box{
     position: relative;
     display: block;
     width: 100%;
     height: auto;
   }
 
-  .case-block-three .inner-box .lower-content .donate-inner .percentage-box{
+  .case-block-three .inner-box .lower-content .donate-inner .percentage-box,
+  .case-block-one .inner-box .lower-content .donate-inner .percentage-box{
     margin: 15px 0px;
   }
 
-  .case-block-three .inner-box .lower-content .donate-inner .btn-box button{
+  .case-block-three .inner-box .lower-content .donate-inner .btn-box button,
+  .case-block-three .inner-box .lower-content .donate-inner .btn-box .donate-box-btn,
+  .case-block-one .inner-box .lower-content .donate-inner .btn-box button,
+  .case-block-one .inner-box .lower-content .donate-inner .btn-box .donate-box-btn{
     padding: 15px 30px;
     border-radius: 30px;
     overflow: hidden;

@@ -57,6 +57,7 @@ class ReportService
         }
         $totalExpenses = (float) $expenseQuery->sum('amount');
         $expenseCount = $expenseQuery->count();
+        $voucherCount = (clone $expenseQuery)->whereNotNull('receipt_voucher_file')->where('receipt_voucher_file', '!=', '')->count();
 
         // 3. Employee Salaries (Counted towards overall organization outflow when no specific project is filtered)
         $salaryQuery = Salary::query()->where('status', 'paid');
@@ -78,6 +79,7 @@ class ReportService
             'donation_count' => $donationCount,
             'total_expenses' => $totalExpenses,
             'expense_count' => $expenseCount,
+            'voucher_count' => $voucherCount,
             'total_salaries' => $totalSalaries,
             'salary_count' => $salaryCount,
             'total_outflow' => $totalOutflow,
@@ -259,6 +261,9 @@ class ReportService
                 'payment_method' => $exp->payment_method,
                 'inflow' => 0.0,
                 'outflow' => (float) $exp->amount,
+                'voucher_file' => $exp->receipt_voucher_file,
+                'has_voucher' => ! empty($exp->receipt_voucher_file),
+                'voucher_url' => $exp->receipt_voucher_url,
             ]);
         }
 
@@ -282,10 +287,39 @@ class ReportService
                     'payment_method' => $sal->payment_method,
                     'inflow' => 0.0,
                     'outflow' => (float) $sal->net_paid_amount,
+                    'voucher_file' => null,
+                    'has_voucher' => false,
+                    'voucher_url' => null,
                 ]);
             }
         }
 
         return $transactions->sortByDesc('date')->values();
+    }
+
+    /**
+     * Get verified vouchers with attachment proofs for official audit reporting.
+     *
+     * @param  array<string, mixed>  $filters
+     * @return Collection<int, Expense>
+     */
+    public function getAuditedVouchers(array $filters = []): Collection
+    {
+        if (! empty($filters['rotary_year']) && $filters['rotary_year'] !== 'all') {
+            $ry = (int) $filters['rotary_year'];
+            $startDate = Carbon::create($ry, 7, 1)->startOfDay();
+            $endDate = Carbon::create($ry + 1, 6, 30)->endOfDay();
+        } else {
+            $startDate = ! empty($filters['start_date']) ? Carbon::parse($filters['start_date'])->startOfDay() : null;
+            $endDate = ! empty($filters['end_date']) ? Carbon::parse($filters['end_date'])->endOfDay() : null;
+        }
+
+        return Expense::with('project')
+            ->whereNotNull('receipt_voucher_file')
+            ->where('receipt_voucher_file', '!=', '')
+            ->when($startDate, fn ($q) => $q->where('expense_date', '>=', $startDate))
+            ->when($endDate, fn ($q) => $q->where('expense_date', '<=', $endDate))
+            ->orderBy('expense_date')
+            ->get();
     }
 }

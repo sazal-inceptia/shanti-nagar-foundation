@@ -85,6 +85,8 @@ class ProjectService
 
             $data['is_published'] = isset($data['is_published']) ? (bool) $data['is_published'] : true;
 
+            $data = $this->formatJsonArrayFields($data);
+
             $project = Project::create($data);
 
             // Handle multi-image gallery upload
@@ -117,6 +119,8 @@ class ProjectService
             }
 
             $data['is_published'] = isset($data['is_published']) ? (bool) $data['is_published'] : false;
+
+            $data = $this->formatJsonArrayFields($data);
 
             $project->update($data);
 
@@ -188,5 +192,35 @@ class ProjectService
                 ]);
             }
         }
+    }
+
+    /**
+     * Helper to format line-separated strings into arrays for JSON columns.
+     */
+    protected function formatJsonArrayFields(array $data): array
+    {
+        $jsonKeys = ['objectives', 'objectives_bn', 'impact_outcomes', 'impact_outcomes_bn', 'challenges', 'challenges_bn'];
+        foreach ($jsonKeys as $key) {
+            if (isset($data[$key])) {
+                if (is_string($data[$key])) {
+                    $lines = array_values(array_filter(array_map('trim', explode("\n", str_replace("\r", '', $data[$key])))));
+                    $data[$key] = ! empty($lines) ? $lines : null;
+                }
+            }
+        }
+
+        if (isset($data['project_report_meta']) && is_string($data['project_report_meta'])) {
+            $trimmed = trim($data['project_report_meta']);
+            if (! empty($trimmed)) {
+                $decoded = json_decode($trimmed, true);
+                if (json_last_error() === JSON_ERROR_NONE) {
+                    $data['project_report_meta'] = $decoded;
+                }
+            } else {
+                $data['project_report_meta'] = null;
+            }
+        }
+
+        return $data;
     }
 }

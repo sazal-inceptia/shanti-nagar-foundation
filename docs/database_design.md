@@ -77,6 +77,17 @@ erDiagram
         text short_description_bn
         longText description
         longText description_bn
+        longText background
+        longText background_bn
+        json objectives
+        json objectives_bn
+        json impact_outcomes
+        json impact_outcomes_bn
+        json challenges
+        json challenges_bn
+        longText conclusion
+        longText conclusion_bn
+        json project_report_meta
         decimal estimated_cost
         decimal total_expense
         date start_date
@@ -229,8 +240,8 @@ erDiagram
 * **Relations:** `hasMany(Donation::class)`.
 
 ### 4. `projects`
-* Manages social welfare campaigns, community initiatives, and emergency relief drives.
-* **Fields:** `id`, `name`, `name_bn`, `slug` (unique), `project_type_id` (foreign key -> `project_types.id`, nullable), `short_description`, `short_description_bn`, `description`, `description_bn`, `estimated_cost`, `total_expense`, `start_date`, `completion_date`, `status` (`planned`, `in_progress`, `completed`, `cancelled`), `location`, `location_bn`, `target_beneficiaries`, `target_beneficiaries_bn`, `featured_image`, `video_url`, `is_published`, `created_at`, `updated_at`, `deleted_at`.
+* Manages social welfare campaigns, community initiatives, and emergency relief drives with full verbatim field reports.
+* **Fields:** `id`, `name`, `name_bn`, `slug` (unique), `project_type_id` (foreign key -> `project_types.id`, nullable), `short_description`, `short_description_bn`, `description`, `description_bn`, `background`, `background_bn`, `objectives` (json), `objectives_bn` (json), `impact_outcomes` (json), `impact_outcomes_bn` (json), `challenges` (json), `challenges_bn` (json), `conclusion`, `conclusion_bn`, `project_report_meta` (json), `estimated_cost`, `total_expense`, `start_date`, `completion_date`, `status` (`planned`, `in_progress`, `completed`, `cancelled`), `location`, `location_bn`, `target_beneficiaries`, `target_beneficiaries_bn`, `featured_image`, `video_url`, `is_published`, `created_at`, `updated_at`, `deleted_at`.
 * **Relations:** `belongsTo(ProjectType::class)`, `hasMany(Donation::class)`, `hasMany(Expense::class)`, `hasMany(ProjectImage::class)`.
 
 ### 5. `project_images`

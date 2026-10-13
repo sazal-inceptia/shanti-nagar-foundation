@@ -42,13 +42,15 @@
                         <div class="donate-inner clearfix">
                             <div class="pattern-layer-2" style="background-image: url({{ asset('assets/images/shape/shape-8.png') }});"></div>
                             <div class="amount-box">
-                                <div class="icon-box"><i class="fas fa-hand-holding-heart"></i></div>
+                                <div class="icon-box"><i class="icon-donation-1"></i></div>
                                 <h5>{{ __('Fund Raised') }}</h5>
                                 <div class="price">৳{{ localized_number($raised) }} <span>/ ৳{{ localized_number($target) }}</span></div>
                             </div>
                             <div class="percentage-box">
-                                <div class="bar"><span class="fill-bar" style="height: {{ $percent }}%;"></span></div>
-                                <h5>{{ localized_number($percent) }}%</h5>
+                                <div class="bar">
+                                    <div class="bar-inner count-bar counted" data-percent="{{ $percent }}%" style="width: {{ $percent }}%;"></div>
+                                </div>
+                                <div class="count-text">{{ localized_number($percent) }}%</div>
                             </div>
                             <div class="btn-box">
                                 <button type="button" class="donate-box-btn" onclick="if(document.querySelector('#donate-popup select[name=\'project_id\']')){ document.querySelector('#donate-popup select[name=\'project_id\']').value = '{{ $project->id }}'; if(window.jQuery && $.fn.niceSelect){ $('#donate-popup select[name=\'project_id\']').niceSelect('update'); } }">{{ __('Donate Now') }}</button>
@@ -105,7 +107,137 @@
                                 </div>
                             </div>
 
-                            {{-- Project Gallery Photos --}}
+                            {{-- Detailed Project Report & Official Narrative --}}
+                            @if($project->localized_background || !empty($project->localized_objectives) || !empty($project->localized_impact_outcomes) || $project->localized_conclusion || !empty($project->project_report_meta))
+                                <div class="project-structured-report mt-4 pt-2">
+
+                                    {{-- Background Card --}}
+                                    @if($project->localized_background)
+                                        <div class="report-section mb-4 p-4 rounded bg-light border-start border-4 border-primary shadow-sm">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <span class="badge bg-primary me-2 px-2 py-1"><i class="fas fa-info-circle me-1"></i> {{ __('Background & Problem Context') }}</span>
+                                            </div>
+                                            <p class="mb-0 text-secondary lh-lg" style="font-size: 1.02rem;">
+                                                {{ $project->localized_background }}
+                                            </p>
+                                        </div>
+                                    @endif
+
+                                    {{-- Key Objectives --}}
+                                    @if(!empty($project->localized_objectives) && is_array($project->localized_objectives))
+                                        <div class="report-section mb-4 p-4 rounded bg-white border shadow-sm">
+                                            <h4 class="fw-bold mb-3 text-dark d-flex align-items-center" style="font-size: 1.15rem;">
+                                                <i class="fas fa-bullseye text-danger me-2"></i> {{ __('Key Objectives') }}
+                                            </h4>
+                                            <ul class="list-unstyled mb-0 row g-2">
+                                                @foreach($project->localized_objectives as $objective)
+                                                    <li class="col-md-12 d-flex align-items-start">
+                                                        <i class="fas fa-check-circle text-success me-2 mt-1"></i>
+                                                        <span class="text-secondary">{{ $objective }}</span>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+
+                                    {{-- Impact & Outcomes --}}
+                                    @if(!empty($project->localized_impact_outcomes) && is_array($project->localized_impact_outcomes))
+                                        <div class="report-section mb-4 p-4 rounded bg-white border shadow-sm">
+                                            <h4 class="fw-bold mb-3 text-dark d-flex align-items-center" style="font-size: 1.15rem;">
+                                                <i class="fas fa-chart-line text-success me-2"></i> {{ __('Expected Impact & Outcomes') }}
+                                            </h4>
+                                            <ul class="list-unstyled mb-0 row g-2">
+                                                @foreach($project->localized_impact_outcomes as $outcome)
+                                                    <li class="col-md-12 d-flex align-items-start">
+                                                        <i class="fas fa-arrow-circle-right text-primary me-2 mt-1"></i>
+                                                        <span class="text-secondary">{{ $outcome }}</span>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+
+                                    {{-- Implementation Challenges --}}
+                                    @if(!empty($project->localized_challenges) && is_array($project->localized_challenges))
+                                        <div class="report-section mb-4 p-4 rounded bg-white border shadow-sm">
+                                            <h4 class="fw-bold mb-3 text-dark d-flex align-items-center" style="font-size: 1.15rem;">
+                                                <i class="fas fa-shield-alt text-warning me-2"></i> {{ __('Implementation Challenges & Problem Solving') }}
+                                            </h4>
+                                            <ul class="list-unstyled mb-0 row g-2">
+                                                @foreach($project->localized_challenges as $challenge)
+                                                    <li class="col-md-12 d-flex align-items-start">
+                                                        <i class="fas fa-exclamation-circle text-warning me-2 mt-1"></i>
+                                                        <span class="text-secondary">{{ $challenge }}</span>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+
+                                    {{-- Conclusion Statement --}}
+                                    @if($project->localized_conclusion)
+                                        <div class="report-section mb-4 p-4 rounded bg-light border-start border-4 border-success shadow-sm">
+                                            <h5 class="fw-bold text-success mb-2 d-flex align-items-center" style="font-size: 1.05rem;">
+                                                <i class="fas fa-check-double me-2"></i> {{ __('Project Conclusion & Rotary Commitment') }}
+                                            </h5>
+                                            <p class="mb-0 text-secondary fst-italic lh-lg">
+                                                "{{ $project->localized_conclusion }}"
+                                            </p>
+                                        </div>
+                                    @endif
+
+                                    {{-- Donor & Sponsor Breakdown from Document Report --}}
+                                    @if(!empty($project->project_report_meta['donors']) && is_array($project->project_report_meta['donors']))
+                                        <div class="report-section mb-4 p-4 rounded bg-white border shadow-sm">
+                                            <h4 class="fw-bold mb-3 text-dark d-flex align-items-center" style="font-size: 1.15rem;">
+                                                <i class="fas fa-hand-holding-usd text-primary me-2"></i> {{ __('Recognized Donors & Contributions') }}
+                                            </h4>
+                                            @if(!empty($project->project_report_meta['status_statement']))
+                                                <div class="alert alert-success py-2 px-3 mb-3 small d-flex align-items-center">
+                                                    <i class="fas fa-heart text-danger me-2"></i>
+                                                    <span>{{ $project->project_report_meta['status_statement'] }}</span>
+                                                </div>
+                                            @endif
+                                            <div class="table-responsive">
+                                                <table class="table table-sm table-hover align-middle mb-0">
+                                                    <thead class="table-light">
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>{{ __('Contributor / Well-wisher') }}</th>
+                                                            <th>{{ __('Amount (BDT)') }}</th>
+                                                            <th>{{ __('Note / Purpose') }}</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($project->project_report_meta['donors'] as $idx => $donor)
+                                                            <tr>
+                                                                <td>{{ $idx + 1 }}</td>
+                                                                <td class="fw-semibold text-dark">{{ $donor['name'] ?? '' }}</td>
+                                                                <td class="text-success fw-bold">৳{{ localized_number($donor['amount'] ?? 0) }}</td>
+                                                                <td class="text-muted small">{{ $donor['note'] ?? '' }}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                    {{-- Additional Report Metadata Badges --}}
+                                    @if(!empty($project->project_report_meta))
+                                        <div class="report-meta-badges d-flex flex-wrap gap-2 mb-4">
+                                            @foreach($project->project_report_meta as $key => $val)
+                                                @if(!in_array($key, ['donors', 'phases']) && is_string($val))
+                                                    <span class="badge bg-secondary-subtle text-secondary border px-3 py-2">
+                                                        <strong class="text-dark">{{ ucwords(str_replace('_', ' ', $key)) }}:</strong> {{ $val }}
+                                                    </span>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    @endif
+
+                                </div>
+                            @endif
                             @if($project->images && $project->images->count() > 0)
                                 <div class="content-two mt-4 pt-3">
                                     <h3 class="section-title-sub-2">{{ __('Field Documentation') }}</h3>

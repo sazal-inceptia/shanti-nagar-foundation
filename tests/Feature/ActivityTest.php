@@ -181,3 +181,31 @@ test('activities render properly in bengali locale', function () {
     $response->assertSee('স্বাস্থ্য সচেতনতা সেমিনার');
     $response->assertSee('ঢাকা');
 });
+
+test('public activities page filters by rotary year, status, and search query', function () {
+    $act1 = Activity::create([
+        'title' => 'Safe Drinking Water Installation Mongla',
+        'event_date' => '2026-10-05',
+        'status' => 'completed',
+        'is_published' => true,
+    ]);
+
+    $act2 = Activity::create([
+        'title' => 'Winter Shawl Drive Sirajganj',
+        'event_date' => '2025-12-15',
+        'status' => 'completed',
+        'is_published' => true,
+    ]);
+
+    // Filter by year 2026
+    $resYear = $this->get(route('activities', ['year' => '2026']));
+    $resYear->assertStatus(200);
+    $resYear->assertSee('Safe Drinking Water Installation Mongla');
+    $resYear->assertDontSee('Winter Shawl Drive Sirajganj');
+
+    // Filter by search
+    $resSearch = $this->get(route('activities', ['search' => 'Shawl']));
+    $resSearch->assertStatus(200);
+    $resSearch->assertSee('Winter Shawl Drive Sirajganj');
+    $resSearch->assertDontSee('Safe Drinking Water Installation Mongla');
+});
