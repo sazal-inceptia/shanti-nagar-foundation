@@ -778,6 +778,61 @@ class HomeController extends Controller
     }
 
     /**
+     * Donor Receipt Verification & Public Transparency Tracking Portal.
+     */
+    public function verifyReceipt(Request $request): View
+    {
+        $rawQuery = (string) $request->get('query', $request->get('receipt_number', ''));
+        $query = trim($rawQuery);
+        $results = null;
+
+        if ($query !== '') {
+            $cleanPhone = preg_replace('/[^0-9]/', '', $query);
+
+            $results = Donation::with(['donor', 'project', 'project.projectType'])
+                ->where(function ($q) use ($query, $cleanPhone) {
+                    $q->where('receipt_number', 'like', "%{$query}%")
+                        ->orWhere('transaction_id', 'like', "%{$query}%");
+
+                    if (strlen($cleanPhone) >= 4) {
+                        $q->orWhereHas('donor', function ($dq) use ($query, $cleanPhone) {
+                            $dq->where('phone', 'like', "%{$query}%")
+                                ->orWhere('phone', 'like', "%{$cleanPhone}%");
+                        });
+                    }
+                })
+                ->latest('donation_date')
+                ->latest('id')
+                ->paginate(10)
+                ->withQueryString();
+        }
+
+        // Transparency metrics directly from database
+        $totalVerifiedDonations = (float) Donation::where('status', 'completed')->sum('amount');
+        $completedCount = Donation::where('status', 'completed')->count();
+        $projectsSupported = Project::where('is_published', true)->count();
+        $totalDonors = Donor::count();
+
+        // Recent public transparent contributions
+        $recentAudited = Donation::with(['donor', 'project'])
+            ->where('status', 'completed')
+            ->latest('donation_date')
+            ->latest('id')
+            ->take(8)
+            ->get();
+
+        return view('frontend.verify-receipt', compact(
+            'query',
+            'results',
+            'totalVerifiedDonations',
+            'completedCount',
+            'projectsSupported',
+            'totalDonors',
+            'recentAudited'
+        ));
+    }
+
+    /**
      * Switch frontend active application language.
      */
     public function switchLang(string $locale): RedirectResponse

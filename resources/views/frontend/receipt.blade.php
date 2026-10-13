@@ -152,24 +152,16 @@
                         </div>
                     </div>
 
-                    <!-- Signatures and Verification Seal -->
-                    <div class="row pt-4 mt-4 border-top align-items-end">
-                        <div class="col-4 text-center">
-                            <div class="border-top pt-2 mx-auto" style="width: 140px; border-color: #94a3b8 !important;">
+                    <!-- Signatures (President & Treasurer) -->
+                    <div class="row pt-4 mt-4 border-top align-items-end justify-content-between">
+                        <div class="col-6 text-start">
+                            <div class="border-top pt-2" style="width: 160px; border-color: #94a3b8 !important;">
                                 <div class="fw-bold text-dark" style="font-size: 12px;">{{ __('President') }}</div>
                                 <div class="text-muted" style="font-size: 10.5px;">{{ site_setting('org_name', 'Rotary Club of Shantinagar Dhaka') }}</div>
                             </div>
                         </div>
-                        <div class="col-4 text-center">
-                            <div class="d-inline-block p-2 rounded-circle border"
-                                style="width: 75px; height: 75px; border-color: #005daa !important; background-color: #f8fafc;">
-                                <div style="font-size: 9px; font-weight: 800; color: #005daa; line-height: 1.2; padding-top: 10px;">
-                                    ROTARY CLUB<br>SHANTINAGAR<br>★ SEAL ★
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-4 text-center">
-                            <div class="border-top pt-2 mx-auto" style="width: 140px; border-color: #94a3b8 !important;">
+                        <div class="col-6 text-end">
+                            <div class="border-top pt-2 ms-auto" style="width: 160px; border-color: #94a3b8 !important;">
                                 <div class="fw-bold text-dark" style="font-size: 12px;">{{ __('Treasurer') }}</div>
                                 <div class="text-muted" style="font-size: 10.5px;">{{ __('Finance & Accounts Desk') }}</div>
                             </div>

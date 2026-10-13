@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Donation;
 use App\Models\Expense;
 use App\Models\Project;
+use App\Models\Salary;
 use App\Services\ReportService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -28,11 +29,11 @@ class ReportController extends Controller
             'rotary_year' => $rotaryYear,
         ];
 
-        $year = (int) ($rotaryYear !== 'all' ? $rotaryYear : date('Y'));
+        $year = (int) ($rotaryYear !== 'all' ? $rotaryYear : 2026);
 
         $summary = $this->reportService->getFinancialSummary($filters);
-        $projectBalances = $this->reportService->getProjectBalances();
-        $monthlyBreakdown = $this->reportService->getMonthlyBreakdown($year);
+        $projectBalances = $this->reportService->getProjectBalances($filters);
+        $monthlyBreakdown = $this->reportService->getMonthlyBreakdown($year, $filters);
         $categoryBreakdown = $this->reportService->getExpenseCategoryBreakdown($filters);
         $transactions = $this->reportService->getTransactions($filters);
         $projects = Project::orderBy('name')->get();
@@ -62,11 +63,11 @@ class ReportController extends Controller
             'rotary_year' => $rotaryYear,
         ];
 
-        $year = (int) ($rotaryYear !== 'all' ? $rotaryYear : date('Y'));
+        $year = (int) ($rotaryYear !== 'all' ? $rotaryYear : 2026);
 
         $summary = $this->reportService->getFinancialSummary($filters);
-        $projectBalances = $this->reportService->getProjectBalances();
-        $monthlyBreakdown = $this->reportService->getMonthlyBreakdown($year);
+        $projectBalances = $this->reportService->getProjectBalances($filters);
+        $monthlyBreakdown = $this->reportService->getMonthlyBreakdown($year, $filters);
         $categoryBreakdown = $this->reportService->getExpenseCategoryBreakdown($filters);
         $auditedVouchers = $this->reportService->getAuditedVouchers($filters);
 
@@ -86,16 +87,16 @@ class ReportController extends Controller
      */
     public function export(Request $request): StreamedResponse
     {
-        $rotaryYear = $request->get('rotary_year', $request->get('year'));
-        if (! empty($rotaryYear) && $rotaryYear !== 'all') {
-            $ry = (int) $rotaryYear;
-            $startDate = sprintf('%d-07-01', $ry);
-            $endDate = sprintf('%d-06-30', $ry + 1);
-        } else {
-            $startDate = $request->get('start_date');
-            $endDate = $request->get('end_date');
-        }
-        $projectId = $request->get('project_id');
+        $rotaryYear = $request->get('rotary_year', $request->get('year', '2026'));
+        $filters = [
+            'start_date' => $request->get('start_date'),
+            'end_date' => $request->get('end_date'),
+            'project_id' => $request->get('project_id'),
+            'rotary_year' => $rotaryYear,
+        ];
+
+        [$startDate, $endDate] = $this->reportService->resolveDateRange($filters);
+        $projectId = ! empty($filters['project_id']) ? $filters['project_id'] : null;
 
         $filename = 'shanti-nagar-financial-statement-'.date('Y-m-d').'.csv';
 
@@ -109,7 +110,7 @@ class ReportController extends Controller
             fputcsv($handle, ['ROTARY CLUB OF SHANTINAGAR DHAKA']);
             fputcsv($handle, ['FINANCIAL AUDIT STATEMENT & LEDGER EXPORT']);
             fputcsv($handle, ['Generated Date', date('Y-m-d H:i:s')]);
-            fputcsv($handle, ['Rotary Year / Period', (! empty($rotaryYear) && $rotaryYear !== 'all' ? "RY {$rotaryYear}–".((int) $rotaryYear + 1) : ($startDate ?: 'All Time').' to '.($endDate ?: 'Present'))]);
+            fputcsv($handle, ['Rotary Year / Period', (! empty($rotaryYear) && $rotaryYear !== 'all' ? "RY {$rotaryYear}–".((int) $rotaryYear + 1) : ($startDate?->format('Y-m-d') ?: 'All Time').' to '.($endDate?->format('Y-m-d') ?: 'Present'))]);
             fputcsv($handle, []);
 
             // Inflow (Donations) Table
@@ -168,11 +169,43 @@ class ReportController extends Controller
                     number_format((float) $exp->amount, 2, '.', ''),
                 ]);
             }
-            fputcsv($handle, ['', '', '', '', '', '', '', 'TOTAL OUTFLOW (BDT):', number_format($totalExpenses, 2, '.', '')]);
+            fputcsv($handle, ['', '', '', '', '', '', '', 'TOTAL DIRECT EXPENSES (BDT):', number_format($totalExpenses, 2, '.', '')]);
             fputcsv($handle, []);
 
-            // Net Balance
-            $net = $totalDonations - $totalExpenses;
+            // Staff Salaries (if all projects selected)
+            $totalSalaries = 0;
+            if (! $projectId) {
+                fputcsv($handle, ['--- STAFF PAYROLL & HR DISBURSEMENTS ---']);
+                fputcsv($handle, ['SL', 'Payslip #', 'Date', 'Staff Employee', 'Period', 'Payment Method', 'Amount (BDT)']);
+
+                $salaries = Salary::with('employee')
+                    ->where('status', 'paid')
+                    ->when($startDate, fn ($q) => $q->where('payment_date', '>=', $startDate))
+                    ->when($endDate, fn ($q) => $q->where('payment_date', '<=', $endDate))
+                    ->orderBy('payment_date')
+                    ->get();
+
+                $sl = 1;
+                foreach ($salaries as $sal) {
+                    $totalSalaries += (float) $sal->net_paid_amount;
+                    fputcsv($handle, [
+                        $sl++,
+                        $sal->salary_slip_number,
+                        $sal->payment_date?->format('Y-m-d'),
+                        $sal->employee?->name ?? 'Staff Employee',
+                        $sal->month_year,
+                        strtoupper($sal->payment_method),
+                        number_format((float) $sal->net_paid_amount, 2, '.', ''),
+                    ]);
+                }
+                fputcsv($handle, ['', '', '', '', '', 'TOTAL PAYROLL DISBURSEMENTS (BDT):', number_format($totalSalaries, 2, '.', '')]);
+                fputcsv($handle, []);
+            }
+
+            // Total Outflow & Net Balance
+            $totalOutflow = $totalExpenses + $totalSalaries;
+            $net = $totalDonations - $totalOutflow;
+            fputcsv($handle, ['TOTAL COMBINED OUTFLOW (BDT):', number_format($totalOutflow, 2, '.', '')]);
             fputcsv($handle, ['NET SURPLUS / BALANCE (BDT):', number_format($net, 2, '.', '')]);
 
             fclose($handle);

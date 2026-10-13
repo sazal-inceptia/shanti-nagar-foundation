@@ -88,8 +88,8 @@
                             <div class="inner-box clearfix">
                                 <div class="author-box">
                                     <div class="icon-box"><i class="icon-hand"></i></div>
-                                    <span>{{ __('Governing Secretariat') }}</span>
-                                    <h3>{{ __('Shanti Nagar Association') }}</h3>
+                                    <span>{{ __('Governing District') }}</span>
+                                    <h3>{{ __('Rotary International District 3281') }}</h3>
                                 </div>
                             </div>
                         </div>
@@ -98,8 +98,8 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 image-column">
                     <div class="image_block_2">
                         <div class="image-box">
-                            <figure class="image image-1"><img src="{{ asset('assets/images/resource/about-2.jpg') }}" alt="{{ site_setting('org_name', 'Rotary Club of Shantinagar Dhaka') }}"></figure>
-                            <figure class="image image-2"><img src="{{ asset('assets/images/resource/about-3.jpg') }}" alt="{{ site_setting('org_name', 'Rotary Club of Shantinagar Dhaka') }}"></figure>
+                            <figure class="image image-1"><img src="{{ asset('assets/images/projects/covers/pushti-box-distribution.jpeg') }}" alt="{{ site_setting('org_name', 'Rotary Club of Shantinagar Dhaka') }}" style="border-radius: 14px; object-fit: cover;"></figure>
+                            <figure class="image image-2"><img src="{{ asset('assets/images/projects/covers/rotary-district-conference-awards.jpeg') }}" alt="{{ site_setting('org_name', 'Rotary Club of Shantinagar Dhaka') }}" style="border-radius: 14px; object-fit: cover;"></figure>
                             <div class="rotate-text">
                                 <figure class="text-box rotate-me"><img src="{{ asset('assets/images/icons/rotate-text-2.png') }}" alt=""></figure>
                                 <figure class="icon-box"><img src="{{ asset('assets/images/icons/bird-1.png') }}" alt=""></figure>
@@ -136,7 +136,7 @@
                                 <li>{{ __('Itemized expense vouchers and proof records') }}</li>
                                 <li>{{ __('Instant bKash, Nagad, Bank and Cash receipts') }}</li>
                             </ul>
-                            <a href="{{ route('about') }}">{{ __('Learn How We Work') }}</a>
+                            <a href="{{ route('verify.receipt') }}">{{ __('View Transparency Portal') }}</a>
                         </div>
                     </div>
                     <div class="single-block banner-bg-3">
@@ -328,12 +328,6 @@
                                                                         <h5>{{ __('Fund Raised') }}</h5>
                                                                         <div class="price">৳{{ localized_number($raised) }} <span>/
                                                                                 ৳{{ localized_number($target) }}</span></div>
-                                                                    </div>
-                                                                    <div class="percentage-box">
-                                                                        <div class="bar">
-                                                                            <div class="bar-inner count-bar counted" data-percent="{{ $percent }}%" style="width: {{ $percent }}%;"></div>
-                                                                        </div>
-                                                                        <div class="count-text">{{ localized_number($percent) }}%</div>
                                                                     </div>
                                                                     <div class="btn-box">
                                                                         <button type="button" class="donate-box-btn" onclick="if(document.querySelector('#donate-popup select[name=\'project_id\']')){ document.querySelector('#donate-popup select[name=\'project_id\']').value = '{{ $project->id }}'; if(window.jQuery && $.fn.niceSelect){ $('#donate-popup select[name=\'project_id\']').niceSelect('update'); } }">{{ __('Donate Now') }}</button>

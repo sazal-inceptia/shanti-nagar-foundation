@@ -13,6 +13,39 @@ use Illuminate\Support\Facades\DB;
 class ReportService
 {
     /**
+     * Resolve effective start and end dates from given filters.
+     * Custom start_date and end_date take precedence over rotary_year.
+     *
+     * @param  array<string, mixed>  $filters
+     * @return array{0: ?Carbon, 1: ?Carbon}
+     */
+    public function resolveDateRange(array $filters): array
+    {
+        $hasCustomStart = ! empty($filters['start_date']);
+        $hasCustomEnd = ! empty($filters['end_date']);
+
+        $rotaryYear = $filters['rotary_year'] ?? null;
+        $hasRotaryYear = ! empty($rotaryYear) && $rotaryYear !== 'all';
+
+        $startDate = null;
+        $endDate = null;
+
+        if ($hasCustomStart) {
+            $startDate = Carbon::parse($filters['start_date'])->startOfDay();
+        } elseif ($hasRotaryYear) {
+            $startDate = Carbon::create((int) $rotaryYear, 7, 1)->startOfDay();
+        }
+
+        if ($hasCustomEnd) {
+            $endDate = Carbon::parse($filters['end_date'])->endOfDay();
+        } elseif ($hasRotaryYear) {
+            $endDate = Carbon::create((int) $rotaryYear + 1, 6, 30)->endOfDay();
+        }
+
+        return [$startDate, $endDate];
+    }
+
+    /**
      * Get summary statistics (Inflow, Outflow, Net Balance, Projects) for given date range and project.
      *
      * @param  array<string, mixed>  $filters
@@ -20,14 +53,7 @@ class ReportService
      */
     public function getFinancialSummary(array $filters = []): array
     {
-        if (! empty($filters['rotary_year']) && $filters['rotary_year'] !== 'all') {
-            $ry = (int) $filters['rotary_year'];
-            $startDate = Carbon::create($ry, 7, 1)->startOfDay();
-            $endDate = Carbon::create($ry + 1, 6, 30)->endOfDay();
-        } else {
-            $startDate = ! empty($filters['start_date']) ? Carbon::parse($filters['start_date'])->startOfDay() : null;
-            $endDate = ! empty($filters['end_date']) ? Carbon::parse($filters['end_date'])->endOfDay() : null;
-        }
+        [$startDate, $endDate] = $this->resolveDateRange($filters);
         $projectId = ! empty($filters['project_id']) ? $filters['project_id'] : null;
 
         // 1. Total Inflow (Donations)
@@ -93,17 +119,28 @@ class ReportService
     /**
      * Get project-wise financial performance and budget allocations.
      *
+     * @param  array<string, mixed>  $filters
      * @return Collection<int, array<string, mixed>>
      */
-    public function getProjectBalances(): Collection
+    public function getProjectBalances(array $filters = []): Collection
     {
-        $projects = Project::with('projectType')
-            ->withSum(['donations as total_donated' => function ($q) {
-                $q->where('status', 'completed');
+        [$startDate, $endDate] = $this->resolveDateRange($filters);
+        $projectId = ! empty($filters['project_id']) ? $filters['project_id'] : null;
+
+        $projectsQuery = Project::with('projectType')
+            ->when($projectId, fn ($q) => $q->where('id', $projectId))
+            ->withSum(['donations as total_donated' => function ($q) use ($startDate, $endDate) {
+                $q->where('status', 'completed')
+                    ->when($startDate, fn ($sub) => $sub->where('donation_date', '>=', $startDate))
+                    ->when($endDate, fn ($sub) => $sub->where('donation_date', '<=', $endDate));
             }], 'amount')
-            ->withSum('expenses as total_expensed', 'amount')
-            ->orderByDesc('id')
-            ->get();
+            ->withSum(['expenses as total_expensed' => function ($q) use ($startDate, $endDate) {
+                $q->when($startDate, fn ($sub) => $sub->where('expense_date', '>=', $startDate))
+                    ->when($endDate, fn ($sub) => $sub->where('expense_date', '<=', $endDate));
+            }], 'amount')
+            ->orderByDesc('id');
+
+        $projects = $projectsQuery->get();
 
         return $projects->map(function (Project $prj) {
             $raised = (float) ($prj->total_donated ?? 0);
@@ -127,36 +164,53 @@ class ReportService
     }
 
     /**
-     * Get monthly breakdown of Income vs Outflow for current or specified year.
+     * Get monthly breakdown of Income vs Outflow for Rotary Year (July of $year to June of $year + 1).
      *
+     * @param  array<string, mixed>  $filters
      * @return array<int, array<string, mixed>>
      */
-    public function getMonthlyBreakdown(int $year): array
+    public function getMonthlyBreakdown(int $year, array $filters = []): array
     {
+        $projectId = ! empty($filters['project_id']) ? $filters['project_id'] : null;
         $months = [];
 
-        for ($m = 1; $m <= 12; $m++) {
-            $start = Carbon::create($year, $m, 1)->startOfMonth();
-            $end = Carbon::create($year, $m, 1)->endOfMonth();
+        // Rotary year runs from July (month 7) of $year to June (month 6) of $year + 1
+        for ($i = 0; $i < 12; $i++) {
+            $monthNum = (($i + 6) % 12) + 1; // 7, 8, 9, 10, 11, 12, 1, 2, 3, 4, 5, 6
+            $monthYear = $i < 6 ? $year : $year + 1;
 
-            $inflow = (float) Donation::where('status', 'completed')
-                ->whereBetween('donation_date', [$start, $end])
-                ->sum('amount');
+            $start = Carbon::create($monthYear, $monthNum, 1)->startOfMonth();
+            $end = Carbon::create($monthYear, $monthNum, 1)->endOfMonth();
 
-            $expense = (float) Expense::whereBetween('expense_date', [$start, $end])
-                ->sum('amount');
+            $inflowQuery = Donation::where('status', 'completed')
+                ->whereBetween('donation_date', [$start, $end]);
+            if ($projectId) {
+                $inflowQuery->where('project_id', $projectId);
+            }
+            $inflow = (float) $inflowQuery->sum('amount');
 
-            $salary = (float) Salary::where('status', 'paid')
-                ->whereBetween('payment_date', [$start, $end])
-                ->sum('net_paid_amount');
+            $expenseQuery = Expense::whereBetween('expense_date', [$start, $end]);
+            if ($projectId) {
+                $expenseQuery->where('project_id', $projectId);
+            }
+            $expense = (float) $expenseQuery->sum('amount');
+
+            $salary = 0.0;
+            if (! $projectId) {
+                $salary = (float) Salary::where('status', 'paid')
+                    ->whereBetween('payment_date', [$start, $end])
+                    ->sum('net_paid_amount');
+            }
 
             $outflow = $expense + $salary;
             $surplus = $inflow - $outflow;
 
             $months[] = [
-                'month_number' => $m,
-                'month_name' => $start->format('F'),
-                'short_name' => $start->format('M'),
+                'month_number' => $i + 1,
+                'calendar_month' => $monthNum,
+                'year' => $monthYear,
+                'month_name' => $start->format('F Y'),
+                'short_name' => $start->format('M Y'),
                 'inflow' => $inflow,
                 'expenses' => $expense,
                 'salaries' => $salary,
@@ -176,14 +230,8 @@ class ReportService
      */
     public function getExpenseCategoryBreakdown(array $filters = []): Collection
     {
-        if (! empty($filters['rotary_year']) && $filters['rotary_year'] !== 'all') {
-            $ry = (int) $filters['rotary_year'];
-            $startDate = Carbon::create($ry, 7, 1)->startOfDay();
-            $endDate = Carbon::create($ry + 1, 6, 30)->endOfDay();
-        } else {
-            $startDate = ! empty($filters['start_date']) ? Carbon::parse($filters['start_date'])->startOfDay() : null;
-            $endDate = ! empty($filters['end_date']) ? Carbon::parse($filters['end_date'])->endOfDay() : null;
-        }
+        [$startDate, $endDate] = $this->resolveDateRange($filters);
+        $projectId = ! empty($filters['project_id']) ? $filters['project_id'] : null;
 
         $query = Expense::query()
             ->select('expense_category', DB::raw('SUM(amount) as total_amount'), DB::raw('COUNT(*) as total_count'))
@@ -194,6 +242,9 @@ class ReportService
         }
         if ($endDate) {
             $query->where('expense_date', '<=', $endDate);
+        }
+        if ($projectId) {
+            $query->where('project_id', $projectId);
         }
 
         return $query->orderByDesc('total_amount')->get();
@@ -207,14 +258,7 @@ class ReportService
      */
     public function getTransactions(array $filters = []): Collection
     {
-        if (! empty($filters['rotary_year']) && $filters['rotary_year'] !== 'all') {
-            $ry = (int) $filters['rotary_year'];
-            $startDate = Carbon::create($ry, 7, 1)->startOfDay();
-            $endDate = Carbon::create($ry + 1, 6, 30)->endOfDay();
-        } else {
-            $startDate = ! empty($filters['start_date']) ? Carbon::parse($filters['start_date'])->startOfDay() : null;
-            $endDate = ! empty($filters['end_date']) ? Carbon::parse($filters['end_date'])->endOfDay() : null;
-        }
+        [$startDate, $endDate] = $this->resolveDateRange($filters);
         $projectId = ! empty($filters['project_id']) ? $filters['project_id'] : null;
 
         $transactions = collect();
@@ -305,20 +349,15 @@ class ReportService
      */
     public function getAuditedVouchers(array $filters = []): Collection
     {
-        if (! empty($filters['rotary_year']) && $filters['rotary_year'] !== 'all') {
-            $ry = (int) $filters['rotary_year'];
-            $startDate = Carbon::create($ry, 7, 1)->startOfDay();
-            $endDate = Carbon::create($ry + 1, 6, 30)->endOfDay();
-        } else {
-            $startDate = ! empty($filters['start_date']) ? Carbon::parse($filters['start_date'])->startOfDay() : null;
-            $endDate = ! empty($filters['end_date']) ? Carbon::parse($filters['end_date'])->endOfDay() : null;
-        }
+        [$startDate, $endDate] = $this->resolveDateRange($filters);
+        $projectId = ! empty($filters['project_id']) ? $filters['project_id'] : null;
 
         return Expense::with('project')
             ->whereNotNull('receipt_voucher_file')
             ->where('receipt_voucher_file', '!=', '')
             ->when($startDate, fn ($q) => $q->where('expense_date', '>=', $startDate))
             ->when($endDate, fn ($q) => $q->where('expense_date', '<=', $endDate))
+            ->when($projectId, fn ($q) => $q->where('project_id', $projectId))
             ->orderBy('expense_date')
             ->get();
     }

@@ -120,18 +120,60 @@
                                 </ul>
 
                                 {{-- Official Foundation Payment Credentials Card --}}
-                                <div class="mt-4 p-3 rounded" style="background-color: #f8fafc; border: 1px solid #e2e8f0; font-size: 13px;">
-                                    <div class="fw-bold text-dark mb-2" style="font-size: 13.5px;">
-                                        <i class="fas fa-info-circle text-primary me-1"></i> {{ __('Direct Account Details') }}
+                                <div class="mt-4 p-3 rounded" style="background-color: #ffffff; border: 1px solid #e2e8f0; font-size: 13px; box-shadow: 0 2px 6px rgba(0,0,0,0.03);">
+                                    <!-- bKash Comprehensive Card -->
+                                    <div class="p-3 mb-3 rounded" style="background-color: #fdf2f8; border: 1px solid #fbcfe8;">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <span class="badge me-2 px-2 py-1" style="background-color: #d12053; color: #fff; font-weight: 700; font-size: 11.5px;">bKash</span>
+                                                <strong class="text-dark" style="font-size: 13.5px;">{{ site_setting('bkash_merchant_name', 'Rotary Club of Shantinagar Dhaka') }}</strong>
+                                            </div>
+                                            <span class="badge" style="background-color: #fce7f3; color: #be185d; border: 1px solid #f472b6; font-size: 11px;">
+                                                {{ site_setting('bkash_account_type', 'Merchant') }}
+                                            </span>
+                                        </div>
+
+                                        <div class="d-flex align-items-center justify-content-between p-2 rounded bg-white border mb-2 flex-wrap gap-2">
+                                            <div>
+                                                <small class="text-muted d-block" style="font-size: 11px;">{{ __('Account / Merchant Number') }}</small>
+                                                <span id="bkash-number-text" class="fw-bold text-dark font-monospace" style="font-size: 16px; letter-spacing: 0.03em;">
+                                                    {{ site_setting('bkash_number', '+880 1711-223344') }}
+                                                </span>
+                                            </div>
+                                            <button type="button" class="btn btn-sm btn-outline-danger" onclick="navigator.clipboard.writeText('{{ preg_replace('/[^0-9+]/', '', site_setting('bkash_number', '+8801711223344')) }}'); this.innerHTML='<i class=\'fas fa-check me-1\'></i> {{ __('Copied!') }}'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy me-1\'></i> {{ __('Copy') }}', 2000);"
+                                                style="border-color: #d12053; color: #d12053; font-size: 12px; font-weight: 600; border-radius: 6px;">
+                                                <i class="far fa-copy me-1"></i> {{ __('Copy') }}
+                                            </button>
+                                        </div>
+
+                                        <div class="mb-2 text-muted" style="font-size: 12px;">
+                                            <strong class="text-dark"><i class="fas fa-tag me-1 text-danger"></i> {{ __('Reference') }}:</strong>
+                                            {{ site_setting('bkash_reference_note', 'Use Donor Mobile No or Project Name') }}
+                                        </div>
+
+                                        <!-- Collapsible Step-by-Step Instructions -->
+                                        <details class="bkash-guide-details" style="cursor: pointer;">
+                                            <summary class="text-danger fw-semibold" style="font-size: 12px;">
+                                                <i class="fas fa-info-circle me-1"></i> {{ __('View Step-by-Step Payment Guide') }}
+                                            </summary>
+                                            <div class="mt-2 p-2 rounded bg-white border text-muted" style="font-size: 11.5px; line-height: 1.6; white-space: pre-line;">{{ site_setting('bkash_instructions', site_setting('bkash_instructions_bn')) }}</div>
+                                        </details>
                                     </div>
-                                    <div class="mb-1 text-muted">
-                                        <strong class="text-dark">{{ __('bKash') }} (Merchant):</strong> {{ site_setting('bkash_number', '+880 1711-223344') }}
+
+                                    <!-- Other Channels -->
+                                    <div class="mb-2 text-muted" style="font-size: 12px;">
+                                        <strong class="text-dark">{{ __('Nagad') }}:</strong> {{ site_setting('nagad_number', '+880 1811-556677 (Merchant)') }}
                                     </div>
-                                    <div class="mb-1 text-muted">
-                                        <strong class="text-dark">{{ __('Nagad') }} (Merchant):</strong> {{ site_setting('nagad_number', '+880 1811-556677') }}
+                                    <div class="text-muted" style="font-size: 12px;">
+                                        <strong class="text-dark">{{ __('Bank') }}:</strong> {{ site_setting('bank_name', 'Islami Bank Bangladesh Ltd') }} &bull; A/C: {{ site_setting('bank_account_number', '2050 3820 1000 8941') }} ({{ site_setting('bank_account_name', 'Rotary Club of Shantinagar Dhaka') }})
                                     </div>
-                                    <div class="text-muted">
-                                        <strong class="text-dark">{{ __('Bank Transfer') }}:</strong> {{ site_setting('bank_name', 'Islami Bank Bangladesh Ltd') }} &bull; A/C: {{ site_setting('bank_account_number', '2050 3820 1000 8941') }} ({{ site_setting('bank_account_name', 'Rotary Club of Shantinagar Dhaka') }})
+
+                                    <!-- Public Tracking Link -->
+                                    <div class="mt-3 pt-2 border-top d-flex align-items-center justify-content-between flex-wrap gap-2" style="font-size: 12px;">
+                                        <span class="text-muted"><i class="fas fa-receipt text-primary me-1"></i> {{ __('Already made a donation?') }}</span>
+                                        <a href="{{ route('verify.receipt') }}" class="fw-bold text-primary text-decoration-none">
+                                            {{ __('Verify Receipt & Track Here') }} &rarr;
+                                        </a>
                                     </div>
                                 </div>
                             </div>

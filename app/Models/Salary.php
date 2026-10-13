@@ -42,4 +42,16 @@ class Salary extends Model
     {
         return $this->belongsTo(Employee::class);
     }
+
+    /**
+     * Scope query to a specific Rotary Year (July 1 of start year to June 30 of end year).
+     * Example: $query->rotaryYear(2026) covers 2026-07-01 to 2027-06-30.
+     */
+    public function scopeRotaryYear($query, int $startYear = 2026)
+    {
+        $startDate = sprintf('%d-07-01', $startYear);
+        $endDate = sprintf('%d-06-30', $startYear + 1);
+
+        return $query->whereBetween('payment_date', [$startDate, $endDate]);
+    }
 }

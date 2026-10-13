@@ -33,17 +33,17 @@
                     <nav class="main-menu navbar-expand-md navbar-light">
                         <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                             <ul class="navigation clearfix">
-                                <li class="{{ request()->is('/') ? 'current' : '' }}"><a
+                                <li class="{{ request()->is('/') || request()->routeIs('home') ? 'current' : '' }}"><a
                                         href="{{ route('home') }}">{{ __('Home') }}</a></li>
-                                <li class="{{ request()->is('about*') ? 'current' : '' }}"><a
+                                <li class="{{ request()->is('about*') || request()->routeIs('about') ? 'current' : '' }}"><a
                                         href="{{ route('about') }}">{{ __('About Us') }}</a></li>
-                                <li class="{{ request()->is('project*') || request()->is('donation*') ? 'current' : '' }}"><a
+                                <li class="{{ request()->is('project*') || request()->is('donation*') || request()->routeIs('projects') || request()->routeIs('project.details') ? 'current' : '' }}"><a
                                         href="{{ route('projects') }}">{{ __('Projects & Causes') }}</a></li>
-                                <li class="{{ request()->is('activit*') || request()->is('event*') ? 'current' : '' }}"><a
+                                <li class="{{ request()->is('activit*') || request()->is('event*') || request()->routeIs('activities') || request()->routeIs('activity.details') ? 'current' : '' }}"><a
                                         href="{{ route('activities') }}">{{ __('Activities') }}</a></li>
-                                <li class="{{ request()->is('gallery*') ? 'current' : '' }}"><a
+                                <li class="{{ request()->is('gallery*') || request()->routeIs('gallery') || request()->routeIs('gallery.album') ? 'current' : '' }}"><a
                                         href="{{ route('gallery') }}">{{ __('Gallery') }}</a></li>
-                                <li class="{{ request()->is('contact*') ? 'current' : '' }}"><a
+                                <li class="{{ request()->is('contact*') || request()->routeIs('contact*') ? 'current' : '' }}"><a
                                         href="{{ route('contact') }}">{{ __('Contact') }}</a></li>
                             </ul>
                         </div>

@@ -123,23 +123,63 @@
                                             </h6>
                                         </div>
                                         <div class="card-body p-4">
-                                            <div class="row g-2 mb-3">
-                                                <div class="col-md-6 col-12">
-                                                    <label class="form-label text-dark fw-semibold"
-                                                        style="font-size: 13px;">bKash Merchant Account</label>
-                                                    <input type="text" name="bkash_number"
-                                                        class="form-control form-control-sm"
-                                                        value="{{ $settings['bkash_number'] }}"
-                                                        style="font-size: 13px; height: 38px;">
+                                            {{-- bKash Comprehensive Payment Gateway Settings --}}
+                                            <div class="p-3 mb-3 rounded" style="background-color: #fdf2f8; border: 1px solid #fbcfe8;">
+                                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                                    <span class="badge" style="background-color: #d12053; color: #fff; font-size: 12px; font-weight: 700;">bKash Payment Details</span>
+                                                    <small class="text-muted">Configurable for frontend donors</small>
                                                 </div>
-                                                <div class="col-md-6 col-12">
-                                                    <label class="form-label text-dark fw-semibold"
-                                                        style="font-size: 13px;">Nagad Merchant Account</label>
-                                                    <input type="text" name="nagad_number"
-                                                        class="form-control form-control-sm"
-                                                        value="{{ $settings['nagad_number'] }}"
-                                                        style="font-size: 13px; height: 38px;">
+                                                <div class="row g-2 mb-2">
+                                                    <div class="col-md-6 col-12">
+                                                        <label class="form-label text-dark fw-semibold" style="font-size: 12.5px;">bKash Account Number</label>
+                                                        <input type="text" name="bkash_number" class="form-control form-control-sm"
+                                                            value="{{ $settings['bkash_number'] ?? '' }}" placeholder="+880 1711-223344"
+                                                            style="font-size: 13px; height: 38px;">
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <label class="form-label text-dark fw-semibold" style="font-size: 12.5px;">Account Type</label>
+                                                        <select name="bkash_account_type" class="form-select form-select-sm" style="font-size: 13px; height: 38px;">
+                                                            <option value="Merchant" {{ ($settings['bkash_account_type'] ?? 'Merchant') === 'Merchant' ? 'selected' : '' }}>Merchant (পেমেন্ট)</option>
+                                                            <option value="Personal" {{ ($settings['bkash_account_type'] ?? '') === 'Personal' ? 'selected' : '' }}>Personal (সেন্ড মানি)</option>
+                                                            <option value="Agent" {{ ($settings['bkash_account_type'] ?? '') === 'Agent' ? 'selected' : '' }}>Agent (ক্যাশ ইন)</option>
+                                                        </select>
+                                                    </div>
                                                 </div>
+                                                <div class="row g-2 mb-2">
+                                                    <div class="col-md-6 col-12">
+                                                        <label class="form-label text-dark fw-semibold" style="font-size: 12.5px;">Merchant / Account Name</label>
+                                                        <input type="text" name="bkash_merchant_name" class="form-control form-control-sm"
+                                                            value="{{ $settings['bkash_merchant_name'] ?? '' }}" placeholder="Rotary Club of Shantinagar Dhaka"
+                                                            style="font-size: 13px; height: 38px;">
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <label class="form-label text-dark fw-semibold" style="font-size: 12.5px;">Reference Guideline Note</label>
+                                                        <input type="text" name="bkash_reference_note" class="form-control form-control-sm"
+                                                            value="{{ $settings['bkash_reference_note'] ?? '' }}" placeholder="Use Mobile Number or Project Name"
+                                                            style="font-size: 13px; height: 38px;">
+                                                    </div>
+                                                </div>
+                                                <div class="row g-2">
+                                                    <div class="col-md-6 col-12">
+                                                        <label class="form-label text-dark fw-semibold" style="font-size: 12.5px;">Step-by-Step Payment Instructions (English)</label>
+                                                        <textarea name="bkash_instructions_en" rows="4" class="form-control form-control-sm"
+                                                            style="font-size: 12px; line-height: 1.5;">{{ $settings['bkash_instructions_en'] ?? '' }}</textarea>
+                                                    </div>
+                                                    <div class="col-md-6 col-12">
+                                                        <label class="form-label text-dark fw-semibold" style="font-size: 12.5px;">পেমেন্ট নির্দেশিকা (বাংলা / Bangla)</label>
+                                                        <textarea name="bkash_instructions_bn" rows="4" class="form-control form-control-sm"
+                                                            style="font-size: 12px; line-height: 1.5;">{{ $settings['bkash_instructions_bn'] ?? '' }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label text-dark fw-semibold"
+                                                    style="font-size: 13px;">Nagad Merchant Account</label>
+                                                <input type="text" name="nagad_number"
+                                                    class="form-control form-control-sm"
+                                                    value="{{ $settings['nagad_number'] }}"
+                                                    style="font-size: 13px; height: 38px;">
                                             </div>
 
                                             <div class="mb-3">

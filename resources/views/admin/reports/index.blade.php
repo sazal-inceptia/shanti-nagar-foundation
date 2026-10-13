@@ -91,7 +91,7 @@
                             </div>
                         </form>
 
-                        @if(request('start_date') || request('end_date') || request('project_id'))
+                        @if(request('start_date') || request('end_date') || request('project_id') || (request('year') && request('year') !== '2026'))
                             <div class="d-flex align-items-center gap-2 mt-2 pt-2 border-top flex-wrap" style="font-size: 12px;">
                                 <span class="text-muted fw-semibold"><i class="ri-sound-module-line me-1"></i>Active Filters:</span>
                                 @if(request('start_date'))
@@ -103,6 +103,9 @@
                                 @if(request('project_id'))
                                     @php $activeProject = $projects->firstWhere('id', request('project_id')); @endphp
                                     <span class="badge bg-white text-dark border px-2 py-1">Project: {{ $activeProject ? $activeProject->name : 'ID #'.request('project_id') }}</span>
+                                @endif
+                                @if(request('year') && request('year') !== '2026')
+                                    <span class="badge bg-white text-dark border px-2 py-1">Year: {{ request('year') === 'all' ? 'All Years' : 'RY '.request('year').'–'.((int)request('year')+1) }}</span>
                                 @endif
                                 <a href="{{ route('admin.reports.index') }}" class="text-danger text-decoration-none fw-semibold ms-1" style="font-size: 11.5px;">
                                     Clear all <i class="ri-close-circle-line"></i>
@@ -448,7 +451,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr style="background-color: #f1f5f9; font-weight: 700;">
-                                                <td colspan="2" style="padding: 12px 16px;" class="text-dark">Annual Total ({{ $year }}):</td>
+                                                <td colspan="2" style="padding: 12px 16px;" class="text-dark">Rotary Year Total (RY {{ $year }}–{{ $year + 1 }}):</td>
                                                 <td style="padding: 12px 16px; text-align: right;" class="text-success">৳ {{ number_format($totYearInflow, 2) }}</td>
                                                 <td style="padding: 12px 16px; text-align: right;" class="text-dark">৳ {{ number_format($totYearExp, 2) }}</td>
                                                 <td style="padding: 12px 16px; text-align: right;" class="text-dark">৳ {{ number_format($totYearSal, 2) }}</td>

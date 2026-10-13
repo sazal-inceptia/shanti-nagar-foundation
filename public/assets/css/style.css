@@ -1031,7 +1031,9 @@
  }
 
  .main-menu .navigation>li.current>a,
- .main-menu .navigation>li:hover>a {}
+ .main-menu .navigation>li:hover>a {
+   color: var(--theme-primary, #005daa) !important;
+ }
 
  .main-menu .navigation>li>ul,
  .main-menu .navigation>li>.megamenu {
@@ -1568,8 +1570,14 @@
    transition: all 500ms ease;
  }
 
+ .mobile-menu .navigation li.current>a,
+ .mobile-menu .navigation li:hover>a {
+   color: var(--theme-secondary, #ffb81c) !important;
+ }
+
  .mobile-menu .navigation li.current>a:before {
    height: 100%;
+   border-left-color: var(--theme-secondary, #ffb81c) !important;
  }
 
  .mobile-menu .navigation li.dropdown .dropdown-btn {
@@ -3316,7 +3324,7 @@
    border-radius: 15px;
    overflow: hidden;
    box-shadow: 0 10px 30px rgb(0 0 0 / 10%);
-   min-height: 600px;
+   min-height: 550px;
  }
 
  .urgent-case-section .right-column .upper-box {
@@ -4747,6 +4755,8 @@
 
  .events-block-one .inner-box .image-box img {
    width: 100%;
+   height: 100%;
+   object-fit: cover;
    border-radius: 15px 50px 50px 15px;
  }
 
@@ -8615,14 +8625,24 @@
  }
 
  .image_block_2 .image-box .image {
+   /* width: 270px; */
+   height: 370px;
    border-radius: 15px;
+   overflow: hidden;
  }
 
  .image_block_2 .image-box .image img {
+   /* width: 270px; */
+   height: 370px;
+   /* max-width: 270px; */
+   object-fit: cover;
    border-radius: 15px;
+   display: block;
  }
 
  .image_block_2 .image-box .image-2 {
+   width: 270px;
+   height: 370px;
    position: absolute;
    right: 0px;
    bottom: 0px;
@@ -8656,6 +8676,8 @@
  }
 
  .image_block_2 .image-box .image-1 {
+   /* width: 270px; */
+   height: 370px;
    position: relative;
    z-index: 1;
  }
@@ -15824,15 +15846,21 @@
 
  /* Homepage Background Layers & Shapes */
  .banner-slide-1 {
-   background-image: url('../images/banner/banner-1.jpg');
+   background-image: linear-gradient(90deg, rgba(11, 28, 63, 0.88) 0%, rgba(11, 28, 63, 0.6) 45%, rgba(11, 28, 63, 0.35) 100%), url('../images/banner/hero-winter-relief.jpg');
+   background-size: cover;
+   background-position: center center;
  }
 
  .banner-slide-2 {
-   background-image: url('../images/banner/banner-2.jpg');
+   background-image: linear-gradient(90deg, rgba(11, 28, 63, 0.88) 0%, rgba(11, 28, 63, 0.6) 45%, rgba(11, 28, 63, 0.35) 100%), url('../images/banner/hero-healthcare-camp.jpg');
+   background-size: cover;
+   background-position: center center;
  }
 
  .banner-slide-3 {
-   background-image: url('../images/banner/banner-3.jpg');
+   background-image: linear-gradient(90deg, rgba(11, 28, 63, 0.88) 0%, rgba(11, 28, 63, 0.6) 45%, rgba(11, 28, 63, 0.35) 100%), url('../images/banner/hero-clean-water.jpg');
+   background-size: cover;
+   background-position: center center;
  }
 
  .banner-shape-10 {
@@ -16230,6 +16258,11 @@
    transition: all 0.25s ease;
    display: inline-block;
    text-decoration: none;
+ }
+
+ .snf-header .main-menu .navigation>li.current>a,
+ .snf-header .main-menu .navigation>li:hover>a {
+   color: var(--theme-primary, #005daa) !important;
  }
 
  /* Action / Donate Button */

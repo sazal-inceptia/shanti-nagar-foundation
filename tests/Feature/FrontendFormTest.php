@@ -223,3 +223,91 @@ test('authenticated admin can toggle volunteer status via AJAX', function () {
     $response->assertJsonPath('status', 'approved');
     expect($vol->fresh()->status)->toBe('approved');
 });
+
+test('guest can access public transparency portal and view stats', function () {
+    $response = $this->get(route('verify.receipt'));
+
+    $response->assertStatus(200);
+    $response->assertSee('Receipt Verification &amp; Transparency Portal', false);
+    $response->assertSee('Verify Donation Receipt');
+    $response->assertSee('Public Accountability &amp; Verification', false);
+});
+
+test('guest can verify donation receipt by receipt number', function () {
+    $project = Project::first() ?? Project::create([
+        'name' => 'Transparency Test Project',
+        'slug' => 'transparency-test-project-'.uniqid(),
+        'short_description' => 'Test project for receipt verification',
+        'description' => 'Detailed test description',
+        'estimated_cost' => 50000.00,
+        'status' => 'in_progress',
+        'is_published' => true,
+    ]);
+
+    $donor = Donor::create([
+        'name' => 'Transparency Test Donor',
+        'email' => 'transparency_'.uniqid().'@test.com',
+        'phone' => '+880 1711-889900',
+    ]);
+
+    $donation = Donation::create([
+        'receipt_number' => 'REC-2026-9999',
+        'donor_id' => $donor->id,
+        'project_id' => $project->id,
+        'amount' => 5000,
+        'donation_date' => now(),
+        'payment_method' => 'bkash',
+        'transaction_id' => 'TRX998877TEST',
+        'status' => 'completed',
+    ]);
+
+    $response = $this->get(route('verify.receipt', ['query' => 'REC-2026-9999']));
+
+    $response->assertStatus(200);
+    $response->assertSee('REC-2026-9999');
+    $response->assertSee('Transparency Test Donor');
+    $response->assertSee('Verified &amp; Credited', false);
+    $response->assertSee('TRX998877TEST');
+});
+
+test('guest can verify donation receipt by donor phone number', function () {
+    $project = Project::first() ?? Project::create([
+        'name' => 'Phone Search Test Project',
+        'slug' => 'phone-search-test-project-'.uniqid(),
+        'short_description' => 'Test project for phone search',
+        'description' => 'Detailed test description',
+        'estimated_cost' => 50000.00,
+        'status' => 'in_progress',
+        'is_published' => true,
+    ]);
+
+    $donor = Donor::create([
+        'name' => 'Phone Search Donor',
+        'email' => 'phone_search_'.uniqid().'@test.com',
+        'phone' => '01811-992233',
+    ]);
+
+    $donation = Donation::create([
+        'receipt_number' => 'REC-2026-8888',
+        'donor_id' => $donor->id,
+        'project_id' => $project->id,
+        'amount' => 3500,
+        'donation_date' => now(),
+        'payment_method' => 'bkash',
+        'status' => 'completed',
+    ]);
+
+    $response = $this->get(route('verify.receipt', ['query' => '01811-992233']));
+
+    $response->assertStatus(200);
+    $response->assertSee('REC-2026-8888');
+    $response->assertSee('Phone Search Donor');
+});
+
+test('verification portal shows helpful not found message for unknown query', function () {
+    $response = $this->get(route('verify.receipt', ['query' => 'UNKNOWN-999999']));
+
+    $response->assertStatus(200);
+    $response->assertSee('No Donation Receipt Found');
+    $response->assertSee('Helpful Tips &amp; Troubleshooting', false);
+});

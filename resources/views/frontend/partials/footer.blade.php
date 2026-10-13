@@ -3,7 +3,7 @@
         <div class="auto-container">
             <div class="row clearfix">
                 <!-- Column 1: Organization Brand & Tagline -->
-                <div class="col-lg-4 col-md-6 col-sm-12 footer-column">
+                <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                     <div class="footer-widget about-widget pe-lg-3">
                         <div class="footer-brand-wrap">
                             <a href="{{ route('home') }}" class="d-inline-flex align-items-center text-decoration-none">
@@ -12,7 +12,8 @@
                                     class="footer-main-logo rotary-rotating-logo">
                                 <div class="footer-brand-info">
                                     <span class="footer-brand-eyebrow">{{ __('Rotary International') }}</span>
-                                    <h4 class="footer-brand-title">{{ site_setting('org_name', 'Rotary Club of Shantinagar Dhaka') }}</h4>
+                                    <h4 class="footer-brand-title">
+                                        {{ site_setting('org_name', 'Rotary Club of Shantinagar Dhaka') }}</h4>
                                 </div>
                             </a>
                         </div>
@@ -21,7 +22,8 @@
                                 {{ site_setting('tagline', __('Dedicated to grassroots humanitarian relief, healthcare aid, and community empowerment in Bangladesh.')) }}
                             </p>
                             <div class="d-flex flex-wrap align-items-center gap-3">
-                                <a href="{{ route('volunteer') }}" class="theme-btn btn-one" style="padding: 10px 22px; font-size: 14px;">
+                                <a href="{{ route('volunteer') }}" class="theme-btn btn-one"
+                                    style="padding: 10px 22px; font-size: 14px;">
                                     <i class="fas fa-hands-helping me-1"></i> {{ __('Join As Volunteer') }}
                                 </a>
                             </div>
@@ -30,7 +32,7 @@
                 </div>
 
                 <!-- Column 2: Quick Links -->
-                <div class="col-lg-2 col-md-6 col-sm-12 footer-column">
+                <div class="col-lg-3 col-md-6 col-sm-12 footer-column">
                     <div class="footer-widget links-widget ml-30">
                         <div class="widget-title">
                             <h3>{{ __('Quick Links') }}</h3>
@@ -43,6 +45,8 @@
                                 <li><a href="{{ route('gallery') }}">{{ __('Gallery') }}</a></li>
                                 <li><a href="{{ route('volunteer') }}">{{ __('Volunteer Registration') }}</a></li>
                                 <li><a href="{{ route('faq') }}">{{ __('FAQ & Transparency') }}</a></li>
+                                <li><a href="{{ route('verify.receipt') }}">{{ __('Verify Receipt / রশিদ যাচাই') }}</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -59,7 +63,8 @@
                                 <li><a href="{{ route('projects') }}">{{ __('Healthcare & Hospital Gear') }}</a></li>
                                 <li><a href="{{ route('projects') }}">{{ __('Orphan Kits & Education') }}</a></li>
                                 <li><a href="{{ route('projects') }}">{{ __('Arsenic-Free Deep Tube-Wells') }}</a></li>
-                                <li><a href="{{ route('projects') }}">{{ __('Emergency Seasonal Food Relief') }}</a></li>
+                                <li><a href="{{ route('projects') }}">{{ __('Emergency Seasonal Food Relief') }}</a>
+                                </li>
                                 <li><a href="{{ route('projects') }}">{{ __('Zakat & Sadaqah Fund') }}</a></li>
                                 <li><a href="{{ route('donate') }}">{{ __('Direct bKash / Bank Donation') }}</a></li>
                             </ul>
@@ -80,8 +85,7 @@
                                 <h3><a
                                         href="tel:{{ preg_replace('/[^0-9+]/', '', site_setting('hotline', '+8801711000000')) }}">{{ site_setting('hotline', '+880 1711-000000') }}</a>
                                 </h3>
-                                <p><a
-                                        href="mailto:{{ site_setting('email', 'contact@rotaryshantinagardhaka.org') }}">{{
+                                <p><a href="mailto:{{ site_setting('email', 'contact@rotaryshantinagardhaka.org') }}">{{
                                         site_setting('email', 'contact@rotaryshantinagardhaka.org') }}</a>
                                 </p>
                             </div>
@@ -93,16 +97,20 @@
 
                             <!-- Social Links -->
                             <div class="footer-social-links">
-                                <a href="{{ site_setting('facebook', 'https://facebook.com') }}" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Facebook">
+                                <a href="{{ site_setting('facebook', 'https://facebook.com') }}" target="_blank"
+                                    rel="noopener noreferrer" class="footer-social-btn" title="Facebook">
                                     <i class="fab fa-facebook-f"></i>
                                 </a>
-                                <a href="{{ site_setting('twitter', 'https://twitter.com') }}" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Twitter">
+                                <a href="{{ site_setting('twitter', 'https://twitter.com') }}" target="_blank"
+                                    rel="noopener noreferrer" class="footer-social-btn" title="Twitter">
                                     <i class="fab fa-twitter"></i>
                                 </a>
-                                <a href="{{ site_setting('linkedin', 'https://linkedin.com') }}" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="LinkedIn">
+                                <a href="{{ site_setting('linkedin', 'https://linkedin.com') }}" target="_blank"
+                                    rel="noopener noreferrer" class="footer-social-btn" title="LinkedIn">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
-                                <a href="{{ site_setting('youtube', 'https://youtube.com') }}" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="YouTube">
+                                <a href="{{ site_setting('youtube', 'https://youtube.com') }}" target="_blank"
+                                    rel="noopener noreferrer" class="footer-social-btn" title="YouTube">
                                     <i class="fab fa-youtube"></i>
                                 </a>
                             </div>
@@ -118,7 +126,9 @@
                 <div class="copyright text-center">
                     <p>&copy; {{ date('Y') }} <a
                             href="{{ route('home') }}">{{ site_setting('org_name', 'Rotary Club of Shantinagar Dhaka') }}</a>.
-                        {{ __('Developed by') }} <strong style="color: var(--theme-secondary);">Inceptia</strong>. {{ __('All Rights Reserved.') }}</p>
+                        {{ __('Developed by') }} <strong style="color: var(--theme-secondary);">Inceptia</strong>.
+                        {{ __('All Rights Reserved.') }}
+                    </p>
                 </div>
             </div>
         </div>

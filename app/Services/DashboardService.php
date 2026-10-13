@@ -18,20 +18,22 @@ class DashboardService
     {
         $donationsQuery = Donation::where('status', 'completed');
         $expensesQuery = Expense::query();
+        $salariesQuery = Salary::where('status', 'paid');
         $projectsQuery = Project::query();
         $employeesQuery = Employee::where('is_active', true);
 
         if ($year !== null) {
             $donationsQuery->rotaryYear($year);
             $expensesQuery->rotaryYear($year);
+            $salariesQuery->rotaryYear($year);
             $projectsQuery->rotaryYear($year);
             $employeesQuery->rotaryYear((string) $year);
         }
 
         $totalDonations = (float) $donationsQuery->sum('amount');
-        $totalExpenses = (float) $expensesQuery->sum('amount');
-        $totalSalaries = (float) Salary::where('status', 'paid')->sum('net_paid_amount');
-        $totalExpenditure = $totalExpenses + $totalSalaries;
+        $totalDirectExpenses = (float) $expensesQuery->sum('amount');
+        $totalSalaries = (float) $salariesQuery->sum('net_paid_amount');
+        $totalExpenditure = $totalDirectExpenses + $totalSalaries;
         $netFundBalance = $totalDonations - $totalExpenditure;
 
         $totalDonors = Donor::count();
@@ -41,6 +43,8 @@ class DashboardService
 
         return [
             'total_donations' => $totalDonations,
+            'total_direct_expenses' => $totalDirectExpenses,
+            'total_salaries' => $totalSalaries,
             'total_expenses' => $totalExpenditure,
             'net_fund_balance' => $netFundBalance,
             'total_donors' => $totalDonors,
@@ -48,6 +52,8 @@ class DashboardService
             'total_projects' => $totalProjects,
             'total_employees' => $totalEmployees,
             'donations_count' => (clone $donationsQuery)->count(),
+            'expenses_count' => (clone $expensesQuery)->count(),
+            'salaries_count' => (clone $salariesQuery)->count(),
         ];
     }
 

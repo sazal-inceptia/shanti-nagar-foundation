@@ -329,6 +329,52 @@
     - Expanded automated Pest test suite covering activity/gallery filtering and report voucher audit trail (78 tests, 349 assertions, 100% pass)
     - Cleaned and formatted PHP code with `vendor/bin/pint --dirty --format agent`
 
+- [x] **Phase 15: Universal Project Card Standardization & Admin Financial Calculation Alignment**
+  - [x] **Universal Project Card Dynamic Standardization:**
+    - Standardized `.donate-inner` across Home page (Urgent Case section & Case carousel tabs), Projects page (Signature spotlight & All projects grid), and Project Details page (Upper KPI box)
+    - Injected dynamic BDT currency formatting (`৳{{ localized_number($raised) }} / ৳{{ localized_number($target) }}`), reactive progress bars (`.bar-inner.count-bar.counted`), and interactive donation popup buttons with automatic project selection
+    - Harmonized stylesheet and responsive layout styles in `style.css` and `responsive.css`
+  - [x] **Admin Financial Calculation & Filter Parity:**
+    - Added `scopeRotaryYear` query scope to [`Salary.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/app/Models/Salary.php) model
+    - Scoped staff payroll in [`DashboardService.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/app/Services/DashboardService.php) by Rotary Year and exposed `total_direct_expenses` & `total_salaries` sub-breakdown
+    - Created `resolveDateRange` in [`ReportService.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/app/Services/ReportService.php) prioritizing custom `start_date` & `end_date` over rotary year
+    - Scoped `MonthlyBreakdown` to the authentic 12-month Rotary fiscal year (July to June) and applied `project_id` filtering
+    - Scoped `getExpenseCategoryBreakdown`, `getTransactions`, `getAuditedVouchers`, and `getProjectBalances` to date range and project allocation filters
+    - Integrated staff payroll into CSV export and aligned Net Surplus formula
+    - Automated test suite expanded to 80 tests with 386 assertions (100% passing)
+
+- [x] **Phase 16: Public Transparency & Receipt Verification Portal, Home Card Tab Sync, and Configurable bKash Gateway**
+  - [x] **Donor Receipt Verification & Public Tracking Portal (Transparency Portal):**
+    - Created dedicated public route `/verify-receipt` mapped to `HomeController@verifyReceipt`
+    - Built comprehensive Blade view [`resources/views/frontend/verify-receipt.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/frontend/verify-receipt.blade.php) featuring:
+      - Quick search input supporting Receipt Serial (`REC-2026-XXXX`), Donor Mobile Number (`017...`), and Transaction ID (`TrxID`)
+      - Real-time matched results cards with status badges (`Verified & Credited`, `Pledge Pending Verification`, `Cancelled`), masked phone privacy, cause details, localized ৳ amount, and 1-click button to printable money receipt (without artificial seal, featuring clean President & Treasurer signatures)
+      - Informative empty/not found state with troubleshooting guidelines and direct WhatsApp/Hotline support
+      - 4 Key public transparency KPI counter cards (Total Verified Funds, Audited Receipts, Active Causes, Grassroots Benefactors)
+      - 3 Rotary transparency pillar cards and recent public verified audit ledger table
+    - Integrated direct navigation link in footer quick links ([`resources/views/frontend/partials/footer.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/frontend/partials/footer.blade.php)) and removed from main header menu
+  - [x] **Home Page Dynamic Carousel Cards Synchronization:**
+    - Cleaned up dynamic category tabs (`tab-2`, `tab-3`, ...) in [`resources/views/frontend/index.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/frontend/index.blade.php) to align with Tab-1 by removing percentage-box and keeping clean `.donate-inner` with `.amount-box` and modal trigger button
+  - [x] **Configurable bKash Payment Credentials & Guidance:**
+    - Expanded system settings in [`SettingController.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/app/Http/Controllers/Admin/SettingController.php) and [`SettingSeeder.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/database/seeders/SettingSeeder.php) with `bkash_number`, `bkash_account_type`, `bkash_merchant_name`, `bkash_reference_note`, `bkash_instructions_en`, and `bkash_instructions_bn`
+    - Built rich administrative inputs in [`resources/views/admin/settings/index.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/admin/settings/index.blade.php) under the Donation Gateways card
+    - Updated [`resources/views/frontend/donate.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/frontend/donate.blade.php) and donate popup modal in [`resources/views/frontend/layouts/app.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/frontend/layouts/app.blade.php) with bKash card, 1-click clipboard copy, reference guidance, step-by-step payment guide, and link to verification portal
+  - [x] **Prothom Alo Style Bangla Typography & Bangladeshi Visual Alignment:**
+    - Integrated Google Fonts for modern Bengali newspaper typography: `Anek Bangla`, `Noto Sans Bengali`, and `Hind Siliguri` (with `SolaimanLipi` / `Kalpurush` fallbacks)
+    - Applied global CSS rules in [`resources/views/frontend/layouts/app.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/frontend/layouts/app.blade.php) transforming all Bengali headlines, text, buttons, and navigation into Prothom-Alo-grade crisp typography
+    - Replaced generic/foreign stock slider images with high-definition authentic on-ground Bangladeshi humanitarian imagery directly generated for the foundation's core pillars:
+      - **Slide 1:** Winter blanket & emergency relief food package distribution in rural Bangladesh ([`public/assets/images/banner/hero-winter-relief.jpg`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/public/assets/images/banner/hero-winter-relief.jpg))
+      - **Slide 2:** Free community medical camp, wheelchair & hospital aid in Bangladesh ([`public/assets/images/banner/hero-healthcare-camp.jpg`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/public/assets/images/banner/hero-healthcare-camp.jpg))
+      - **Slide 3:** Arsenic-free deep tube-well & pure drinking water initiative with Bangladeshi village families ([`public/assets/images/banner/hero-clean-water.jpg`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/public/assets/images/banner/hero-clean-water.jpg))
+    - Configured directional high-contrast gradient overlay (`linear-gradient(90deg, rgba(11, 28, 63, 0.88) 0%, rgba(11, 28, 63, 0.6) 45%, rgba(11, 28, 63, 0.35) 100%)`) in [`resources/views/frontend/index.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/frontend/index.blade.php) and [`public/assets/css/style.css`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/public/assets/css/style.css) ensuring optimal readability of Bengali headline copy and buttons while showcasing realistic Bangladeshi humanitarian work
+    - Enriched all home page sections with 100% authentic Rotary Club of Shantinagar Dhaka humanitarian relief content and district affiliations
+    - Implemented active/current navigation menu dynamic primary color state (`var(--theme-primary, #005daa)`) across desktop (`.snf-header`) and mobile menus with resilient route matching (`request()->routeIs(...)` + `request()->is(...)`)
+    - Reorganized About Us section imagery with strict `270px × 370px` dimensions (`object-fit: cover`) across [`public/assets/css/style.css`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/public/assets/css/style.css) and [`resources/views/frontend/index.blade.php`](file:///Users/zesan/Desktop/My-Work/shanti-nagar-foundation/resources/views/frontend/index.blade.php), aligning the two overlapping portrait cards with the rotating badge and bottom relief banner perfectly
+  - [x] **Quality Assurance & Verification:**
+    - Added automated feature tests in `FrontendFormTest.php` and `ProfileAndSettingTest.php`
+    - All 85 automated Pest tests passing with 407 assertions (100% pass)
+    - Formatted code cleanly with `vendor/bin/pint --dirty --format agent`
+
 ---
 
 ## 📊 Overall Progress Summary
@@ -346,4 +392,7 @@
 - **Phase 12 (DOCX Ingestion & Year-Wise Image Extraction):** 100% Complete ✅
 - **Phase 13 (Verbatim Document Text Schema & Project Reports):** 100% Complete ✅
 - **Phase 14 (Cross-Module Year Filtering & Financial Voucher Audit):** 100% Complete ✅
+- **Phase 15 (Project Card Standardization & Financial Parity):** 100% Complete ✅
+- **Phase 16 (Transparency Portal, Home Card Sync & bKash Gateway):** 100% Complete ✅
+
 

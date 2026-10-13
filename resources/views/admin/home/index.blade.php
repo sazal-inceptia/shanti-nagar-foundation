@@ -304,7 +304,7 @@
                             <div class="stat-value" style="color: #dc2626;">
                                 <span class="stat-currency">৳</span>{{ number_format($kpi['total_expenses'], 2) }}
                             </div>
-                            <div class="stat-subtext">Project relief &amp; staff salary</div>
+                            <div class="stat-subtext">Direct: ৳{{ number_format($kpi['total_direct_expenses'], 0) }} | Salaries: ৳{{ number_format($kpi['total_salaries'], 0) }}</div>
                         </div>
                         <div class="stat-icon-wrapper" style="background-color: #fff1f2; color: #dc2626;">
                             <i class="ri-money-dollar-circle-line"></i>

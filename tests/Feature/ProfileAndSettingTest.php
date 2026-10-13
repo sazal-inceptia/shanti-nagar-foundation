@@ -85,3 +85,27 @@ test('authenticated admin can update system settings and see changes on public p
     $publicResponse->assertSee('+880 1999-888777');
     $publicResponse->assertSee('help@rotaryshantinagardhaka.org');
 });
+
+test('authenticated admin can configure bKash payment details and view them on donate page', function () {
+    $admin = User::first() ?? User::factory()->create();
+
+    $response = $this->actingAs($admin)->put(route('admin.settings.update'), [
+        'org_name' => 'Rotary Club of Shantinagar Dhaka',
+        'bkash_number' => '+880 1799-887766',
+        'bkash_account_type' => 'Merchant',
+        'bkash_merchant_name' => 'Rotary Shantinagar Relief Counter',
+        'bkash_reference_note' => 'Please mention Project Name in Reference',
+        'bkash_instructions_en' => '1. Dial *247# or open bKash App',
+        'bkash_instructions_bn' => '১. বিকাশ অ্যাপ ওপেন করুন',
+    ]);
+
+    $response->assertRedirect();
+    $response->assertSessionHas('success');
+
+    // Verify on donation page
+    $donateResponse = $this->get(route('donate'));
+    $donateResponse->assertStatus(200);
+    $donateResponse->assertSee('+880 1799-887766');
+    $donateResponse->assertSee('Rotary Shantinagar Relief Counter');
+    $donateResponse->assertSee('Please mention Project Name in Reference');
+});

@@ -20,13 +20,10 @@
     <!-- Fav Icon -->
     <link rel="icon" href="{{ asset('assets/images/logo.png') }}" type="image/png">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300;1,400;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <!-- Google Fonts including Prothom Alo style Bangla Webfonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300;400;500;600;700;800&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <!-- Stylesheets -->
     <link href="{{ asset('assets/css/font-awesome-all.css') }}" rel="stylesheet">
@@ -44,8 +41,42 @@
     <!-- Toastr Flash Notification CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <!-- Global Layout Alignment -->
+    <!-- Global Layout Alignment & Prothom Alo Bangla Typography -->
     <style>
+        /* Prothom Alo Inspired Newspaper Bangla Font Stack */
+        :lang(bn),
+        [lang="bn"],
+        html[lang="bn"],
+        html[lang="bn"] body,
+        html[lang="bn"] h1, html[lang="bn"] h2, html[lang="bn"] h3, html[lang="bn"] h4, html[lang="bn"] h5, html[lang="bn"] h6,
+        html[lang="bn"] p, html[lang="bn"] a, html[lang="bn"] span, html[lang="bn"] div, html[lang="bn"] button,
+        html[lang="bn"] input, html[lang="bn"] select, html[lang="bn"] textarea, html[lang="bn"] label, html[lang="bn"] li,
+        .bangla-text, .bn-font, .bn-text {
+            font-family: 'Anek Bangla', 'Noto Sans Bengali', 'SolaimanLipi', 'Hind Siliguri', 'Kalpurush', 'Siyam Rupali', sans-serif !important;
+        }
+
+        html[lang="bn"] h1, html[lang="bn"] h2, html[lang="bn"] h3, html[lang="bn"] h4, html[lang="bn"] h5, html[lang="bn"] h6,
+        html[lang="bn"] .sec-title h2, html[lang="bn"] .banner-section h2, html[lang="bn"] .banner-section h3,
+        html[lang="bn"] .widget-title h3, html[lang="bn"] .case-block-one h3, html[lang="bn"] .events-block-one h3 {
+            font-family: 'Anek Bangla', 'Noto Sans Bengali', 'SolaimanLipi', sans-serif !important;
+            font-weight: 700 !important;
+            letter-spacing: -0.015em !important;
+            line-height: 1.35 !important;
+        }
+
+        html[lang="bn"] p, html[lang="bn"] .text, html[lang="bn"] .desc {
+            font-family: 'Anek Bangla', 'Noto Sans Bengali', 'SolaimanLipi', sans-serif !important;
+            line-height: 1.8 !important;
+            letter-spacing: 0.005em !important;
+        }
+
+        /* Fallback for mixed English/Bangla text */
+        body {
+            font-family: 'Nunito Sans', 'Anek Bangla', 'Noto Sans Bengali', 'SolaimanLipi', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6, .sec-title h2 {
+            font-family: 'Quicksand', 'Anek Bangla', 'Noto Sans Bengali', 'SolaimanLipi', sans-serif;
+        }
         .snf-header .auto-container,
         .main-header .auto-container,
         .auto-container {
@@ -661,6 +692,26 @@
                                                 <label for="popup-pm-4">{{ __('Cash / Direct') }}</label>
                                             </li>
                                         </ul>
+
+                                        {{-- bKash Account Quick Credentials in Modal --}}
+                                        <div class="mt-3 p-3 rounded" style="background-color: #fdf2f8; border: 1px solid #fbcfe8; font-size: 12.5px;">
+                                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                                <strong style="color: #d12053;"><i class="fas fa-wallet me-1"></i> {{ __('bKash') }} ({{ site_setting('bkash_account_type', 'Merchant') }})</strong>
+                                                <span class="badge" style="background-color: #d12053; color: #fff; font-size: 10px;">{{ site_setting('bkash_merchant_name', 'Rotary Club of Shantinagar Dhaka') }}</span>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="text-dark fw-bold font-monospace" style="font-size: 15px;">
+                                                    {{ site_setting('bkash_number', '+880 1711-223344') }}
+                                                </div>
+                                                <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2" onclick="navigator.clipboard.writeText('{{ preg_replace('/[^0-9+]/', '', site_setting('bkash_number', '+8801711223344')) }}'); this.innerText='{{ __('Copied!') }}'; setTimeout(() => this.innerText='{{ __('Copy') }}', 2000);"
+                                                    style="font-size: 11px; border-color: #d12053; color: #d12053; border-radius: 4px;">
+                                                    {{ __('Copy') }}
+                                                </button>
+                                            </div>
+                                            <div class="text-muted mt-1" style="font-size: 11px;">
+                                                <i class="fas fa-info-circle me-1"></i> {{ __('Ref') }}: {{ site_setting('bkash_reference_note', 'Use Phone or Project Name') }}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
