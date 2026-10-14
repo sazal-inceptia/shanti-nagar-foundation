@@ -11050,13 +11050,16 @@
 
  .case-details .donate-inner {
    position: relative;
-   display: inline-block;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
    width: 100%;
-   padding: 14px 180px 16px 20px;
+   padding: 16px 22px;
    border-radius: 15px;
-   overflow: hidden;
    box-shadow: 0 10px 15px 10px rgb(0 0 0 / 8%);
    background-color: #ffffff;
+   gap: 16px;
+   min-height: 94px;
  }
 
  .case-details .donate-inner .pattern-layer-2 {
@@ -11068,132 +11071,192 @@
    background-size: cover;
    background-repeat: no-repeat;
    background-position: center;
+   opacity: 0.12;
+   pointer-events: none;
+   border-radius: 15px;
+ }
+
+ .case-details .donate-inner .kpi-main-content {
+   display: flex;
+   align-items: center;
+   flex: 1 1 auto;
+   gap: 20px;
+   min-width: 0;
  }
 
  .case-details .donate-inner .amount-box {
    position: relative;
-   padding-left: 50px;
-   float: left;
-   margin-right: 30px;
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   flex-shrink: 0;
+   margin: 0;
+   padding: 0;
+   float: none;
  }
 
  .case-details .donate-inner .amount-box .icon-box {
-   position: absolute;
-   left: 0px;
-   top: 6px;
-   width: 40px;
-   height: 40px;
-   line-height: 40px;
-   font-size: 18px;
-   background-color: #ffffff;
+   position: static;
+   width: 44px;
+   height: 44px;
+   line-height: 44px;
+   font-size: 20px;
+   background: rgba(0, 93, 170, 0.08);
+   color: var(--theme-primary, #005daa);
    border-radius: 50%;
    text-align: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-shrink: 0;
  }
 
+ .case-details .donate-inner .amount-meta h5,
  .case-details .donate-inner .amount-box h5 {
-   font-size: 16px;
-   line-height: 24px;
+   font-size: 13px;
+   line-height: 1.2;
    font-weight: 700;
-   margin-bottom: 2px;
+   color: #64748b;
+   text-transform: uppercase;
+   letter-spacing: 0.05em;
+   margin-bottom: 3px;
  }
 
+ .case-details .donate-inner .amount-meta .price,
  .case-details .donate-inner .amount-box .price {
    position: relative;
-   display: block;
-   font-size: 16px;
-   line-height: 24px;
-   font-weight: 700;
+   display: flex;
+   align-items: baseline;
+   font-size: 17px;
+   line-height: 1.2;
+   font-weight: 800;
+   margin: 0;
+ }
+
+ .case-details .donate-inner .price-raised {
+   color: var(--theme-primary, #005daa);
+ }
+
+ .case-details .donate-inner .price-target {
+   font-size: 13.5px;
+   font-weight: 600;
+   color: #94a3b8;
+   margin-left: 4px;
  }
 
  .case-details .donate-inner .amount-box .price span {
-   color: #b7b1af;
+   color: #94a3b8;
  }
 
- .case-details .donate-inner .percentage-box {
-   position: relative;
-   float: right;
-   padding-left: 16px;
-   top: 15px;
-   padding-right: 10px;
+ /* Progress Section */
+ .case-details .donate-inner .kpi-progress-wrapper {
+   flex: 1 1 auto;
+   min-width: 110px;
  }
 
- .case-details .donate-inner .percentage-box .bar {
-   position: absolute;
-   left: 0px;
-   top: -9px;
-   width: 4px;
-   height: 40px;
-   background-color: #dddad8;
- }
-
- .case-details .donate-inner .percentage-box .bar:before {
-   position: absolute;
-   content: '';
-   width: 100%;
-   height: 53%;
-   left: 0px;
-   bottom: 0px;
- }
-
- .case-details .donate-inner .percentage-box h5 {
-   font-size: 18px;
-   line-height: 24px;
-   font-weight: 700;
- }
-
- .case-details .donate-inner .btn-box {
-   position: absolute;
+ .case-details .donate-inner .progress-labels {
    display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 5px;
+   font-size: 12px;
+   line-height: 1.2;
+ }
+
+ .case-details .donate-inner .progress-title {
+   color: #64748b;
+   font-weight: 600;
+ }
+
+ .case-details .donate-inner .progress-percent {
+   font-weight: 800;
+   color: #0b1c3f;
+   font-family: 'Quicksand', sans-serif;
+ }
+
+ .case-details .donate-inner .progress-bar-track {
+   width: 100%;
+   height: 7px;
+   background-color: #f1f5f9;
+   border-radius: 99px;
+   overflow: hidden;
+   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+ }
+
+ .case-details .donate-inner .progress-bar-fill {
    height: 100%;
-   right: 0px;
-   top: 0px;
-   width: 160px;
+   border-radius: 99px;
+   background: linear-gradient(90deg, var(--theme-primary, #005daa) 0%, var(--theme-secondary, #ffb81c) 100%);
+   transition: width 0.6s ease;
+ }
+
+ /* Action Button */
+ .case-details .donate-inner .btn-box {
+   position: static;
+   display: flex;
+   align-items: center;
+   flex-shrink: 0;
+   width: auto;
+   height: auto;
  }
 
  .case-details .donate-inner .btn-box button,
  .case-details .donate-inner .btn-box a,
  .case-details .donate-inner .btn-box .donate-box-btn {
    position: relative;
-   display: flex;
+   display: inline-flex;
    align-items: center;
    justify-content: center;
-   width: 100%;
-   height: 100%;
-   font-size: 14px;
-   line-height: 24px;
+   padding: 10px 20px;
+   background: var(--theme-primary, #005daa);
    color: #ffffff !important;
+   font-size: 13.5px;
    font-weight: 700;
    text-transform: uppercase;
-   text-align: center;
-   z-index: 1;
-   background: transparent;
+   letter-spacing: 0.03em;
+   border-radius: 25px;
    border: none;
    cursor: pointer;
    text-decoration: none;
-   transition: all 500ms ease;
+   white-space: nowrap;
+   box-shadow: 0 4px 12px rgba(0, 93, 170, 0.25);
+   transition: all 0.3s ease;
  }
 
  .case-details .donate-inner .btn-box button:before,
  .case-details .donate-inner .btn-box a:before,
  .case-details .donate-inner .btn-box .donate-box-btn:before {
-   position: absolute;
-   content: '';
-   background-image: url(../images/shape/shape-9.png);
-   width: 100%;
-   height: 100%;
-   left: 0px;
-   top: 0px;
-   background-size: cover;
-   background-repeat: no-repeat;
-   background-position: center;
-   z-index: -1;
-   transition: all 500ms ease;
+   display: none !important;
  }
 
- .case-details .donate-inner .btn-box button:hover:before,
- .case-details .donate-inner .btn-box a:hover:before,
- .case-details .donate-inner .btn-box .donate-box-btn:hover:before {
-   background-image: url(../images/shape/shape-41.png);
+ .case-details .donate-inner .btn-box button:hover,
+ .case-details .donate-inner .btn-box a:hover,
+ .case-details .donate-inner .btn-box .donate-box-btn:hover {
+   background: #004480;
+   box-shadow: 0 6px 16px rgba(0, 93, 170, 0.35);
+   transform: translateY(-1px);
+ }
+
+ @media (max-width: 991px) {
+   .case-details .donate-inner {
+     flex-wrap: wrap;
+     padding: 18px 20px;
+     margin-bottom: 25px;
+   }
+   .case-details .donate-inner .kpi-main-content {
+     width: 100%;
+     flex-wrap: wrap;
+   }
+   .case-details .donate-inner .kpi-progress-wrapper {
+     width: 100%;
+     min-width: 100%;
+   }
+   .case-details .donate-inner .btn-box {
+     width: 100%;
+   }
+   .case-details .donate-inner .btn-box .donate-box-btn {
+     width: 100%;
+   }
  }
 
  .donate-box-btn {
@@ -16181,11 +16244,24 @@
  }
 
  .header-brand-title {
-   font-size: 16.5px;
-   font-weight: 800;
-   color: #0f172a;
-   letter-spacing: -0.02em;
+   font-size: 17px;
+   display: flex;
+   flex-direction: column;
+   line-height: 1.15;
    white-space: nowrap;
+ }
+
+ .header-brand-title .brand-line-prefix {
+   font-weight: 700;
+   color: #475569;
+   letter-spacing: -0.01em;
+   line-height: 1.2;
+ }
+
+ .header-brand-title .brand-line-name {
+   font-weight: 800;
+   color: #0b1c3f;
+   letter-spacing: -0.02em;
    line-height: 1.15;
  }
 

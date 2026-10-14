@@ -39,21 +39,33 @@
             <div class="upper-box kpi-row">
                 <div class="row clearfix align-items-center">
                     <div class="col-lg-6 col-md-12 col-sm-12 left-column">
-                        <div class="donate-inner clearfix">
+                        <div class="donate-inner clearfix snf-project-kpi-card">
                             <div class="pattern-layer-2" style="background-image: url({{ asset('assets/images/shape/shape-8.png') }});"></div>
-                            <div class="amount-box">
-                                <div class="icon-box"><i class="icon-donation-1"></i></div>
-                                <h5>{{ __('Fund Raised') }}</h5>
-                                <div class="price">৳{{ localized_number($raised) }} <span>/ ৳{{ localized_number($target) }}</span></div>
-                            </div>
-                            <div class="percentage-box">
-                                <div class="bar">
-                                    <div class="bar-inner count-bar counted" data-percent="{{ $percent }}%" style="width: {{ $percent }}%;"></div>
+                            <div class="kpi-main-content">
+                                <div class="amount-box">
+                                    <div class="icon-box"><i class="icon-donation-1"></i></div>
+                                    <div class="amount-meta">
+                                        <h5>{{ __('Fund Raised') }}</h5>
+                                        <div class="price">
+                                            <span class="price-raised">৳{{ localized_number($raised) }}</span>
+                                            <span class="price-target">/ ৳{{ localized_number($target) }}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="count-text">{{ localized_number($percent) }}%</div>
+                                <div class="kpi-progress-wrapper">
+                                    <div class="progress-labels">
+                                        <span class="progress-title">{{ __('Progress') }}</span>
+                                        <span class="progress-percent">{{ localized_number($percent) }}%</span>
+                                    </div>
+                                    <div class="progress-bar-track">
+                                        <div class="progress-bar-fill bar-inner count-bar counted" data-percent="{{ $percent }}%" style="width: {{ min(100, $percent) }}%;"></div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="btn-box">
-                                <button type="button" class="donate-box-btn" onclick="if(document.querySelector('#donate-popup select[name=\'project_id\']')){ document.querySelector('#donate-popup select[name=\'project_id\']').value = '{{ $project->id }}'; if(window.jQuery && $.fn.niceSelect){ $('#donate-popup select[name=\'project_id\']').niceSelect('update'); } }">{{ __('Donate Now') }}</button>
+                                <button type="button" class="donate-box-btn" onclick="if(document.querySelector('#donate-popup select[name=\'project_id\']')){ document.querySelector('#donate-popup select[name=\'project_id\']').value = '{{ $project->id }}'; if(window.jQuery && $.fn.niceSelect){ $('#donate-popup select[name=\'project_id\']').niceSelect('update'); } }">
+                                    <i class="fas fa-heart me-1"></i> {{ __('Donate Now') }}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -388,36 +400,6 @@
                                     </div>
                                 </form>
                             </div>
-
-                            {{-- Recent Donors List --}}
-                            @if(isset($recentDonors) && $recentDonors->count() > 0)
-                                <div class="content-four mt-5 pt-3">
-                                    <div class="text mb-4">
-                                        <h3 class="section-title-sub-2">{{ __('Supporters') }}</h3>
-                                        <p class="text-muted">{{ __('Honoring compassionate donors who supported this mission.') }}</p>
-                                    </div>
-                                    <div class="row clearfix g-3">
-                                        @foreach($recentDonors as $dn)
-                                            <div class="col-md-4 col-sm-6 mb-3">
-                                                <div class="p-3 border rounded bg-white shadow-sm d-flex align-items-center gap-3 donor-card-item">
-                                                    @if($dn->donor?->avatar_url)
-                                                        <img src="{{ $dn->donor->avatar_url }}"
-                                                               class="rounded-circle object-fit-cover donor-avatar-circle"
-                                                               alt="{{ $dn->donor->name }}">
-                                                    @endif
-                                                    <div>
-                                                        <h6 class="mb-0 fw-bold text-dark donor-name-text">
-                                                            {{ $dn->donor?->is_anonymous ? __('Well-wisher (Anonymous)') : ($dn->donor?->name ?? __('Donors')) }}</h6>
-                                                        <span class="text-success fw-bold donor-amount-text">৳{{ localized_number((float) $dn->amount) }}</span>
-                                                        <div class="text-muted small donor-date-text">
-                                                            {{ is_bengali() ? \Carbon\Carbon::parse($dn->donation_date)->translatedFormat('d M, Y') : \Carbon\Carbon::parse($dn->donation_date)->format('d M, Y') }}</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endif
 
                         </div>
                     </div>

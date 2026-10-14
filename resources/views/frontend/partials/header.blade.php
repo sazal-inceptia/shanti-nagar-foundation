@@ -13,9 +13,9 @@
                             <span class="header-brand-eyebrow">
                                 {{ __('Rotary International') }}
                             </span>
-                            <span class="header-brand-title">{{ __('Rotary Club of Shantinagar') }}</span>
-                            <span class="header-brand-subtitle">
-                                <span class="badge-city">{{ __('Dhaka') }}</span>
+                            <span class="header-brand-title">
+                                <span class="brand-line-prefix">{{ __('Rotary Club of') }}</span>
+                                <span class="brand-line-name">{{ __('Shantinagar Dhaka') }}</span>
                             </span>
                         </div>
                     </a>
