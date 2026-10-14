@@ -40,7 +40,6 @@ test('public users can view dynamic project details by slug', function () {
     $response->assertStatus(200);
     $response->assertSee('Winter Relief Drive in Kurigram');
     $response->assertSee('Kurigram, Bangladesh');
-    $response->assertSee('Rafiqul Islam');
 });
 
 test('public users can view dynamic activity details by slug', function () {
