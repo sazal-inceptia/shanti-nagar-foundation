@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('employee_id', 50)->unique();
             $table->string('rotary_id', 50)->nullable()->index();
             $table->string('name');
+            $table->string('name_bn')->nullable();
             $table->foreignId('designation_id')->nullable()->constrained('designations')->nullOnDelete();
             $table->string('phone', 30)->nullable();
             $table->string('email')->nullable();
@@ -27,9 +28,16 @@ return new class extends Migration
             $table->text('speech')->nullable();
             $table->string('speech_tag', 150)->nullable();
             $table->text('bio')->nullable();
+            $table->text('bio_bn')->nullable();
             $table->string('signature_text', 150)->nullable();
             $table->string('signature_title', 150)->nullable();
             $table->string('badge_title', 100)->nullable();
+            $table->string('tenure', 100)->nullable();
+            $table->string('year_badge', 50)->nullable();
+            $table->string('rotary_theme')->nullable();
+            $table->string('rotary_theme_bn')->nullable();
+            $table->string('focus_area')->nullable();
+            $table->string('focus_area_bn')->nullable();
             $table->string('facebook_url')->nullable();
             $table->string('twitter_url')->nullable();
             $table->string('linkedin_url')->nullable();

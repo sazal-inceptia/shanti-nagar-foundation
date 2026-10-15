@@ -270,6 +270,25 @@
                                 </div>
                             @endif
 
+                            @if($project->video_url)
+                                <div class="content-video mt-4 pt-2">
+                                    <h3 class="section-title-sub-2 d-flex align-items-center">
+                                        <i class="fas fa-video text-danger me-2"></i> {{ __('Video Documentation') }}
+                                    </h3>
+                                    <div class="project-video-card mt-3 mb-4 p-3 rounded-4 shadow-sm bg-white border">
+                                        <div class="ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm" style="background-color: #0b1c3f;">
+                                            <video controls preload="metadata" poster="{{ $project->featured_image ? asset($project->featured_image) : '' }}" class="w-100 h-100" style="object-fit: contain;">
+                                                <source src="{{ asset($project->video_url) }}" type="video/mp4">
+                                                {{ __('Your browser does not support the video tag.') }}
+                                            </video>
+                                        </div>
+                                        <p class="small text-muted mt-2 mb-0 text-center">
+                                            <i class="fas fa-play-circle me-1 text-danger"></i> {{ __('On-ground video documentation: :title', ['title' => $project->localized_name]) }}
+                                        </p>
+                                    </div>
+                                </div>
+                            @endif
+
                             {{-- Make Donation Form Section --}}
                             <div class="donate-content mt-5 pt-3" id="make-donation-section">
                                 <div class="title mb-4">

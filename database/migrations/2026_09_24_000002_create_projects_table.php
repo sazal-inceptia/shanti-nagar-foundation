@@ -11,10 +11,13 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('name_bn')->nullable();
             $table->string('slug')->unique();
             $table->foreignId('project_type_id')->nullable()->constrained('project_types')->nullOnDelete();
             $table->text('short_description')->nullable();
+            $table->text('short_description_bn')->nullable();
             $table->longText('description')->nullable();
+            $table->longText('description_bn')->nullable();
             $table->longText('background')->nullable();
             $table->longText('background_bn')->nullable();
             $table->json('objectives')->nullable();
@@ -32,6 +35,7 @@ return new class extends Migration
             $table->date('completion_date')->nullable();
             $table->enum('status', ['planned', 'in_progress', 'completed', 'cancelled'])->default('planned');
             $table->string('location')->nullable();
+            $table->string('location_bn')->nullable();
             $table->string('target_beneficiaries')->nullable();
             $table->string('target_beneficiaries_bn')->nullable();
             $table->string('featured_image')->nullable();

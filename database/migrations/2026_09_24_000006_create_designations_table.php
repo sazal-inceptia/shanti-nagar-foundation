@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('designations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('name_bn')->nullable();
             $table->string('slug')->unique();
             $table->string('category')->nullable();
             $table->integer('order_index')->default(0);

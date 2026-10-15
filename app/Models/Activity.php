@@ -25,6 +25,7 @@ class Activity extends Model
         'description',
         'description_bn',
         'featured_image',
+        'video_url',
         'status',
         'is_featured',
         'is_published',

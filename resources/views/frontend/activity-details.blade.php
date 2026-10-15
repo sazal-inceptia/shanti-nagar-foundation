@@ -77,9 +77,30 @@
                                 </div>
                                 <div class="clearfix" style="clear: both;"></div>
                                 <p class="mt-3" style="clear: both;">{{ __('Under this initiative, our local committee coordinates direct procurement and distribution to ensure 100% transparency and accurate beneficiary reach without intermediaries.') }}</p>
-                            </div>
 
-                            
+                                @if($activity->video_url)
+                                    <div class="activity-video-card mt-4 mb-4 p-3 p-md-4 rounded-4 shadow-sm bg-white border">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="rounded-circle bg-danger text-white d-flex align-items-center justify-content-center me-3" style="width: 44px; height: 44px; min-width: 44px;">
+                                                <i class="fas fa-play" style="font-size: 16px; margin-left: 2px;"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="mb-0 fw-bold">{{ __('Event Video Documentation') }}</h4>
+                                                <small class="text-muted">{{ __('Official video record from the field event') }}</small>
+                                            </div>
+                                        </div>
+                                        <div class="ratio ratio-16x9 rounded-3 overflow-hidden shadow-sm" style="background-color: #0b1c3f;">
+                                            <video controls preload="metadata" poster="{{ $activity->featured_image ? asset($activity->featured_image) : '' }}" class="w-100 h-100" style="object-fit: contain;">
+                                                <source src="{{ asset($activity->video_url) }}" type="video/mp4">
+                                                {{ __('Your browser does not support the video tag.') }}
+                                            </video>
+                                        </div>
+                                        <p class="small text-muted mt-2 mb-0 text-center">
+                                            <i class="fas fa-video text-danger me-1"></i> {{ __('Video record: :title', ['title' => $activity->localized_title]) }}
+                                        </p>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </div>
                     

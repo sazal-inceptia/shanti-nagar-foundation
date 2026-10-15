@@ -296,7 +296,7 @@ erDiagram
 
 ### 16. `activities`
 * Rotary Club field initiatives, community drives, medical camps, seminars, and distribution campaigns.
-* **Fields:** `id`, `title`, `title_bn`, `slug` (unique, auto-generated from title), `event_date`, `event_time`, `location`, `location_bn`, `short_description`, `short_description_bn`, `description`, `description_bn`, `featured_image`, `status` (`upcoming`, `ongoing`, `completed`, `cancelled`), `is_featured`, `is_published`, `sort_order`, `created_at`, `updated_at`, `deleted_at`.
+* **Fields:** `id`, `title`, `title_bn`, `slug` (unique, auto-generated from title), `event_date`, `event_time`, `location`, `location_bn`, `short_description`, `short_description_bn`, `description`, `description_bn`, `featured_image`, `video_url`, `status` (`upcoming`, `ongoing`, `completed`, `cancelled`), `is_featured`, `is_published`, `sort_order`, `created_at`, `updated_at`, `deleted_at`.
 
 ---
 

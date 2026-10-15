@@ -13,6 +13,7 @@ return new class extends Migration
             $table->foreignId('project_id')->constrained('projects')->cascadeOnDelete();
             $table->string('image_path');
             $table->string('caption')->nullable();
+            $table->string('caption_bn')->nullable();
             $table->integer('sort_order')->default(0);
             $table->timestamps();
         });

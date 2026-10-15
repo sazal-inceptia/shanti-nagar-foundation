@@ -262,18 +262,19 @@ class ActivitySeeder extends Seeder
                 'sort_order' => 3,
             ],
             [
-                'title' => 'Voluntary Blood Donation & Thalassemia Screening Drive',
-                'title_bn' => 'স্বেচ্ছায় রক্তদান ও থ্যালাসেমিয়া স্ক্রিনিং কর্মসূচি',
+                'title' => 'Thalassemia Awareness Program & Blood Screening Drive',
+                'title_bn' => 'থ্যালাসেমিয়া সচেতনতা কর্মসূচি ও রক্তদান অভিযান',
                 'slug' => 'voluntary-blood-donation-thalassemia-screening-drive',
-                'event_date' => now()->subDays(15)->toDateString(),
-                'event_time' => '10:00 AM - 05:00 PM',
-                'location' => 'Central Blood Bank & Rotary Center, Dhaka',
-                'location_bn' => 'সেন্ট্রাল ব্লাড ব্যাংক ও রোটারি সেন্টার, ঢাকা',
-                'short_description' => 'Collected 120+ safe blood units for child thalassemia patients and registered 200 regular emergency donors.',
-                'short_description_bn' => 'থ্যালাসেমিয়া আক্রান্ত শিশুদের জরুরি চিকিৎসায় ১২০ ব্যাগ নিরাপদ রক্ত সংগ্রহ এবং ২০০ জন ডোনারের ডাটাবেজ তৈরি।',
-                'description' => '<p class="lead">In partnership with specialized transfusion centers, our club successfully hosted a voluntary blood donation camp collecting <strong>124 bags of screened safe blood</strong> dedicated specifically for underprivileged thalassemia patients.</p>
+                'event_date' => '2024-06-01',
+                'event_time' => '11:00 AM - 04:00 PM',
+                'location' => 'Thalassemia Samity, Green Road, Dhaka',
+                'location_bn' => 'থ্যালাসেমিয়া সমিতি, গ্রীন রোড, ঢাকা',
+                'short_description' => 'Joint multi-club thalassemia awareness seminar and screened blood collection campaign led by RC Shantinagar Dhaka.',
+                'short_description_bn' => 'রোটারি ক্লাব অব শান্তিনগর ঢাকার নেতৃত্বে থ্যালাসেমিয়া সচেতনতা সেমিনার এবং নিরাপদ রক্তদান কর্মসূচি।',
+                'description' => '<p class="lead">Under the leadership of <strong>Rotary Club of Shantinagar Dhaka</strong> as Project Lead Club, a joint Thalassemia Awareness Program was successfully organized at Thalassemia Samity, Green Road, Dhaka with active participation from 14 partner Rotary clubs across District 3281.</p>
 <h3>Key Accomplishments</h3>
 <ul>
+    <li>Convened specialized medical discussion on thalassemia carrier prevention and premarital screening.</li>
     <li>124 healthy volunteer donors successfully donated blood after rigorous health checks.</li>
     <li>Conducted free hemoglobin and blood grouping tests for over 300 walk-in visitors.</li>
     <li>Created a dedicated Emergency Donors Registry for urgent platelet and rare group requests.</li>
@@ -306,12 +307,13 @@ class ActivitySeeder extends Seeder
     </table>
 </figure>
 <figure class="image image-style-side">
-    <img src="/assets/images/standalone/hero-club-fellowship-portrait.jpeg" alt="Blood Donation Activity">
-    <figcaption>Volunteer donating safe blood during the Rotary Shantinagar blood drive.</figcaption>
+    <img src="/assets/images/projects/thalassemia-awareness/thalassemia-awareness-seminar-table.jpg" alt="Thalassemia Awareness Program Discussion">
+    <figcaption>Rotarian leaders at the Thalassemia Awareness Program seminar table at Thalassemia Samity, Green Road.</figcaption>
 </figure>',
-                'description_bn' => '<p class="lead">থ্যালাসেমিয়া আক্রান্ত নিষ্পাপ শিশুদের নিয়মিত রক্তের সংকট নিরসনে রোটারি ক্লাব অব শান্তিনগর ঢাকার উদ্যোগে সফলভাবে দিনব্যাপী রক্তদান কর্মসূচি সম্পন্ন হয়েছে, যেখানে <strong>১২৪ ব্যাগ নিরাপদ রক্ত</strong> সংগৃহীত হয়েছে।</p>
-<h3>অর্জিত সাফল্য ও পরিসংখ্যান</h3>
+                'description_bn' => '<p class="lead"><strong>রোটারি ক্লাব অব শান্তিনগর ঢাকার</strong> প্রধান তত্ত্বাবধানে ও ডিস্ট্রিক্ট ৩২৮১-এর ১৪টি রোটারি ক্লাবের যৌথ উদ্যোগে গ্রীন রোডের থ্যালাসেমিয়া সমিতিতে দিনব্যাপী থ্যালাসেমিয়া সচেতনতা ও রক্তদান কর্মসূচি অনুষ্ঠিত হয়েছে।</p>
+<h3>কর্মসূচির অর্জন ও বিবরণ</h3>
 <ul>
+    <li>থ্যালাসেমিয়া প্রতিরোধে সচেতনতামূলক আলোচনা ও পারিবারিক কাউন্সেলিং সেশন পরিচালনা।</li>
     <li>১২৪ জন উদ্যমী রক্তদাতা সম্পূর্ণ স্বাস্থ্য পরীক্ষার পর নিরাপদ রক্ত দান করেছেন।</li>
     <li>৩০০+ দর্শনার্থীর বিনামূল্যে রক্তের গ্রুপ ও হিমোগ্লোবিন টেস্ট সম্পন্ন।</li>
     <li>জরুরি রক্তের প্রয়োজনে ক্লাবের তত্ত্বাবধানে একটি "জরুরি রক্তদাতা ডেটাবেজ" গঠন।</li>
@@ -344,12 +346,13 @@ class ActivitySeeder extends Seeder
     </table>
 </figure>
 <figure class="image image-style-side">
-    <img src="/assets/images/standalone/hero-club-fellowship-portrait.jpeg" alt="রক্তদান কর্মসূচি">
-    <figcaption>স্বেচ্ছাসেবী রক্তদাতা কর্তৃক আনন্দচিত্তে রক্তদান ও সহমর্মিতা প্রকাশ।</figcaption>
+    <img src="/assets/images/projects/thalassemia-awareness/thalassemia-awareness-seminar-table.jpg" alt="থ্যালাসেমিয়া সচেতনতা কর্মসূচি">
+    <figcaption>গ্রীন রোডস্থ থ্যালাসেমিয়া সমিতিতে সচেতনতা সেমিনারে রোটারিয়ান নেতৃবৃন্দ।</figcaption>
 </figure>',
-                'featured_image' => 'assets/images/projects/covers/free-mask-distribution.jpeg',
+                'featured_image' => 'assets/images/projects/covers/thalassemia-awareness-program.jpeg',
+                'video_url' => 'assets/videos/thalassemia-awareness-seminar.mp4',
                 'status' => 'completed',
-                'is_featured' => false,
+                'is_featured' => true,
                 'is_published' => true,
                 'sort_order' => 4,
             ],

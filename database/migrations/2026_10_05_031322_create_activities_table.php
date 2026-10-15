@@ -25,6 +25,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->longText('description_bn')->nullable();
             $table->string('featured_image')->nullable();
+            $table->string('video_url')->nullable();
             $table->string('status', 30)->default('upcoming'); // upcoming, ongoing, completed, cancelled
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_published')->default(true);

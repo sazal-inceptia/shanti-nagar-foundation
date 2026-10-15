@@ -11,8 +11,10 @@ return new class extends Migration
         Schema::create('project_types', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
+            $table->string('name_bn', 100)->nullable();
             $table->string('slug', 100)->unique();
             $table->text('description')->nullable();
+            $table->text('description_bn')->nullable();
             $table->string('badge_color', 50)->nullable();
             $table->integer('order_index')->default(0);
             $table->boolean('is_active')->default(true);

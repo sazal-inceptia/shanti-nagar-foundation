@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('status')->default('pending'); // pending, approved, rejected
             $table->text('notes')->nullable();
+            $table->text('notes_bn')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
