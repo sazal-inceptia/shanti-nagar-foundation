@@ -494,6 +494,86 @@ class ActivitySeeder extends Seeder
                 'is_published' => true,
                 'sort_order' => 6,
             ],
+            [
+                'title' => 'Grand River Cruise 2026: Unite For Good Fellowship',
+                'title_bn' => 'গ্র্যান্ড রিভার ক্রুজ ২০২৬: ইউনাইট ফর গুড সৌহার্দ্য ভ্রমণ',
+                'slug' => 'grand-river-cruise-fellowship-2026',
+                'event_date' => '2026-02-20',
+                'event_time' => '08:00 AM - 07:00 PM',
+                'location' => 'Meghna River Cruise Terminal, Dhaka',
+                'location_bn' => 'মেঘনা রিভার ক্রুজ টার্মিনাল, ঢাকা',
+                'short_description' => 'Annual family fellowship river voyage strengthening bonds and unity among Rotarians and community leaders.',
+                'short_description_bn' => 'রোটারিয়ান পরিবার ও শুভানুধ্যায়ীদের পারস্পরিক বন্ধন দৃঢ়করণে বার্ষিক প্রমোদতরী ভ্রমণ ও ফেলোশিপ সমাবেশ।',
+                'description' => '<p class="lead">Under the banner of <strong>"GRAND RIVER CRUISE-2026: Unite For Good"</strong>, the Rotary Club of Shantinagar Dhaka organized an unforgettable full-day fellowship cruise on the river. Rotarians, their families, and partner club dignitaries gathered to celebrate shared accomplishments, foster camaraderie, and strategize for future humanitarian milestones in an inspiring natural atmosphere.</p>
+<h3>Event Highlights</h3>
+<ul>
+    <li>Special welcoming ceremony and inspirational address on fellowship in service.</li>
+    <li>Family cultural performances, interactive games, and traditional fellowship lunch.</li>
+    <li>Planning roundtable on upcoming youth leadership and maternal health initiatives.</li>
+    <li>Commemorative club memento distribution to participating members and guests.</li>
+</ul>
+<figure class="image image-style-side">
+    <img src="/assets/images/activities/river-cruise/river-cruise-unite-for-good-banner.jpg" alt="Grand River Cruise 2026 Banner">
+    <figcaption>Rotary Club of Shantinagar members proudly holding the official Grand River Cruise 2026 banner.</figcaption>
+</figure>',
+                'description_bn' => '<p class="lead"><strong>"গ্র্যান্ড রিভার ক্রুজ ২০২৬: ইউনাইট ফর গুড"</strong> প্রতিপাদ্য নিয়ে রোটারি ক্লাব অব শান্তিনগর ঢাকা দিনব্যাপী বর্ণাঢ্য প্রমোদতরী ভ্রমণ ও পারিবারিক ফেলোশিপ সমাবেশের আয়োজন করে। নদীমাতৃক বাংলার মনোরম পরিবেশে রোটারিয়ান পরিবার, অংশীদার ক্লাবের নেতৃবৃন্দ ও শুভাকাঙ্ক্ষীরা এতে স্বতঃস্ফূর্তভাবে অংশ নেন।</p>
+<h3>অনুষ্ঠানের মূল আকর্ষণ</h3>
+<ul>
+    <li>ফেলোশিপ ও মানবিক সেবার সেতুবন্ধনে বিশেষ অভ্যর্থনা ও উদ্বোধনী বক্তব্য।</li>
+    <li>পারিবারিক সাংস্কৃতিক পরিবেশনা, আকর্ষণীয় র‍্যাফেল ড্র ও ঐতিহ্যবাহী ভোজ।</li>
+    <li>আসন্ন সমাজকল্যাণ ও স্বাস্থ্যসেবা প্রকল্পগুলোর ভবিষ্যৎ রূপরেখা নিয়ে উন্মুক্ত আলোচনা।</li>
+    <li>অংশগ্রহণকারী সদস্যদের মাঝে ক্লাবের স্মারক উপহার ও সম্মাননা প্রদান।</li>
+</ul>
+<figure class="image image-style-side">
+    <img src="/assets/images/activities/river-cruise/river-cruise-unite-for-good-banner.jpg" alt="গ্র্যান্ড রিভার ক্রুজ ব্যানার">
+    <figcaption>গ্র্যান্ড রিভার ক্রুজ ২০২৬-এর ব্যানারের সামনে শান্তিনগর ক্লাবের নেতৃবৃন্দ।</figcaption>
+</figure>',
+                'featured_image' => 'assets/images/activities/river-cruise/river-cruise-unite-for-good-banner.jpg',
+                'video_url' => null,
+                'status' => 'completed',
+                'is_featured' => true,
+                'is_published' => true,
+                'sort_order' => 7,
+            ],
+            [
+                'title' => 'Ramadan Iftar & Doa Mahfil with Grassroots Food Distribution',
+                'title_bn' => 'মাহে রমজান ইফতার ও দোয়া মাহফিল এবং দুস্থদের মাঝে খাদ্য বিতরণ',
+                'slug' => 'ramadan-iftar-fellowship-drive',
+                'event_date' => '2026-03-22',
+                'event_time' => '04:30 PM - 07:30 PM',
+                'location' => 'BRAC Center Mohakhali & Mohakhali Community Area, Dhaka',
+                'location_bn' => 'ব্র্যাক সেন্টার মহাখালী ও আশপাশের এলাকা, ঢাকা',
+                'short_description' => 'Solemn Iftar gathering with special doa mahfil coupled with night-time street meal distribution for fasting laborers.',
+                'short_description_bn' => 'পবিত্র মাহে রমজান উপলক্ষে দোয়া ও ইফতার মাহফিল এবং নিম্নআয়ের মেহনতি রোজাদারদের মাঝে খাদ্য বিতরণ।',
+                'description' => '<p class="lead">Rotary Club of Shantinagar Dhaka commemorated the sacred month of Ramadan with a solemn Iftar & Doa Mahfil at BRAC Center Mohakhali, bringing together members and guests in prayer for global peace and community welfare. Simultaneously, a dedicated volunteer team conducted on-street Iftar distribution delivering wholesome meal boxes to underprivileged fasting workers and day laborers.</p>
+<h3>Key Activities</h3>
+<ul>
+    <li>Special munajat and doa seeking peace, prosperity, and blessings for humanitarian service.</li>
+    <li>Direct distribution of 150+ freshly prepared hot Iftar boxes to rickshaw pullers and street dwellers.</li>
+    <li>Strengthened bonds of spiritual fellowship and civic generosity among club members.</li>
+</ul>
+<figure class="image image-style-side">
+    <img src="/assets/images/activities/iftar/iftar-mahfil-stage-and-guests.jpg" alt="Iftar and Doa Mahfil Gathering">
+    <figcaption>Rotary Club of Shantinagar members at the Iftar & Doa Mahfil.</figcaption>
+</figure>',
+                'description_bn' => '<p class="lead">পবিত্র মাহে রমজানের তাৎপর্য ও সৌহার্দ্য ছড়িয়ে দিতে ব্র্যাক সেন্টার মহাখালীতে দোয়া ও ইফতার মাহফিলের আয়োজন করে রোটারি ক্লাব অব শান্তিনগর ঢাকা। মাহফিলের পাশাপাশি ক্লাবের স্বেচ্ছাসেবক দল মহাখালী এলাকায় সুবিধাবঞ্চিত পথচারী ও মেহনতি রোজাদারদের মাঝে মানসম্মত ইফতার বক্স বিতরণ করে।</p>
+<h3>কার্যক্রমের সারসংক্ষেপ</h3>
+<ul>
+    <li>মানবকল্যাণ, বিশ্বশান্তি ও দেশের সমৃদ্ধি কামনায় বিশেষ মোনাজাত ও দোয়া মাহফিল।</li>
+    <li>১৫০+ দুস্থ রিকশাচালক ও শ্রমজীবী মানুষের মাঝে পুষ্টিকর গরম ইফতার বক্স বিতরণ।</li>
+    <li>রোটারি সদস্যদের মাঝে পারস্পরিক ভ্রাতৃত্ব ও মানবিক দায়বদ্ধতার নবজাগরণ।</li>
+</ul>
+<figure class="image image-style-side">
+    <img src="/assets/images/activities/iftar/iftar-mahfil-stage-and-guests.jpg" alt="ইফতার ও দোয়া মাহফিল">
+    <figcaption>ইফতার ও দোয়া মাহফিলে শান্তিনগর ক্লাবের সদস্য ও আমন্ত্রিত অতিথিবৃন্দ।</figcaption>
+</figure>',
+                'featured_image' => 'assets/images/activities/iftar/iftar-mahfil-stage-and-guests.jpg',
+                'video_url' => null,
+                'status' => 'completed',
+                'is_featured' => false,
+                'is_published' => true,
+                'sort_order' => 8,
+            ],
         ];
 
         foreach ($activities as $data) {
