@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 
-@section('title', __('Upcoming Activities & Events') . ' — ' . site_setting('org_name', 'Rotary Club of Shantinagar Dhaka'))
+@section('title', __('Activities & Events') . ' — ' . site_setting('org_name', 'Rotary Club of Shantinagar Dhaka'))
 
 @section('content')
 
@@ -9,7 +9,7 @@
         <div class="auto-container">
             <div class="content-box">
                 <div class="title">
-                    <h1>{{ __('Upcoming Activities & Events') }}</h1>
+                    <h1>{{ __('Activities & Events') }}</h1>
                 </div>
                 <ul class="bread-crumb clearfix">
                     <li><a href="{{ route('home') }}">{{ __('Home') }}</a></li>
@@ -26,7 +26,7 @@
         <div class="auto-container">
             <div class="sec-title centred mb-4">
                 <span class="top-text">{{ __('Rotary in Action') }}</span>
-                <h2>{{ __('Field Activities & Initiatives') }}</h2>
+                <h2>{{ __('Upcoming Activities & Events') }}</h2>
             </div>
 
             {{-- Modern Responsive Filter & Search Dashboard --}}

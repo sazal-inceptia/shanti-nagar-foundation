@@ -1,71 +1,79 @@
-# Brag Plan V2: Rotary Club of Shantinagar Dhaka
+# Rotary Club of Shantinagar Dhaka — Detailed Documentary Presentation Video
 
-## What is this app?
-Rotary Club of Shantinagar Dhaka is an official non-profit humanitarian platform (Rotary International District 3281) delivering radical financial transparency, verified healthcare equipment, maternal-child nutrition, safe drinking water, and grassroots community relief across Bangladesh.
+## Overview
+A comprehensive ~1.5-minute (104.0s) documentary presentation video covering the entire humanitarian service platform of **Rotary Club of Shantinagar Dhaka** (Rotary International District 3281). Features a relaxing, confident, and conversational South Asian English male presentation voiceover by Aman (zero background music), with natural breathing pauses, simplified engaging language, and pristine on-screen typography.
 
-## The angle & Creative Focus
-Direct, high-value, informative presentation video tailored for executive leadership and stakeholders:
-- **Zero wasted time:** Eliminates hollow spinning logo impressions at the opening and closing.
-- **Immediate Club Overview:** Chartered 2005, RI District 3281, Shantinagar Dhaka, 3 Core Strategic Pillars (Maternal Health, Safe Water & Education, Radical Transparency).
-- **Official Board of Directors (BOD) Introduction:** Spotlights key club leadership with real portraits and official titles (President Rtn. Shah Arifur Rahman, Secretary Rtn. Md. Shamim Rahman, IPP Rtn. Md Mominul Islam, PE Rtn. Ujjal Kanti Dey, VP Rtn. Fahima Nazneen Rahman, Treasurer Rtn. Md Shariful Islam Shovo).
-- **Flagship Project Deep-Dives:** Azimpur Maternity Hospital incubators & 500+ Pushti nutrition packs, Sadik Model School safe water purifiers protecting 1,200+ students daily, and winter emergency survival relief.
-- **Radical Transparency & Proven Governance:** Public audit dashboard tracking 20 grassroots projects, 106 verified BDT (৳) donations, and 49 itemized expense ledgers.
+---
 
-## Format & Specs
-- Format: 1920x1080 (1080p FHD 16:9 Landscape)
-- Framerate: 30 FPS
-- Duration: 22.0 seconds (660 frames)
-- Palette: Official Rotary Royal Blue (#005daa), Midnight Navy (#001a33), Golden Sun (#ffb81c / #f59e0b), Pure White (#ffffff), Slate Gray (#0f172a).
-- Music: `happy-beats-business-moves-vol-10-by-ende-dot-app.mp3` (109.96 BPM, crisp business beat, gentle fade-out 20.5s–22.0s).
+## Complete Conversational Narration Script & Scene Breakdown
 
-## Storyboard
+### Chapter 1: Welcome & Our Story (`0:00 – 0:16`, 16.0s)
+- **Voiceover Narration:**
+  > *"Hello, and welcome. Today, we are proud to present... the Rotary Club of Shantinagar Dhaka. For over twenty years, our members have been working on the ground... bringing real help, care, and hope to communities across Bangladesh."*
+- **Visual Content:**
+  - Golden Rotary International Crest & Charter Identifier (Chartered 2005)
+  - 3 Core Strategic Pillars: Maternal & Child Health, Clean School Water, 100% Honest & Open To You
+  - Official Motto: *SERVICE ABOVE SELF • Real Help, Real Hope*
 
-### Scene 1 — About Club Information (0.0s – 4.2s, frames 0–126)
-- Top logo & badge: "ROTARY INTERNATIONAL DISTRICT 3281"
-- Headline: "Rotary Club of Shantinagar Dhaka"
-- Subtitle: "Chartered 2005 • Over 20 Years of Grassroots Humanitarian Service in Bangladesh"
-- 3 Strategic Mission Pillars:
-  1. Maternal & Child Health (Azimpur Maternity Hospital, 500+ Pushti packs, neonatal incubators)
-  2. Safe Water & Education (Sadik Model School, 1,200+ students protected, arsenic-free)
-  3. Radical Transparency (Verified receipts in BDT ৳, public audited ledgers)
-- Bottom Motto: "SERVICE ABOVE SELF"
+### Chapter 2: Dedicated Leadership & Governance (`0:16 – 0:32`, 16.0s)
+- **Voiceover Narration:**
+  > *"Behind every project, is strong and dedicated leadership. Led by our Club President, Rotarian Shah Arifur Rahman... our Secretary, Rotarian Mohammad Shamim Rahman... and our passionate board members, we lead with trust, teamwork, and service."*
+- **Visual Content:**
+  - 3 Columns × 2 Rows Executive Grid showcasing top 6 leadership portraits and titles:
+    1. Rtn. Shah Arifur Rahman — Club President (RY 2026-27)
+    2. Rtn. Md. Shamim Rahman — Club Secretary
+    3. Rtn. Md Mominul Islam — Immediate Past President (IPP)
+    4. Rtn. Ujjal Kanti Dey — President Elect (PE)
+    5. Rtn. Fahima Nazneen Rahman, RFSM — Vice President
+    6. Rtn. Md Shariful Islam Shovo — Club Treasurer
 
-### Scene 2 — Board of Directors (BOD) & Leadership (4.2s – 8.6s, frames 126–258)
-- Top badge: "CLUB GOVERNANCE & LEADERSHIP • RY 2026-2027"
-- Headline: "Board of Directors & Executive Leadership"
-- Subtitle: "Guiding humanitarian relief with professional governance, dedication, and integrity"
-- 6 High-res portrait cards with golden and blue badge accents:
-  1. Rtn. Shah Arifur Rahman — Club President
-  2. Rtn. Md. Shamim Rahman — Club Secretary
-  3. Rtn. Md Mominul Islam — Immediate Past President (IPP)
-  4. Rtn. Ujjal Kanti Dey — President Elect (PE)
-  5. Rtn. Fahima Nazneen Rahman, RFSM — Vice President
-  6. Rtn. Md Shariful Islam Shovo — Club Treasurer
-- Bottom metric: "66+ Dedicated Members & Officers • 100% Volunteerism with Zero Overhead Salaries"
+### Chapter 3: Caring for Mothers & Newborns (`0:32 – 0:47`, 15.0s)
+- **Voiceover Narration:**
+  > *"Healthcare is where our heart is. At Azimpur Maternity Hospital, we provided vital medical equipment for newborns. And right into the hands of mothers, we delivered over five hundred boxes... of nutritious food and essential care."*
+- **Visual Content:**
+  - Hospital equipment & newborn medical gear handover ceremony
+  - Direct delivery of nutritious food and care boxes to mothers
+  - Key Metrics: 500+ Care Boxes Delivered, 100% Direct Hands-On Support, Azimpur Government Maternity Hospital Partnership
 
-### Scene 3 — Flagship Project: Azimpur Maternity Hospital & Nutrition (8.6s – 13.0s, frames 258–390)
-- Top badge: "FLAGSHIP PROJECT 01 • MATERNAL & NEONATAL HEALTHCARE"
-- Headline: "Azimpur Maternity Hospital Aid & Pushti Boxes"
-- 2 Authentic project photos:
-  - Photo 1: Neonatal hospital equipment handover
-  - Photo 2: Mother receiving Pushti nutrition box
-- Stats ribbon: "500+ Pushti Nutrition Boxes Delivered • 100% Direct Handover • Dhaka Hospital Partnerships"
+### Chapter 4: Clean Drinking Water in Schools (`0:47 – 1:01`, 14.0s)
+- **Voiceover Narration:**
+  > *"Clean water saves lives. At Sadik Model School, we set up a modern water filtration plant. Today, more than twelve hundred children drink pure, safe, arsenic-free water... every single school day."*
+- **Visual Content:**
+  - Real photography of schoolchildren drinking safe filtered water at Sadik Model School
+  - Multi-stage filtration plant technical setup
+  - Key Metrics: 1,200+ Students Protected Daily, 100% Safe & Arsenic-Free, Tested Regular Filter Maintenance
 
-### Scene 4 — Flagship Projects: Safe Water & Winter Relief (13.0s – 17.5s, frames 390–525)
-- Top badge: "FLAGSHIP PROJECTS 02 & 03 • SAFE WATER & WINTER RELIEF"
-- Headline: "Clean Drinking Water & Community Warmth"
-- 2 Authentic project photos:
-  - Photo 1: Sadik Model School children with multi-stage water filtration plant
-  - Photo 2: Winter warmth blankets & emergency relief kits distribution
-- Stats ribbon: "1,200+ Students Daily Protected • Arsenic & Bacteria-Free • 5,000+ Winter Kits Handed Over"
+### Chapter 5: Winter Relief & Nationwide Green Drive (`1:01 – 1:16`, 15.0s)
+- **Voiceover Narration:**
+  > *"Whenever hardship strikes, our team is ready. We distributed over five thousand warm winter blankets to families in northern districts. And for our green future, we planted trees across all sixty-four districts of Bangladesh."*
+- **Visual Content:**
+  - Winter blanket and warm clothes distribution in Kurigram & Gaibandha
+  - Green Bangladesh nationwide native tree plantation campaigns
+  - Key Metrics: 5,000+ Warm Blankets Given, 64-District Tree Planting Drives, Emergency Flood Help & Iftar Drives
 
-### Scene 5 — Radical Financial Transparency & Civic Call to Action (17.5s – 22.0s, frames 525–660)
-- Top badge: "RADICAL FINANCIAL ACCOUNTABILITY & CIVIC IMPACT"
-- Headline: "100% Verified Transparency • Every Taka Accounted For"
-- Group leadership photo at District 3281 Annual Conference
-- 4 Live Dashboard Metrics:
-  - 20 Verified Projects
-  - 106 Tracked BDT Donations
-  - 49 Public Expense Audits
-  - 66 Active Club Leaders
-- Bottom Callout: "Visit: www.shantinagarfoundation.org • House 12, Road 5, Shanti Nagar, Dhaka-1217"
+### Chapter 6: 100% Honest, Open & Accountable to You (`1:16 – 1:30`, 14.0s)
+- **Voiceover Narration:**
+  > *"We believe in complete honesty. Every single donation gets an instant digital receipt. And every penny we spend is openly published on our website... so you always know where your support goes."*
+- **Visual Content:**
+  - District 3281 Annual Conference leadership stage lineup (10 Consecutive Years Roll of Honour)
+  - Live Verified Metrics Grid: 20+ Community Projects, 106 Verified Receipts, 49 Open Expense Reports, 66 Dedicated Members
+  - Official Verification: Instant Digital Receipt IDs & Open Public Audit Ledger
+
+### Chapter 7: Join Our Journey & Contact (`1:30 – 1:44`, 14.0s)
+- **Voiceover Narration:**
+  > *"Our motto is simple: Service Above Self. We warmly invite you to be part of this journey. Visit Shantinagar Foundation dot org... and let us make a lasting difference, together."*
+- **Visual Content:**
+  - Official Website: `www.shantinagarfoundation.org`
+  - Club Office: House 12, Road 5, Shanti Nagar, Dhaka-1217, Bangladesh
+  - Join & Support: `contact@rotaryshantinagardhaka.org`
+  - Rotary International District 3281 Golden Emblem
+
+---
+
+## Technical Specifications
+- **Video Resolution:** 1920 × 1080 (Full HD 1080p @ 30 FPS)
+- **Video Codec:** H.264 (High Profile, CRF 18, YUV420p)
+- **Audio Codec:** AAC Stereo (48,000 Hz, 192 kbps, Studio Warmth, Zero Background Music)
+- **Tone:** Relaxed, Confident, Human Presentation Speech
+- **Voiceover Artist:** Fluent South Asian English Male Voice (Aman)
+- **Total Duration:** 104.0 seconds (3,120 frames)
