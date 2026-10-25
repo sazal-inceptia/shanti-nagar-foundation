@@ -628,7 +628,18 @@
                         <div class="single-item">
                             <div class="inner-box president-pillar-card">
                                 <div class="icon-box president-photo-box">
-                                    <h5>{{ $leader->year_badge ?: ($leader->tenure ?: date('Y', strtotime($leader->joining_date))) }}</h5>
+                                    @php
+                                        $badgeText = trim((string) ($leader->year_badge ?: ($leader->tenure ?: (strtotime((string) $leader->joining_date) ? date('Y', strtotime((string) $leader->joining_date)) : ''))));
+                                        $badgeParts = explode(' ', $badgeText, 2);
+                                    @endphp
+                                    <h5 class="president-year-badge">
+                                        @if(count($badgeParts) === 2)
+                                            <span class="badge-prefix">{{ $badgeParts[0] }}</span>
+                                            <span class="badge-year">{{ $badgeParts[1] }}</span>
+                                        @else
+                                            <span class="badge-single">{{ $badgeText }}</span>
+                                        @endif
+                                    </h5>
                                     <div class="leader-avatar-circle">
                                         <img src="{{ $leader->photo_url }}" alt="{{ $leader->localized_name }}">
                                     </div>

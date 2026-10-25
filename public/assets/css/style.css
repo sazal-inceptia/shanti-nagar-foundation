@@ -17978,18 +17978,61 @@
    transition: all 0.5s ease;
  }
 
- .president-photo-box h5 {
+ .roll-of-honour-section .single-item .inner-box .icon-box.president-photo-box h5,
+ .president-photo-box h5,
+ .president-photo-box .president-year-badge {
+   position: absolute !important;
    background-color: var(--theme-secondary, #ffb81c) !important;
    color: #0c2340 !important;
-   font-size: 13px !important;
+   width: 62px !important;
+   height: 62px !important;
+   border-radius: 50% !important;
+   border: 3.5px solid #232323 !important;
+   right: -10px !important;
+   top: -6px !important;
+   z-index: 5 !important;
+   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45) !important;
+   display: flex !important;
+   flex-direction: column !important;
+   align-items: center !important;
+   justify-content: center !important;
+   text-align: center !important;
+   line-height: 1.15 !important;
+   padding: 2px !important;
+   margin: 0 !important;
+   overflow: hidden !important;
+ }
+
+ .president-photo-box h5 .badge-prefix,
+ .president-photo-box .president-year-badge .badge-prefix {
+   display: block;
+   font-size: 10px !important;
    font-weight: 800 !important;
-   width: 60px !important;
-   height: 60px !important;
-   line-height: 52px !important;
-   right: -15px !important;
-   top: -5px !important;
-   z-index: 5;
-   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+   text-transform: uppercase;
+   letter-spacing: 0.5px;
+   line-height: 1.1 !important;
+   color: #0c2340 !important;
+   margin-bottom: 1px;
+ }
+
+ .president-photo-box h5 .badge-year,
+ .president-photo-box .president-year-badge .badge-year {
+   display: block;
+   font-size: 11px !important;
+   font-weight: 800 !important;
+   line-height: 1.15 !important;
+   letter-spacing: -0.2px;
+   color: #0c2340 !important;
+   white-space: nowrap !important;
+ }
+
+ .president-photo-box h5 .badge-single,
+ .president-photo-box .president-year-badge .badge-single {
+   display: block;
+   font-size: 12px !important;
+   font-weight: 800 !important;
+   line-height: 1.2 !important;
+   color: #0c2340 !important;
  }
 
  .president-pillar-card h3 {
