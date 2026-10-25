@@ -7396,11 +7396,13 @@
  .events-block-two .inner-box {
    position: relative;
    display: block;
+   height: 480px;
+   border-radius: 15px;
    transition: all 500ms ease;
  }
 
  .events-block-two .inner-box:hover {
-   box-shadow: 0 0px 30px rgb(0 0 0 / 10%);
+   box-shadow: 0 10px 30px rgb(0 0 0 / 25%);
  }
 
  .events-block-two .inner-box .post-date {
@@ -7437,24 +7439,33 @@
    display: block;
    overflow: hidden;
    border-radius: 15px;
+   width: 100%;
+   height: 100%;
  }
 
  .events-block-two .inner-box .image-box:before {
    position: absolute;
    content: '';
-   background-color: #030303;
+   background: linear-gradient(180deg, rgba(3, 3, 3, 0.2) 0%, rgba(3, 3, 3, 0.45) 45%, rgba(3, 3, 3, 0.88) 100%);
    width: 100%;
    height: 100%;
    left: 0px;
    top: 0px;
    right: 0px;
-   opacity: 0.5;
    z-index: 1;
  }
 
  .events-block-two .inner-box .image-box img {
    width: 100%;
+   height: 100%;
+   object-fit: cover;
+   object-position: center;
    border-radius: 15px;
+   transition: transform 600ms ease;
+ }
+
+ .events-block-two .inner-box:hover .image-box img {
+   transform: scale(1.06);
  }
 
  .events-block-two .inner-box .content-box {
@@ -7559,12 +7570,16 @@
 
  .events-block-two .inner-box .content-box h3 {
    position: relative;
-   display: block;
-   font-size: 22px;
-   line-height: 30px;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   font-size: 20px;
+   line-height: 28px;
    color: #ffffff;
    font-weight: 700;
-   margin-bottom: 23px;
+   min-height: 56px;
+   margin-bottom: 18px;
  }
 
  .events-block-two .inner-box .content-box h3 a {
@@ -10386,7 +10401,7 @@
  .case-block-three .inner-box .lower-content .donate-inner .percentage-box .count-text {
    position: absolute;
    top: 15px;
-   right: -27px;
+   right: -35px;
    font-size: 18px;
    line-height: 24px;
    font-family: 'Quicksand', sans-serif;
