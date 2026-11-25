@@ -210,7 +210,7 @@
                                         <i class="fas fa-envelope me-1"></i> {{ __('Contact Support') }}
                                     </a>
                                     <a href="tel:{{ preg_replace('/[^0-9+]/', '', site_setting('hotline', '+8801711000000')) }}" class="theme-btn btn-one btn-sm px-4 py-2" style="border-radius: 8px;">
-                                        <i class="fas fa-phone-alt me-1"></i> {{ __('Call Hotline') }}: {{ site_setting('hotline', '+880 1711-000000') }}
+                                        <i class="fas fa-phone-alt me-1"></i> {{ __('Call Hotline') }}: {{ site_setting('hotline', '+880 1674-888898') }}
                                     </a>
                                 </div>
                             </div>

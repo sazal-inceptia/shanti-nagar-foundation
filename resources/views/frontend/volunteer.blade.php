@@ -59,7 +59,7 @@
                                         <div class="form-group">
                                             <label>{{ __('Phone Number') }} *</label>
                                             <input type="text" name="phone"
-                                                placeholder="{{ site_setting('hotline', '+880 1711-000000') }}"
+                                                placeholder="{{ site_setting('hotline', '+880 1674-888898') }}"
                                                 value="{{ old('phone') }}" required>
                                         </div>
                                     </div>

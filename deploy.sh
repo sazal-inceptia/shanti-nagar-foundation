@@ -41,7 +41,7 @@ rsync -avz --delete \
     --exclude='storage/framework/cache/data/*' \
     --exclude='storage/framework/sessions/*' \
     --exclude='storage/framework/views/*' \
-    --exclude='vendor/' \
+    --exclude='/vendor/' \
     ./ "$REMOTE_USER@$REMOTE_HOST:$REMOTE_DIR/"
 
 echo "==> Step 4: Running post-deployment tasks on remote server..."

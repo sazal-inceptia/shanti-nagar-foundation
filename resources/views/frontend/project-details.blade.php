@@ -480,7 +480,7 @@
                                         </p>
                                     </div>
                                     <div class="lower-content p-4 bg-white">
-                                        <h4 class="fw-bold text-dark mb-1 sidebar-help-phone">{{ site_setting('hotline', '+880 1711-000000') }}</h4>
+                                        <h4 class="fw-bold text-dark mb-1 sidebar-help-phone">{{ site_setting('hotline', '+880 1674-888898') }}</h4>
                                         <p class="small text-muted mb-3">{{ site_setting('address', 'Shanti Nagar, Dhaka - 1217, Bangladesh') }}</p>
                                         <a href="{{ route('contact') }}" class="theme-btn btn-one w-100 sidebar-contact-btn">{{ __('Contact Us') }}</a>
                                     </div>

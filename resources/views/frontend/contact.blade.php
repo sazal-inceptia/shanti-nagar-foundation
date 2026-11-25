@@ -34,10 +34,10 @@
                             </div>
                             <div class="info-box">
                                 <div class="single-item">
-                                    <h4>{{ __('Call Hotline') }}</h4>
+                                    <h4>{{ __('Call Hotline & Contact') }}</h4>
                                     <div class="text">
                                         <div class="icon-box"><i class="icon-phone-call"></i></div>
-                                        <p>{{ __('Head Office') }}<br /><a href="tel:{{ preg_replace('/[^0-9+]/', '', site_setting('hotline', '+8801711000000')) }}">{{ site_setting('hotline', '+880 1711-000000') }}</a></p>
+                                        <p>{{ site_setting('contact_person', 'Shamim Rahman Abir') }}<br /><a href="tel:{{ preg_replace('/[^0-9+]/', '', site_setting('hotline', '+8801674888898')) }}">{{ site_setting('hotline', '+880 1674-888898') }}</a></p>
                                     </div>
                                 </div>
                                 <div class="single-item">

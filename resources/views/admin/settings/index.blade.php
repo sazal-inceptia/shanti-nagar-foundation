@@ -86,12 +86,21 @@
                                                 </div>
                                                 <div class="col-md-6 col-12">
                                                     <label class="form-label text-dark fw-semibold"
+                                                        style="font-size: 13px;">Contact Person / Focal Point</label>
+                                                    <input type="text" name="contact_person" class="form-control form-control-sm"
+                                                        value="{{ $settings['contact_person'] ?? '' }}" placeholder="Shamim Rahman Abir"
+                                                        style="font-size: 13px; height: 38px;">
+                                                </div>
+                                            </div>
+
+                                            <div class="row g-3 mb-3">
+                                                <div class="col-md-6 col-12">
+                                                    <label class="form-label text-dark fw-semibold"
                                                         style="font-size: 13px;">Official Email</label>
                                                     <input type="email" name="email" class="form-control form-control-sm"
                                                         value="{{ $settings['email'] ?? '' }}"
                                                         style="font-size: 13px; height: 38px;">
                                                 </div>
-                                            </div>
 
                                             <div class="row g-3 mb-0">
                                                 <div class="col-md-6 col-12">

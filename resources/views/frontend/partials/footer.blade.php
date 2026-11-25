@@ -83,7 +83,7 @@
                         <div class="widget-content">
                             <div class="single-item">
                                 <h3><a
-                                        href="tel:{{ preg_replace('/[^0-9+]/', '', site_setting('hotline', '+8801711000000')) }}">{{ site_setting('hotline', '+880 1711-000000') }}</a>
+                                        href="tel:{{ preg_replace('/[^0-9+]/', '', site_setting('hotline', '+8801674888898')) }}">{{ site_setting('hotline', '+880 1674-888898') }}</a>
                                 </h3>
                                 <p><a href="mailto:{{ site_setting('email', 'contact@rotaryshantinagardhaka.org') }}">{{
                                         site_setting('email', 'contact@rotaryshantinagardhaka.org') }}</a>

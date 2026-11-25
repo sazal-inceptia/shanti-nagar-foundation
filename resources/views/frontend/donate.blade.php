@@ -137,7 +137,7 @@
                                             <div>
                                                 <small class="text-muted d-block" style="font-size: 11px;">{{ __('Account / Merchant Number') }}</small>
                                                 <span id="bkash-number-text" class="fw-bold text-dark font-monospace" style="font-size: 16px; letter-spacing: 0.03em;">
-                                                    {{ site_setting('bkash_number', '+880 1711-223344') }}
+                                                    {{ site_setting('bkash_number', '+880 1915-398213') }}
                                                 </span>
                                             </div>
                                             <button type="button" class="btn btn-sm btn-outline-danger" onclick="navigator.clipboard.writeText('{{ preg_replace('/[^0-9+]/', '', site_setting('bkash_number', '+8801711223344')) }}'); this.innerHTML='<i class=\'fas fa-check me-1\'></i> {{ __('Copied!') }}'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy me-1\'></i> {{ __('Copy') }}', 2000);"
@@ -200,7 +200,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 column">
                                     <div class="form-group">
                                         <label>{{ __('Phone Number') }} <span>*</span></label>
-                                        <input type="text" name="phone" placeholder="{{ site_setting('hotline', '+880 1711-000000') }}" value="{{ old('phone') }}" required>
+                                        <input type="text" name="phone" placeholder="{{ site_setting('hotline', '+880 1674-888898') }}" value="{{ old('phone') }}" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 column">

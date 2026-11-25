@@ -701,7 +701,7 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="text-dark fw-bold font-monospace" style="font-size: 15px;">
-                                                    {{ site_setting('bkash_number', '+880 1711-223344') }}
+                                                    {{ site_setting('bkash_number', '+880 1915-398213') }}
                                                 </div>
                                                 <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2" onclick="navigator.clipboard.writeText('{{ preg_replace('/[^0-9+]/', '', site_setting('bkash_number', '+8801711223344')) }}'); this.innerText='{{ __('Copied!') }}'; setTimeout(() => this.innerText='{{ __('Copy') }}', 2000);"
                                                     style="font-size: 11px; border-color: #d12053; color: #d12053; border-radius: 4px;">
@@ -739,7 +739,7 @@
                                             <div class="form-group">
                                                 <label>{{ __('Phone Number') }} <span>*</span></label>
                                                 <input type="text" name="phone"
-                                                    placeholder="{{ site_setting('hotline', '+880 1711-000000') }}"
+                                                    placeholder="{{ site_setting('hotline', '+880 1674-888898') }}"
                                                     value="{{ old('phone') }}" required>
                                             </div>
                                         </div>

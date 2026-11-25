@@ -95,7 +95,7 @@
                     style="font-size: 11.5px; font-weight: 600; text-transform: uppercase;">{{ __('Or Call Directly:') }}</span>
                 <a href="tel:{{ preg_replace('/[^0-9+]/', '', site_setting('hotline', '+8801711000000')) }}"
                     class="fw-bold text-decoration-none" style="color: var(--theme-primary, #005daa); font-size: 14px;">
-                    <i class="fas fa-phone me-1"></i> {{ site_setting('hotline', '+880 1711-000000') }}
+                    <i class="fas fa-phone me-1"></i> {{ site_setting('hotline', '+880 1674-888898') }}
                 </a>
             </div>
         </div>

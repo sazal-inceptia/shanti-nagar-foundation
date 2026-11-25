@@ -172,7 +172,7 @@
                     <div class="text-center mt-4 pt-3 border-top text-muted" style="font-size: 11px; line-height: 1.5;">
                         {{ __('This is a computer-generated money receipt from the official portal of Rotary Club of Shantinagar Dhaka. All donations are transparently audited and allocated directly to field humanitarian operations.') }}
                         <br>
-                        {{ __('For queries or verification, call our accounts helpline: :phone or email: :email', ['phone' => site_setting('hotline', '+880 1711-000000'), 'email' => site_setting('email', 'contact@rotaryshantinagardhaka.org')]) }}
+                        {{ __('For queries or verification, call our accounts helpline: :phone or email: :email', ['phone' => site_setting('hotline', '+880 1674-888898'), 'email' => site_setting('email', 'contact@rotaryshantinagardhaka.org')]) }}
                     </div>
                 </div>
             </div>
