@@ -16,8 +16,6 @@ class DonationService
         return [
             'Cash' => 'Cash (Office Counter)',
             'bKash' => 'bKash (Merchant / Personal)',
-            'Nagad' => 'Nagad',
-            'Rocket' => 'Rocket',
             'Bank Transfer' => 'Bank Transfer / Wire',
             'Cheque' => 'Cheque / Pay Order',
             'Remittance (Bank)' => 'Expatriate Foreign Remittance',

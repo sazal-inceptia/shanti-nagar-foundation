@@ -350,10 +350,6 @@
                                                     <label for="pm_b">{{ __('bKash') }}</label>
                                                 </li>
                                                 <li>
-                                                    <input type="radio" id="pm_n" name="payment_method" value="nagad">
-                                                    <label for="pm_n">{{ __('Nagad') }}</label>
-                                                </li>
-                                                <li>
                                                     <input type="radio" id="pm_bank" name="payment_method"
                                                         value="bank_transfer">
                                                     <label for="pm_bank">{{ __('Bank Transfer') }}</label>

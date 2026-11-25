@@ -29,7 +29,7 @@ class StorePublicDonationRequest extends FormRequest
             'address' => ['nullable', 'string', 'max:500'],
             'amount' => ['required', 'numeric', 'min:10'],
             'project_id' => ['nullable', 'exists:projects,id'],
-            'payment_method' => ['required', 'string', 'in:bkash,nagad,rocket,bank_transfer,cash,online'],
+            'payment_method' => ['required', 'string', 'in:bkash,bank_transfer,cash,online'],
             'transaction_id' => ['nullable', 'string', 'max:255'],
             'notes' => ['nullable', 'string', 'max:1000'],
         ];

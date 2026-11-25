@@ -102,14 +102,6 @@
                                         <label for="page-pm-1">{{ __('bKash') }}</label>
                                     </li>
                                     <li>
-                                        <input type="radio" id="page-pm-2" name="payment_method" value="nagad" {{ old('payment_method') == 'nagad' ? 'checked' : '' }} />
-                                        <label for="page-pm-2">{{ __('Nagad') }}</label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" id="page-pm-3" name="payment_method" value="rocket" {{ old('payment_method') == 'rocket' ? 'checked' : '' }} />
-                                        <label for="page-pm-3">{{ __('Rocket') }}</label>
-                                    </li>
-                                    <li>
                                         <input type="radio" id="page-pm-4" name="payment_method" value="bank_transfer" {{ old('payment_method') == 'bank_transfer' ? 'checked' : '' }} />
                                         <label for="page-pm-4">{{ __('Bank Transfer') }}</label>
                                     </li>
@@ -160,12 +152,41 @@
                                         </details>
                                     </div>
 
-                                    <!-- Other Channels -->
-                                    <div class="mb-2 text-muted" style="font-size: 12px;">
-                                        <strong class="text-dark">{{ __('Nagad') }}:</strong> {{ site_setting('nagad_number', '+880 1811-556677 (Merchant)') }}
-                                    </div>
-                                    <div class="text-muted" style="font-size: 12px;">
-                                        <strong class="text-dark">{{ __('Bank') }}:</strong> {{ site_setting('bank_name', 'Islami Bank Bangladesh Ltd') }} &bull; A/C: {{ site_setting('bank_account_number', '2050 3820 1000 8941') }} ({{ site_setting('bank_account_name', 'Rotary Club of Shantinagar Dhaka') }})
+                                    <!-- Bank Account Card -->
+                                    <div class="p-3 mb-3 rounded" style="background-color: #f0fdf4; border: 1px solid #bbf7d0;">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <span class="badge me-2 px-2 py-1" style="background-color: #15803d; color: #fff; font-weight: 700; font-size: 11.5px;">{{ __('Bank Transfer') }}</span>
+                                                <strong class="text-dark" style="font-size: 13.5px;">{{ site_setting('bank_name', 'Bank Asia PLC') }}</strong>
+                                            </div>
+                                            <span class="badge" style="background-color: #dcfce7; color: #166534; border: 1px solid #86efac; font-size: 11px;">
+                                                {{ site_setting('bank_branch', 'Shantinagar Branch') }}
+                                            </span>
+                                        </div>
+
+                                        <div class="d-flex align-items-center justify-content-between p-2 rounded bg-white border mb-2 flex-wrap gap-2">
+                                            <div>
+                                                <small class="text-muted d-block" style="font-size: 11px;">{{ __('Account Number') }}</small>
+                                                <span id="bank-number-text" class="fw-bold text-dark font-monospace" style="font-size: 16px; letter-spacing: 0.03em;">
+                                                    {{ site_setting('bank_account_number', '03536000022') }}
+                                                </span>
+                                            </div>
+                                            <button type="button" class="btn btn-sm btn-outline-success" onclick="navigator.clipboard.writeText('{{ site_setting('bank_account_number', '03536000022') }}'); this.innerHTML='<i class=\'fas fa-check me-1\'></i> {{ __('Copied!') }}'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy me-1\'></i> {{ __('Copy') }}', 2000);"
+                                                style="border-color: #15803d; color: #15803d; font-size: 12px; font-weight: 600; border-radius: 6px;">
+                                                <i class="far fa-copy me-1"></i> {{ __('Copy') }}
+                                            </button>
+                                        </div>
+
+                                        <div class="row g-2 text-muted" style="font-size: 12px;">
+                                            <div class="col-sm-7 col-12">
+                                                <strong class="text-dark"><i class="fas fa-user-check me-1 text-success"></i> {{ __('A/C Name') }}:</strong>
+                                                {{ site_setting('bank_account_name', 'Rotary Club of Shantinagar Dhaka') }}
+                                            </div>
+                                            <div class="col-sm-5 col-12">
+                                                <strong class="text-dark"><i class="fas fa-code-branch me-1 text-success"></i> {{ __('Routing No') }}:</strong>
+                                                <span class="font-monospace fw-semibold text-dark">{{ site_setting('bank_routing_number', '070276343') }}</span>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <!-- Public Tracking Link -->

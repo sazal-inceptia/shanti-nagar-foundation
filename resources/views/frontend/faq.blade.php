@@ -55,11 +55,11 @@
                         <li class="accordion block">
                             <div class="acc-btn">
                                 <div class="icon-outer"><i class="icon-right-arrow"></i></div>
-                                <h5><i class="icon-question"></i>{{ __('How do I make a donation (bKash / Nagad / Bank)?') }}</h5>
+                                <h5><i class="icon-question"></i>{{ __('How do I make a donation (bKash / Bank)?') }}</h5>
                             </div>
                             <div class="acc-content">
                                 <div class="text">
-                                    <p>{{ __('You can donate easily via bKash, Nagad, Rocket, or direct bank transfer from our Donate page. Every contribution receives an official serial money receipt and electronic reference for your records.') }}</p>
+                                    <p>{{ __('You can donate easily via bKash or direct bank transfer from our Donate page. Every contribution receives an official serial money receipt and electronic reference for your records.') }}</p>
                                 </div>
                             </div>
                         </li>

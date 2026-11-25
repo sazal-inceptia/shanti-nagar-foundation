@@ -184,15 +184,6 @@
 
                                             <div class="mb-3">
                                                 <label class="form-label text-dark fw-semibold"
-                                                    style="font-size: 13px;">Nagad Merchant Account</label>
-                                                <input type="text" name="nagad_number"
-                                                    class="form-control form-control-sm"
-                                                    value="{{ $settings['nagad_number'] }}"
-                                                    style="font-size: 13px; height: 38px;">
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label class="form-label text-dark fw-semibold"
                                                     style="font-size: 13px;">Bank Name</label>
                                                 <input type="text" name="bank_name" class="form-control form-control-sm"
                                                     value="{{ $settings['bank_name'] }}"
@@ -218,16 +209,27 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row g-2 mb-0">
+                                            <div class="row g-2 mb-3">
                                                 <div class="col-md-7 col-12">
                                                     <label class="form-label text-dark fw-semibold"
                                                         style="font-size: 13px;">Bank Branch</label>
                                                     <input type="text" name="bank_branch"
                                                         class="form-control form-control-sm"
-                                                        value="{{ $settings['bank_branch'] }}"
+                                                        value="{{ $settings['bank_branch'] ?? '' }}"
                                                         style="font-size: 13px; height: 38px;">
                                                 </div>
                                                 <div class="col-md-5 col-12">
+                                                    <label class="form-label text-dark fw-semibold"
+                                                        style="font-size: 13px;">Routing Number</label>
+                                                    <input type="text" name="bank_routing_number"
+                                                        class="form-control form-control-sm"
+                                                        value="{{ $settings['bank_routing_number'] ?? '' }}" placeholder="070276343"
+                                                        style="font-size: 13px; height: 38px;">
+                                                </div>
+                                            </div>
+
+                                            <div class="row g-2 mb-0">
+                                                <div class="col-md-12 col-12">
                                                     <label class="form-label text-dark fw-semibold"
                                                         style="font-size: 13px;">Base Currency</label>
                                                     <input type="text" name="currency"

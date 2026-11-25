@@ -134,7 +134,7 @@
                             <ul class="list-style-one clearfix">
                                 <li>{{ __('Direct field procurement by volunteer teams') }}</li>
                                 <li>{{ __('Itemized expense vouchers and proof records') }}</li>
-                                <li>{{ __('Instant bKash, Nagad, Bank and Cash receipts') }}</li>
+                                <li>{{ __('Instant bKash, Bank and Cash receipts') }}</li>
                             </ul>
                             <a href="{{ route('verify.receipt') }}">{{ __('View Transparency Portal') }}</a>
                         </div>

@@ -677,11 +677,6 @@
                                                 <label for="popup-pm-1">{{ __('bKash') }}</label>
                                             </li>
                                             <li>
-                                                <input type="radio" id="popup-pm-2" name="payment_method"
-                                                    value="nagad" />
-                                                <label for="popup-pm-2">{{ __('Nagad') }}</label>
-                                            </li>
-                                            <li>
                                                 <input type="radio" id="popup-pm-3" name="payment_method"
                                                     value="bank_transfer" />
                                                 <label for="popup-pm-3">{{ __('Bank Transfer') }}</label>
@@ -710,6 +705,27 @@
                                             </div>
                                             <div class="text-muted mt-1" style="font-size: 11px;">
                                                 <i class="fas fa-info-circle me-1"></i> {{ __('Ref') }}: {{ site_setting('bkash_reference_note', 'Use Phone or Project Name') }}
+                                            </div>
+                                        </div>
+
+                                        {{-- Bank Account Quick Credentials in Modal --}}
+                                        <div class="mt-2 p-2 rounded" style="background-color: #f0fdf4; border: 1px solid #bbf7d0; font-size: 11.5px;">
+                                            <div class="d-flex align-items-center justify-content-between mb-1">
+                                                <strong style="color: #15803d;"><i class="fas fa-university me-1"></i> {{ site_setting('bank_name', 'Bank Asia PLC') }}</strong>
+                                                <span class="text-muted" style="font-size: 10px;">{{ site_setting('bank_branch', 'Shantinagar Branch') }}</span>
+                                            </div>
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <div class="text-dark fw-bold font-monospace" style="font-size: 13.5px;">
+                                                    A/C: {{ site_setting('bank_account_number', '03536000022') }}
+                                                </div>
+                                                <button type="button" class="btn btn-sm btn-outline-success py-0 px-2" onclick="navigator.clipboard.writeText('{{ site_setting('bank_account_number', '03536000022') }}'); this.innerText='{{ __('Copied!') }}'; setTimeout(() => this.innerText='{{ __('Copy') }}', 2000);"
+                                                    style="font-size: 10px; border-color: #15803d; color: #15803d; border-radius: 4px;">
+                                                    {{ __('Copy') }}
+                                                </button>
+                                            </div>
+                                            <div class="text-muted mt-1" style="font-size: 10.5px;">
+                                                <span>{{ __('A/C') }}: {{ site_setting('bank_account_name', 'Rotary Club of Shantinagar Dhaka') }}</span>
+                                                <span class="ms-2">| Routing: <strong class="font-monospace text-dark">{{ site_setting('bank_routing_number', '070276343') }}</strong></span>
                                             </div>
                                         </div>
                                     </div>

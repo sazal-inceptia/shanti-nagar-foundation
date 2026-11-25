@@ -201,7 +201,7 @@
                                     <div class="fw-bold text-dark mb-2"><i class="fas fa-lightbulb text-warning me-1"></i> {{ __('Helpful Tips & Troubleshooting') }}:</div>
                                     <ul class="mb-0 ps-3 text-muted">
                                         <li class="mb-1">{{ __('Receipt numbers follow the serial pattern: REC-YYYY-XXXX (e.g. REC-2026-0001).') }}</li>
-                                        <li class="mb-1">{{ __('If you made a payment via bKash/Nagad just moments ago, our volunteer accounts team verifies statements regularly within 10-30 minutes.') }}</li>
+                                        <li class="mb-1">{{ __('If you made a payment via bKash/Bank just moments ago, our volunteer accounts team verifies statements regularly within 10-30 minutes.') }}</li>
                                         <li>{{ __('You can also search by your 11-digit Bangladeshi mobile number used during payment.') }}</li>
                                     </ul>
                                 </div>
@@ -315,7 +315,7 @@
                                 <h5 class="fw-bold text-dark mb-0" style="font-size: 16px;">{{ __('Reconciled Bank Accounts') }}</h5>
                             </div>
                             <p class="text-muted mb-0" style="font-size: 13.5px; line-height: 1.6;">
-                                {{ __('All MFS (bKash/Nagad) and bank deposits are reconciled against club ledger books under Rotary District 3281 annual auditing guidelines.') }}
+                                {{ __('All MFS (bKash) and bank deposits are reconciled against club ledger books under Rotary District 3281 annual auditing guidelines.') }}
                             </p>
                         </div>
                     </div>

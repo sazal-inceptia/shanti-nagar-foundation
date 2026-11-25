@@ -29,11 +29,11 @@ class SettingSeeder extends Seeder
             'bkash_reference_note' => 'Use Donor Mobile No or Project Name as Reference',
             'bkash_instructions_en' => "1. Open bKash App or dial *247#\n2. Select 'Send Money' to Personal bKash Account\n3. Enter bKash Number: 01915-398213 (Mr. Nasir)\n4. Enter Donation Amount (৳)\n5. Enter Reference: Your Mobile Number or Project Name\n6. Enter your PIN to confirm payment\n7. Save Transaction ID (TrxID) and submit below.",
             'bkash_instructions_bn' => "১. আপনার বিকাশ অ্যাপ ওপেন করুন অথবা *২৪৭# ডায়াল করুন।\n২. 'সেন্ড মানি' (পার্সোনাল একাউন্ট) অপশন সিলেক্ট করুন।\n৩. বিকাশ নম্বর দিন: ০১৯১৫-৩৯৮২১৩ (Mr. Nasir)\n৪. অনুদানের টাকার পরিমাণ (৳) লিখুন।\n৫. রেফারেন্সে আপনার মোবাইল নম্বর অথবা প্রজেক্টের নাম লিখুন।\n৬. আপনার বিকাশ পিন (PIN) দিয়ে লেনদেন নিশ্চিত করুন।\n৭. প্রাপ্ত ট্রানজেকশন আইডি (TrxID) সংরক্ষণ করে নিচের ফরমে সাবমিট করুন।",
-            'nagad_number' => '+880 1811-556677 (Merchant)',
-            'bank_name' => 'Islami Bank Bangladesh Ltd / City Bank',
+            'bank_name' => 'Bank Asia PLC',
             'bank_account_name' => 'Rotary Club of Shantinagar Dhaka',
-            'bank_account_number' => '2050 3820 1000 8941',
-            'bank_branch' => 'Shanti Nagar Branch, Dhaka',
+            'bank_account_number' => '03536000022',
+            'bank_routing_number' => '070276343',
+            'bank_branch' => 'Shantinagar Branch',
             'currency' => 'BDT (৳)',
         ];
 
